@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ferreteria.CapaDominio
 {
-    public class Class1
+    public class Marca
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+
+        public List<Producto> Productos { get; set; }
     }
 }
