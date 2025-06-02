@@ -17,7 +17,7 @@ namespace Ferreteria.CapaNegocio
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-            return  _CD_SubCategoria.ListasubCategoria();
+            return  _CD_SubCategoria.ListaSubcategoria();
         }
 
         //Metodo para Listar los Productos em la DataWirdView
@@ -32,7 +32,7 @@ namespace Ferreteria.CapaNegocio
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-             _CD_SubCategoria.InsertarsubCategoria(Nuevo);
+             _CD_SubCategoria.InsertarSubcategoria(Nuevo);
 
         }
 
@@ -41,7 +41,7 @@ namespace Ferreteria.CapaNegocio
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-             _CD_SubCategoria.EditarsubCategoria(SubCategoria);
+             _CD_SubCategoria.EditarSubcategoria(SubCategoria);
         }
 
         //Metodo para Eliminar un producto en la Base de Datos
@@ -49,14 +49,14 @@ namespace Ferreteria.CapaNegocio
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-             _CD_SubCategoria.EliminarsubCategoria(Id_SubCategoria);
+             _CD_SubCategoria.EliminarSubcategoria(Id_SubCategoria);
         }
         //Metodo para Buscar un producto en la Base de Datos
         public List<SubCategoria> SubCategoriaBuscar(string buscar)
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-            return  _CD_SubCategoria.subCategoriaBuscar(buscar);
+            return  _CD_SubCategoria.SubcategoriaBuscar(buscar);
         }
     }
 }

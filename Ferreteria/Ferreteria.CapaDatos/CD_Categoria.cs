@@ -107,6 +107,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarCategoria(Nuevo.Nombre))
+                    throw new Exception("Ya existe una categoría con ese nombre.");
+
                 Conexion.SetConsultaProcedure("SpInsertar_categoria");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
@@ -136,27 +140,55 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEditar_categoria");
+                // Validar que el nuevo nombre no exista en otra categoría
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Categoria WHERE Nombre = @Nombre AND Id != @Id");
+                Conexion.SetearParametro("@Nombre", categoria.Nombre);
+                Conexion.SetearParametro("@Id", categoria.Id);
 
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("Ya existe otra categoría con ese nombre.");
+
+                Conexion.SetConsultaProcedure("SpEditar_categoria");
                 Conexion.SetearParametro("@Id", categoria.Id);
                 Conexion.SetearParametro("@Nombre", categoria.Nombre);
-   
 
                 Conexion.EjecutarAccion();
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 Conexion.CerrarConexion();
             }
-
         }
+
+
+        //Metodo Validar
+        public bool ValidarCategoria(string nombre)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Categoria WHERE Nombre = @Nombre");
+                Conexion.SetearParametro("@Nombre", nombre);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
 
         //Metodo eliminar
         public void EliminarCategoria(int Id_categoria)

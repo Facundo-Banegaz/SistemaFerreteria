@@ -111,6 +111,24 @@ namespace Ferreteria.CapaDatos
             }
             throw new ArgumentException($"El parámetro de salida '{nombre}' no existe.");
         }
+        public object EjecutarEscalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return comando.ExecuteScalar();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                CerrarConexion();
+                comando.Parameters.Clear(); // Limpia los parámetros luego de ejecutar
+            }
+        }
 
         public void CerrarConexion()
         {

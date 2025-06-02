@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="CN_Categoria.cs" />
     <Compile Include="CN_Marca.cs" />
+    <Compile Include="CN_Metodos.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_Subcategoria.cs" />
     <Compile Include="CN_UnidadMedida.cs" />

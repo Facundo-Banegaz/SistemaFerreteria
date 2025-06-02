@@ -18,7 +18,7 @@ namespace Ferreteria.CapaDatos
 
         //Metodo Mostrar
 
-        public List<SubCategoria> ListasubCategoria()
+        public List<SubCategoria> ListaSubcategoria()
         {
             //instancia
 
@@ -29,7 +29,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_subCategoria");
+                Conexion.SetConsultaProcedure("SpMostrar_subcategoria");
 
                 Conexion.EjecutarLectura();
 
@@ -40,11 +40,9 @@ namespace Ferreteria.CapaDatos
 
                     subCategoria.Id = (int)Conexion.Lector["Id"];
                     subCategoria.Nombre = (string)Conexion.Lector["Nombre"];
-
                     subCategoria.Categoria = new Categoria();
 
-                    subCategoria.Categoria.Nombre  = (string)Conexion.Lector["Categoria"];
-
+                    subCategoria.Categoria.Nombre = (string)Conexion.Lector["Categoria"];
                     listasubCategoria.Add(subCategoria);
                 }
 
@@ -107,13 +105,19 @@ namespace Ferreteria.CapaDatos
 
         //metodo insertar
 
-        public void InsertarsubCategoria(SubCategoria Nuevo)
+        public void InsertarSubcategoria(SubCategoria Nuevo)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpInsertar_subCategoria");
+
+           
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarSubcategoria(Nuevo.Nombre, Nuevo.Categoria.Id))
+                    throw new Exception("Ya existe una Subcategoría con ese nombre.");
+
+                Conexion.SetConsultaProcedure("SpInsertar_subcategoria");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
 
@@ -138,13 +142,25 @@ namespace Ferreteria.CapaDatos
 
         //metodo editar
 
-        public void EditarsubCategoria(SubCategoria subCategoria)
+        public void EditarSubcategoria(SubCategoria subCategoria)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEditar_subCategoria");
+
+                // Validar que el nuevo nombre no exista en otra subcategoría
+
+                Conexion.SetConsulta("SELECT COUNT(*) FROM SubCategoria WHERE Nombre = @Nombre AND Id != @Id");
+                Conexion.SetearParametro("@Nombre", subCategoria.Nombre);
+                Conexion.SetearParametro("@Id", subCategoria.Id);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("Ya existe otra Subcategoría con ese nombre.");
+
+
+                Conexion.SetConsultaProcedure("SpEditar_subcategoria");
 
                 Conexion.SetearParametro("@Id", subCategoria.Id);
                 Conexion.SetearParametro("@Nombre", subCategoria.Nombre);
@@ -167,14 +183,39 @@ namespace Ferreteria.CapaDatos
 
         }
 
-        //Metodo eliminar
-        public void EliminarsubCategoria(int Id_subCategoria)
+
+        //Metodo Validar
+        public bool ValidarSubcategoria(string nombre, int categoriaId)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_subCategoria");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM SubCategoria WHERE Nombre = @Nombre AND CategoriaId = @CategoriaId");
+                Conexion.SetearParametro("@Nombre", nombre);
+                Conexion.SetearParametro("@CategoriaId", categoriaId);
+
+                int cantidad = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return cantidad > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //Metodo eliminar
+        public void EliminarSubcategoria(int Id_subCategoria)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpEliminar_subcategoria");
 
                 Conexion.SetearParametro("@Id", Id_subCategoria);
 
@@ -196,14 +237,14 @@ namespace Ferreteria.CapaDatos
 
         //Metodo Buscar
 
-        public List<SubCategoria> subCategoriaBuscar(string buscar)
+        public List<SubCategoria> SubcategoriaBuscar(string buscar)
         {
             Conexion = new CD_Conexion();
             listasubCategoria = new List<SubCategoria>();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_subCategoria");
+                Conexion.SetConsultaProcedure("SpBuscar_subcategoria");
 
 
                 Conexion.SetearParametro("@txt_buscar", buscar);
