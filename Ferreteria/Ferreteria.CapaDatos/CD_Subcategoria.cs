@@ -62,8 +62,8 @@ namespace Ferreteria.CapaDatos
         }
 
 
-        //Metodo del ComboBox
-        public List<SubCategoria> CargarCbo()
+
+        public List<SubCategoria> CargarCbo( int CategoriaId)
         {
 
             //instancia
@@ -75,7 +75,9 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Nombre from subCategoria");
+                Conexion.SetConsultaProcedure("SpObtener_subcategoria_por_categoria");
+
+                Conexion.SetearParametro("@CategoriaId", CategoriaId);
 
                 Conexion.EjecutarLectura();
 

@@ -221,7 +221,7 @@ namespace Ferreteria.CapaDatos
 
         //Metodo Buscar
 
-        public List<Producto> ProductoBuscarProducto(string buscar)
+        public List<Producto> BuscarProducto(string buscar)
         {
             Conexion = new CD_Conexion();
             listaProducto = new List<Producto>();
