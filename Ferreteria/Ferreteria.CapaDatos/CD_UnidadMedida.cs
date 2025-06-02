@@ -1,0 +1,234 @@
+﻿using Ferreteria.CapaDominio;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ferreteria.CapaDatos
+{
+    public class CD_UnidadMedida
+    {
+        //inicializa
+        private CD_Conexion Conexion;
+        private UnidadMedida UnidadMedida;
+        private List<UnidadMedida> listaUnidadMedida;
+
+
+        //Metodo Mostrar
+
+        public List<UnidadMedida> ListaUnidadMedida()
+        {
+
+            //instancia
+
+            Conexion = new CD_Conexion();
+
+            listaUnidadMedida = new List<UnidadMedida>();
+
+            try
+            {
+
+                Conexion.SetConsultaProcedure("SpMostrar_UnidadMedida");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    UnidadMedida = new UnidadMedida();
+
+
+                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
+                    UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviavion"];
+
+                    listaUnidadMedida.Add(UnidadMedida);
+                }
+
+                return listaUnidadMedida;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+        //Metodo del ComboBox
+        public List<UnidadMedida> CargarCbo()
+        {
+
+            //instancia
+
+            Conexion = new CD_Conexion();
+
+            listaUnidadMedida = new List<UnidadMedida>();
+
+            try
+            {
+
+                Conexion.SetConsulta("Select Id, Nombre, Abreviacion from UnidadMedida");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    UnidadMedida = new UnidadMedida();
+
+
+                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
+                    listaUnidadMedida.Add(UnidadMedida);
+                }
+
+                return listaUnidadMedida;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+        //metodo insertar
+
+        public void InsertarUnidadMedida(UnidadMedida Nuevo)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpInsertar_UnidadMedida");
+
+                Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
+                Conexion.SetearParametro("@Abreviacion", Nuevo.Abreviacion);
+
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+        //metodo editar
+
+        public void EditarUnidadMedida(UnidadMedida UnidadMedida)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpEditar_UnidadMedida");
+
+                Conexion.SetearParametro("@Id", UnidadMedida.Id);
+                Conexion.SetearParametro("@Nombre", UnidadMedida.Nombre);
+          
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+        //Metodo eliminar
+        public void EliminarUnidadMedida(int Id_UnidadMedida)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpEliminar_UnidadMedida");
+
+                Conexion.SetearParametro("@Id", Id_UnidadMedida);
+
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        //Metodo Buscar
+
+        public List<UnidadMedida> UnidadMedidaBuscar(string buscar)
+        {
+            Conexion = new CD_Conexion();
+            listaUnidadMedida = new List<UnidadMedida>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpBuscar_UnidadMedida");
+
+
+                Conexion.SetearParametro("@txt_buscar", buscar);
+
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+
+                    UnidadMedida = new UnidadMedida();
+
+                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
+                    UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviacion"];
+               
+
+                    listaUnidadMedida.Add(UnidadMedida);
+                }
+
+
+                return listaUnidadMedida;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+    }
+}

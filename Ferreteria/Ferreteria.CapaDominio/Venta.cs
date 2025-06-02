@@ -18,5 +18,7 @@ namespace Ferreteria.CapaDominio
         public List<DetalleVenta> Detalles { get; set; }
         public Ticket Ticket { get; set; }
         public Boleta Boleta { get; set; }
+        
+        public Presupuesto Presupuesto { get; set; }
     }
 }

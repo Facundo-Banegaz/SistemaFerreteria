@@ -42,8 +42,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Boleta.cs" />
+    <Compile Include="CD_Categoria.cs" />
     <Compile Include="CD_Conexion.cs" />
+    <Compile Include="CD_DetalleIngreso.cs" />
+    <Compile Include="CD_DetallePresupuesto.cs" />
+    <Compile Include="CD_DetalleVenta.cs" />
+    <Compile Include="CD_Especificacion.cs" />
+    <Compile Include="CD_Ingreso.cs" />
+    <Compile Include="CD_Marca.cs" />
+    <Compile Include="CD_Presupuesto.cs" />
+    <Compile Include="CD_Producto.cs" />
+    <Compile Include="CD_Proveedor.cs" />
+    <Compile Include="CD_Subcategoria.cs" />
+    <Compile Include="CD_Ticket.cs" />
+    <Compile Include="CD_TipoEspecificacion.cs" />
+    <Compile Include="CD_UnidadMedida.cs" />
+    <Compile Include="CD_Usuario.cs" />
+    <Compile Include="CD_ValorEspecificacion.cs" />
+    <Compile Include="CD_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ferreteria.CapaDominio\Ferreteria.CapaDominio.csproj">
+      <Project>{151ccbbe-2842-4314-8e8d-118a376c237f}</Project>
+      <Name>Ferreteria.CapaDominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

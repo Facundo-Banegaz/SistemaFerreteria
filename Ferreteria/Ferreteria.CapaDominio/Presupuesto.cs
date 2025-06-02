@@ -16,6 +16,7 @@ namespace Ferreteria.CapaDominio
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
+        public string Estado { get; set; }
         public List<DetallePresupuesto> Detalles { get; set; }
     }
 }
