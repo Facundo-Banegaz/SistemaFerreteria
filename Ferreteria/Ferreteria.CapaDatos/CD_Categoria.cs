@@ -37,7 +37,7 @@ namespace Ferreteria.CapaDatos
                     categoria = new Categoria();
 
 
-                    categoria.Id = (int)Conexion.Lector["Id"];
+                    categoria.Id_Categoria = (int)Conexion.Lector["Id_Categoria"];
                     categoria.Nombre = (string)Conexion.Lector["Nombre"];
              
 
@@ -71,7 +71,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Nombre from Categoria");
+                Conexion.SetConsulta("Select Id_Categoria, Nombre from Categorias");
 
                 Conexion.EjecutarLectura();
 
@@ -80,7 +80,7 @@ namespace Ferreteria.CapaDatos
                     categoria = new Categoria();
 
 
-                    categoria.Id = (int)Conexion.Lector["Id"];
+                    categoria.Id_Categoria = (int)Conexion.Lector["Id_Categoria"];
                     categoria.Nombre = (string)Conexion.Lector["Nombre"];
                     listaCategoria.Add(categoria);
                 }
@@ -141,16 +141,16 @@ namespace Ferreteria.CapaDatos
             try
             {
                 // Validar que el nuevo nombre no exista en otra categoría
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Categoria WHERE Nombre = @Nombre AND Id != @Id");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Categorias WHERE Nombre = @Nombre AND Id_Categoria != @Id_Categoria");
                 Conexion.SetearParametro("@Nombre", categoria.Nombre);
-                Conexion.SetearParametro("@Id", categoria.Id);
+                Conexion.SetearParametro("@Id_Categoria", categoria.Id_Categoria);
 
                 int count = Convert.ToInt32(Conexion.EjecutarEscalar());
                 if (count > 0)
                     throw new Exception("Ya existe otra categoría con ese nombre.");
 
                 Conexion.SetConsultaProcedure("SpEditar_categoria");
-                Conexion.SetearParametro("@Id", categoria.Id);
+                Conexion.SetearParametro("@Id_Categoria", categoria.Id_Categoria);
                 Conexion.SetearParametro("@Nombre", categoria.Nombre);
 
                 Conexion.EjecutarAccion();
@@ -173,7 +173,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Categoria WHERE Nombre = @Nombre");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Categorias WHERE Nombre = @Nombre");
                 Conexion.SetearParametro("@Nombre", nombre);
 
                 int count = Convert.ToInt32(Conexion.EjecutarEscalar());
@@ -199,7 +199,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_categoria");
 
-                Conexion.SetearParametro("@Id", Id_categoria);
+                Conexion.SetearParametro("@Id_Categoria", Id_categoria);
 
 
                 Conexion.EjecutarAccion();
@@ -239,7 +239,7 @@ namespace Ferreteria.CapaDatos
 
                     categoria = new Categoria();
 
-                    categoria.Id = (int)Conexion.Lector["Id"];
+                    categoria.Id_Categoria= (int)Conexion.Lector["Id_Categoria"];
                     categoria.Nombre = (string)Conexion.Lector["Nombre"];
            
                     listaCategoria.Add(categoria);

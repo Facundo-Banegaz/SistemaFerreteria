@@ -78,8 +78,8 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpInsertar_detalle_venta");
 
-                Conexion.SetearParametro("@ventaId", Nuevo.Venta.Id);
-                Conexion.SetearParametro("@ProductoId", Nuevo.Producto.Id);
+                Conexion.SetearParametro("@Id_venta", Nuevo.Venta.Id_Venta);
+                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
                 Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
                 Conexion.SetearParametro("@Precioventa", Nuevo.PrecioVenta);
                 

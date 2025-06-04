@@ -38,7 +38,7 @@ namespace Ferreteria.CapaDatos
                     marca = new Marca();
 
 
-                    marca.Id = (int)Conexion.Lector["Id"];
+                    marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     marca.Nombre = (string)Conexion.Lector["Nombre"];
                     
 
@@ -74,7 +74,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Nombre from Marca");
+                Conexion.SetConsulta("Select Id_Marca, Nombre from Marcas");
 
                 Conexion.EjecutarLectura();
 
@@ -83,7 +83,7 @@ namespace Ferreteria.CapaDatos
                     marca = new Marca();
 
 
-                    marca.Id = (int)Conexion.Lector["Id"];
+                    marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     marca.Nombre = (string)Conexion.Lector["Nombre"];
                     listaMarca.Add(marca);
                 }
@@ -110,6 +110,11 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarMarca(Nuevo.Nombre))
+                    throw new Exception("Ya existe una Marca con ese nombre.");
+
                 Conexion.SetConsultaProcedure("SpInsertar_Marca");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
@@ -139,9 +144,19 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validar que el nuevo nombre no exista en otra categoría
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Marcas WHERE Nombre = @Nombre AND Id_Marca != @Id_Marca");
+                Conexion.SetearParametro("@Nombre", Marca.Nombre);
+                Conexion.SetearParametro("@Id_Marca", Marca.Id_Marca);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("Ya existe otra Marca con ese nombre.");
+
+
                 Conexion.SetConsultaProcedure("SpEditar_Marca");
 
-                Conexion.SetearParametro("@Id", Marca.Id);
+                Conexion.SetearParametro("@Id_Marca", Marca.Id_Marca);
                 Conexion.SetearParametro("@Nombre", Marca.Nombre);
 
 
@@ -161,6 +176,32 @@ namespace Ferreteria.CapaDatos
 
         }
 
+
+        //Metodo Validar
+
+
+        public bool ValidarMarca(string nombre)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Marcas WHERE Nombre = @Nombre");
+                Conexion.SetearParametro("@Nombre", nombre);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0; // true si ya existe
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         //Metodo eliminar
         public void EliminarMarca(int Id_Marca)
         {
@@ -170,7 +211,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Marca");
 
-                Conexion.SetearParametro("@Id", Id_Marca);
+                Conexion.SetearParametro("@Id_Marca", Id_Marca);
 
 
                 Conexion.EjecutarAccion();
@@ -210,7 +251,7 @@ namespace Ferreteria.CapaDatos
 
                     marca = new Marca();
 
-                    marca.Id = (int)Conexion.Lector["Id"];
+                    marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     marca.Nombre = (string)Conexion.Lector["Nombre"];
              
 

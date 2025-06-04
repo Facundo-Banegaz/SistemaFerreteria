@@ -36,18 +36,18 @@ namespace Ferreteria.CapaDatos
                     Ingreso = new Ingreso();
 
 
-                    Ingreso.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Id_Ingreso = (int)Conexion.Lector["Id_Ingreso"];
                     Ingreso.Fecha = (DateTime)Conexion.Lector["Fecha"];
 
                     Ingreso.Usuario = new Usuario();
 
-                    Ingreso.Usuario.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Ingreso.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
 
 
                     Ingreso.Proveedor = new Proveedor();
 
-                    Ingreso.Proveedor.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Ingreso.Proveedor.Nombre = (string)Conexion.Lector["Proveedor"];
                    
                     
@@ -81,8 +81,8 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetConsultaProcedure("SpInsertar_ingreso");
                 
                 Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
-                Conexion.SetearParametro("@UsuarioId", Nuevo.Usuario.Id);
-                Conexion.SetearParametro("@ProveedorId", Nuevo.Proveedor.Id);
+                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
+                Conexion.SetearParametro("@Id_Proveedor", Nuevo.Proveedor.Id_Proveedor);
  
               
 
@@ -90,13 +90,13 @@ namespace Ferreteria.CapaDatos
 
                 // Configurar el parámetro de salida para el ID de ingreso
 
-                Conexion.SetearParametroSalida("@Id", SqlDbType.Int);
+                Conexion.SetearParametroSalida("@Id_Ingreso", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
 
                 // Capturar el ID del ingreso insertado
-                int Id_ingreso = Conexion.ObtenerValorParametroSalida("@Id");
+                int Id_ingreso = Conexion.ObtenerValorParametroSalida("@Id_Ingreso");
 
 
 
@@ -106,7 +106,7 @@ namespace Ferreteria.CapaDatos
                 // Insertar detalles de ingreso
                 foreach (DetalleIngreso detalle in DetalleIngreso)
                 {
-                    detalle.Ingreso.Id = Id_ingreso; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
+                    detalle.Ingreso.Id_Ingreso = Id_ingreso; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
 
 
 
@@ -141,7 +141,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpAnular_ingreso");
 
-                Conexion.SetearParametro("@Id", Id_ingreso);
+                Conexion.SetearParametro("@Id_Ingreso", Id_ingreso);
 
 
                 Conexion.EjecutarAccion();
@@ -182,18 +182,18 @@ namespace Ferreteria.CapaDatos
             
 
 
-                    Ingreso.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Id_Ingreso = (int)Conexion.Lector["Id_Ingreso"];
                     Ingreso.Fecha = (DateTime)Conexion.Lector["Fecha"];
 
                     Ingreso.Usuario = new Usuario();
 
-                    Ingreso.Usuario.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Ingreso.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
 
 
                     Ingreso.Proveedor = new Proveedor();
 
-                    Ingreso.Proveedor.Id = (int)Conexion.Lector["Id"];
+                    Ingreso.Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Ingreso.Proveedor.Nombre = (string)Conexion.Lector["Proveedor"];
 
 

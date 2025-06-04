@@ -39,7 +39,7 @@ namespace Ferreteria.CapaDatos
                     Especificacion = new Especificacion();
 
 
-                    Especificacion.Id = (int)Conexion.Lector["Id"];
+                    Especificacion.Id_Especificacion = (int)Conexion.Lector["Id_Especificacion"];
            
 
                     Especificacion.Producto = new Producto();
@@ -88,12 +88,12 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpInsertar_Especificacion");
 
-                Conexion.SetearParametro("@Id", Especificacion.Id);
+                Conexion.SetearParametro("@Id_Especificacion", Especificacion.Id_Especificacion);
 
                 //relaciones
-                Conexion.SetearParametro("@ProductoId", Especificacion.Producto.Id);
-                Conexion.SetearParametro("@TipoEspecificacionId", Especificacion.TipoEspecificacion.Id);
-                Conexion.SetearParametro("@ValorEspecificacionId", Especificacion.ValorEspecificacion.Id);
+                Conexion.SetearParametro("@Id_Producto", Especificacion.Producto.Id_Producto);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", Especificacion.TipoEspecificacion.Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", Especificacion.ValorEspecificacion.Id_ValorEspecificacion);
 
 
                 Conexion.EjecutarAccion();
@@ -122,12 +122,12 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_Especificacion");
 
-                Conexion.SetearParametro("@Id", Especificacion.Id);
+                Conexion.SetearParametro("@Id_Especificacion", Especificacion.Id_Especificacion);
 
                 //relaciones
-                Conexion.SetearParametro("@ProductoId", Especificacion.Producto.Id);
-                Conexion.SetearParametro("@TipoEspecificacionId", Especificacion.TipoEspecificacion.Id);
-                Conexion.SetearParametro("@ValorEspecificacionId", Especificacion.ValorEspecificacion.Id);
+                Conexion.SetearParametro("@Id_Producto", Especificacion.Producto.Id_Producto);
+                Conexion.SetearParametro("@Id_TipoEspecificacionId", Especificacion.TipoEspecificacion.Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacionId", Especificacion.ValorEspecificacion.Id_ValorEspecificacion);
                
 
                 Conexion.EjecutarAccion();
@@ -155,7 +155,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Especificacion");
 
-                Conexion.SetearParametro("@Id", Id_Especificacion);
+                Conexion.SetearParametro("@Id_Especificacion", Id_Especificacion);
 
 
                 Conexion.EjecutarAccion();
@@ -196,7 +196,7 @@ namespace Ferreteria.CapaDatos
                     Especificacion = new Especificacion();
 
 
-                    Especificacion.Id = (int)Conexion.Lector["Id"];
+                    Especificacion.Id_Especificacion = (int)Conexion.Lector["Id_Especificacion"];
 
 
                     Especificacion.Producto = new Producto();

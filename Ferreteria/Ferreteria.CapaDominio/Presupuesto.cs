@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class Presupuesto
     {
-        public int Id { get; set; }
+        public int Id_Presupuesto { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
         public string Cliente { get; set; }
         public decimal Total { get; set; }

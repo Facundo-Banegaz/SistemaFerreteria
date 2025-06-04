@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class TipoEspecificacion
     {
-        public int Id { get; set; }
+        public int Id_TipoEspecificacion { get; set; }
         public string Nombre { get; set; }
 
         public List<Especificacion> Especificaciones { get; set; }

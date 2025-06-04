@@ -51,7 +51,7 @@
     <Compile Include="Marca.cs" />
     <Compile Include="Presupuesto.cs" />
     <Compile Include="Proveedor.cs" />
-    <Compile Include="SubCategoria.cs" />
+    <Compile Include="Subcategoria.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TipoEspecificacion.cs" />

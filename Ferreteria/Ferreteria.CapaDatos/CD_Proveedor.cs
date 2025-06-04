@@ -31,7 +31,7 @@ namespace Ferreteria.CapaDatos
                 {
                     Proveedor = new Proveedor();
 
-                    Proveedor.Id = (int)Conexion.Lector["Id"];
+                    Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Proveedor.Nombre = (string)Conexion.Lector["Nombre"];
                   
 
@@ -68,7 +68,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("select Id, Nombre from Proveedor");
+                Conexion.SetConsulta("select Id_Proveedor, Nombre from Proveedores");
 
                 Conexion.EjecutarLectura();
 
@@ -77,7 +77,7 @@ namespace Ferreteria.CapaDatos
                     Proveedor = new Proveedor();
 
 
-                    Proveedor.Id = (int)Conexion.Lector["Id"];
+                    Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Proveedor.Nombre = (string)Conexion.Lector["Nombre"];
 
                     listaProveedor.Add(Proveedor);
@@ -101,7 +101,7 @@ namespace Ferreteria.CapaDatos
             Conexion = new CD_Conexion();
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedor WHERE Nombre = @Nombre");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedores WHERE Nombre = @Nombre");
                 Conexion.SetearParametro("@Nombre", Nombre);
 
                 Conexion.EjecutarLectura();
@@ -172,7 +172,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_proveedor");
 
-                Conexion.SetearParametro("@Id", proveedor.Id);
+                Conexion.SetearParametro("@Id_Proveedor", proveedor.Id_Proveedor);
                 Conexion.SetearParametro("@Nombre", proveedor.Nombre);
          
 
@@ -201,7 +201,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_proveedor");
 
-                Conexion.SetearParametro("@Id", Id_proveedor);
+                Conexion.SetearParametro("@Id_Proveedor", Id_proveedor);
 
 
                 Conexion.EjecutarAccion();
@@ -241,7 +241,7 @@ namespace Ferreteria.CapaDatos
 
                     Proveedor = new Proveedor();
 
-                    Proveedor.Id = (int)Conexion.Lector["Id"];
+                    Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Proveedor.Nombre = (string)Conexion.Lector["Nombre"];
          
                     listaProveedor.Add(Proveedor);

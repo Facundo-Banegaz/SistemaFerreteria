@@ -8,12 +8,12 @@ namespace Ferreteria.CapaDominio
 {
     public class Categoria
     {
-        public int Id { get; set; }
+        public int Id_Categoria { get; set; }
         public string Nombre { get; set; }
         public override string ToString()
         {
             return Nombre;
         }
-        public List<SubCategoria> Subcategorias { get; set; }
+        public List<Subcategoria> Subcategorias { get; set; }
     }
 }

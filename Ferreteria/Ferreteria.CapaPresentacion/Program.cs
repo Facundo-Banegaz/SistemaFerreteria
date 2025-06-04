@@ -1,5 +1,9 @@
 ﻿using Ferreteria.CapaPresentacion.VistaCategoria;
+using Ferreteria.CapaPresentacion.VistaMarca;
+using Ferreteria.CapaPresentacion.VistaPrincipalMDI;
+using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
+using Ferreteria.CapaPresentacion.VistaUnidadMedida;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +22,7 @@ namespace Ferreteria.CapaPresentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSubcategoria());
+            Application.Run(new FrmProducto());
         }
     }
 }

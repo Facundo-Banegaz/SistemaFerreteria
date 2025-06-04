@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class Especificacion
     {
-        public int Id { get; set; }
+        public int Id_Especificacion { get; set; }
 
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }

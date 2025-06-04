@@ -37,7 +37,7 @@ namespace Ferreteria.CapaDatos
                     TipoEspecificacion = new TipoEspecificacion();
 
 
-                    TipoEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    TipoEspecificacion.Id_TipoEspecificacion = (int)Conexion.Lector["Id_TipoEspecificacion"];
                     TipoEspecificacion.Nombre = (string)Conexion.Lector["Nombre"];
 
 
@@ -71,7 +71,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Nombre from TipoEspecificacion");
+                Conexion.SetConsulta("Select Id, Nombre from TiposEspecificacion");
 
                 Conexion.EjecutarLectura();
 
@@ -80,7 +80,7 @@ namespace Ferreteria.CapaDatos
                     TipoEspecificacion = new TipoEspecificacion();
 
 
-                    TipoEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    TipoEspecificacion.Id_TipoEspecificacion = (int)Conexion.Lector["Id_TipoEspecificacion"];
                     TipoEspecificacion.Nombre = (string)Conexion.Lector["Nombre"];
                     listaTipoEspecificacion.Add(TipoEspecificacion);
                 }
@@ -138,7 +138,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_TipoEspecificacion");
 
-                Conexion.SetearParametro("@Id", TipoEspecificacion.Id);
+                Conexion.SetearParametro("@Id", TipoEspecificacion.Id_TipoEspecificacion);
                 Conexion.SetearParametro("@Nombre", TipoEspecificacion.Nombre);
 
 
@@ -167,7 +167,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_TipoEspecificacion");
 
-                Conexion.SetearParametro("@Id", Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", Id_TipoEspecificacion);
 
 
                 Conexion.EjecutarAccion();
@@ -207,7 +207,7 @@ namespace Ferreteria.CapaDatos
 
                     TipoEspecificacion = new TipoEspecificacion();
 
-                    TipoEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    TipoEspecificacion.Id_TipoEspecificacion = (int)Conexion.Lector["Id_TipoEspecificacion"];
                     TipoEspecificacion.Nombre = (string)Conexion.Lector["Nombre"];
 
                     listaTipoEspecificacion.Add(TipoEspecificacion);

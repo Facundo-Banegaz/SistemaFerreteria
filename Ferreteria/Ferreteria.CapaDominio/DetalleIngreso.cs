@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class DetalleIngreso
     {
-        public int Id { get; set; }
+        public int Id_DetalleIngreso { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioCompra { get; set; }
 

@@ -28,7 +28,7 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetConsultaProcedure("SpMostrar_Boleta");
 
-                Conexion.SetearParametro("@Id", Id_Boleta);
+                Conexion.SetearParametro("@Id_Boleta", Id_Boleta);
 
 
                 Conexion.EjecutarLectura();
@@ -40,7 +40,7 @@ namespace Ferreteria.CapaDatos
 
                     _Boleta.Venta = new Venta();
 
-                    _Boleta.Venta.Id = (int)Conexion.Lector["VentaId"];
+                    _Boleta.Venta.Id_Venta = (int)Conexion.Lector["Id_Venta"];
 
                     _Boleta.FechaEmision = (DateTime)Conexion.Lector["FechaEmision"];
 
@@ -78,7 +78,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpInsertar_Boleta");
 
-                Conexion.SetearParametro("@VentaId", Nuevo.Venta.Id);
+                Conexion.SetearParametro("@Id_Venta", Nuevo.Venta.Id_Venta);
                 Conexion.SetearParametro("@FechaEmision", Nuevo.FechaEmision.ToString("yyyy-MM-dd hh:mm:ss")); ;
                 Conexion.SetearParametro("@NombreCliente", Nuevo.NombreCliente);
                 Conexion.SetearParametro("@Domicilio", Nuevo.Domicilio);

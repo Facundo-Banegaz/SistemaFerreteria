@@ -38,7 +38,7 @@ namespace Ferreteria.CapaDatos
                     ValorEspecificacion = new ValorEspecificacion();
 
 
-                    ValorEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    ValorEspecificacion.Id_ValorEspecificacion = (int)Conexion.Lector["Id_ValorEspecificacion"];
                     ValorEspecificacion.Valor = (string)Conexion.Lector["Valor"];
 
 
@@ -72,7 +72,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Valor from ValorEspecificacion");
+                Conexion.SetConsulta("Select Id_ValorEspecificacion, Valor from ValorEspecificacion");
 
                 Conexion.EjecutarLectura();
 
@@ -81,7 +81,7 @@ namespace Ferreteria.CapaDatos
                     ValorEspecificacion = new ValorEspecificacion();
 
 
-                    ValorEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    ValorEspecificacion.Id_ValorEspecificacion = (int)Conexion.Lector["Id_ValorEspecificacion"];
                     ValorEspecificacion.Valor = (string)Conexion.Lector["Valor"];
                     listaValorEspecificacion.Add(ValorEspecificacion);
                 }
@@ -139,7 +139,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_ValorEspecificacion");
 
-                Conexion.SetearParametro("@Id", ValorEspecificacion.Id);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", ValorEspecificacion.Id_ValorEspecificacion);
                 Conexion.SetearParametro("@Valor", ValorEspecificacion.Valor);
 
 
@@ -168,7 +168,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_ValorEspecificacion");
 
-                Conexion.SetearParametro("@Id", Id_ValorEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", Id_ValorEspecificacion);
 
 
                 Conexion.EjecutarAccion();
@@ -208,7 +208,7 @@ namespace Ferreteria.CapaDatos
 
                     ValorEspecificacion = new ValorEspecificacion();
 
-                    ValorEspecificacion.Id = (int)Conexion.Lector["Id"];
+                    ValorEspecificacion.Id_ValorEspecificacion = (int)Conexion.Lector["Id_ValorEspecificacion"];
                     ValorEspecificacion.Valor = (string)Conexion.Lector["Valor"];
 
                     listaValorEspecificacion.Add(ValorEspecificacion);

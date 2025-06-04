@@ -30,7 +30,7 @@ namespace Ferreteria.CapaDatos
                 {
                     Usuario = new Usuario();
 
-                    Usuario.Id = (int)Conexion.Lector["Id"];
+                    Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
 
@@ -110,7 +110,7 @@ namespace Ferreteria.CapaDatos
             Conexion = new CD_Conexion();
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuario WHERE Dni =  @Dni");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE Dni =  @Dni");
                 Conexion.SetearParametro("@Dni", Dni);
 
                 Conexion.EjecutarLectura();
@@ -150,7 +150,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_Usuario");
 
-                Conexion.SetearParametro("@Id", Usuario.Id);
+                Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Nombre", Usuario.Nombre);
                 Conexion.SetearParametro("@Apellido", Usuario.Apellido);
             
@@ -186,7 +186,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Usuario");
 
-                Conexion.SetearParametro("@Id", Id_Usuario);
+                Conexion.SetearParametro("@Id_Usuario", Id_Usuario);
 
 
                 Conexion.EjecutarAccion();
@@ -229,7 +229,7 @@ namespace Ferreteria.CapaDatos
                     Usuario = new Usuario();
 
 
-                    Usuario.Id = (int)Conexion.Lector["Id"];
+                    Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
                     Usuario.UsuarioNombre = (string)Conexion.Lector["Usuario"];
@@ -280,12 +280,13 @@ namespace Ferreteria.CapaDatos
                 if (Conexion.Lector.Read())
                 {
                     Usuario = new Usuario();
-                    Usuario.Id = Convert.ToInt32(Conexion.Lector["Id"]);
+                    Usuario.Id_Usuario = Convert.ToInt32(Conexion.Lector["Id_Usuario"]);
                     Usuario.Nombre = Conexion.Lector["Nombre"].ToString();
                     Usuario.Apellido = Conexion.Lector["Apellido"].ToString();
                     Usuario.UsuarioNombre = Conexion.Lector["Usuario"].ToString();
                     Usuario.Clave = Conexion.Lector["Clave"].ToString();
-              
+                    Usuario.Acceso = Conexion.Lector["Acceso"].ToString();
+
 
                 }
 

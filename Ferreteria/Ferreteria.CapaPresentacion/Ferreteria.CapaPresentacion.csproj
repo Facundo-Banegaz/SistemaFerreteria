@@ -66,6 +66,36 @@
     <Compile Include="VistaCategoria\FrmCategoria.Designer.cs">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaMarca\FrmAgregarEditarMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMarca\FrmAgregarEditarMarca.Designer.cs">
+      <DependentUpon>FrmAgregarEditarMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaMarca\FrmMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMarca\FrmMarca.Designer.cs">
+      <DependentUpon>FrmMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaMDIPrincipal\MDIPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMDIPrincipal\MDIPrincipal.Designer.cs">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaProducto\FrmAgregarEditarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProducto\FrmAgregarEditarProducto.Designer.cs">
+      <DependentUpon>FrmAgregarEditarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaProducto\FrmProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProducto\FrmProducto.Designer.cs">
+      <DependentUpon>FrmProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +107,18 @@
     </Compile>
     <Compile Include="VistaSubcategoria\FrmSubcategoria.Designer.cs">
       <DependentUpon>FrmSubcategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaUnidadMedida\FrmAgregarEditarUnidadMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaUnidadMedida\FrmAgregarEditarUnidadMedida.Designer.cs">
+      <DependentUpon>FrmAgregarEditarUnidadMedida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaUnidadMedida\FrmUnidadMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaUnidadMedida\FrmUnidadMedida.Designer.cs">
+      <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,11 +135,32 @@
     <EmbeddedResource Include="VistaCategoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaMarca\FrmAgregarEditarMarca.resx">
+      <DependentUpon>FrmAgregarEditarMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaMarca\FrmMarca.resx">
+      <DependentUpon>FrmMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaMDIPrincipal\MDIPrincipal.resx">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaProducto\FrmAgregarEditarProducto.resx">
+      <DependentUpon>FrmAgregarEditarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaProducto\FrmProducto.resx">
+      <DependentUpon>FrmProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.resx">
       <DependentUpon>FrmAgregarEditarSubcategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaSubcategoria\FrmSubcategoria.resx">
       <DependentUpon>FrmSubcategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaUnidadMedida\FrmAgregarEditarUnidadMedida.resx">
+      <DependentUpon>FrmAgregarEditarUnidadMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaUnidadMedida\FrmUnidadMedida.resx">
+      <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,10 +185,6 @@
       <Name>Ferreteria.CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Marca\" />
-    <Folder Include="Producto\" />
-    <Folder Include="UnidadMedida\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

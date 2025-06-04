@@ -28,7 +28,7 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetConsultaProcedure("SpMostrar_DetallePresupuesto");
 
-                Conexion.SetearParametro("@Id", Id_Presupuesto);
+                Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
 
 
                 Conexion.EjecutarLectura();
@@ -40,7 +40,7 @@ namespace Ferreteria.CapaDatos
 
                     _DetallePresupuesto.Presupuesto = new Presupuesto();
 
-                    _DetallePresupuesto.Presupuesto.Id = (int)Conexion.Lector["PresupuestoId"];
+                    _DetallePresupuesto.Presupuesto.Id_Presupuesto = (int)Conexion.Lector["Id_Presupuesto"];
                     
                     _DetallePresupuesto.Producto = new Producto();
 
@@ -78,8 +78,8 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpInsertar_DetallePresupuesto");
 
-                Conexion.SetearParametro("@PresupuestoId", Nuevo.Presupuesto.Id);
-                Conexion.SetearParametro("@ProductoId", Nuevo.Producto.Id);
+                Conexion.SetearParametro("@Id_Presupuesto", Nuevo.Presupuesto.Id_Presupuesto);
+                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
                 Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
                 Conexion.SetearParametro("@PrecioUnitario", Nuevo.PrecioUnitario);
 

@@ -35,7 +35,7 @@ namespace Ferreteria.CapaDatos
                     
                     //atributos propios
 
-                    Producto.Id = (int)Conexion.Lector["Id"];
+                    Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
                     Producto.Codigo = (string)Conexion.Lector["Codigo"];
                     Producto.Nombre = (string)Conexion.Lector["Nombre"];
                     Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
@@ -45,19 +45,19 @@ namespace Ferreteria.CapaDatos
                     Producto.StockMinimo = (int)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
 
-                    Producto.Subcategoria = new SubCategoria();
+                    Producto.Subcategoria = new Subcategoria();
 
-                    Producto.Subcategoria.Id = (int)Conexion.Lector["SubcategoriaId"];
+                    //Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     Producto.Subcategoria.Nombre = (string)Conexion.Lector["Subcategoria"];
 
 
                     Producto.Marca = new Marca();
-                    Producto.Marca.Id = (int)Conexion.Lector["Id"];
+                    //Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     Producto.Marca.Nombre = (string)Conexion.Lector["Marca"];
 
 
                     Producto.UnidadMedida = new UnidadMedida();
-                    Producto.UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    //Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     Producto.UnidadMedida.Nombre = (string)Conexion.Lector["UnidadMedida"];
 
                     listaProducto.Add(Producto);
@@ -86,7 +86,7 @@ namespace Ferreteria.CapaDatos
             Conexion = new CD_Conexion();
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Producto WHERE Codigo = @Codigo");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Productos WHERE Codigo = @Codigo");
                 Conexion.SetearParametro("@Nombre", Nombre);
 
                 Conexion.EjecutarLectura();
@@ -133,9 +133,9 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Stock", Nuevo.Stock);
                 Conexion.SetearParametro("@StockMinimo", Nuevo.StockMinimo);
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
-                Conexion.SetearParametro("@SubcategoriaId", Nuevo.Subcategoria.Id);
-                Conexion.SetearParametro("@MarcaId", Nuevo.Marca.Id);
-                Conexion.SetearParametro("@UnidadMedidaId", Nuevo.UnidadMedida.Id);
+                Conexion.SetearParametro("@Id_Subcategoria", Nuevo.Subcategoria.Id_Subcategoria);
+                Conexion.SetearParametro("@Id_Marca", Nuevo.Marca.Id_Marca);
+                Conexion.SetearParametro("@Id_UnidadMedida", Nuevo.UnidadMedida.Id_UnidadMedida);
 
                 Conexion.EjecutarAccion();
 
@@ -163,7 +163,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_Producto");
 
-                Conexion.SetearParametro("@Id", Producto.Id);
+                Conexion.SetearParametro("@Id_Producto", Producto.Id_Producto);
                 Conexion.SetearParametro("@Codigo", Producto.Codigo);
                 Conexion.SetearParametro("@Nombre", Producto.Nombre);
                 Conexion.SetearParametro("@Descripcion", Producto.Descripcion);
@@ -172,9 +172,9 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Stock", Producto.Stock);
                 Conexion.SetearParametro("@StockMinimo", Producto.StockMinimo);
                 Conexion.SetearParametro("@Estado", Producto.Estado);
-                Conexion.SetearParametro("@SubcategoriaId", Producto.Subcategoria.Id);
-                Conexion.SetearParametro("@MarcaId", Producto.Marca.Id);
-                Conexion.SetearParametro("@UnidadMedidaId", Producto.UnidadMedida.Id);
+                Conexion.SetearParametro("@Id_Subcategoria", Producto.Subcategoria.Id_Subcategoria);
+                Conexion.SetearParametro("@Id_Marca", Producto.Marca.Id_Marca);
+                Conexion.SetearParametro("@Id_UnidadMedida", Producto.UnidadMedida.Id_UnidadMedida);
 
                 Conexion.EjecutarAccion();
 
@@ -201,7 +201,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Producto");
 
-                Conexion.SetearParametro("@Id", Id_Producto);
+                Conexion.SetearParametro("@Id_Producto", Id_Producto);
 
 
                 Conexion.EjecutarAccion();
@@ -231,7 +231,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetConsultaProcedure("SpBuscar_Producto");
 
 
-                Conexion.SetearParametro("@txt_buscar", buscar);
+                Conexion.SetearParametro("@Texto_Buscar", buscar);
 
 
                 Conexion.EjecutarLectura();
@@ -240,7 +240,7 @@ namespace Ferreteria.CapaDatos
                 {
 
                     Producto = new Producto();
-                    Producto.Id = (int)Conexion.Lector["Id"];
+                    Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
                     Producto.Codigo = (string)Conexion.Lector["Codigo"];
                     Producto.Nombre = (string)Conexion.Lector["Nombre"];
                     Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
@@ -250,19 +250,19 @@ namespace Ferreteria.CapaDatos
                     Producto.StockMinimo = (int)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
 
-                    Producto.Subcategoria = new SubCategoria();
+                    Producto.Subcategoria = new Subcategoria();
 
-                    Producto.Subcategoria.Id = (int)Conexion.Lector["SubcategoriaId"];
+                    //Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     Producto.Subcategoria.Nombre = (string)Conexion.Lector["Subcategoria"];
 
 
                     Producto.Marca = new Marca();
-                    Producto.Marca.Id = (int)Conexion.Lector["Id"];
+                    //Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     Producto.Marca.Nombre = (string)Conexion.Lector["Marca"];
 
 
                     Producto.UnidadMedida = new UnidadMedida();
-                    Producto.UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    //Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     Producto.UnidadMedida.Nombre = (string)Conexion.Lector["UnidadMedida"];
 
                     listaProducto.Add(Producto);

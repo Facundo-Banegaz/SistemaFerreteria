@@ -14,13 +14,13 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
 {
     public partial class FrmAgregarEditarSubcategoria : Form
     {
-        private SubCategoria _Subcategoria = null;
+        private Subcategoria _Subcategoria = null;
         public FrmAgregarEditarSubcategoria()
         {
             InitializeComponent();
             Text = "Agregar Subcategoria";
         }
-        public FrmAgregarEditarSubcategoria(SubCategoria subcategoria)
+        public FrmAgregarEditarSubcategoria(Subcategoria subcategoria)
         {
             InitializeComponent();
             this._Subcategoria = subcategoria;
@@ -57,13 +57,13 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
                     errorIcono.Clear();
 
                     if (_Subcategoria == null)
-                        _Subcategoria = new SubCategoria();
+                        _Subcategoria = new Subcategoria();
 
                     _Subcategoria.Nombre = txt_nombre_subcategoria.Text.Trim().ToUpper();
 
                     _Subcategoria.Categoria = (Categoria)cbo_categoria.SelectedItem;
 
-                    if (_Subcategoria.Id != 0)
+                    if (_Subcategoria.Id_Subcategoria != 0)
                     {
                        
                         logicaSubCategoria.EditarSubCategoria(_Subcategoria);
@@ -98,19 +98,17 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
             {
                 // Carga del comboBox
                 cbo_categoria.DataSource = _Categoria.CargarCbo();
-                cbo_categoria.ValueMember = "Id";
+                cbo_categoria.ValueMember = "Id_Categoria";
                 cbo_categoria.DisplayMember = "Nombre";
 
                 // Solo si la subcategoría no es null
                 if (_Subcategoria != null)
                 {
-                    lbl_subcategoria.Text = _Subcategoria.Id.ToString();
+                    lbl_subcategoria.Text = _Subcategoria.Id_Subcategoria.ToString();
                     txt_nombre_subcategoria.Text = _Subcategoria.Nombre;
-
-                    if (_Subcategoria.Categoria != null)
-                    {
-                        cbo_categoria.SelectedValue = _Subcategoria.Categoria.Id;
-                    }
+                       
+                    cbo_categoria.SelectedValue = _Subcategoria.Categoria.Id_Categoria;
+                    
                 }
             }
             catch (Exception ex)

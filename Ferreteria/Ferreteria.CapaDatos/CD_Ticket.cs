@@ -28,7 +28,7 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetConsultaProcedure("SpMostrar_Ticket");
 
-                Conexion.SetearParametro("@Id", Id_Ticket);
+                Conexion.SetearParametro("@Id_Ticket", Id_Ticket);
 
 
                 Conexion.EjecutarLectura();
@@ -40,7 +40,7 @@ namespace Ferreteria.CapaDatos
 
                     _Ticket.Venta = new Venta();
 
-                    _Ticket.Venta.Id = (int)Conexion.Lector["VentaId"];
+                    _Ticket.Venta.Id_Venta= (int)Conexion.Lector["Id_Venta"];
 
                     _Ticket.FechaEmision = (DateTime)Conexion.Lector["FechaEmision"];
 
@@ -75,7 +75,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpInsertar_Ticket");
 
-                Conexion.SetearParametro("@VentaId", Nuevo.Venta.Id);
+                Conexion.SetearParametro("@Id_Venta", Nuevo.Venta.Id_Venta);
                 Conexion.SetearParametro("@FechaEmision", Nuevo.FechaEmision.ToString("yyyy-MM-dd hh:mm:ss")); ;
          
 

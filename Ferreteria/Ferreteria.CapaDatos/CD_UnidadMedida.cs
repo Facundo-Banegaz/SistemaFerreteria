@@ -38,9 +38,9 @@ namespace Ferreteria.CapaDatos
                     UnidadMedida = new UnidadMedida();
 
 
-                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
-                    UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviavion"];
+                    UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviacion"];
 
                     listaUnidadMedida.Add(UnidadMedida);
                 }
@@ -72,7 +72,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("Select Id, Nombre, Abreviacion from UnidadMedida");
+                Conexion.SetConsulta("Select Id_UnidadMedida, Nombre, Abreviacion from UnidadMedida");
 
                 Conexion.EjecutarLectura();
 
@@ -81,7 +81,7 @@ namespace Ferreteria.CapaDatos
                     UnidadMedida = new UnidadMedida();
 
 
-                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
                     listaUnidadMedida.Add(UnidadMedida);
                 }
@@ -140,9 +140,9 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEditar_UnidadMedida");
 
-                Conexion.SetearParametro("@Id", UnidadMedida.Id);
+                Conexion.SetearParametro("@Id_UnidadMedida", UnidadMedida.Id_UnidadMedida);
                 Conexion.SetearParametro("@Nombre", UnidadMedida.Nombre);
-          
+                Conexion.SetearParametro("@Abreviacion", UnidadMedida.Abreviacion);
 
                 Conexion.EjecutarAccion();
 
@@ -169,7 +169,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_UnidadMedida");
 
-                Conexion.SetearParametro("@Id", Id_UnidadMedida);
+                Conexion.SetearParametro("@Id_UnidadMedida", Id_UnidadMedida);
 
 
                 Conexion.EjecutarAccion();
@@ -209,7 +209,7 @@ namespace Ferreteria.CapaDatos
 
                     UnidadMedida = new UnidadMedida();
 
-                    UnidadMedida.Id = (int)Conexion.Lector["Id"];
+                    UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
                     UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviacion"];
                

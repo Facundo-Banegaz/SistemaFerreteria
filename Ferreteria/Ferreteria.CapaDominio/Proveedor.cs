@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class Proveedor
     {
-        public int Id { get; set; }
+        public int Id_Proveedor { get; set; }
         public string Nombre { get; set; }
 
         public List<Ingreso> Ingresos { get; set; }

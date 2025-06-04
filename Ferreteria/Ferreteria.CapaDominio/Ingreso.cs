@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class Ingreso
     {
-        public int Id { get; set; }
+        public int Id_Ingreso { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
 
         public int UsuarioId { get; set; }

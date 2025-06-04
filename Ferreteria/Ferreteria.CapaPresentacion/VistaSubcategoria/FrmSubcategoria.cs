@@ -15,7 +15,7 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
 {
     public partial class FrmSubcategoria : Form
     {
-        private List<SubCategoria> listaSubcategorias;
+        private List<Subcategoria> listaSubcategorias;
         public FrmSubcategoria()
         {
             InitializeComponent();
@@ -54,34 +54,40 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-            SubCategoria seleccionado;
-            DialogResult respuesta = MessageBox.Show("¿Quieres Editar esta Subcateforia?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (respuesta == DialogResult.Yes)
+            Subcategoria seleccionado = null;
+            if (dgv_subcategorias.CurrentRow != null)
             {
-                seleccionado = (SubCategoria)dgv_subcategorias.CurrentRow.DataBoundItem;
-                FrmAgregarEditarSubcategoria frmEditar = new FrmAgregarEditarSubcategoria(seleccionado);
-                frmEditar.ShowDialog();
-                CargarGrilla();
+                DialogResult respuesta = MessageBox.Show("¿Quieres Editar esta Subcateforia?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Subcategoria)dgv_subcategorias.CurrentRow.DataBoundItem;
+                    FrmAgregarEditarSubcategoria frmEditar = new FrmAgregarEditarSubcategoria(seleccionado);
+                    frmEditar.ShowDialog();
+                    CargarGrilla();
+                }
             }
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
             CN_SubCategoria _Subcategoria = new CN_SubCategoria();
-            SubCategoria seleccionado;
+            Subcategoria seleccionado = null;
 
 
             try
             {
-                DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Subcategoria?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (respuesta == DialogResult.Yes)
+                if (dgv_subcategorias.CurrentRow != null)
                 {
-                    seleccionado = (SubCategoria)dgv_subcategorias.CurrentRow.DataBoundItem;
-                    _Subcategoria.EliminarSubCategoria(seleccionado.Id);
+                    DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Subcategoria?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                    CargarGrilla();
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        seleccionado = (Subcategoria)dgv_subcategorias.CurrentRow.DataBoundItem;
+                        _Subcategoria.EliminarSubCategoria(seleccionado.Id_Subcategoria);
+
+                        CargarGrilla();
+                    }
                 }
             }
             catch (Exception ex)
@@ -116,14 +122,15 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
      
 
 
-            dgv_productos.Columns["Id"].Width = 400;
+            dgv_productos.Columns["Id_Subcategoria"].Width = 400;
             dgv_productos.Columns["Nombre"].Width = 500;// nombre_producto
+
             dgv_productos.Columns["Categoria"].Width = 500;// nombre_producto
 
 
 
 
-            dgv_productos.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["Id_Subcategoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Categoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -160,5 +167,7 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
                 return;
             }
         }
+
+     
     }
 }

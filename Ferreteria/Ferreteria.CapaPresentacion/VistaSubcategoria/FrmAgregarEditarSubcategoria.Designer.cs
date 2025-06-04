@@ -85,7 +85,7 @@
             this.lbl_subcategoria.BackColor = System.Drawing.Color.Black;
             this.lbl_subcategoria.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_subcategoria.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_subcategoria.Location = new System.Drawing.Point(261, 19);
+            this.lbl_subcategoria.Location = new System.Drawing.Point(277, 9);
             this.lbl_subcategoria.Name = "lbl_subcategoria";
             this.lbl_subcategoria.Size = new System.Drawing.Size(0, 35);
             this.lbl_subcategoria.TabIndex = 93;

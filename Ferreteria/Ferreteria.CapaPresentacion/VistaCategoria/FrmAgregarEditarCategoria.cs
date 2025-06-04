@@ -54,9 +54,9 @@ namespace Ferreteria.CapaPresentacion.VistaCategoria
 
                     _Categoria.Nombre = txt_nombre_categoria.Text.Trim().ToUpper();
 
-                    if (_Categoria.Id != 0)
+                    if (_Categoria.Id_Categoria != 0)
                     {
-                        _Categoria.Id = int.Parse(lbl_categoria.Text.Trim());
+                        _Categoria.Id_Categoria = int.Parse(lbl_categoria.Text.Trim());
                         logicaCategoria.EditarCategoria(_Categoria);
                         MessageBox.Show("¡La Categoría fue modificada exitosamente!", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
@@ -83,7 +83,7 @@ namespace Ferreteria.CapaPresentacion.VistaCategoria
 
         private void MostrarDatos()
         {
-            lbl_categoria.Text = _Categoria.Id.ToString();
+            lbl_categoria.Text = _Categoria.Id_Categoria.ToString();
             txt_nombre_categoria.Text = _Categoria.Nombre;
         
         }

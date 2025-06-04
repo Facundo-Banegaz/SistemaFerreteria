@@ -38,34 +38,41 @@ namespace Ferreteria.CapaPresentacion.VistaCategoria
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-            Categoria seleccionado;
-            DialogResult respuesta = MessageBox.Show("¿Quieres Editar esta Cateforia?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            Categoria seleccionado = null;
 
-            if (respuesta == DialogResult.Yes)
+            if (dgv_categorias.CurrentRow != null)
             {
-                seleccionado = (Categoria)dgv_categorias.CurrentRow.DataBoundItem;
-                FrmAgregarEditarCategoria frmEditar = new FrmAgregarEditarCategoria(seleccionado);
-                frmEditar.ShowDialog();
-                CargarGrilla();
+                DialogResult respuesta = MessageBox.Show("¿Quieres Editar esta Cateforia?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Categoria)dgv_categorias.CurrentRow.DataBoundItem;
+                    FrmAgregarEditarCategoria frmEditar = new FrmAgregarEditarCategoria(seleccionado);
+                    frmEditar.ShowDialog();
+                    CargarGrilla();
+                }
             }
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
             CN_Categoria _Categoria = new CN_Categoria();
-            Categoria seleccionado;
+            Categoria seleccionado = null;
 
 
             try
             {
-                DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Categoria?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (respuesta == DialogResult.Yes)
+                if (dgv_categorias.CurrentRow != null)
                 {
-                    seleccionado = (Categoria)dgv_categorias.CurrentRow.DataBoundItem;
-                    _Categoria.EliminarCategoria(seleccionado.Id);
+                    DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Categoria?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                    CargarGrilla();
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        seleccionado = (Categoria)dgv_categorias.CurrentRow.DataBoundItem;
+                        _Categoria.EliminarCategoria(seleccionado.Id_Categoria);
+
+                        CargarGrilla();
+                    }
                 }
             }
             catch (Exception ex)
@@ -108,11 +115,11 @@ namespace Ferreteria.CapaPresentacion.VistaCategoria
             CN_Metodos _Metodos = new CN_Metodos();
 
 
-            dgv_productos.Columns["Id"].Width = 400;
+            dgv_productos.Columns["Id_Categoria"].Width = 400;
             dgv_productos.Columns["Nombre"].Width = 800;// nombre_producto
 
 
-            dgv_productos.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["Id_Categoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 

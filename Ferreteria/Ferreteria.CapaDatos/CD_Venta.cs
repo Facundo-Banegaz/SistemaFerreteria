@@ -36,7 +36,7 @@ namespace Ferreteria.CapaDatos
                     _Venta = new Venta();
 
 
-                    _Venta.Id = (int)Conexion.Lector["Id"];
+                    _Venta.Id_Venta = (int)Conexion.Lector["Id_Venta"];
 
                     _Venta.Usuario = new Usuario();
 
@@ -76,7 +76,7 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetConsultaProcedure("SpInsertar_Venta");
 
-                Conexion.SetearParametro("@UsarioId", Nuevo.Usuario.Id);
+                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
                 Conexion.SetearParametro("@Total", Nuevo.Total);
          
@@ -85,13 +85,13 @@ namespace Ferreteria.CapaDatos
 
                 // Configurar el parámetro de salida para el ID de ingreso
 
-                Conexion.SetearParametroSalida("@Id", SqlDbType.Int);
+                Conexion.SetearParametroSalida("@Id_Venta", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
 
                 // Capturar el ID del ingreso insertado
-                int Id_venta = Conexion.ObtenerValorParametroSalida("@Id");
+                int Id_venta = Conexion.ObtenerValorParametroSalida("@Id_Venta");
 
 
 
@@ -101,7 +101,7 @@ namespace Ferreteria.CapaDatos
                 // Insertar detalles de ingreso
                 foreach (DetalleVenta detalle in DetalleVenta)
                 {
-                    detalle.Venta.Id = Id_venta; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
+                    detalle.Venta.Id_Venta = Id_venta; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
 
 
 
@@ -136,7 +136,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_venta");
 
-                Conexion.SetearParametro("@Id", Id_venta);
+                Conexion.SetearParametro("@Id_Venta", Id_venta);
 
 
                 Conexion.EjecutarAccion();
@@ -165,7 +165,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpDisminuir_stock");
 
-                Conexion.SetearParametro("@Id", Id_detalle_ingreso);
+                Conexion.SetearParametro("@Id_DetalleIngreso", Id_detalle_ingreso);
                 Conexion.SetearParametro("@Cantidad", Stock_Actual);
 
                 Conexion.EjecutarAccion();
@@ -203,7 +203,7 @@ namespace Ferreteria.CapaDatos
                     _Venta = new Venta();
 
 
-                    _Venta.Id = (int)Conexion.Lector["Id"];
+                    _Venta.Id_Venta= (int)Conexion.Lector["Id_Venta"];
 
                     _Venta.Usuario = new Usuario();
 

@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ferreteria.CapaDominio
 {
-    public class SubCategoria
+    public class Subcategoria
     {
-        public int Id { get; set; }
+        public int Id_Subcategoria { get; set; }
         public string Nombre { get; set; }
 
-        //public int CategoriaId { get; set; }
+        public override string ToString()
+        {
+            return Nombre;
+        }
         public Categoria Categoria { get; set; }
 
         public List<Producto> Productos { get; set; }

@@ -8,7 +8,7 @@ namespace Ferreteria.CapaDominio
 {
     public class Boleta
     {
-        public int Id { get; set; }
+        public int Id_Boleta { get; set; }
 
         public int VentaId { get; set; }
         public Venta Venta { get; set; }

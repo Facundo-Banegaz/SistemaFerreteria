@@ -36,7 +36,7 @@ namespace Ferreteria.CapaDatos
                     _Presupuesto = new Presupuesto();
 
 
-                    _Presupuesto.Id = (int)Conexion.Lector["Id"];
+                    _Presupuesto.Id_Presupuesto= (int)Conexion.Lector["Id_Presupuesto"];
 
                     _Presupuesto.Usuario = new Usuario();
                     _Presupuesto.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
@@ -76,7 +76,7 @@ namespace Ferreteria.CapaDatos
                 //Conexion.IniciarTransaccion();
 
                 Conexion.SetConsultaProcedure("SpInsertar_Presupuesto");
-                Conexion.SetearParametro("@UsuarioId", Nuevo.Usuario);
+                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
                 Conexion.SetearParametro("@Cliente", Nuevo.Cliente);
                 Conexion.SetearParametro("@Total", Nuevo.Total);
@@ -86,13 +86,13 @@ namespace Ferreteria.CapaDatos
 
                 // Configurar el parámetro de salida para el ID de ingreso
 
-                Conexion.SetearParametroSalida("@Id", SqlDbType.Int);
+                Conexion.SetearParametroSalida("@Id_Presupuesto", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
 
                 // Capturar el ID del ingreso insertado
-                int Id_Presupuesto = Conexion.ObtenerValorParametroSalida("@Id");
+                int Id_Presupuesto = Conexion.ObtenerValorParametroSalida("@Id_Presupuesto");
 
 
 
@@ -102,7 +102,7 @@ namespace Ferreteria.CapaDatos
                 // Insertar detalles de ingreso
                 foreach (DetallePresupuesto detalle in DetallePresupuesto)
                 {
-                    detalle.Presupuesto.Id = Id_Presupuesto; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
+                    detalle.Presupuesto.Id_Presupuesto = Id_Presupuesto; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
 
 
 
@@ -137,7 +137,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Presupuesto");
 
-                Conexion.SetearParametro("@Id", Id_Presupuesto);
+                Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
 
 
                 Conexion.EjecutarAccion();
@@ -177,7 +177,7 @@ namespace Ferreteria.CapaDatos
                     _Presupuesto = new Presupuesto();
 
 
-                    _Presupuesto.Id = (int)Conexion.Lector["Id"];
+                    _Presupuesto.Id_Presupuesto = (int)Conexion.Lector["Id_Presupuesto"];
 
                     _Presupuesto.Usuario = new Usuario();
                     _Presupuesto.Usuario.Nombre = (string)Conexion.Lector["Usuario"];

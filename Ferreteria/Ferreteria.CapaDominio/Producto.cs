@@ -8,23 +8,23 @@ namespace Ferreteria.CapaDominio
 {
     public class Producto
     {
-        public int Id { get; set; }
+        public int Id_Producto { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; } = 1;
         public DateTime FechaUltimaActualizacionPrecio { get; set; } = DateTime.Now;
         public int Stock { get; set; } = 1;
-        public int StockMinimo { get; set; } = 5;  
+        public int StockMinimo { get; set; } = 1;  
         public bool Estado { get; set; } =true;
 
-        public int SubcategoriaId { get; set; }
-        public SubCategoria Subcategoria { get; set; }
+ 
+        public Subcategoria Subcategoria { get; set; }
 
-        public int MarcaId { get; set; }
+    
         public Marca Marca { get; set; }
 
-        public int UnidadMedidaId { get; set; }
+   
         public UnidadMedida UnidadMedida { get; set; }
 
         public List<Especificacion> Especificaciones { get; set; }
