@@ -78,11 +78,11 @@
     <Compile Include="VistaMarca\FrmMarca.Designer.cs">
       <DependentUpon>FrmMarca.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaMDIPrincipal\MDIPrincipal.cs">
+    <Compile Include="VistaMDIPrincipal\FrmMdiPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaMDIPrincipal\MDIPrincipal.Designer.cs">
-      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    <Compile Include="VistaMDIPrincipal\FrmMdiPrincipal.Designer.cs">
+      <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaProducto\FrmAgregarEditarProducto.cs">
       <SubType>Form</SubType>
@@ -141,8 +141,8 @@
     <EmbeddedResource Include="VistaMarca\FrmMarca.resx">
       <DependentUpon>FrmMarca.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaMDIPrincipal\MDIPrincipal.resx">
-      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="VistaMDIPrincipal\FrmMdiPrincipal.resx">
+      <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaProducto\FrmAgregarEditarProducto.resx">
       <DependentUpon>FrmAgregarEditarProducto.cs</DependentUpon>

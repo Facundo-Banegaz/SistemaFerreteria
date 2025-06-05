@@ -11,11 +11,12 @@ namespace Ferreteria.CapaDominio
         public int Id_Producto { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
-        public string Descripcion { get; set; }
         public decimal Precio { get; set; } = 1;
-        public DateTime FechaUltimaActualizacionPrecio { get; set; } = DateTime.Now;
         public int Stock { get; set; } = 1;
-        public int StockMinimo { get; set; } = 1;  
+        public int StockMinimo { get; set; } = 1;
+        public string Descripcion { get; set; }
+        public DateTime FechaUltimaActualizacionPrecio { get; set; } = DateTime.Now;
+   
         public bool Estado { get; set; } =true;
 
  

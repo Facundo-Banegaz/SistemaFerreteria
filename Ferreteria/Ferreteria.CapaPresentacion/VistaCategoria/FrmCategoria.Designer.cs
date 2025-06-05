@@ -202,9 +202,9 @@
             this.lbl_buscar.Font = new System.Drawing.Font("Impact", 14F);
             this.lbl_buscar.Location = new System.Drawing.Point(19, 32);
             this.lbl_buscar.Name = "lbl_buscar";
-            this.lbl_buscar.Size = new System.Drawing.Size(197, 35);
+            this.lbl_buscar.Size = new System.Drawing.Size(220, 35);
             this.lbl_buscar.TabIndex = 60;
-            this.lbl_buscar.Text = "Buscar Nombre:";
+            this.lbl_buscar.Text = "Buscar Categoria:";
             // 
             // txt_buscar
             // 

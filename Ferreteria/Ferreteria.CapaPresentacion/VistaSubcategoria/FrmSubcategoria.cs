@@ -31,8 +31,9 @@ namespace Ferreteria.CapaPresentacion.VistaSubcategoria
         }
         private void btn_buscar_Click(object sender, EventArgs e)
         {
-
             BuscarSubcategoria();
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();     // focus
         }
         private void btn_limpiar_Click(object sender, EventArgs e)
         {

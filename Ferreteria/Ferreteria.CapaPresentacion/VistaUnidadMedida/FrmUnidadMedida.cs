@@ -32,6 +32,8 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             BuscarUnidadMedida();
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();     // focus
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)

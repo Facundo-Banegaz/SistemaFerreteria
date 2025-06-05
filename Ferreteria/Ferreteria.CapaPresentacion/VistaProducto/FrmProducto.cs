@@ -47,7 +47,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             {
 
 
-                DialogResult respuesta = MessageBox.Show("¿Quieres Editar estE Producto?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult respuesta = MessageBox.Show("¿Quieres Editar este Producto?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (respuesta == DialogResult.Yes)
                 {
@@ -118,11 +118,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             dgv_productos.Columns["Id_Producto"].Width = 120;
             dgv_productos.Columns["Codigo"].Width = 200;
             dgv_productos.Columns["Nombre"].Width = 400;
-            dgv_productos.Columns["Descripcion"].Width = 600;
             dgv_productos.Columns["Precio"].Width = 200;
-            dgv_productos.Columns["FechaUltimaActualizacionPrecio"].Width = 300;
             dgv_productos.Columns["Stock"].Width = 100;
             dgv_productos.Columns["StockMinimo"].Width = 120;
+            dgv_productos.Columns["Descripcion"].Width = 600;
+            dgv_productos.Columns["FechaUltimaActualizacionPrecio"].Width = 300;
             dgv_productos.Columns["Estado"].Width = 100;
             dgv_productos.Columns["Subcategoria"].Width = 200;
             dgv_productos.Columns["Marca"].Width = 200;
@@ -165,7 +165,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
             if (txt_buscar.Text == string.Empty)
             {
-                MessageBox.Show("El CAMPO NO PUEDE QUEDAR VACIO!!", "ADVERTENCIA");
+                MessageBox.Show("El CAMPO NO PUEDE QUEDAR VACIO!!", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 lbl_resultado.Text = "No escribio nada en el campo  'Buscador'.";
                 CargarGrilla();

@@ -26,7 +26,7 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
         {
             CargarGrilla();
 
-            //ArregloDataGridView(dgv_marcas);
+            ArregloDataGridView(dgv_marcas);
         }
 
         private void btn_nuevo_Click(object sender, EventArgs e)
@@ -85,6 +85,8 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             BuscarMarca();
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();     // focus
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)
