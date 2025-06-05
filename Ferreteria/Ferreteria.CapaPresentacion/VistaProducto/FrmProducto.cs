@@ -113,7 +113,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
 
-            dgv_productos.Columns["Id_Producto"].Visible = false;
+            //dgv_productos.Columns["Id_Producto"].Visible = false;
             dgv_productos.Columns["Id_Producto"].Width = 120;
             dgv_productos.Columns["Codigo"].Width = 200;
             dgv_productos.Columns["Nombre"].Width = 400;
