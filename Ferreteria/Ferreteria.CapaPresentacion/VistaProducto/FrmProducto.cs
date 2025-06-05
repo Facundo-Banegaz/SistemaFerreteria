@@ -98,7 +98,8 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             BuscarProducto();
-
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();     // focus
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)
@@ -167,6 +168,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 MessageBox.Show("El CAMPO NO PUEDE QUEDAR VACIO!!", "ADVERTENCIA");
 
                 lbl_resultado.Text = "No escribio nada en el campo  'Buscador'.";
+                CargarGrilla();
             }
             else
             {
@@ -177,6 +179,15 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             }
         }
 
-       
+        private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                BuscarProducto();
+                txt_buscar.Clear();     // limpia el campo
+                txt_buscar.Focus();     // focus
+            }
+        }
     }
 }
