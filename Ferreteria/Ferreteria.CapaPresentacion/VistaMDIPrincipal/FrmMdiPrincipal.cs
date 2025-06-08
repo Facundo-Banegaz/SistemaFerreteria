@@ -3,6 +3,7 @@ using Ferreteria.CapaPresentacion.VistaCategoria;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
+using Ferreteria.CapaPresentacion.VistaUnidadMedida;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,12 +35,12 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             }
 
             formularioActivo = formulario;
-      
+
             formulario.FormBorderStyle = FormBorderStyle.None;
 
 
             formulario.MdiParent = this;
-            formulario.BringToFront();
+            //formulario.BringToFront();
             formulario.Show();
         }
         private void Menu_item_salir_Click(object sender, EventArgs e)
@@ -80,6 +81,11 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         private void menu_item_marcas_Click(object sender, EventArgs e)
         {
             abrirForm(new FrmMarca());
+        }
+
+        private void Menu_item_UnidadMedida_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmUnidadMedida());
         }
     }
 }
