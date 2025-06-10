@@ -10,7 +10,10 @@ namespace Ferreteria.CapaDominio
     {
         public int Id_ValorEspecificacion { get; set; }
         public string Valor { get; set; }
-
+        public override string ToString()
+        {
+            return Valor;
+        }
         public List<Especificacion> Especificaciones { get; set; }
     }
 }

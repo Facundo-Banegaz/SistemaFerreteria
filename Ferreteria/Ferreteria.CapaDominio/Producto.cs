@@ -25,7 +25,10 @@ namespace Ferreteria.CapaDominio
     
         public Marca Marca { get; set; }
 
-   
+        public override string ToString()
+        {
+            return Nombre;
+        }
         public UnidadMedida UnidadMedida { get; set; }
 
         public List<Especificacion> Especificaciones { get; set; }

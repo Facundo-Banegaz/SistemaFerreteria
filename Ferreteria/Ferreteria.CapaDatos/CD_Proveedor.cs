@@ -140,6 +140,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarProveedor(Nuevo.Nombre))
+                    throw new Exception("Ya existe un Proveedor con ese nombre.");
+
                 Conexion.SetConsultaProcedure("SpInsertar_proveedor");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
@@ -170,6 +174,15 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validar que el nuevo nombre no exista en otra categoría
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedores WHERE Nombre = @Nombre AND Id_Proveedor != @Id_Proveedor");
+                Conexion.SetearParametro("@Nombre", Proveedor.Nombre);
+                Conexion.SetearParametro("@Id_Proveedor", proveedor.Id_Proveedor);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("Ya existe otro Proveedor con ese nombre.");
+
                 Conexion.SetConsultaProcedure("SpEditar_proveedor");
 
                 Conexion.SetearParametro("@Id_Proveedor", proveedor.Id_Proveedor);

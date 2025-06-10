@@ -1,9 +1,13 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaPresentacion.VistaCategoria;
+using Ferreteria.CapaPresentacion.VistaEspecificacion;
+using Ferreteria.CapaPresentacion.VistaIngresos;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaProducto;
+using Ferreteria.CapaPresentacion.VistaProveedor;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
 using Ferreteria.CapaPresentacion.VistaUnidadMedida;
+using Ferreteria.CapaPresentacion.VistaVenta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +30,8 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         public FrmMdiPrincipal()
         {
             InitializeComponent();
+            //lbl_usuario.Text  = $"¡¡Bienvenido al Sistema de Ventas {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+
         }
         private void abrirForm(Form formulario)
         {
@@ -45,12 +51,12 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         }
         private void Menu_item_salir_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show($"¿Estás seguro de que deseas salir del sistema {Usuario.Nombre} {Usuario.Apellido}? Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.", "Salir del Sistema de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //DialogResult respuesta = MessageBox.Show($"¿Estás seguro de que deseas salir del sistema {Usuario.Nombre} {Usuario.Apellido}? Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.", "Salir del Sistema de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (respuesta == DialogResult.Yes)
-            {
+            //if (respuesta == DialogResult.Yes)
+            //{
                 Application.Exit();
-            }
+            //}
         }
 
      
@@ -86,6 +92,43 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         private void Menu_item_UnidadMedida_Click(object sender, EventArgs e)
         {
             abrirForm(new FrmUnidadMedida());
+        }
+
+        private void menu_item_especificación_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmEspecificacion());
+        }
+
+        private void Menu_item_proveedores_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmProveedor());
+        }
+
+        private void Menu_item_ingresos_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmIngreso());
+
+        }
+
+        private void Menu_item_usuarios_Click(object sender, EventArgs e)
+        {
+            abrirForm((FrmUsuario());
+        }
+
+        private void Menu_item_venta_libre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_item_venta_Click(object sender, EventArgs e)
+        {
+            abrirForm(new  FrmVenta() );
+           
+        }
+
+        private void Menu_item_historial_vendedor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

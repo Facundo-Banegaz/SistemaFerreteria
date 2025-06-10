@@ -66,6 +66,48 @@
     <Compile Include="VistaCategoria\FrmCategoria.Designer.cs">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.Designer.cs">
+      <DependentUpon>FrmAgregarEditarEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaEspecificacion\FrmEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\FrmEspecificacion.Designer.cs">
+      <DependentUpon>FrmEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.Designer.cs">
+      <DependentUpon>FormAgregarEditarTipoEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.Designer.cs">
+      <DependentUpon>FrmTipoEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaValorEspecificacion\FrmAgregarEditarValorEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaValorEspecificacion\FrmAgregarEditarValorEspecificacion.Designer.cs">
+      <DependentUpon>FrmAgregarEditarValorEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaValorEspecificacion\FrmValorEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEspecificacion\VistaValorEspecificacion\FrmValorEspecificacion.Designer.cs">
+      <DependentUpon>FrmValorEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaIngresos\FrmIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaIngresos\FrmIngreso.Designer.cs">
+      <DependentUpon>FrmIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaMarca\FrmAgregarEditarMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +138,18 @@
     <Compile Include="VistaProducto\FrmProducto.Designer.cs">
       <DependentUpon>FrmProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaProveedor\FrmAgregarEditarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProveedor\FrmAgregarEditarProveedor.Designer.cs">
+      <DependentUpon>FrmAgregarEditarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaProveedor\FrmProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProveedor\FrmProveedor.Designer.cs">
+      <DependentUpon>FrmProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +174,12 @@
     <Compile Include="VistaUnidadMedida\FrmUnidadMedida.Designer.cs">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaVenta\FrmVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaVenta\FrmVenta.Designer.cs">
+      <DependentUpon>FrmVenta.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -134,6 +194,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCategoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.resx">
+      <DependentUpon>FrmAgregarEditarEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\FrmEspecificacion.resx">
+      <DependentUpon>FrmEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
+      <DependentUpon>FrmIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaMarca\FrmAgregarEditarMarca.resx">
       <DependentUpon>FrmAgregarEditarMarca.cs</DependentUpon>
@@ -150,6 +219,12 @@
     <EmbeddedResource Include="VistaProducto\FrmProducto.resx">
       <DependentUpon>FrmProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaProveedor\FrmAgregarEditarProveedor.resx">
+      <DependentUpon>FrmAgregarEditarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaProveedor\FrmProveedor.resx">
+      <DependentUpon>FrmProveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.resx">
       <DependentUpon>FrmAgregarEditarSubcategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaUnidadMedida\FrmUnidadMedida.resx">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaVenta\FrmVenta.resx">
+      <DependentUpon>FrmVenta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

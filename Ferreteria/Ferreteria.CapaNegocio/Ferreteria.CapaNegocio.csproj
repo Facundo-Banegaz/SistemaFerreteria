@@ -43,9 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Categoria.cs" />
+    <Compile Include="CN_Especificacion.cs" />
     <Compile Include="CN_Marca.cs" />
     <Compile Include="CN_Metodos.cs" />
     <Compile Include="CN_Producto.cs" />
+    <Compile Include="CN_Proveedor.cs" />
     <Compile Include="CN_Subcategoria.cs" />
     <Compile Include="CN_UnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

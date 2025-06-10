@@ -1,4 +1,5 @@
 ﻿using Ferreteria.CapaPresentacion.VistaCategoria;
+using Ferreteria.CapaPresentacion.VistaEspecificacion;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaMDIPrincipal;
 using Ferreteria.CapaPresentacion.VistaProducto;
