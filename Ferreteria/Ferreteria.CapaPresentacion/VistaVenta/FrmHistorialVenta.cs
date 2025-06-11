@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ferreteria.CapaPresentacion.VistaIngresos
+namespace Ferreteria.CapaPresentacion.VistaVenta
 {
-    public partial class FrmIngreso : Form
+    public partial class FrmHistorialVenta : Form
     {
-        public FrmIngreso()
+        public FrmHistorialVenta()
         {
             InitializeComponent();
         }
 
-        private void FrmIngreso_Load(object sender, EventArgs e)
+        private void FrmHistorialVenta_Load(object sender, EventArgs e)
         {
 
         }

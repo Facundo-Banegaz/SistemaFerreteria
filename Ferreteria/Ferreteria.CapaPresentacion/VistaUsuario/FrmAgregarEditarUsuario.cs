@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ferreteria.CapaPresentacion.VistaIngresos
+namespace Ferreteria.CapaPresentacion.VistaUsuario
 {
-    public partial class FrmIngreso : Form
+    public partial class FrmAgregarEditarUsuario : Form
     {
-        public FrmIngreso()
+        public FrmAgregarEditarUsuario()
         {
             InitializeComponent();
         }
 
-        private void FrmIngreso_Load(object sender, EventArgs e)
+        private void FrmAgregarEditarUsuario_Load(object sender, EventArgs e)
         {
 
         }

@@ -159,6 +159,34 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        //Metodo modificar stock
+        public void AumentarStock(int Id_detalle_ingreso, int Stock_Actual)
+        {
+
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpDisminuir_stock");
+
+                Conexion.SetearParametro("@Id_DetalleIngreso", Id_detalle_ingreso);
+                Conexion.SetearParametro("@Cantidad", Stock_Actual);
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         //Metodo Buscar
 
         public List<Ingreso> IngresoBuscarFecha(DateTime FechaInicio, DateTime FechaFin)

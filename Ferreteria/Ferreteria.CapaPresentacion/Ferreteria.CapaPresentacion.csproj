@@ -102,6 +102,12 @@
     <Compile Include="VistaEspecificacion\VistaValorEspecificacion\FrmValorEspecificacion.Designer.cs">
       <DependentUpon>FrmValorEspecificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaIngresos\FrmAgregarEditarIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaIngresos\FrmAgregarEditarIngreso.Designer.cs">
+      <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaIngresos\FrmIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,24 @@
     <Compile Include="VistaUnidadMedida\FrmUnidadMedida.Designer.cs">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaUsuario\FrmAgregarEditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaUsuario\FrmAgregarEditarUsuario.Designer.cs">
+      <DependentUpon>FrmAgregarEditarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaUsuario\FrmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaUsuario\FrmUsuario.Designer.cs">
+      <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaVenta\FrmHistorialVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaVenta\FrmHistorialVenta.Designer.cs">
+      <DependentUpon>FrmHistorialVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaVenta\FrmVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\FrmEspecificacion.resx">
       <DependentUpon>FrmEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaIngresos\FrmAgregarEditarIngreso.resx">
+      <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
@@ -236,6 +263,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaUnidadMedida\FrmUnidadMedida.resx">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaUsuario\FrmAgregarEditarUsuario.resx">
+      <DependentUpon>FrmAgregarEditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaUsuario\FrmUsuario.resx">
+      <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaVenta\FrmHistorialVenta.resx">
+      <DependentUpon>FrmHistorialVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaVenta\FrmVenta.resx">
       <DependentUpon>FrmVenta.cs</DependentUpon>

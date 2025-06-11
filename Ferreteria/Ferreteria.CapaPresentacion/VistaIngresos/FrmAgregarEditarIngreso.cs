@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Ferreteria.CapaPresentacion.VistaIngresos
 {
-    public partial class FrmIngreso : Form
+    public partial class FrmAgregarEditarIngreso : Form
     {
-        public FrmIngreso()
+        public FrmAgregarEditarIngreso()
         {
             InitializeComponent();
-        }
-
-        private void FrmIngreso_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

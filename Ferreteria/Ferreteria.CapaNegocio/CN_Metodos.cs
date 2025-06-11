@@ -18,6 +18,9 @@ namespace Ferreteria.CapaNegocio
         {
             objMetodos.AlternarColor(Dgv);
         }
-       
+        public string GenerarCodigo(string Tabla)
+        {
+            return objMetodos.GenerarCodigo(Tabla);
+        }
     }
 }

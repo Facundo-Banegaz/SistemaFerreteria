@@ -7,6 +7,7 @@ using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
 using Ferreteria.CapaPresentacion.VistaUnidadMedida;
+using Ferreteria.CapaPresentacion.VistaUsuario;
 using Ferreteria.CapaPresentacion.VistaVenta;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
 
             formulario.MdiParent = this;
-            //formulario.BringToFront();
+            formulario.BringToFront();
             formulario.Show();
         }
         private void Menu_item_salir_Click(object sender, EventArgs e)
@@ -112,13 +113,10 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_usuarios_Click(object sender, EventArgs e)
         {
-            abrirForm((FrmUsuario());
+            abrirForm(new FrmUsuario());
         }
 
-        private void Menu_item_venta_libre_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void Menu_item_venta_Click(object sender, EventArgs e)
         {
@@ -127,6 +125,23 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         }
 
         private void Menu_item_historial_vendedor_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmHistorialVenta());
+        }
+
+        private void Menu_item_ingresos_Click_1(object sender, EventArgs e)
+        {
+            abrirForm(new FrmIngreso());
+        }
+
+  
+
+        private void Menu_item_usuarios_Click_1(object sender, EventArgs e)
+        {
+            abrirForm(new FrmUsuario());
+        }
+
+        private void toolStripMenuItem16_Click(object sender, EventArgs e)
         {
 
         }
