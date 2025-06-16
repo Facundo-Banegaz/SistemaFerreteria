@@ -10,11 +10,16 @@ namespace Ferreteria.CapaDominio
     {
         public int Id_Ingreso { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
+        public string Tipo_Comprobante { get; set; }
+        public string Serie { get; set; }
+        public string Correlativo { get; set; }
 
-        public int UsuarioId { get; set; }
+        public string Estado { get; set; }
+
+
         public Usuario Usuario { get; set; }
 
-        public int ProveedorId { get; set; }
+
         public Proveedor Proveedor { get; set; }
 
         public List<DetalleIngreso> Detalles { get; set; }

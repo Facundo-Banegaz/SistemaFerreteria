@@ -40,7 +40,7 @@ namespace Ferreteria.CapaDatos
 
 
                     Especificacion.Id_Especificacion = (int)Conexion.Lector["Id_Especificacion"];
-           
+
 
                     Especificacion.Producto = new Producto();
 
@@ -213,6 +213,7 @@ namespace Ferreteria.CapaDatos
                     Especificacion.ValorEspecificacion = new ValorEspecificacion();
 
                     Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValoresEspecificacion"];
+
 
 
 

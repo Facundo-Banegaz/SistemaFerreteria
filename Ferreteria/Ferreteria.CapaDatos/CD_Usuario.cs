@@ -36,7 +36,7 @@ namespace Ferreteria.CapaDatos
 
                     Usuario.UsuarioNombre = (string)Conexion.Lector["Usuario"];
                     Usuario.Clave = (string)Conexion.Lector["Clave"];
-                    Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
+                    //Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
                     Usuario.Estado = (byte)Conexion.Lector["Estado"];
                     Usuario.Dni = (string)Conexion.Lector["Dni"]; 
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];
@@ -79,10 +79,10 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
                 Conexion.SetearParametro("@Apellido", Nuevo.Apellido);
-                Conexion.SetearParametro("@UrlImagen", Nuevo.UrlImagen);
+                //Conexion.SetearParametro("@UrlImagen", Nuevo.UrlImagen);
                 Conexion.SetearParametro("@Usuario", Nuevo.UsuarioNombre);
                 Conexion.SetearParametro("@Clave", Nuevo.Clave);
-                Conexion.SetearParametro("@UltimoAcceso", Nuevo.UltimoAcceso);
+                //Conexion.SetearParametro("@UltimoAcceso", Nuevo.UltimoAcceso);
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
                 Conexion.SetearParametro("@Dni", Nuevo.Dni);
                 Conexion.SetearParametro("@Acceso", Nuevo.Acceso);
@@ -156,7 +156,7 @@ namespace Ferreteria.CapaDatos
             
                 Conexion.SetearParametro("@Usuario", Usuario.UsuarioNombre);
                 Conexion.SetearParametro("@Clave", Usuario.Clave);
-                Conexion.SetearParametro("@UltimoAcceso", Usuario.UltimoAcceso);
+                //Conexion.SetearParametro("@UltimoAcceso", Usuario.UltimoAcceso);
                 Conexion.SetearParametro("@Estado", Usuario.Estado);
                 Conexion.SetearParametro("@Dni", Usuario.Dni);
                 Conexion.SetearParametro("@Acceso", Usuario.Acceso);
@@ -234,7 +234,7 @@ namespace Ferreteria.CapaDatos
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
                     Usuario.UsuarioNombre = (string)Conexion.Lector["Usuario"];
                     Usuario.Clave = (string)Conexion.Lector["Clave"];
-                    Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
+                    //Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
                     Usuario.Estado = (byte)Conexion.Lector["Estado"];
                     Usuario.Dni = (string)Conexion.Lector["Dni"];
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];

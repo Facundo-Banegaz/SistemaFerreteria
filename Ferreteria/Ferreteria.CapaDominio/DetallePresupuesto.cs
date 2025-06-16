@@ -10,10 +10,10 @@ namespace Ferreteria.CapaDominio
     {
         public int Id_DetallePresupuesto { get; set; }
 
-        public int PresupuestoId { get; set; }
+
         public Presupuesto Presupuesto { get; set; }
 
-        public int ProductoId { get; set; }
+
         public Producto Producto { get; set; }
 
         public int Cantidad { get; set; }

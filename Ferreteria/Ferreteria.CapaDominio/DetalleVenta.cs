@@ -12,10 +12,9 @@ namespace Ferreteria.CapaDominio
         public int Cantidad { get; set; }
         public decimal PrecioVenta { get; set; }
 
-        public int ProductoId { get; set; }
         public Producto Producto { get; set; }
 
-        public int VentaId { get; set; }
         public Venta Venta { get; set; }
+
     }
 }

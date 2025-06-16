@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferreteria.CapaDominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaTipoEspecificacio
 {
     public partial class FrmTipoEspecificacion : Form
     {
+        private TipoEspecificacion _tipoEspecificacion = null;
         public FrmTipoEspecificacion()
         {
             InitializeComponent();
+        }
+
+        private void FrmTipoEspecificacion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

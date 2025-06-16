@@ -29,7 +29,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_Marca");
+                Conexion.SetConsultaProcedure("SpMostrar_Marcas");
 
                 Conexion.EjecutarLectura();
 

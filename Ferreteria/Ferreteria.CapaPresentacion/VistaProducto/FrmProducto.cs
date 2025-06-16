@@ -89,7 +89,39 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 MessageBox.Show(ex.ToString());
             }
         }
+        private void btn_actualizar_Click(object sender, EventArgs e)
+        {
+            Producto seleccionado= null;
+            if (dgv_producto.CurrentRow != null)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Quieres Editar este Producto?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Producto)dgv_producto.CurrentRow.DataBoundItem;
+                    FrmActualizarProducto frmEditar = new FrmActualizarProducto(seleccionado);
+                    frmEditar.ShowDialog();
+                    CargarGrilla();
+                }
+            }
+        }
+
+        private void btn_ver_detalle_Click(object sender, EventArgs e)
+        {
+            Producto seleccionado= null;
+            if (dgv_producto.CurrentRow != null)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Quieres Ver el detalle este Producto?", "Detalle", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Producto)dgv_producto.CurrentRow.DataBoundItem;
+
+                    FrmDetalleProducto frmDetalle = new FrmDetalleProducto(seleccionado);
+                    frmDetalle.ShowDialog();
+                }
+            }
+        }
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -189,5 +221,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 txt_buscar.Focus();     // focus
             }
         }
+
+     
     }
 }

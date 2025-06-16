@@ -38,6 +38,8 @@
             this.lbl_costo = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.tt_mensaje = new System.Windows.Forms.ToolTip(this.components);
+            this.txt_proveddor_sectorComercial = new System.Windows.Forms.TextBox();
+            this.lbl_sectorComercial = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +86,7 @@
             this.lbl_proveedor.BackColor = System.Drawing.Color.Black;
             this.lbl_proveedor.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_proveedor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_proveedor.Location = new System.Drawing.Point(117, 79);
+            this.lbl_proveedor.Location = new System.Drawing.Point(290, 22);
             this.lbl_proveedor.Name = "lbl_proveedor";
             this.lbl_proveedor.Size = new System.Drawing.Size(0, 35);
             this.lbl_proveedor.TabIndex = 99;
@@ -93,7 +95,7 @@
             // 
             this.txt_nombre_proveedor.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_nombre_proveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nombre_proveedor.Location = new System.Drawing.Point(64, 261);
+            this.txt_nombre_proveedor.Location = new System.Drawing.Point(61, 186);
             this.txt_nombre_proveedor.Name = "txt_nombre_proveedor";
             this.txt_nombre_proveedor.Size = new System.Drawing.Size(578, 35);
             this.txt_nombre_proveedor.TabIndex = 98;
@@ -104,7 +106,7 @@
             this.lbl_nombre.BackColor = System.Drawing.Color.Black;
             this.lbl_nombre.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_nombre.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_nombre.Location = new System.Drawing.Point(213, 158);
+            this.lbl_nombre.Location = new System.Drawing.Point(204, 115);
             this.lbl_nombre.Name = "lbl_nombre";
             this.lbl_nombre.Size = new System.Drawing.Size(275, 35);
             this.lbl_nombre.TabIndex = 97;
@@ -126,11 +128,34 @@
             // 
             this.errorIcono.ContainerControl = this;
             // 
+            // txt_proveddor_sectorComercial
+            // 
+            this.txt_proveddor_sectorComercial.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_proveddor_sectorComercial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_proveddor_sectorComercial.Location = new System.Drawing.Point(61, 338);
+            this.txt_proveddor_sectorComercial.Name = "txt_proveddor_sectorComercial";
+            this.txt_proveddor_sectorComercial.Size = new System.Drawing.Size(578, 35);
+            this.txt_proveddor_sectorComercial.TabIndex = 103;
+            // 
+            // lbl_sectorComercial
+            // 
+            this.lbl_sectorComercial.AutoSize = true;
+            this.lbl_sectorComercial.BackColor = System.Drawing.Color.Black;
+            this.lbl_sectorComercial.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_sectorComercial.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_sectorComercial.Location = new System.Drawing.Point(87, 267);
+            this.lbl_sectorComercial.Name = "lbl_sectorComercial";
+            this.lbl_sectorComercial.Size = new System.Drawing.Size(516, 35);
+            this.lbl_sectorComercial.TabIndex = 102;
+            this.lbl_sectorComercial.Text = "Nombre del sector comercial del Proveedor:";
+            // 
             // FrmAgregarEditarProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 518);
+            this.Controls.Add(this.txt_proveddor_sectorComercial);
+            this.Controls.Add(this.lbl_sectorComercial);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.lbl_proveedor);
@@ -139,6 +164,7 @@
             this.Controls.Add(this.lbl_costo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FrmAgregarEditarProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarProveedor";
             this.Load += new System.EventHandler(this.FrmAgregarEditarProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
@@ -157,5 +183,7 @@
         private System.Windows.Forms.Label lbl_costo;
         private System.Windows.Forms.ErrorProvider errorIcono;
         private System.Windows.Forms.ToolTip tt_mensaje;
+        private System.Windows.Forms.TextBox txt_proveddor_sectorComercial;
+        private System.Windows.Forms.Label lbl_sectorComercial;
     }
 }

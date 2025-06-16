@@ -108,10 +108,12 @@ namespace Ferreteria.CapaPresentacion.VistaProveedor
 
             dgv_productos.Columns["Id_Proveedor"].Width = 400;
             dgv_productos.Columns["Nombre"].Width = 800;// nombre_producto
-
+            dgv_productos.Columns["SectorComercial"].Width = 800;// nombre_producto
 
             dgv_productos.Columns["Id_Proveedor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["SectorComercial"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
 
 
 

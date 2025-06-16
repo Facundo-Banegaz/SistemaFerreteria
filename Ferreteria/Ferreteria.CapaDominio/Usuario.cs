@@ -11,12 +11,10 @@ namespace Ferreteria.CapaDominio
         public int Id_Usuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public string UrlImagen { get; set; }
         public string UsuarioNombre { get; set; }
         public string Acceso { get; set; }
         public string Dni { get; set; }
         public string Clave { get; set; }
-        public DateTime UltimoAcceso { get; set; } = DateTime.Now;
         public byte Estado { get; set; }
 
         public List<Ingreso> Ingresos { get; set; }

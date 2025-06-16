@@ -132,11 +132,23 @@
     <Compile Include="VistaMDIPrincipal\FrmMdiPrincipal.Designer.cs">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaProducto\FrmActualizarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProducto\FrmActualizarProducto.Designer.cs">
+      <DependentUpon>FrmActualizarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaProducto\FrmAgregarEditarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VistaProducto\FrmAgregarEditarProducto.Designer.cs">
       <DependentUpon>FrmAgregarEditarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaProducto\FrmDetalleProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaProducto\FrmDetalleProducto.Designer.cs">
+      <DependentUpon>FrmDetalleProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaProducto\FrmProducto.cs">
       <SubType>Form</SubType>
@@ -225,6 +237,9 @@
     <EmbeddedResource Include="VistaEspecificacion\FrmEspecificacion.resx">
       <DependentUpon>FrmEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.resx">
+      <DependentUpon>FrmTipoEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmAgregarEditarIngreso.resx">
       <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,8 +255,14 @@
     <EmbeddedResource Include="VistaMDIPrincipal\FrmMdiPrincipal.resx">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaProducto\FrmActualizarProducto.resx">
+      <DependentUpon>FrmActualizarProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaProducto\FrmAgregarEditarProducto.resx">
       <DependentUpon>FrmAgregarEditarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaProducto\FrmDetalleProducto.resx">
+      <DependentUpon>FrmDetalleProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaProducto\FrmProducto.resx">
       <DependentUpon>FrmProducto.cs</DependentUpon>

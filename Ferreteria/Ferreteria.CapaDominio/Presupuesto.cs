@@ -13,7 +13,8 @@ namespace Ferreteria.CapaDominio
         public string Cliente { get; set; }
         public decimal Total { get; set; }
 
-        public int UsuarioId { get; set; }
+        public string Serie { get; set; }
+        public string Correlativo { get; set; }
         public Usuario Usuario { get; set; }
 
         public string Estado { get; set; }

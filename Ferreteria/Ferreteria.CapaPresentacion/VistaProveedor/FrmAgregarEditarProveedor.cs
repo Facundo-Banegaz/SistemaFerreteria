@@ -61,6 +61,7 @@ namespace Ferreteria.CapaPresentacion.VistaProveedor
                         _Proveedor = new Proveedor();
 
                     _Proveedor.Nombre = txt_nombre_proveedor.Text.Trim().ToUpper();
+                    _Proveedor.SectorComercial = txt_proveddor_sectorComercial.Text.Trim().ToUpper();
 
                     if (_Proveedor.Id_Proveedor != 0)
                     {
@@ -93,6 +94,7 @@ namespace Ferreteria.CapaPresentacion.VistaProveedor
         {
             lbl_proveedor.Text = _Proveedor.Id_Proveedor.ToString();
             txt_nombre_proveedor.Text = _Proveedor.Nombre;
+            txt_proveddor_sectorComercial.Text = _Proveedor.SectorComercial;
 
         }
 
@@ -104,6 +106,13 @@ namespace Ferreteria.CapaPresentacion.VistaProveedor
             if (txt_nombre_proveedor.Text == string.Empty)
             {
                 errorIcono.SetError(txt_nombre_proveedor, "El campo  es obligatorio, ingrese el Nombre ");
+
+
+                error = false;
+            }
+            if (txt_proveddor_sectorComercial.Text == string.Empty)
+            {
+                errorIcono.SetError(txt_proveddor_sectorComercial, "El campo  es obligatorio, ingrese el Nombre ");
 
 
                 error = false;

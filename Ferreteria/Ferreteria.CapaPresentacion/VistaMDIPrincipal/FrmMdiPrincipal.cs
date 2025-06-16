@@ -145,5 +145,10 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         {
 
         }
+
+        private void Menu_item_actualizarPrecio_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

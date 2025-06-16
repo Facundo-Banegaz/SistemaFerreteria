@@ -44,6 +44,12 @@ namespace Ferreteria.CapaNegocio
 
             _CD_Producto.EditarProducto(categoria);
         }
+        public void ActualizarPrecio(int Id_Producto,decimal Precio)
+        {
+            _CD_Producto = new CD_Producto();
+
+            _CD_Producto.ActualizarPrecio(Id_Producto, Precio);
+        }
 
         //Metodo para Eliminar un producto en la Base de Datos
         public void EliminarProducto(int Id_Producto)

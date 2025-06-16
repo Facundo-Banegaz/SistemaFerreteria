@@ -33,7 +33,8 @@ namespace Ferreteria.CapaDatos
 
                     Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Proveedor.Nombre = (string)Conexion.Lector["Nombre"];
-                  
+                    Proveedor.SectorComercial = (string)Conexion.Lector["SectorComercial"];
+
 
 
                     listaProveedor.Add(Proveedor);
@@ -96,40 +97,7 @@ namespace Ferreteria.CapaDatos
             }
 
         }
-        public bool ValidarProveedor(string Nombre)
-        {
-            Conexion = new CD_Conexion();
-            try
-            {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedores WHERE Nombre = @Nombre");
-                Conexion.SetearParametro("@Nombre", Nombre);
-
-                Conexion.EjecutarLectura();
-
-                // Verificar si hay alguna fila devuelta por la consulta
-                if (Conexion.Lector.HasRows)
-                {
-                    // Leer el valor del primer campo (que es el resultado del conteo)
-                    Conexion.Lector.Read();
-                    int count = Convert.ToInt32(Conexion.Lector[0]);
-                    return count > 0;
-                }
-                else
-                {
-                    // Si no hay filas, no hay resultados, por lo que el cliente no existe
-                    return false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
-            }
-        }
+  
 
  
         //metodo insertar
@@ -144,10 +112,10 @@ namespace Ferreteria.CapaDatos
                 if (ValidarProveedor(Nuevo.Nombre))
                     throw new Exception("Ya existe un Proveedor con ese nombre.");
 
-                Conexion.SetConsultaProcedure("SpInsertar_proveedor");
+                Conexion.SetConsultaProcedure("SpInsertar_Proveedor");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
-              
+                Conexion.SetearParametro("@SectorComercial", Nuevo.SectorComercial);
 
 
                 Conexion.EjecutarAccion();
@@ -174,35 +142,54 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                // Validar que el nuevo nombre no exista en otra categoría
+                // Validar si ya existe otro proveedor con ese nombre
                 Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedores WHERE Nombre = @Nombre AND Id_Proveedor != @Id_Proveedor");
-                Conexion.SetearParametro("@Nombre", Proveedor.Nombre);
+                Conexion.SetearParametro("@Nombre", proveedor.Nombre);
                 Conexion.SetearParametro("@Id_Proveedor", proveedor.Id_Proveedor);
 
                 int count = Convert.ToInt32(Conexion.EjecutarEscalar());
                 if (count > 0)
                     throw new Exception("Ya existe otro Proveedor con ese nombre.");
 
-                Conexion.SetConsultaProcedure("SpEditar_proveedor");
+                // Ahora ejecutamos el SP
+                Conexion.SetConsultaProcedure("SpEditar_Proveedor");
+
 
                 Conexion.SetearParametro("@Id_Proveedor", proveedor.Id_Proveedor);
                 Conexion.SetearParametro("@Nombre", proveedor.Nombre);
-         
+                Conexion.SetearParametro("@SectorComercial", proveedor.SectorComercial);
 
                 Conexion.EjecutarAccion();
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 Conexion.CerrarConexion();
             }
+        }
 
+        public bool ValidarProveedor(string Nombre)
+        {
+            Conexion = new CD_Conexion();
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Proveedores WHERE Nombre = @Nombre");
+                Conexion.SetearParametro("@Nombre", Nombre);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
         }
 
         //Metodo eliminar
@@ -212,7 +199,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_proveedor");
+                Conexion.SetConsultaProcedure("SpEliminar_Proveedor");
 
                 Conexion.SetearParametro("@Id_Proveedor", Id_proveedor);
 
@@ -241,7 +228,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_proveedor");
+                Conexion.SetConsultaProcedure("SpBuscar_Proveedor");
 
 
                 Conexion.SetearParametro("@txt_buscar", buscar);
@@ -256,7 +243,8 @@ namespace Ferreteria.CapaDatos
 
                     Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Proveedor.Nombre = (string)Conexion.Lector["Nombre"];
-         
+                    Proveedor.SectorComercial = (string)Conexion.Lector["SectorComercial"];
+
                     listaProveedor.Add(Proveedor);
                 }
 

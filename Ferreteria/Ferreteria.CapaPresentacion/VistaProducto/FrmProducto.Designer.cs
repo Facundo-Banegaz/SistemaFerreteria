@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.dgv_producto = new System.Windows.Forms.DataGridView();
             this.btn_eliminar = new System.Windows.Forms.Button();
@@ -42,6 +42,8 @@
             this.btn_buscar = new System.Windows.Forms.Button();
             this.lbl_buscar = new System.Windows.Forms.Label();
             this.txt_buscar = new System.Windows.Forms.TextBox();
+            this.btn_ver_detalle = new System.Windows.Forms.Button();
+            this.btn_actualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_producto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,23 +75,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_producto.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_producto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_producto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_producto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_producto.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_producto.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_producto.EnableHeadersVisualStyles = false;
             this.dgv_producto.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgv_producto.Location = new System.Drawing.Point(12, 174);
@@ -110,7 +112,7 @@
             this.btn_eliminar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(734, 665);
+            this.btn_eliminar.Location = new System.Drawing.Point(553, 665);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(197, 66);
             this.btn_eliminar.TabIndex = 90;
@@ -128,7 +130,7 @@
             this.btn_editar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_editar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
-            this.btn_editar.Location = new System.Drawing.Point(395, 663);
+            this.btn_editar.Location = new System.Drawing.Point(288, 663);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(197, 66);
             this.btn_editar.TabIndex = 88;
@@ -146,7 +148,7 @@
             this.btn_nuevo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_nuevo.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_nuevo.Image = ((System.Drawing.Image)(resources.GetObject("btn_nuevo.Image")));
-            this.btn_nuevo.Location = new System.Drawing.Point(68, 663);
+            this.btn_nuevo.Location = new System.Drawing.Point(12, 663);
             this.btn_nuevo.Name = "btn_nuevo";
             this.btn_nuevo.Size = new System.Drawing.Size(197, 66);
             this.btn_nuevo.TabIndex = 89;
@@ -234,11 +236,49 @@
             this.txt_buscar.TabIndex = 82;
             this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
             // 
+            // btn_ver_detalle
+            // 
+            this.btn_ver_detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_ver_detalle.BackColor = System.Drawing.Color.SteelBlue;
+            this.btn_ver_detalle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_ver_detalle.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ver_detalle.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_ver_detalle.Image = ((System.Drawing.Image)(resources.GetObject("btn_ver_detalle.Image")));
+            this.btn_ver_detalle.Location = new System.Drawing.Point(792, 665);
+            this.btn_ver_detalle.Name = "btn_ver_detalle";
+            this.btn_ver_detalle.Size = new System.Drawing.Size(197, 66);
+            this.btn_ver_detalle.TabIndex = 105;
+            this.btn_ver_detalle.Text = "Ver Detalle \r\n";
+            this.btn_ver_detalle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_ver_detalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ver_detalle.UseVisualStyleBackColor = false;
+            this.btn_ver_detalle.Click += new System.EventHandler(this.btn_ver_detalle_Click);
+            // 
+            // btn_actualizar
+            // 
+            this.btn_actualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_actualizar.BackColor = System.Drawing.Color.Tomato;
+            this.btn_actualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_actualizar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_actualizar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_actualizar.Image = ((System.Drawing.Image)(resources.GetObject("btn_actualizar.Image")));
+            this.btn_actualizar.Location = new System.Drawing.Point(1043, 663);
+            this.btn_actualizar.Name = "btn_actualizar";
+            this.btn_actualizar.Size = new System.Drawing.Size(268, 66);
+            this.btn_actualizar.TabIndex = 106;
+            this.btn_actualizar.Text = "Actualizar Precio";
+            this.btn_actualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_actualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_actualizar.UseVisualStyleBackColor = false;
+            this.btn_actualizar.Click += new System.EventHandler(this.btn_actualizar_Click);
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1726, 753);
+            this.Controls.Add(this.btn_actualizar);
+            this.Controls.Add(this.btn_ver_detalle);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.dgv_producto);
             this.Controls.Add(this.btn_eliminar);
@@ -274,5 +314,7 @@
         private System.Windows.Forms.Button btn_buscar;
         private System.Windows.Forms.Label lbl_buscar;
         private System.Windows.Forms.TextBox txt_buscar;
+        private System.Windows.Forms.Button btn_ver_detalle;
+        private System.Windows.Forms.Button btn_actualizar;
     }
 }

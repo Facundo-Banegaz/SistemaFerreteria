@@ -1,6 +1,8 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpMostrar_Producto");
+                Conexion.SetConsultaProcedure("SpMostrar_Productos");
 
                 Conexion.EjecutarLectura();
 
@@ -32,7 +34,7 @@ namespace Ferreteria.CapaDatos
                     //Producto = new Producto();
 
                     Producto = new Producto();
-                    
+
                     //atributos propios
 
                     Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
@@ -78,9 +80,8 @@ namespace Ferreteria.CapaDatos
         }
 
 
-  
 
-   
+
         public bool ValidarProducto(string Nombre)
         {
             Conexion = new CD_Conexion();
@@ -152,6 +153,34 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        //actualizar precio
+        public void ActualizarPrecio(int Id_Producto, decimal Precio)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpActualizar_Precio");
+
+                Conexion.SetearParametro("@Id_Producto", Id_Producto);
+               
+                Conexion.SetearParametro("@Precio", Precio);
+           
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
         //metodo editar
 
@@ -228,10 +257,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_Producto");
+                Conexion.SetConsultaProcedure("SpBuscar_Productos");
 
 
-                Conexion.SetearParametro("@Texto_Buscar", buscar);
+                Conexion.SetearParametro("@TextoBuscar", buscar);
 
 
                 Conexion.EjecutarLectura();
@@ -252,17 +281,17 @@ namespace Ferreteria.CapaDatos
 
                     Producto.Subcategoria = new Subcategoria();
 
-                    //Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
+                    Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     Producto.Subcategoria.Nombre = (string)Conexion.Lector["Subcategoria"];
 
 
                     Producto.Marca = new Marca();
-                    //Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
+                    Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     Producto.Marca.Nombre = (string)Conexion.Lector["Marca"];
 
 
                     Producto.UnidadMedida = new UnidadMedida();
-                    //Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
+                    Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     Producto.UnidadMedida.Nombre = (string)Conexion.Lector["UnidadMedida"];
 
                     listaProducto.Add(Producto);

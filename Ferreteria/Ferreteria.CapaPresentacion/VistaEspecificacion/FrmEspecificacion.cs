@@ -120,9 +120,9 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
 
+            dgv_productos.Columns["Id_Especificacion"].Visible = false;
 
-
-            dgv_productos.Columns["Id_Especificacion"].Width = 300;
+            //dgv_productos.Columns["Id_Especificacion"].Width = 300;
             dgv_productos.Columns["Producto"].Width = 400;// nombre_producto
             //dgv_productos.Columns["Codigo"].Width = 300;// nombre_producto
             //dgv_productos.Columns["Descripcion"].Width = 500;// nombre_producto
@@ -131,7 +131,7 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion
 
 
 
-            dgv_productos.Columns["Id_Especificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //dgv_productos.Columns["Id_Especificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //dgv_productos.Columns["Codigo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //dgv_productos.Columns["Descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -12,10 +12,14 @@ namespace Ferreteria.CapaDominio
         public DateTime Fecha { get; set; } = DateTime.Now;
         public decimal Total { get; set; }
 
-        public int UsuarioId { get; set; }
+        public string Estado { get; set; }
+        public string TipoComprobante { get; set; }
+        public string Serie { get; set; }
+        public string Correlativo { get; set; }
         public Usuario Usuario { get; set; }
 
         public List<DetalleVenta> Detalles { get; set; }
+
         public Ticket Ticket { get; set; }
         public Boleta Boleta { get; set; }
         

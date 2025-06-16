@@ -38,7 +38,7 @@ namespace Ferreteria.CapaDatos
                     subCategoria = new Subcategoria();
 
 
-                    subCategoria.Id_Subcategoria = (int)Conexion.Lector["Id_SubCategoria"];
+                    subCategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     subCategoria.Nombre = (string)Conexion.Lector["Nombre"];
                     subCategoria.Categoria = new Categoria();
 
@@ -153,7 +153,7 @@ namespace Ferreteria.CapaDatos
 
                 // Validar que el nuevo nombre no exista en otra subcategoría
 
-                Conexion.SetConsulta("SELECT COUNT(*) FROM SubCategorias WHERE Nombre = @Nombre AND Id_Subcategoria != @Id_Subcategoria");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Subcategorias WHERE Nombre = @Nombre AND Id_Subcategoria != @Id_Subcategoria");
                 Conexion.SetearParametro("@Nombre", subCategoria.Nombre);
                 Conexion.SetearParametro("@Id_Subcategoria", subCategoria.Id_Subcategoria);
 
@@ -194,7 +194,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM SubCategorias WHERE Nombre = @Nombre AND Id_Categoria = @Id_Categoria");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Subcategorias WHERE Nombre = @Nombre AND Id_Categoria = @Id_Categoria");
                 Conexion.SetearParametro("@Nombre", nombre);
                 Conexion.SetearParametro("@Id_Categoria", categoriaId);
 

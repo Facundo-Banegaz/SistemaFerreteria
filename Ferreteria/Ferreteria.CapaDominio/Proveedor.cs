@@ -12,6 +12,8 @@ namespace Ferreteria.CapaDominio
         public int Id_Proveedor { get; set; }
         public string Nombre { get; set; }
 
+        public string SectorComercial { get; set; }
+
         public List<Ingreso> Ingresos { get; set; }
     }
 }

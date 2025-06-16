@@ -17,5 +17,7 @@ namespace Ferreteria.CapaDominio
         public string NombreCliente { get; set; }
         public string Domicilio { get; set; }
         public string CUIT_CUIL { get; set; }
+        public string Serie { get; set; }
+        public string Correlativo { get; set; }
     }
 }
