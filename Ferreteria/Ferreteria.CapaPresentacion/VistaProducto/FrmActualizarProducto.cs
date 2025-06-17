@@ -43,6 +43,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             lbl_descripcion.Text ="Descripción: "+ producto.Descripcion;
             lbl_fecha.Text= "Fecha de la Ultima Actualización:  "+ producto.FechaUltimaActualizacionPrecio;
             lbl_precio.Text = "Precio Actual:  "+ producto.Precio;
+            lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio;
             lbl_stock.Text = "Stock Actual: "+producto.Stock;
             lbl_subcategoria.Text = "Subcategoria:  " + producto.Subcategoria.Nombre;
             lbl_stock_minimo.Text = "Stock Minimo:  " + producto.StockMinimo;
@@ -143,6 +144,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             }
 
             return error;
+        }
+
+        private void txt_nuevo_precio_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

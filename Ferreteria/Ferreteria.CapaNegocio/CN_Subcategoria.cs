@@ -21,11 +21,11 @@ namespace Ferreteria.CapaNegocio
         }
 
         //Metodo para Listar los Productos em la DataWirdView
-        public List<Subcategoria> CargarCbo(int CategoriaId)
+        public List<Subcategoria> CargarCbo(int Id_Categoria)
         {
              _CD_SubCategoria = new CD_subCategoria();
 
-            return  _CD_SubCategoria.CargarCbo( CategoriaId);
+            return  _CD_SubCategoria.CargarCbo(Id_Categoria);
         }
         //Metodo para cargar un producto en la Base de Datos
         public void InsertarSubCategoria(Subcategoria Nuevo)

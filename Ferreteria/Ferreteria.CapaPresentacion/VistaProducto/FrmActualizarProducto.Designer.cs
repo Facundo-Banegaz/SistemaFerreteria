@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActualizarProducto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_Id = new System.Windows.Forms.Label();
             this.lbl_stock_minimo = new System.Windows.Forms.Label();
             this.lbl_marca = new System.Windows.Forms.Label();
             this.lbl_descripcion = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_nuevo_precio = new System.Windows.Forms.TextBox();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lbl_Id = new System.Windows.Forms.Label();
+            this.lbl_precio_anterior = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +71,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles Del Producto Seleccionado";
+            // 
+            // lbl_Id
+            // 
+            this.lbl_Id.AutoSize = true;
+            this.lbl_Id.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Id.Location = new System.Drawing.Point(407, 45);
+            this.lbl_Id.Name = "lbl_Id";
+            this.lbl_Id.Size = new System.Drawing.Size(0, 29);
+            this.lbl_Id.TabIndex = 99;
+            this.lbl_Id.Visible = false;
             // 
             // lbl_stock_minimo
             // 
@@ -119,6 +130,8 @@
             // lbl_fecha
             // 
             this.lbl_fecha.AutoSize = true;
+            this.lbl_fecha.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_fecha.ForeColor = System.Drawing.Color.Coral;
             this.lbl_fecha.Location = new System.Drawing.Point(791, 45);
             this.lbl_fecha.Name = "lbl_fecha";
             this.lbl_fecha.Size = new System.Drawing.Size(329, 29);
@@ -128,7 +141,7 @@
             // lbl_precio
             // 
             this.lbl_precio.AutoSize = true;
-            this.lbl_precio.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_precio.BackColor = System.Drawing.SystemColors.ControlText;
             this.lbl_precio.ForeColor = System.Drawing.Color.Coral;
             this.lbl_precio.Location = new System.Drawing.Point(21, 136);
             this.lbl_precio.Name = "lbl_precio";
@@ -194,41 +207,45 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(759, 436);
+            this.label1.Font = new System.Drawing.Font("Impact", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(727, 460);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 29);
+            this.label1.Size = new System.Drawing.Size(193, 39);
             this.label1.TabIndex = 10;
             this.label1.Text = "Nuevo Precio:";
             // 
             // txt_nuevo_precio
             // 
-            this.txt_nuevo_precio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nuevo_precio.Location = new System.Drawing.Point(701, 510);
+            this.txt_nuevo_precio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nuevo_precio.Location = new System.Drawing.Point(632, 532);
             this.txt_nuevo_precio.Name = "txt_nuevo_precio";
-            this.txt_nuevo_precio.Size = new System.Drawing.Size(269, 39);
+            this.txt_nuevo_precio.Size = new System.Drawing.Size(397, 44);
             this.txt_nuevo_precio.TabIndex = 98;
+            this.txt_nuevo_precio.TextChanged += new System.EventHandler(this.txt_nuevo_precio_TextChanged);
             this.txt_nuevo_precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nuevo_precio_KeyPress);
             // 
             // errorIcono
             // 
             this.errorIcono.ContainerControl = this;
             // 
-            // lbl_Id
+            // lbl_precio_anterior
             // 
-            this.lbl_Id.AutoSize = true;
-            this.lbl_Id.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Id.Location = new System.Drawing.Point(407, 45);
-            this.lbl_Id.Name = "lbl_Id";
-            this.lbl_Id.Size = new System.Drawing.Size(0, 29);
-            this.lbl_Id.TabIndex = 99;
-            this.lbl_Id.Visible = false;
+            this.lbl_precio_anterior.AutoSize = true;
+            this.lbl_precio_anterior.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_precio_anterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_precio_anterior.ForeColor = System.Drawing.Color.Coral;
+            this.lbl_precio_anterior.Location = new System.Drawing.Point(636, 588);
+            this.lbl_precio_anterior.Name = "lbl_precio_anterior";
+            this.lbl_precio_anterior.Size = new System.Drawing.Size(96, 29);
+            this.lbl_precio_anterior.TabIndex = 99;
+            this.lbl_precio_anterior.Text = "Precio:";
             // 
             // FrmActualizarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1726, 753);
+            this.Controls.Add(this.lbl_precio_anterior);
             this.Controls.Add(this.txt_nuevo_precio);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_cancelar);
@@ -265,5 +282,6 @@
         private System.Windows.Forms.TextBox txt_nuevo_precio;
         private System.Windows.Forms.ErrorProvider errorIcono;
         private System.Windows.Forms.Label lbl_Id;
+        private System.Windows.Forms.Label lbl_precio_anterior;
     }
 }

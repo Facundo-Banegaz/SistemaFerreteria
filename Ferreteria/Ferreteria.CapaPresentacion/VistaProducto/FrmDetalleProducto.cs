@@ -23,28 +23,36 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
         private void FrmDetalleProducto_Load(object sender, EventArgs e)
         {
-            MostrarDatos();
+            if (_Producto != null)
+            {
+                MostrarDatos();
+            }
         }
 
         private void MostrarDatos()
         {
-            txt_id_producto.Text = _Producto.Id_Producto.ToString();
-            txt_codigo_producto.Text = _Producto.Codigo.ToString();
-            txt_nombre_producto.Text = _Producto.Nombre;
-            txt_descripcion_producto.Text = _Producto.Descripcion;
-            txt_fecha.Text = _Producto.FechaUltimaActualizacionPrecio.ToString();
-            txt_marca.Text = _Producto.Marca.Nombre.ToString();
-            txt_subcategoria.Text = _Producto.Subcategoria.Nombre.ToString();
-            txt_unidadMedida.Text = _Producto.UnidadMedida.Nombre.ToString();
-            txt_stock.Text = _Producto.Stock.ToString();
-            txt_stockminimo.Text = _Producto.StockMinimo.ToString();
-            txt_url_Precio.Text = _Producto.Precio.ToString();
+            lbl_codigo.Text = "Codigo:   " + _Producto.Codigo;
+            lbl_nombre.Text = "Nombre:   " + _Producto.Nombre;
+            txt_descripcion_producto.Text =  _Producto.Descripcion;
+            lbl_fecha.Text = "Fecha de la Ultima Actualización:  " + _Producto.FechaUltimaActualizacionPrecio;
+            lbl_precio.Text = "Precio Actual:  " + _Producto.Precio;
+            lbl_stock.Text = "Stock Actual: " + _Producto.Stock;
+            lbl_subcategoria.Text = "Subcategoria:  " + _Producto.Subcategoria.Nombre;
+            lbl_stock_minimo.Text = "Stock Minimo:  " + _Producto.StockMinimo;
             chek_estado.Checked = _Producto.Estado;
+            lbl_marca.Text = "Marca:    " + _Producto.Marca.Nombre;
+            lbl_Id.Text = _Producto.Id_Producto.ToString();
+            lbl_unidad.Text = "Unidad de Medida:    " + _Producto.UnidadMedida.Nombre;
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -48,7 +48,7 @@
     <Compile Include="CN_Metodos.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_Proveedor.cs" />
-    <Compile Include="CN_Subcategoria.cs" />
+    <Compile Include="CN_SubCategoria.cs" />
     <Compile Include="CN_UnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
