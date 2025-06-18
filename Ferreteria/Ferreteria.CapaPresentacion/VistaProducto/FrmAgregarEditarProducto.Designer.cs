@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarEditarProducto));
             this.cbo_subcategoria = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -52,7 +53,10 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.lbl_id = new System.Windows.Forms.Label();
+            this.lbl_fecha = new System.Windows.Forms.Label();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // cbo_subcategoria
@@ -76,7 +80,7 @@
             this.groupBox1.Size = new System.Drawing.Size(1162, 246);
             this.groupBox1.TabIndex = 92;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Desccripcion del Producto:";
+            this.groupBox1.Text = "Desccripcion del Producto ( opcional ) :";
             // 
             // txt_descripcion
             // 
@@ -129,6 +133,8 @@
             this.txt_precio.Name = "txt_precio";
             this.txt_precio.Size = new System.Drawing.Size(333, 35);
             this.txt_precio.TabIndex = 87;
+            this.txt_precio.TextChanged += new System.EventHandler(this.txt_precio_TextChanged);
+            this.txt_precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precio_KeyPress);
             // 
             // lbl_cargo
             // 
@@ -323,11 +329,27 @@
             this.lbl_id.TabIndex = 107;
             this.lbl_id.Visible = false;
             // 
+            // lbl_fecha
+            // 
+            this.lbl_fecha.AutoSize = true;
+            this.lbl_fecha.BackColor = System.Drawing.Color.Coral;
+            this.lbl_fecha.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha.Location = new System.Drawing.Point(282, 439);
+            this.lbl_fecha.Name = "lbl_fecha";
+            this.lbl_fecha.Size = new System.Drawing.Size(279, 29);
+            this.lbl_fecha.TabIndex = 108;
+            this.lbl_fecha.Text = "La ultima modificación fue: ";
+            // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
+            // 
             // FrmAgregarEditarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1217, 828);
+            this.Controls.Add(this.lbl_fecha);
             this.Controls.Add(this.lbl_id);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
@@ -357,6 +379,7 @@
             this.Load += new System.EventHandler(this.FrmAgregarEditarProducto_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,5 +410,7 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.Label lbl_id;
+        private System.Windows.Forms.Label lbl_fecha;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

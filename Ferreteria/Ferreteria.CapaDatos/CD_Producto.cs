@@ -48,18 +48,21 @@ namespace Ferreteria.CapaDatos
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
 
                     Producto.Subcategoria = new Subcategoria();
+                    Producto.Subcategoria.Categoria = new Categoria();
+                    Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
+                    //Intentar relacion id da una exception
+                    Producto.Subcategoria.Categoria.Id_Categoria = (int)Conexion.Lector["Id_Categoria"];
 
-                    //Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     Producto.Subcategoria.Nombre = (string)Conexion.Lector["Subcategoria"];
 
 
                     Producto.Marca = new Marca();
-                    //Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
+                    Producto.Marca.Id_Marca = (int)Conexion.Lector["Id_Marca"];
                     Producto.Marca.Nombre = (string)Conexion.Lector["Marca"];
 
 
                     Producto.UnidadMedida = new UnidadMedida();
-                    //Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
+                    Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     Producto.UnidadMedida.Nombre = (string)Conexion.Lector["UnidadMedida"];
 
                     listaProducto.Add(Producto);
@@ -280,6 +283,8 @@ namespace Ferreteria.CapaDatos
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
 
                     Producto.Subcategoria = new Subcategoria();
+                    Producto.Subcategoria.Categoria = new Categoria();
+                    Producto.Subcategoria.Categoria.Id_Categoria = (int)Conexion.Lector["Id_Categoria"];
 
                     Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
                     Producto.Subcategoria.Nombre = (string)Conexion.Lector["Subcategoria"];

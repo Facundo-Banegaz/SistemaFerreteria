@@ -75,5 +75,10 @@ namespace Ferreteria.CapaPresentacion.VistaLogin
                 Application.Exit();
             }
         }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            txt_usuario.Focus();
+        }
     }
 }
