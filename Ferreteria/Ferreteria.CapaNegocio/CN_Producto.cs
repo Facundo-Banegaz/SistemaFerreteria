@@ -19,12 +19,6 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Producto.ListaProductos();
         }
-        public bool ValidarProducto(string Nombre)
-        {
-            _CD_Producto = new CD_Producto();
-
-            return _CD_Producto.ValidarProducto(Nombre);
-        }
 
   
 
@@ -38,11 +32,11 @@ namespace Ferreteria.CapaNegocio
         }
 
         //Metodo para Editar un producto en la Base de Datos
-        public void EditarProducto(Producto categoria)
+        public void EditarProducto(Producto producto)
         {
             _CD_Producto = new CD_Producto();
 
-            _CD_Producto.EditarProducto(categoria);
+            _CD_Producto.EditarProducto(producto);
         }
         public void ActualizarPrecio(int Id_Producto,decimal Precio)
         {

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Ferreteria.CapaDatos
 {
@@ -85,30 +86,17 @@ namespace Ferreteria.CapaDatos
 
 
 
-        public bool ValidarProducto(string Nombre)
+        public bool ValidarProducto(string Codigo)
         {
             Conexion = new CD_Conexion();
             try
             {
                 Conexion.SetConsulta("SELECT COUNT(*) FROM Productos WHERE Codigo = @Codigo");
-                Conexion.SetearParametro("@Nombre", Nombre);
+                Conexion.SetearParametro("@Codigo", Codigo);
 
-                Conexion.EjecutarLectura();
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
 
-                // Verificar si hay alguna fila devuelta por la consulta
-                if (Conexion.Lector.HasRows)
-                {
-                    // Leer el valor del primer campo (que es el resultado del conteo)
-                    Conexion.Lector.Read();
-                    int count = Convert.ToInt32(Conexion.Lector[0]);
-                    return count > 0;
-                }
-                else
-                {
-                    // Si no hay filas, no hay resultados, por lo que el cliente no existe
-                    return false;
-                }
-
+                return count > 0;
             }
             catch (Exception ex)
             {
@@ -127,6 +115,11 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarProducto(Nuevo.Codigo))
+                    throw new Exception("El código ingresado ya está en uso por otro producto en el sistema.\n\nCada producto debe tener un código único para evitar conflictos.");
+             
+
                 Conexion.SetConsultaProcedure("SpInsertar_Producto");
 
                 Conexion.SetearParametro("@Codigo", Nuevo.Codigo);
@@ -193,6 +186,18 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+
+                // Validar que el nuevo nombre no exista en otra categoría
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Productos WHERE Codigo = @Codigo AND Id_Producto != @Id_Producto");
+                Conexion.SetearParametro("@Codigo", Producto.Codigo);
+                Conexion.SetearParametro("@Id_Producto", Producto.Id_Producto);
+
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("El código ingresado ya está en uso por otro producto en el sistema.\n\nCada producto debe tener un código único para evitar conflictos.");
+
+
                 Conexion.SetConsultaProcedure("SpEditar_Producto");
 
                 Conexion.SetearParametro("@Id_Producto", Producto.Id_Producto);

@@ -260,7 +260,13 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             catch (Exception ex)
             {
 
-                throw ex;
+                // Mostrar mensaje amigable si es un error de duplicado
+                errorIcono.SetError(txt_codigo, ex.Message);
+                MessageBox.Show(ex.Message, "Advertencia Código duplicado detectado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+       
+                txt_codigo.Clear();
+                txt_codigo.Focus();
+
             }
 
 
