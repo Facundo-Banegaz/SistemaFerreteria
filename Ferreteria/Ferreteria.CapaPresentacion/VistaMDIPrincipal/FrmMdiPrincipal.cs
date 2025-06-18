@@ -27,12 +27,67 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private Usuario Usuario;
         private static Form formularioActivo = null;
-
         public FrmMdiPrincipal()
+        { 
+        }
+        public FrmMdiPrincipal(Usuario usuario)
         {
             InitializeComponent();
-            //lbl_usuario.Text  = $"¡¡Bienvenido al Sistema de Ventas {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+            this.Usuario = usuario;
 
+
+            Text = $"¡¡Bienvenido al Sistema  {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+        }
+
+
+        private void FrmMdiPrincipal_Load(object sender, EventArgs e)
+        {
+            GestionUsuario();
+            lbl_usuario.Text = $"¡¡Bienvenido al Sistema  {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+        }
+
+        private void GestionUsuario()
+        {
+            if (Usuario.Acceso == "Administrador")
+            {
+                this.Menu_gestion_mantenimientos.Enabled = true;
+                this.Menu_gestion_compras.Enabled = true;
+                this.Menu_gestion_analisis.Enabled = true;
+                this.Menu_gestion_reportes.Enabled = true;
+
+
+                this.Menu_gestion_ventas.Enabled = false;
+                this.Menu_gestion_presupuestos.Enabled = false;
+                this.Menu_gestion_consultas.Enabled = false;
+
+            }
+
+            else if (Usuario.Acceso == "Vendedor")
+            {
+                this.Menu_gestion_mantenimientos.Enabled = false;
+                this.Menu_gestion_compras.Enabled = false;
+                this.Menu_gestion_analisis.Enabled = false;
+                this.Menu_gestion_reportes.Enabled = false;
+
+
+                this.Menu_gestion_ventas.Enabled = true;
+                this.Menu_gestion_presupuestos.Enabled =true;
+                this.Menu_gestion_consultas.Enabled = true;
+
+            }
+
+
+            else
+            {
+                this.Menu_gestion_mantenimientos.Enabled = false;
+                this.Menu_gestion_compras.Enabled = false;
+                this.Menu_gestion_analisis.Enabled = false;
+                this.Menu_gestion_analisis.Enabled = false;
+                this.Menu_gestion_ventas.Enabled = false;
+                this.Menu_gestion_presupuestos.Enabled = false;
+                this.Menu_gestion_consultas.Enabled = false;
+
+            }
         }
         private void abrirForm(Form formulario)
         {
@@ -52,12 +107,12 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         }
         private void Menu_item_salir_Click(object sender, EventArgs e)
         {
-            //DialogResult respuesta = MessageBox.Show($"¿Estás seguro de que deseas salir del sistema {Usuario.Nombre} {Usuario.Apellido}? Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.", "Salir del Sistema de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show($"¿Estás seguro de que deseas salir del sistema {Usuario.Nombre} {Usuario.Apellido}? Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.", "Salir del Sistema de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            //if (respuesta == DialogResult.Yes)
-            //{
+            if (respuesta == DialogResult.Yes)
+            {
                 Application.Exit();
-            //}
+            }
         }
 
      
@@ -129,21 +184,14 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             abrirForm(new FrmHistorialVenta());
         }
 
-        private void Menu_item_ingresos_Click_1(object sender, EventArgs e)
-        {
-            abrirForm(new FrmIngreso());
-        }
-
   
-
-        private void Menu_item_usuarios_Click_1(object sender, EventArgs e)
-        {
-            abrirForm(new FrmUsuario());
-        }
+  
 
         private void toolStripMenuItem16_Click(object sender, EventArgs e)
         {
 
         }
+
+    
     }
 }

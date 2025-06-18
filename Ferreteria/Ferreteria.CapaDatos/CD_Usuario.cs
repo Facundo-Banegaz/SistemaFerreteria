@@ -34,9 +34,9 @@ namespace Ferreteria.CapaDatos
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
 
-                    Usuario.UsuarioNombre = (string)Conexion.Lector["Usuario"];
+                    Usuario.UsuarioNombre = (string)Conexion.Lector["UsuarioNombre"];
                     Usuario.Clave = (string)Conexion.Lector["Clave"];
-                    //Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
+                    
                     Usuario.Estado = (byte)Conexion.Lector["Estado"];
                     Usuario.Dni = (string)Conexion.Lector["Dni"]; 
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];
@@ -79,10 +79,10 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
                 Conexion.SetearParametro("@Apellido", Nuevo.Apellido);
-                //Conexion.SetearParametro("@UrlImagen", Nuevo.UrlImagen);
-                Conexion.SetearParametro("@Usuario", Nuevo.UsuarioNombre);
+                
+                Conexion.SetearParametro("@UsuarioNombre", Nuevo.UsuarioNombre);
                 Conexion.SetearParametro("@Clave", Nuevo.Clave);
-                //Conexion.SetearParametro("@UltimoAcceso", Nuevo.UltimoAcceso);
+               
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
                 Conexion.SetearParametro("@Dni", Nuevo.Dni);
                 Conexion.SetearParametro("@Acceso", Nuevo.Acceso);
@@ -154,9 +154,9 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Nombre", Usuario.Nombre);
                 Conexion.SetearParametro("@Apellido", Usuario.Apellido);
             
-                Conexion.SetearParametro("@Usuario", Usuario.UsuarioNombre);
+                Conexion.SetearParametro("@UsuarioNombre", Usuario.UsuarioNombre);
                 Conexion.SetearParametro("@Clave", Usuario.Clave);
-                //Conexion.SetearParametro("@UltimoAcceso", Usuario.UltimoAcceso);
+        
                 Conexion.SetearParametro("@Estado", Usuario.Estado);
                 Conexion.SetearParametro("@Dni", Usuario.Dni);
                 Conexion.SetearParametro("@Acceso", Usuario.Acceso);
@@ -232,9 +232,9 @@ namespace Ferreteria.CapaDatos
                     Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
-                    Usuario.UsuarioNombre = (string)Conexion.Lector["Usuario"];
+                    Usuario.UsuarioNombre = (string)Conexion.Lector["UsuarioNombre"];
                     Usuario.Clave = (string)Conexion.Lector["Clave"];
-                    //Usuario.UltimoAcceso = (DateTime)Conexion.Lector["UltimoAcceso"];
+          
                     Usuario.Estado = (byte)Conexion.Lector["Estado"];
                     Usuario.Dni = (string)Conexion.Lector["Dni"];
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];
@@ -261,7 +261,6 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-
         public Usuario Login(string User, string Clave)
         {
             Conexion = new CD_Conexion();
@@ -271,7 +270,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("Sp_login");
 
-                Conexion.SetearParametro("@Usuario", User);
+                Conexion.SetearParametro("@UsuarioNombre", User);
                 Conexion.SetearParametro("@Clave", Clave);
 
                 Conexion.EjecutarLectura();
@@ -283,7 +282,7 @@ namespace Ferreteria.CapaDatos
                     Usuario.Id_Usuario = Convert.ToInt32(Conexion.Lector["Id_Usuario"]);
                     Usuario.Nombre = Conexion.Lector["Nombre"].ToString();
                     Usuario.Apellido = Conexion.Lector["Apellido"].ToString();
-                    Usuario.UsuarioNombre = Conexion.Lector["Usuario"].ToString();
+                    Usuario.UsuarioNombre = Conexion.Lector["UsuarioNombre"].ToString();
                     Usuario.Clave = Conexion.Lector["Clave"].ToString();
                     Usuario.Acceso = Conexion.Lector["Acceso"].ToString();
 
@@ -301,5 +300,6 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+
     }
 }

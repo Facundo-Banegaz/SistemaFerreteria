@@ -50,6 +50,7 @@
     <Compile Include="CN_Proveedor.cs" />
     <Compile Include="CN_SubCategoria.cs" />
     <Compile Include="CN_UnidadMedida.cs" />
+    <Compile Include="CN_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
