@@ -16,5 +16,10 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaTipoEspecificacio
         {
             InitializeComponent();
         }
+
+        private void FormAgregarEditarTipoEspecificacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

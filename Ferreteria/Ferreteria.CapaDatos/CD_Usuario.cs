@@ -33,18 +33,16 @@ namespace Ferreteria.CapaDatos
                     Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
+                    Usuario.Dni = (string)Conexion.Lector["Dni"];
 
                     Usuario.UsuarioNombre = (string)Conexion.Lector["UsuarioNombre"];
-                    Usuario.Clave = (string)Conexion.Lector["Clave"];
+                 
                     
-                    Usuario.Estado = (byte)Conexion.Lector["Estado"];
+                    Usuario.Estado = (bool)Conexion.Lector["Estado"];
+
                     Usuario.Dni = (string)Conexion.Lector["Dni"]; 
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];
 
-
-
-
-            
 
 
 
@@ -75,16 +73,19 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarUsuario(Nuevo.Dni))
+                    throw new Exception("El  Usuario ya esta Registrado.");
+
                 Conexion.SetConsultaProcedure("SpInsertar_Usuario");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
                 Conexion.SetearParametro("@Apellido", Nuevo.Apellido);
-                
+                Conexion.SetearParametro("@Dni", Nuevo.Dni);
                 Conexion.SetearParametro("@UsuarioNombre", Nuevo.UsuarioNombre);
                 Conexion.SetearParametro("@Clave", Nuevo.Clave);
-               
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
-                Conexion.SetearParametro("@Dni", Nuevo.Dni);
+
                 Conexion.SetearParametro("@Acceso", Nuevo.Acceso);
 
 
@@ -110,25 +111,11 @@ namespace Ferreteria.CapaDatos
             Conexion = new CD_Conexion();
             try
             {
-                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE Dni =  @Dni");
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni");
                 Conexion.SetearParametro("@Dni", Dni);
 
-                Conexion.EjecutarLectura();
-
-                // Verificar si hay alguna fila devuelta por la consulta
-                if (Conexion.Lector.HasRows)
-                {
-                    // Leer el valor del primer campo (que es el resultado del conteo)
-                    Conexion.Lector.Read();
-                    int count = Convert.ToInt32(Conexion.Lector[0]);
-                    return count > 0;
-                }
-                else
-                {
-                    // Si no hay filas, no hay resultados, por lo que el cliente no existe
-                    return false;
-                }
-
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0; // true si ya existe
             }
             catch (Exception ex)
             {
@@ -139,7 +126,34 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+        //actualizar precio
+        public void ActualizarContrasenia(int Id_Usario, string Clave)
+        {
+            Conexion = new CD_Conexion();
 
+            try
+            {
+                Conexion.SetConsultaProcedure("SpCambiar_ClaveUsuario");
+
+                Conexion.SetearParametro("@Id_Usuario", Id_Usario);
+
+                Conexion.SetearParametro("@Clave", Clave);
+
+
+                Conexion.EjecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
         //metodo editar
 
         public void EditarUsuario(Usuario Usuario)
@@ -148,17 +162,25 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+
+                // Validar que el nuevo Dni no exista en otro Usuario
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni AND Id_Usuario != @Id_Usuario");
+                Conexion.SetearParametro("@Dni", Usuario.Dni);
+                Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("El  Usuario ya esta Registrado.");
+
                 Conexion.SetConsultaProcedure("SpEditar_Usuario");
 
                 Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Nombre", Usuario.Nombre);
                 Conexion.SetearParametro("@Apellido", Usuario.Apellido);
-            
-                Conexion.SetearParametro("@UsuarioNombre", Usuario.UsuarioNombre);
-                Conexion.SetearParametro("@Clave", Usuario.Clave);
-        
-                Conexion.SetearParametro("@Estado", Usuario.Estado);
                 Conexion.SetearParametro("@Dni", Usuario.Dni);
+                Conexion.SetearParametro("@UsuarioNombre", Usuario.UsuarioNombre);
+                Conexion.SetearParametro("@Estado", Usuario.Estado);
+         
                 Conexion.SetearParametro("@Acceso", Usuario.Acceso);
 
                 Conexion.EjecutarAccion();
@@ -232,10 +254,12 @@ namespace Ferreteria.CapaDatos
                     Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
                     Usuario.Nombre = (string)Conexion.Lector["Nombre"];
                     Usuario.Apellido = (string)Conexion.Lector["Apellido"];
+                    Usuario.Dni = (string)Conexion.Lector["Dni"];
+
                     Usuario.UsuarioNombre = (string)Conexion.Lector["UsuarioNombre"];
-                    Usuario.Clave = (string)Conexion.Lector["Clave"];
+        
           
-                    Usuario.Estado = (byte)Conexion.Lector["Estado"];
+                    Usuario.Estado = (bool)Conexion.Lector["Estado"];
                     Usuario.Dni = (string)Conexion.Lector["Dni"];
                     Usuario.Acceso = (string)Conexion.Lector["Acceso"];
 

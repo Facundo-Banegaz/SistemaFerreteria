@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            this.dgv_proveedor = new System.Windows.Forms.DataGridView();
+            this.dgv_usuarios = new System.Windows.Forms.DataGridView();
             this.btn_eliminar = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_nuevo = new System.Windows.Forms.Button();
@@ -42,7 +42,8 @@
             this.btn_buscar = new System.Windows.Forms.Button();
             this.lbl_buscar = new System.Windows.Forms.Label();
             this.txt_buscar = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_proveedor)).BeginInit();
+            this.btn_actualizar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_cancelar
@@ -63,16 +64,16 @@
             this.btn_cancelar.UseVisualStyleBackColor = false;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // dgv_proveedor
+            // dgv_usuarios
             // 
-            this.dgv_proveedor.AllowUserToAddRows = false;
-            this.dgv_proveedor.AllowUserToDeleteRows = false;
-            this.dgv_proveedor.AllowUserToOrderColumns = true;
-            this.dgv_proveedor.AllowUserToResizeRows = false;
-            this.dgv_proveedor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgv_usuarios.AllowUserToAddRows = false;
+            this.dgv_usuarios.AllowUserToDeleteRows = false;
+            this.dgv_usuarios.AllowUserToOrderColumns = true;
+            this.dgv_usuarios.AllowUserToResizeRows = false;
+            this.dgv_usuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_proveedor.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_usuarios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -80,8 +81,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_proveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_proveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_usuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -89,18 +90,18 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_proveedor.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_proveedor.EnableHeadersVisualStyles = false;
-            this.dgv_proveedor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_proveedor.Location = new System.Drawing.Point(12, 173);
-            this.dgv_proveedor.Name = "dgv_proveedor";
-            this.dgv_proveedor.ReadOnly = true;
-            this.dgv_proveedor.RowHeadersVisible = false;
-            this.dgv_proveedor.RowHeadersWidth = 62;
-            this.dgv_proveedor.RowTemplate.Height = 28;
-            this.dgv_proveedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_proveedor.Size = new System.Drawing.Size(1582, 444);
-            this.dgv_proveedor.TabIndex = 102;
+            this.dgv_usuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_usuarios.EnableHeadersVisualStyles = false;
+            this.dgv_usuarios.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgv_usuarios.Location = new System.Drawing.Point(12, 173);
+            this.dgv_usuarios.Name = "dgv_usuarios";
+            this.dgv_usuarios.ReadOnly = true;
+            this.dgv_usuarios.RowHeadersVisible = false;
+            this.dgv_usuarios.RowHeadersWidth = 62;
+            this.dgv_usuarios.RowTemplate.Height = 28;
+            this.dgv_usuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_usuarios.Size = new System.Drawing.Size(1582, 444);
+            this.dgv_usuarios.TabIndex = 102;
             // 
             // btn_eliminar
             // 
@@ -110,7 +111,7 @@
             this.btn_eliminar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(705, 664);
+            this.btn_eliminar.Location = new System.Drawing.Point(588, 664);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(197, 66);
             this.btn_eliminar.TabIndex = 101;
@@ -128,7 +129,7 @@
             this.btn_editar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_editar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
-            this.btn_editar.Location = new System.Drawing.Point(366, 662);
+            this.btn_editar.Location = new System.Drawing.Point(311, 662);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(197, 66);
             this.btn_editar.TabIndex = 99;
@@ -233,13 +234,32 @@
             this.txt_buscar.Size = new System.Drawing.Size(730, 37);
             this.txt_buscar.TabIndex = 93;
             // 
+            // btn_actualizar
+            // 
+            this.btn_actualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_actualizar.BackColor = System.Drawing.Color.Tomato;
+            this.btn_actualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_actualizar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_actualizar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_actualizar.Image = ((System.Drawing.Image)(resources.GetObject("btn_actualizar.Image")));
+            this.btn_actualizar.Location = new System.Drawing.Point(864, 664);
+            this.btn_actualizar.Name = "btn_actualizar";
+            this.btn_actualizar.Size = new System.Drawing.Size(301, 66);
+            this.btn_actualizar.TabIndex = 107;
+            this.btn_actualizar.Text = "Cambiar Contraseña";
+            this.btn_actualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_actualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_actualizar.UseVisualStyleBackColor = false;
+            this.btn_actualizar.Click += new System.EventHandler(this.btn_actualizar_Click);
+            // 
             // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1606, 750);
+            this.Controls.Add(this.btn_actualizar);
             this.Controls.Add(this.btn_cancelar);
-            this.Controls.Add(this.dgv_proveedor);
+            this.Controls.Add(this.dgv_usuarios);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_nuevo);
@@ -253,7 +273,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmUsuario";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_proveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,7 +282,7 @@
         #endregion
 
         private System.Windows.Forms.Button btn_cancelar;
-        public System.Windows.Forms.DataGridView dgv_proveedor;
+        public System.Windows.Forms.DataGridView dgv_usuarios;
         private System.Windows.Forms.Button btn_eliminar;
         private System.Windows.Forms.Button btn_editar;
         private System.Windows.Forms.Button btn_nuevo;
@@ -272,5 +292,6 @@
         private System.Windows.Forms.Button btn_buscar;
         private System.Windows.Forms.Label lbl_buscar;
         private System.Windows.Forms.TextBox txt_buscar;
+        private System.Windows.Forms.Button btn_actualizar;
     }
 }

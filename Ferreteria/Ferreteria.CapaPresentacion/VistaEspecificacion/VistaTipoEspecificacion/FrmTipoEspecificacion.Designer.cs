@@ -28,14 +28,174 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTipoEspecificacion));
+            this.dgv_tipo_especificacion = new System.Windows.Forms.DataGridView();
+            this.btn_eliminar = new System.Windows.Forms.Button();
+            this.btn_editar = new System.Windows.Forms.Button();
+            this.btn_nuevo = new System.Windows.Forms.Button();
+            this.lbl_resultado = new System.Windows.Forms.Label();
+            this.lbl_total = new System.Windows.Forms.Label();
+            this.btn_buscar = new System.Windows.Forms.Button();
+            this.lbl_buscar = new System.Windows.Forms.Label();
+            this.txt_buscar = new System.Windows.Forms.TextBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            this.btn_Agregar = new System.Windows.Forms.Button();
-            this.lbl_categoria = new System.Windows.Forms.Label();
-            this.txt_nombre_TiposEspecificacion = new System.Windows.Forms.TextBox();
-            this.lbl_nombre = new System.Windows.Forms.Label();
-            this.lbl_costo = new System.Windows.Forms.Label();
+            this.btn_limpiar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tipo_especificacion)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dgv_tipo_especificacion
+            // 
+            this.dgv_tipo_especificacion.AllowUserToAddRows = false;
+            this.dgv_tipo_especificacion.AllowUserToDeleteRows = false;
+            this.dgv_tipo_especificacion.AllowUserToOrderColumns = true;
+            this.dgv_tipo_especificacion.AllowUserToResizeRows = false;
+            this.dgv_tipo_especificacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_tipo_especificacion.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_tipo_especificacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_tipo_especificacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_tipo_especificacion.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_tipo_especificacion.EnableHeadersVisualStyles = false;
+            this.dgv_tipo_especificacion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgv_tipo_especificacion.Location = new System.Drawing.Point(29, 172);
+            this.dgv_tipo_especificacion.Name = "dgv_tipo_especificacion";
+            this.dgv_tipo_especificacion.ReadOnly = true;
+            this.dgv_tipo_especificacion.RowHeadersVisible = false;
+            this.dgv_tipo_especificacion.RowHeadersWidth = 62;
+            this.dgv_tipo_especificacion.RowTemplate.Height = 28;
+            this.dgv_tipo_especificacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_tipo_especificacion.Size = new System.Drawing.Size(1500, 444);
+            this.dgv_tipo_especificacion.TabIndex = 78;
+            // 
+            // btn_eliminar
+            // 
+            this.btn_eliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_eliminar.BackColor = System.Drawing.Color.Crimson;
+            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_eliminar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_eliminar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
+            this.btn_eliminar.Location = new System.Drawing.Point(782, 665);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(197, 66);
+            this.btn_eliminar.TabIndex = 77;
+            this.btn_eliminar.Text = "Eliminar";
+            this.btn_eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_eliminar.UseVisualStyleBackColor = false;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
+            // 
+            // btn_editar
+            // 
+            this.btn_editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_editar.BackColor = System.Drawing.Color.Orange;
+            this.btn_editar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_editar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_editar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
+            this.btn_editar.Location = new System.Drawing.Point(443, 663);
+            this.btn_editar.Name = "btn_editar";
+            this.btn_editar.Size = new System.Drawing.Size(197, 66);
+            this.btn_editar.TabIndex = 75;
+            this.btn_editar.Text = "Editar";
+            this.btn_editar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_editar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_editar.UseVisualStyleBackColor = false;
+            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // btn_nuevo
+            // 
+            this.btn_nuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_nuevo.BackColor = System.Drawing.Color.LimeGreen;
+            this.btn_nuevo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_nuevo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_nuevo.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_nuevo.Image = ((System.Drawing.Image)(resources.GetObject("btn_nuevo.Image")));
+            this.btn_nuevo.Location = new System.Drawing.Point(116, 663);
+            this.btn_nuevo.Name = "btn_nuevo";
+            this.btn_nuevo.Size = new System.Drawing.Size(197, 66);
+            this.btn_nuevo.TabIndex = 76;
+            this.btn_nuevo.Text = "Nuevo";
+            this.btn_nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_nuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_nuevo.UseVisualStyleBackColor = false;
+            this.btn_nuevo.Click += new System.EventHandler(this.btn_nuevo_Click);
+            // 
+            // lbl_resultado
+            // 
+            this.lbl_resultado.AutoSize = true;
+            this.lbl_resultado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_resultado.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_resultado.ForeColor = System.Drawing.Color.Red;
+            this.lbl_resultado.Location = new System.Drawing.Point(698, 95);
+            this.lbl_resultado.Name = "lbl_resultado";
+            this.lbl_resultado.Size = new System.Drawing.Size(0, 29);
+            this.lbl_resultado.TabIndex = 74;
+            // 
+            // lbl_total
+            // 
+            this.lbl_total.AutoSize = true;
+            this.lbl_total.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_total.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_total.ForeColor = System.Drawing.Color.LawnGreen;
+            this.lbl_total.Location = new System.Drawing.Point(247, 95);
+            this.lbl_total.Name = "lbl_total";
+            this.lbl_total.Size = new System.Drawing.Size(0, 29);
+            this.lbl_total.TabIndex = 73;
+            // 
+            // btn_buscar
+            // 
+            this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_buscar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_buscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_buscar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buscar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
+            this.btn_buscar.Location = new System.Drawing.Point(1156, 20);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(152, 56);
+            this.btn_buscar.TabIndex = 72;
+            this.btn_buscar.Text = "Buscar";
+            this.btn_buscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_buscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_buscar.UseVisualStyleBackColor = false;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
+            // 
+            // lbl_buscar
+            // 
+            this.lbl_buscar.AutoSize = true;
+            this.lbl_buscar.Font = new System.Drawing.Font("Impact", 14F);
+            this.lbl_buscar.Location = new System.Drawing.Point(0, 30);
+            this.lbl_buscar.Name = "lbl_buscar";
+            this.lbl_buscar.Size = new System.Drawing.Size(363, 35);
+            this.lbl_buscar.TabIndex = 71;
+            this.lbl_buscar.Text = "Buscar Tipo de Especificación:";
+            // 
+            // txt_buscar
+            // 
+            this.txt_buscar.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.txt_buscar.Location = new System.Drawing.Point(369, 30);
+            this.txt_buscar.Name = "txt_buscar";
+            this.txt_buscar.Size = new System.Drawing.Size(740, 37);
+            this.txt_buscar.TabIndex = 70;
             // 
             // btn_cancelar
             // 
@@ -46,90 +206,53 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(406, 430);
+            this.btn_cancelar.Location = new System.Drawing.Point(1332, 663);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
-            this.btn_cancelar.TabIndex = 95;
+            this.btn_cancelar.TabIndex = 79;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancelar.UseVisualStyleBackColor = false;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // btn_Agregar
+            // btn_limpiar
             // 
-            this.btn_Agregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Agregar.BackColor = System.Drawing.Color.LimeGreen;
-            this.btn_Agregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Agregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Agregar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Agregar.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btn_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Agregar.Image")));
-            this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Agregar.Location = new System.Drawing.Point(123, 430);
-            this.btn_Agregar.Name = "btn_Agregar";
-            this.btn_Agregar.Size = new System.Drawing.Size(180, 66);
-            this.btn_Agregar.TabIndex = 94;
-            this.btn_Agregar.Text = "Agregar";
-            this.btn_Agregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Agregar.UseVisualStyleBackColor = false;
-            // 
-            // lbl_categoria
-            // 
-            this.lbl_categoria.AutoSize = true;
-            this.lbl_categoria.BackColor = System.Drawing.Color.Black;
-            this.lbl_categoria.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_categoria.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_categoria.Location = new System.Drawing.Point(117, 79);
-            this.lbl_categoria.Name = "lbl_categoria";
-            this.lbl_categoria.Size = new System.Drawing.Size(0, 35);
-            this.lbl_categoria.TabIndex = 93;
-            // 
-            // txt_nombre_TiposEspecificacion
-            // 
-            this.txt_nombre_TiposEspecificacion.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_nombre_TiposEspecificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nombre_TiposEspecificacion.Location = new System.Drawing.Point(64, 261);
-            this.txt_nombre_TiposEspecificacion.Name = "txt_nombre_TiposEspecificacion";
-            this.txt_nombre_TiposEspecificacion.Size = new System.Drawing.Size(578, 35);
-            this.txt_nombre_TiposEspecificacion.TabIndex = 92;
-            // 
-            // lbl_nombre
-            // 
-            this.lbl_nombre.AutoSize = true;
-            this.lbl_nombre.BackColor = System.Drawing.Color.Black;
-            this.lbl_nombre.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_nombre.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_nombre.Location = new System.Drawing.Point(130, 177);
-            this.lbl_nombre.Name = "lbl_nombre";
-            this.lbl_nombre.Size = new System.Drawing.Size(426, 35);
-            this.lbl_nombre.TabIndex = 91;
-            this.lbl_nombre.Text = "Nombre del Tipos de Especificacion:";
-            // 
-            // lbl_costo
-            // 
-            this.lbl_costo.AutoSize = true;
-            this.lbl_costo.BackColor = System.Drawing.Color.Black;
-            this.lbl_costo.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_costo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_costo.Location = new System.Drawing.Point(25, 9);
-            this.lbl_costo.Name = "lbl_costo";
-            this.lbl_costo.Size = new System.Drawing.Size(308, 35);
-            this.lbl_costo.TabIndex = 90;
-            this.lbl_costo.Text = "Id Del TIpoEspecificacion:";
+            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_limpiar.BackColor = System.Drawing.Color.Goldenrod;
+            this.btn_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_limpiar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_limpiar.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_limpiar.Image = ((System.Drawing.Image)(resources.GetObject("btn_limpiar.Image")));
+            this.btn_limpiar.Location = new System.Drawing.Point(1377, 23);
+            this.btn_limpiar.Name = "btn_limpiar";
+            this.btn_limpiar.Size = new System.Drawing.Size(152, 56);
+            this.btn_limpiar.TabIndex = 80;
+            this.btn_limpiar.Text = "Limpiar";
+            this.btn_limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_limpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_limpiar.UseVisualStyleBackColor = false;
+            this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);
             // 
             // FrmTipoEspecificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 518);
+            this.ClientSize = new System.Drawing.Size(1552, 750);
+            this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btn_cancelar);
-            this.Controls.Add(this.btn_Agregar);
-            this.Controls.Add(this.lbl_categoria);
-            this.Controls.Add(this.txt_nombre_TiposEspecificacion);
-            this.Controls.Add(this.lbl_nombre);
-            this.Controls.Add(this.lbl_costo);
+            this.Controls.Add(this.dgv_tipo_especificacion);
+            this.Controls.Add(this.btn_eliminar);
+            this.Controls.Add(this.btn_editar);
+            this.Controls.Add(this.btn_nuevo);
+            this.Controls.Add(this.lbl_resultado);
+            this.Controls.Add(this.lbl_total);
+            this.Controls.Add(this.btn_buscar);
+            this.Controls.Add(this.lbl_buscar);
+            this.Controls.Add(this.txt_buscar);
             this.Name = "FrmTipoEspecificacion";
             this.Text = "FrmTipoEspecificacion";
             this.Load += new System.EventHandler(this.FrmTipoEspecificacion_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tipo_especificacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,11 +260,16 @@
 
         #endregion
 
+        public System.Windows.Forms.DataGridView dgv_tipo_especificacion;
+        private System.Windows.Forms.Button btn_eliminar;
+        private System.Windows.Forms.Button btn_editar;
+        private System.Windows.Forms.Button btn_nuevo;
+        private System.Windows.Forms.Label lbl_resultado;
+        private System.Windows.Forms.Label lbl_total;
+        private System.Windows.Forms.Button btn_buscar;
+        private System.Windows.Forms.Label lbl_buscar;
+        private System.Windows.Forms.TextBox txt_buscar;
         private System.Windows.Forms.Button btn_cancelar;
-        private System.Windows.Forms.Button btn_Agregar;
-        private System.Windows.Forms.Label lbl_categoria;
-        private System.Windows.Forms.TextBox txt_nombre_TiposEspecificacion;
-        private System.Windows.Forms.Label lbl_nombre;
-        private System.Windows.Forms.Label lbl_costo;
+        private System.Windows.Forms.Button btn_limpiar;
     }
 }

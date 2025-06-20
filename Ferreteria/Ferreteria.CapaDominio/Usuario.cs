@@ -15,7 +15,7 @@ namespace Ferreteria.CapaDominio
         public string Acceso { get; set; }
         public string Dni { get; set; }
         public string Clave { get; set; }
-        public byte Estado { get; set; }
+        public bool Estado { get; set; }=true;
 
         public List<Ingreso> Ingresos { get; set; }
         public List<Venta> Ventas { get; set; }

@@ -198,6 +198,12 @@
     <Compile Include="VistaUnidadMedida\FrmUnidadMedida.Designer.cs">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaUsuario\FrmActualizarContrasenia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaUsuario\FrmActualizarContrasenia.Designer.cs">
+      <DependentUpon>FrmActualizarContrasenia.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaUsuario\FrmAgregarEditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\FrmEspecificacion.resx">
       <DependentUpon>FrmEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.resx">
+      <DependentUpon>FormAgregarEditarTipoEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.resx">
       <DependentUpon>FrmTipoEspecificacion.cs</DependentUpon>
@@ -293,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaUnidadMedida\FrmUnidadMedida.resx">
       <DependentUpon>FrmUnidadMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaUsuario\FrmActualizarContrasenia.resx">
+      <DependentUpon>FrmActualizarContrasenia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaUsuario\FrmAgregarEditarUsuario.resx">
       <DependentUpon>FrmAgregarEditarUsuario.cs</DependentUpon>

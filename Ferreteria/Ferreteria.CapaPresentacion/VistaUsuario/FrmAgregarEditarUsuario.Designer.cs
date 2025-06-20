@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarEditarUsuario));
             this.cbo_acceso = new System.Windows.Forms.ComboBox();
-            this.txt_usuario = new System.Windows.Forms.TextBox();
+            this.txt_nombre_usuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_clave = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.txt_numero_documento = new System.Windows.Forms.TextBox();
@@ -48,8 +47,12 @@
             this.lbl_Id = new System.Windows.Forms.Label();
             this.gb_DatosPersonales = new System.Windows.Forms.GroupBox();
             this.gb_cuenta = new System.Windows.Forms.GroupBox();
+            this.lbl_clave = new System.Windows.Forms.Label();
+            this.txt_clave = new System.Windows.Forms.TextBox();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.gb_DatosPersonales.SuspendLayout();
             this.gb_cuenta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // cbo_acceso
@@ -57,19 +60,19 @@
             this.cbo_acceso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_acceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_acceso.FormattingEnabled = true;
-            this.cbo_acceso.Location = new System.Drawing.Point(54, 108);
+            this.cbo_acceso.Location = new System.Drawing.Point(101, 99);
             this.cbo_acceso.Name = "cbo_acceso";
             this.cbo_acceso.Size = new System.Drawing.Size(375, 34);
             this.cbo_acceso.TabIndex = 166;
             // 
-            // txt_usuario
+            // txt_nombre_usuario
             // 
-            this.txt_usuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_usuario.Location = new System.Drawing.Point(514, 106);
-            this.txt_usuario.Name = "txt_usuario";
-            this.txt_usuario.Size = new System.Drawing.Size(379, 35);
-            this.txt_usuario.TabIndex = 165;
+            this.txt_nombre_usuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_nombre_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nombre_usuario.Location = new System.Drawing.Point(561, 97);
+            this.txt_nombre_usuario.Name = "txt_nombre_usuario";
+            this.txt_nombre_usuario.Size = new System.Drawing.Size(379, 35);
+            this.txt_nombre_usuario.TabIndex = 165;
             // 
             // label1
             // 
@@ -77,7 +80,7 @@
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(640, 50);
+            this.label1.Location = new System.Drawing.Point(687, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 35);
             this.label1.TabIndex = 164;
@@ -89,32 +92,11 @@
             this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(193, 50);
+            this.label6.Location = new System.Drawing.Point(240, 41);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 35);
             this.label6.TabIndex = 163;
             this.label6.Text = "Acceso:";
-            // 
-            // txt_clave
-            // 
-            this.txt_clave.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_clave.Location = new System.Drawing.Point(936, 106);
-            this.txt_clave.Name = "txt_clave";
-            this.txt_clave.Size = new System.Drawing.Size(375, 35);
-            this.txt_clave.TabIndex = 162;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Black;
-            this.label7.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(1052, 50);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(155, 35);
-            this.label7.TabIndex = 161;
-            this.label7.Text = "Contraseña:";
             // 
             // btn_cancelar
             // 
@@ -132,6 +114,7 @@
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancelar.UseVisualStyleBackColor = false;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // btn_Agregar
             // 
@@ -150,6 +133,7 @@
             this.btn_Agregar.Text = "Agregar";
             this.btn_Agregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Agregar.UseVisualStyleBackColor = false;
+            this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
             // txt_numero_documento
             // 
@@ -180,6 +164,7 @@
             this.txt_dni.Name = "txt_dni";
             this.txt_dni.Size = new System.Drawing.Size(375, 35);
             this.txt_dni.TabIndex = 174;
+            this.txt_dni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_dni_KeyPress);
             // 
             // txt_nombre
             // 
@@ -189,6 +174,7 @@
             this.txt_nombre.Name = "txt_nombre";
             this.txt_nombre.Size = new System.Drawing.Size(379, 35);
             this.txt_nombre.TabIndex = 172;
+            this.txt_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nombre_KeyPress);
             // 
             // lbl_nombre
             // 
@@ -210,6 +196,7 @@
             this.txt_apellido.Name = "txt_apellido";
             this.txt_apellido.Size = new System.Drawing.Size(375, 35);
             this.txt_apellido.TabIndex = 170;
+            this.txt_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_apellido_KeyPress);
             // 
             // lbl_sector
             // 
@@ -271,17 +258,42 @@
             // 
             this.gb_cuenta.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.gb_cuenta.Controls.Add(this.label6);
-            this.gb_cuenta.Controls.Add(this.label7);
+            this.gb_cuenta.Controls.Add(this.lbl_clave);
             this.gb_cuenta.Controls.Add(this.txt_clave);
             this.gb_cuenta.Controls.Add(this.label1);
             this.gb_cuenta.Controls.Add(this.cbo_acceso);
-            this.gb_cuenta.Controls.Add(this.txt_usuario);
+            this.gb_cuenta.Controls.Add(this.txt_nombre_usuario);
             this.gb_cuenta.Location = new System.Drawing.Point(38, 264);
             this.gb_cuenta.Name = "gb_cuenta";
             this.gb_cuenta.Size = new System.Drawing.Size(1495, 184);
             this.gb_cuenta.TabIndex = 180;
             this.gb_cuenta.TabStop = false;
             this.gb_cuenta.Text = "Usuario";
+            // 
+            // lbl_clave
+            // 
+            this.lbl_clave.AutoSize = true;
+            this.lbl_clave.BackColor = System.Drawing.Color.Black;
+            this.lbl_clave.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_clave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_clave.Location = new System.Drawing.Point(1099, 41);
+            this.lbl_clave.Name = "lbl_clave";
+            this.lbl_clave.Size = new System.Drawing.Size(155, 35);
+            this.lbl_clave.TabIndex = 161;
+            this.lbl_clave.Text = "Contraseña:";
+            // 
+            // txt_clave
+            // 
+            this.txt_clave.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_clave.Location = new System.Drawing.Point(983, 97);
+            this.txt_clave.Name = "txt_clave";
+            this.txt_clave.Size = new System.Drawing.Size(375, 35);
+            this.txt_clave.TabIndex = 162;
+            // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
             // 
             // FrmAgregarEditarUsuario
             // 
@@ -301,6 +313,7 @@
             this.gb_DatosPersonales.PerformLayout();
             this.gb_cuenta.ResumeLayout(false);
             this.gb_cuenta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,11 +321,9 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbo_acceso;
-        private System.Windows.Forms.TextBox txt_usuario;
+        private System.Windows.Forms.TextBox txt_nombre_usuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txt_clave;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.TextBox txt_numero_documento;
@@ -326,5 +337,8 @@
         private System.Windows.Forms.Label lbl_Id;
         private System.Windows.Forms.GroupBox gb_DatosPersonales;
         private System.Windows.Forms.GroupBox gb_cuenta;
+        private System.Windows.Forms.Label lbl_clave;
+        private System.Windows.Forms.TextBox txt_clave;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

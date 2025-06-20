@@ -12,17 +12,17 @@ using System.Windows.Forms;
 
 namespace Ferreteria.CapaPresentacion.VistaProducto
 {
-    public partial class FrmActualizarProducto : Form
+    public partial class FrmActualizarPrecio: Form
     {
         private Producto producto = null;
-        private int Id_Precio;
+        private int Id_Producto;
         private decimal Precio;
-        public FrmActualizarProducto()
+        public FrmActualizarPrecio()
         {
             InitializeComponent();
             Text = "Actualizar Precio";
         }
-        public FrmActualizarProducto(Producto producto)
+        public FrmActualizarPrecio(Producto producto)
         {
             InitializeComponent();
             this.producto = producto;
@@ -41,7 +41,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             lbl_codigo.Text ="Codigo:   "+ producto.Codigo;
             lbl_nombre.Text ="Nombre:   "+ producto.Nombre;
             lbl_descripcion.Text ="Descripción: "+ producto.Descripcion;
-            lbl_fecha.Text= "Fecha de la Ultima Actualización:  "+ producto.FechaUltimaActualizacionPrecio;
+            lbl_fecha.Text= "Fecha de la Ultima Actualización del Precio:  "+ producto.FechaUltimaActualizacionPrecio;
             lbl_precio.Text = "Precio Actual:  "+ producto.Precio;
             lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio;
             lbl_stock.Text = "Stock Actual: "+producto.Stock;
@@ -104,10 +104,10 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
                     if (producto.Id_Producto != 0)
                     {
-                        Id_Precio = Convert.ToInt32(lbl_Id.Text);
+                        Id_Producto = Convert.ToInt32(lbl_Id.Text);
                         Precio = Convert.ToDecimal(txt_nuevo_precio.Text);
 
-                        logicaProducto.ActualizarPrecio(Id_Precio,Precio);
+                        logicaProducto.ActualizarPrecio(Id_Producto,Precio);
 
                         MessageBox.Show("¡El Precio del Producto fue modificada exitosamente!", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();

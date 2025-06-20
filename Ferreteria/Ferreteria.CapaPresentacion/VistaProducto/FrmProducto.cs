@@ -1,6 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
-using Ferreteria.CapaPresentacion.VistaCategoria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,7 +98,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 if (respuesta == DialogResult.Yes)
                 {
                     seleccionado = (Producto)dgv_producto.CurrentRow.DataBoundItem;
-                    FrmActualizarProducto frmEditar = new FrmActualizarProducto(seleccionado);
+                    FrmActualizarPrecio frmEditar = new FrmActualizarPrecio(seleccionado);
                     frmEditar.ShowDialog();
                     CargarGrilla();
                 }

@@ -19,8 +19,14 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Usuario.ListarUsuario();
         }
+        public void ActualizarContrasenia(int Id_Usuario, string Clave)
+        {
+            _CD_Usuario = new CD_Usuario();
 
-  
+            _CD_Usuario.ActualizarContrasenia(Id_Usuario, Clave);
+        }
+
+
         //Metodo para cargar un _Usuario en la Base de Datos
         public void InsertarUsuario(Usuario Nuevo)
         {

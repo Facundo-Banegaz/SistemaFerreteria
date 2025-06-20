@@ -1,6 +1,6 @@
 ﻿namespace Ferreteria.CapaPresentacion.VistaProducto
 {
-    partial class FrmActualizarProducto
+    partial class FrmActualizarPrecio
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActualizarProducto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActualizarPrecio));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl_Id = new System.Windows.Forms.Label();
             this.lbl_stock_minimo = new System.Windows.Forms.Label();
@@ -134,9 +134,9 @@
             this.lbl_fecha.ForeColor = System.Drawing.Color.Coral;
             this.lbl_fecha.Location = new System.Drawing.Point(791, 45);
             this.lbl_fecha.Name = "lbl_fecha";
-            this.lbl_fecha.Size = new System.Drawing.Size(329, 29);
+            this.lbl_fecha.Size = new System.Drawing.Size(381, 29);
             this.lbl_fecha.TabIndex = 4;
-            this.lbl_fecha.Text = "Fecha de la Ultima Actualización:";
+            this.lbl_fecha.Text = "Fecha Ultima Actualización Del Precio:";
             // 
             // lbl_precio
             // 
@@ -240,7 +240,7 @@
             this.lbl_precio_anterior.TabIndex = 99;
             this.lbl_precio_anterior.Text = "Precio:";
             // 
-            // FrmActualizarProducto
+            // FrmActualizarContraseña
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +251,7 @@
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FrmActualizarProducto";
+            this.Name = "FrmActualizarContraseña";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmActualizarProducto";
             this.Load += new System.EventHandler(this.FrmActualizarProducto_Load);
