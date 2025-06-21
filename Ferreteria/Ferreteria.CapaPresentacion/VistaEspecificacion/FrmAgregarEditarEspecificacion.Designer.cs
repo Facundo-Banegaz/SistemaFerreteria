@@ -181,6 +181,7 @@
             this.Controls.Add(this.lbl_costo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmAgregarEditarEspecificacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarEspecificacion";
             this.Load += new System.EventHandler(this.FrmAgregarEditarEspecificacion_Load);
             this.ResumeLayout(false);

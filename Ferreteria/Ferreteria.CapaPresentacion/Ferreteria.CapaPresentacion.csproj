@@ -78,11 +78,11 @@
     <Compile Include="VistaEspecificacion\FrmEspecificacion.Designer.cs">
       <DependentUpon>FrmEspecificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.cs">
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FrmAgregarEditarTipoEspecificacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.Designer.cs">
-      <DependentUpon>FormAgregarEditarTipoEspecificacion.cs</DependentUpon>
+    <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FrmAgregarEditarTipoEspecificacion.Designer.cs">
+      <DependentUpon>FrmAgregarEditarTipoEspecificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.cs">
       <SubType>Form</SubType>
@@ -249,11 +249,17 @@
     <EmbeddedResource Include="VistaEspecificacion\FrmEspecificacion.resx">
       <DependentUpon>FrmEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FormAgregarEditarTipoEspecificacion.resx">
-      <DependentUpon>FormAgregarEditarTipoEspecificacion.cs</DependentUpon>
+    <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FrmAgregarEditarTipoEspecificacion.resx">
+      <DependentUpon>FrmAgregarEditarTipoEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\VistaTipoEspecificacion\FrmTipoEspecificacion.resx">
       <DependentUpon>FrmTipoEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\VistaValorEspecificacion\FrmAgregarEditarValorEspecificacion.resx">
+      <DependentUpon>FrmAgregarEditarValorEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEspecificacion\VistaValorEspecificacion\FrmValorEspecificacion.resx">
+      <DependentUpon>FrmValorEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmAgregarEditarIngreso.resx">
       <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>

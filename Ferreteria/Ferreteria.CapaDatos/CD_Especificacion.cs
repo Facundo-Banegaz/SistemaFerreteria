@@ -44,18 +44,28 @@ namespace Ferreteria.CapaDatos
 
                     Especificacion.Producto = new Producto();
 
+                    Especificacion.Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+
                     Especificacion.Producto.Nombre = (string)Conexion.Lector["Producto"];
                     Especificacion.Producto.Codigo = (string)Conexion.Lector["Codigo"];
                     Especificacion.Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
 
+
+
+
+
+
+
                     Especificacion.TipoEspecificacion = new TipoEspecificacion();
 
-                    Especificacion.TipoEspecificacion.Nombre = (string)Conexion.Lector["TiposEspecificacion"];
+                    Especificacion.TipoEspecificacion.Id_TipoEspecificacion = (int)Conexion.Lector["Id_TipoEspecificacion"];
+                    Especificacion.TipoEspecificacion.Nombre = (string)Conexion.Lector["TipoEspecificacion"];
 
 
                     Especificacion.ValorEspecificacion = new ValorEspecificacion();
 
-                    Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValoresEspecificacion"];
+                    Especificacion.ValorEspecificacion.Id_ValorEspecificacion = (int)Conexion.Lector["Id_ValorEspecificacion"];
+                    Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValorEspecificacion"];
 
 
 
@@ -185,7 +195,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetConsultaProcedure("SpBuscar_Especificaciones");
 
 
-                Conexion.SetearParametro("@Texto_Buscar", buscar);
+                Conexion.SetearParametro("@TextoBuscar", buscar);
 
 
                 Conexion.EjecutarLectura();
@@ -201,23 +211,30 @@ namespace Ferreteria.CapaDatos
 
                     Especificacion.Producto = new Producto();
 
+                    Especificacion.Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+
                     Especificacion.Producto.Nombre = (string)Conexion.Lector["Producto"];
                     Especificacion.Producto.Codigo = (string)Conexion.Lector["Codigo"];
                     Especificacion.Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
 
+                   
+
+
                     Especificacion.TipoEspecificacion = new TipoEspecificacion();
 
-                    Especificacion.TipoEspecificacion.Nombre = (string)Conexion.Lector["TiposEspecificacion"];
+                    Especificacion.TipoEspecificacion.Id_TipoEspecificacion = (int)Conexion.Lector["Id_TipoEspecificacion"];
+                    Especificacion.TipoEspecificacion.Nombre = (string)Conexion.Lector["TipoEspecificacion"];
 
 
                     Especificacion.ValorEspecificacion = new ValorEspecificacion();
 
-                    Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValoresEspecificacion"];
-
+                    Especificacion.ValorEspecificacion.Id_ValorEspecificacion = (int)Conexion.Lector["Id_ValorEspecificacion"];
+                    Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValorEspecificacion"];
 
 
 
                     listaEspecificacion.Add(Especificacion);
+
                 }
 
 

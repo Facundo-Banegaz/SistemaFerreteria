@@ -1,6 +1,6 @@
 ﻿namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaTipoEspecificacion
 {
-    partial class FormAgregarEditarTipoEspecificacion
+    partial class FrmAgregarEditarTipoEspecificacion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgregarEditarTipoEspecificacion));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarEditarTipoEspecificacion));
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_Agregar = new System.Windows.Forms.Button();
-            this.lbl_categoria = new System.Windows.Forms.Label();
+            this.lbl_tipoEspecificacion = new System.Windows.Forms.Label();
             this.txt_nombre_TiposEspecificacion = new System.Windows.Forms.TextBox();
             this.lbl_nombre = new System.Windows.Forms.Label();
             this.lbl_costo = new System.Windows.Forms.Label();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_cancelar
@@ -53,6 +56,7 @@
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancelar.UseVisualStyleBackColor = false;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // btn_Agregar
             // 
@@ -71,17 +75,18 @@
             this.btn_Agregar.Text = "Agregar";
             this.btn_Agregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Agregar.UseVisualStyleBackColor = false;
+            this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
-            // lbl_categoria
+            // lbl_tipoEspecificacion
             // 
-            this.lbl_categoria.AutoSize = true;
-            this.lbl_categoria.BackColor = System.Drawing.Color.Black;
-            this.lbl_categoria.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_categoria.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_categoria.Location = new System.Drawing.Point(128, 86);
-            this.lbl_categoria.Name = "lbl_categoria";
-            this.lbl_categoria.Size = new System.Drawing.Size(0, 35);
-            this.lbl_categoria.TabIndex = 99;
+            this.lbl_tipoEspecificacion.AutoSize = true;
+            this.lbl_tipoEspecificacion.BackColor = System.Drawing.Color.Black;
+            this.lbl_tipoEspecificacion.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tipoEspecificacion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_tipoEspecificacion.Location = new System.Drawing.Point(128, 86);
+            this.lbl_tipoEspecificacion.Name = "lbl_tipoEspecificacion";
+            this.lbl_tipoEspecificacion.Size = new System.Drawing.Size(0, 35);
+            this.lbl_tipoEspecificacion.TabIndex = 99;
             // 
             // txt_nombre_TiposEspecificacion
             // 
@@ -116,6 +121,10 @@
             this.lbl_costo.TabIndex = 96;
             this.lbl_costo.Text = "Id Del TIpoEspecificacion:";
             // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
+            // 
             // FormAgregarEditarTipoEspecificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -123,13 +132,14 @@
             this.ClientSize = new System.Drawing.Size(689, 518);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
-            this.Controls.Add(this.lbl_categoria);
+            this.Controls.Add(this.lbl_tipoEspecificacion);
             this.Controls.Add(this.txt_nombre_TiposEspecificacion);
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.lbl_costo);
             this.Name = "FormAgregarEditarTipoEspecificacion";
             this.Text = "FormAgregarEditarTipoEspecificacion";
             this.Load += new System.EventHandler(this.FormAgregarEditarTipoEspecificacion_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,9 +149,10 @@
 
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_Agregar;
-        private System.Windows.Forms.Label lbl_categoria;
+        private System.Windows.Forms.Label lbl_tipoEspecificacion;
         private System.Windows.Forms.TextBox txt_nombre_TiposEspecificacion;
         private System.Windows.Forms.Label lbl_nombre;
         private System.Windows.Forms.Label lbl_costo;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

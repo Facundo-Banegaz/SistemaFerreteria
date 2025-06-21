@@ -29,7 +29,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_ValorEspecificacion");
+                Conexion.SetConsultaProcedure("Sp_Mostrar_ValoresEspecificacion");
 
                 Conexion.EjecutarLectura();
 
@@ -108,7 +108,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpInsertar_ValorEspecificacion");
+                Conexion.SetConsultaProcedure("Sp_Insertar_ValorEspecificacion");
 
                 Conexion.SetearParametro("@Valor", Nuevo.Valor);
 
@@ -137,7 +137,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEditar_ValorEspecificacion");
+                Conexion.SetConsultaProcedure("Sp_Editar_ValorEspecificacion");
 
                 Conexion.SetearParametro("@Id_ValorEspecificacion", ValorEspecificacion.Id_ValorEspecificacion);
                 Conexion.SetearParametro("@Valor", ValorEspecificacion.Valor);
@@ -166,7 +166,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_ValorEspecificacion");
+                Conexion.SetConsultaProcedure("Sp_Eliminar_ValorEspecificacion");
 
                 Conexion.SetearParametro("@Id_ValorEspecificacion", Id_ValorEspecificacion);
 
@@ -195,10 +195,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_ValorEspecificacion");
+                Conexion.SetConsultaProcedure("Sp_Buscar_ValoresEspecificacion");
 
 
-                Conexion.SetearParametro("@txt_buscar", buscar);
+                Conexion.SetearParametro("@Texto_Buscar", buscar);
 
 
                 Conexion.EjecutarLectura();
