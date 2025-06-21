@@ -96,9 +96,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpInsertar_Especificacion");
-
-                Conexion.SetearParametro("@Id_Especificacion", Especificacion.Id_Especificacion);
+                Conexion.SetConsultaProcedure("Sp_Insertar_Especificacion");
 
                 //relaciones
                 Conexion.SetearParametro("@Id_Producto", Especificacion.Producto.Id_Producto);
@@ -130,7 +128,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEditar_Especificacion");
+                Conexion.SetConsultaProcedure("Sp_Editar_Especificacion");
 
                 Conexion.SetearParametro("@Id_Especificacion", Especificacion.Id_Especificacion);
 
@@ -163,7 +161,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_Especificacion");
+                Conexion.SetConsultaProcedure("Sp_Eliminar_Especificacion");
 
                 Conexion.SetearParametro("@Id_Especificacion", Id_Especificacion);
 
@@ -192,10 +190,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_Especificaciones");
+                Conexion.SetConsultaProcedure("Sp_Buscar_Especificaciones");
 
 
-                Conexion.SetearParametro("@TextoBuscar", buscar);
+                Conexion.SetearParametro("@Texto_Buscar", buscar);
 
 
                 Conexion.EjecutarLectura();

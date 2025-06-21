@@ -108,6 +108,11 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarValorEspecificacion(Nuevo.Valor))
+                    throw new Exception("Ya existe un Valor de Especificacion con ese nombre.");
+
                 Conexion.SetConsultaProcedure("Sp_Insertar_ValorEspecificacion");
 
                 Conexion.SetearParametro("@Valor", Nuevo.Valor);
@@ -137,6 +142,16 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+
+                // Validar que el nuevo nombre no exista en otra ValorEspecificacion
+                Conexion.SetConsulta("SELECT COUNT(*) FROM ValoresEspecificacion WHERE Valor = @Valor AND Id_ValorEspecificacion != @Id_ValorEspecificacion");
+                Conexion.SetearParametro("@Valor", ValorEspecificacion.Valor);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", ValorEspecificacion.Id_ValorEspecificacion);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                if (count > 0)
+                    throw new Exception("Ya existe un Valor Especificacion con ese nombre.");
+
                 Conexion.SetConsultaProcedure("Sp_Editar_ValorEspecificacion");
 
                 Conexion.SetearParametro("@Id_ValorEspecificacion", ValorEspecificacion.Id_ValorEspecificacion);
@@ -158,7 +173,30 @@ namespace Ferreteria.CapaDatos
             }
 
         }
+        //Metodo Validar
 
+
+        public bool ValidarValorEspecificacion(string valor)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM ValoresEspecificacion WHERE Valor = @Valor");
+                Conexion.SetearParametro("@Valor", valor);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0; // true si ya existe
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
         //Metodo eliminar
         public void EliminarValorEspecificacion(int Id_ValorEspecificacion)
         {

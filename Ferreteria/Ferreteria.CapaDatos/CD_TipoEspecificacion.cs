@@ -107,6 +107,10 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validación: si ya existe, lanzar excepción
+                if (ValidarTipoEspecificacion(Nuevo.Nombre))
+                    throw new Exception("Ya existe un Tipo de Especificacion con ese nombre.");
+
                 Conexion.SetConsultaProcedure("Sp_Insertar_TipoEspecificacion");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
@@ -136,6 +140,12 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                // Validar que el nuevo nombre no exista en otra TipoEspecificacion
+                Conexion.SetConsulta("SELECT COUNT(*) FROM TiposEspecificacion WHERE Nombre = @Nombre AND Id_TipoEspecificacion != @Id_TipoEspecificacion");
+                Conexion.SetearParametro("@Nombre", TipoEspecificacion.Nombre);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", TipoEspecificacion.Id_TipoEspecificacion);
+
+
                 Conexion.SetConsultaProcedure("Sp_Editar_TipoEspecificacion");
 
                 Conexion.SetearParametro("@Id_TipoEspecificacion", TipoEspecificacion.Id_TipoEspecificacion);
@@ -157,7 +167,27 @@ namespace Ferreteria.CapaDatos
             }
 
         }
+        public bool ValidarTipoEspecificacion(string Nombre)
+        {
+            Conexion = new CD_Conexion();
 
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM TiposEspecificacion WHERE Nombre = @Nombre");
+                Conexion.SetearParametro("@Nombre", Nombre);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0; // true si ya existe
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
         //Metodo eliminar
         public void EliminarTipoEspecificacion(int Id_TipoEspecificacion)
         {
