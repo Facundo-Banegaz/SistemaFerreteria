@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleProducto));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.chek_estado = new System.Windows.Forms.CheckBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgv_caracteristicas = new System.Windows.Forms.DataGridView();
             this.txt_descripcion_producto = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_unidad = new System.Windows.Forms.Label();
             this.lbl_Id = new System.Windows.Forms.Label();
@@ -46,6 +49,7 @@
             this.lbl_nombre = new System.Windows.Forms.Label();
             this.lbl_codigo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_caracteristicas)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +71,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(1517, 662);
+            this.btn_cancelar.Location = new System.Drawing.Point(1517, 702);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 95;
@@ -79,28 +83,61 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox1.Controls.Add(this.txt_descripcion_producto);
+            this.groupBox1.Controls.Add(this.dgv_caracteristicas);
             this.groupBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(26, 260);
+            this.groupBox1.Location = new System.Drawing.Point(35, 396);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1658, 344);
+            this.groupBox1.Size = new System.Drawing.Size(1628, 215);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Desccripcion del Producto:";
+            this.groupBox1.Text = "Caracteristicas adicional del Producto:";
+            // 
+            // dgv_caracteristicas
+            // 
+            this.dgv_caracteristicas.AllowUserToAddRows = false;
+            this.dgv_caracteristicas.AllowUserToDeleteRows = false;
+            this.dgv_caracteristicas.AllowUserToOrderColumns = true;
+            this.dgv_caracteristicas.AllowUserToResizeRows = false;
+            this.dgv_caracteristicas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_caracteristicas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_caracteristicas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_caracteristicas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_caracteristicas.EnableHeadersVisualStyles = false;
+            this.dgv_caracteristicas.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgv_caracteristicas.Location = new System.Drawing.Point(39, 36);
+            this.dgv_caracteristicas.Name = "dgv_caracteristicas";
+            this.dgv_caracteristicas.ReadOnly = true;
+            this.dgv_caracteristicas.RowHeadersVisible = false;
+            this.dgv_caracteristicas.RowHeadersWidth = 62;
+            this.dgv_caracteristicas.RowTemplate.Height = 28;
+            this.dgv_caracteristicas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_caracteristicas.Size = new System.Drawing.Size(1565, 159);
+            this.dgv_caracteristicas.TabIndex = 81;
             // 
             // txt_descripcion_producto
             // 
             this.txt_descripcion_producto.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_descripcion_producto.Enabled = false;
             this.txt_descripcion_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_descripcion_producto.Location = new System.Drawing.Point(38, 47);
+            this.txt_descripcion_producto.Location = new System.Drawing.Point(35, 272);
             this.txt_descripcion_producto.Multiline = true;
             this.txt_descripcion_producto.Name = "txt_descripcion_producto";
-            this.txt_descripcion_producto.Size = new System.Drawing.Size(1591, 270);
+            this.txt_descripcion_producto.Size = new System.Drawing.Size(1628, 118);
             this.txt_descripcion_producto.TabIndex = 23;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txt_descripcion_producto);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.lbl_unidad);
             this.groupBox2.Controls.Add(this.lbl_Id);
@@ -117,10 +154,19 @@
             this.groupBox2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1714, 632);
+            this.groupBox2.Size = new System.Drawing.Size(1714, 671);
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles Del Producto Seleccionado";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 230);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 29);
+            this.label1.TabIndex = 102;
+            this.label1.Text = "Desccripción:";
             // 
             // label2
             // 
@@ -230,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1726, 753);
+            this.ClientSize = new System.Drawing.Size(1726, 780);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_cancelar);
             this.Name = "FrmDetalleProducto";
@@ -238,7 +284,7 @@
             this.Text = "FrmDetalleProducto";
             this.Load += new System.EventHandler(this.FrmDetalleProducto_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_caracteristicas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -262,5 +308,7 @@
         private System.Windows.Forms.Label lbl_codigo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_unidad;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView dgv_caracteristicas;
     }
 }

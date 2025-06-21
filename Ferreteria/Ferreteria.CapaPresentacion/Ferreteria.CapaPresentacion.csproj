@@ -66,6 +66,12 @@
     <Compile Include="VistaCategoria\FrmCategoria.Designer.cs">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarProducto.Designer.cs">
+      <DependentUpon>FrmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCategoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarProducto.resx">
+      <DependentUpon>FrmSeleccionarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.resx">
       <DependentUpon>FrmAgregarEditarEspecificacion.cs</DependentUpon>

@@ -85,6 +85,56 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        public List<Especificacion> MostrarDetalleEspecificacionesPorProducto(int Id_Producto)
+        {
+            Conexion = new CD_Conexion();
+            listaEspecificacion = new List<Especificacion>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpMostrar_Detalle_EspecificacionesPorProducto");
+
+
+                Conexion.SetearParametro("@Id_Producto", Id_Producto);
+
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+
+
+                    Especificacion = new Especificacion();
+
+
+
+
+                    Especificacion.TipoEspecificacion = new TipoEspecificacion();
+
+                    Especificacion.TipoEspecificacion.Nombre = (string)Conexion.Lector["TipoEspecificacion"];
+
+
+                    Especificacion.ValorEspecificacion = new ValorEspecificacion();
+                    Especificacion.ValorEspecificacion.Valor = (string)Conexion.Lector["ValorEspecificacion"];
+
+
+
+                    listaEspecificacion.Add(Especificacion);
+                }
+
+
+                return listaEspecificacion;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
 
 

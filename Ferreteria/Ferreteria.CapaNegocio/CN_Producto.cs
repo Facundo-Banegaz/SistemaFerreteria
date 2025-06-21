@@ -62,7 +62,7 @@ namespace Ferreteria.CapaNegocio
             return _CD_Producto.BuscarProducto(buscar);
         }
 
-
+   
 
     }
 }

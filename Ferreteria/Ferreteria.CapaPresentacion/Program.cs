@@ -1,11 +1,6 @@
-﻿using Ferreteria.CapaPresentacion.VistaCategoria;
-using Ferreteria.CapaPresentacion.VistaEspecificacion;
+﻿
+
 using Ferreteria.CapaPresentacion.VistaLogin;
-using Ferreteria.CapaPresentacion.VistaMarca;
-using Ferreteria.CapaPresentacion.VistaMDIPrincipal;
-using Ferreteria.CapaPresentacion.VistaProducto;
-using Ferreteria.CapaPresentacion.VistaSubcategoria;
-using Ferreteria.CapaPresentacion.VistaUnidadMedida;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -44,8 +44,6 @@
             this.lbl_codigo = new System.Windows.Forms.Label();
             this.txt_stock_minimo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_stock = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.cbo_marca = new System.Windows.Forms.ComboBox();
             this.cbo_unidadMedida = new System.Windows.Forms.ComboBox();
             this.lbl_categoria = new System.Windows.Forms.Label();
@@ -198,7 +196,7 @@
             // 
             this.txt_stock_minimo.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_stock_minimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_stock_minimo.Location = new System.Drawing.Point(641, 175);
+            this.txt_stock_minimo.Location = new System.Drawing.Point(446, 188);
             this.txt_stock_minimo.Name = "txt_stock_minimo";
             this.txt_stock_minimo.Size = new System.Drawing.Size(333, 35);
             this.txt_stock_minimo.TabIndex = 99;
@@ -210,33 +208,11 @@
             this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(723, 125);
+            this.label3.Location = new System.Drawing.Point(515, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(175, 35);
             this.label3.TabIndex = 96;
             this.label3.Text = "Stock Minimo:";
-            // 
-            // txt_stock
-            // 
-            this.txt_stock.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_stock.Location = new System.Drawing.Point(218, 175);
-            this.txt_stock.Name = "txt_stock";
-            this.txt_stock.Size = new System.Drawing.Size(333, 35);
-            this.txt_stock.TabIndex = 95;
-            this.txt_stock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_stock_KeyPress);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(346, 125);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 35);
-            this.label4.TabIndex = 94;
-            this.label4.Text = "Stock:";
             // 
             // cbo_marca
             // 
@@ -359,8 +335,6 @@
             this.Controls.Add(this.lbl_marca);
             this.Controls.Add(this.txt_stock_minimo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_stock);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.cbo_subcategoria);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txt_nombre);
@@ -401,8 +375,6 @@
         private System.Windows.Forms.Label lbl_codigo;
         private System.Windows.Forms.TextBox txt_stock_minimo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_stock;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbo_marca;
         private System.Windows.Forms.ComboBox cbo_unidadMedida;
         private System.Windows.Forms.Label lbl_categoria;

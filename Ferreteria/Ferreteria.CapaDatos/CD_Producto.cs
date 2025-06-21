@@ -85,7 +85,6 @@ namespace Ferreteria.CapaDatos
 
 
 
-
         public bool ValidarProducto(string Codigo)
         {
             Conexion = new CD_Conexion();

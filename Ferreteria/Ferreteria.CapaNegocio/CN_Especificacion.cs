@@ -52,5 +52,11 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Especificacion.EspecificacionBuscar(buscar);
         }
+        public List<Especificacion> MostrarDetalleEspecificacionesPorProducto(int Id_Producto)
+        {
+            _CD_Especificacion = new CD_Especificacion();
+
+            return _CD_Especificacion.MostrarDetalleEspecificacionesPorProducto( Id_Producto);
+        }
     }
 }

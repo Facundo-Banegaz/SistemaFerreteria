@@ -1,4 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
+using Ferreteria.CapaNegocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,12 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Ferreteria.CapaPresentacion.VistaProducto
 {
     public partial class FrmDetalleProducto : Form
     {
         private Producto _Producto;
+
+        private List<Especificacion> listaEspecificacion;
         public FrmDetalleProducto(Producto producto)
         {
             InitializeComponent();
@@ -27,6 +31,10 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             {
                 MostrarDatos();
             }
+            CargarGrilla();
+
+            ArregloDataGridView(dgv_caracteristicas);
+
         }
 
         private void MostrarDatos()
@@ -50,8 +58,42 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             this.Close();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+
+        private void ArregloDataGridView(DataGridView dgv_productos)
         {
+
+            //logica del dataGridView
+            CN_Metodos _Metodos = new CN_Metodos();
+
+
+            dgv_productos.Columns["Id_Especificacion"].Visible = false;
+            dgv_productos.Columns["Producto"].Visible = false;
+
+
+            dgv_productos.Columns["TipoEspecificacion"].Width = 520;
+            dgv_productos.Columns["ValorEspecificacion"].Width = 520;
+           
+
+
+            dgv_productos.Columns["TipoEspecificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["ValorEspecificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        
+
+
+
+
+            _Metodos.AlternarColor(dgv_productos);
+        }
+        private void CargarGrilla()
+        {
+            //logica del dataGridView
+            CN_Especificacion n_Especificacion = new CN_Especificacion();
+
+            //int Id_Producto = _Producto.Id_Producto;
+            listaEspecificacion = n_Especificacion.MostrarDetalleEspecificacionesPorProducto(_Producto.Id_Producto);
+
+            dgv_caracteristicas.DataSource = listaEspecificacion;
+          
 
         }
     }
