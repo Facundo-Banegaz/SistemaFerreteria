@@ -1,5 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaEspecificacion;
+using Ferreteria.CapaPresentacion.VistaIngresos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +16,11 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 {
     public partial class FrmSeleccionarProducto : Form
     {
-        public Producto ProductoSeleccionado;
-        private List<Producto> ListarProducto;
 
+        private List<Producto> ListarProducto;
+        // Definís un delegado y un evento para pasar datos
+        public delegate void ProductoSeleccionadoHandler(string Id_Producto, string Nombre);
+        public event ProductoSeleccionadoHandler ProductoSeleccionado;
         public FrmSeleccionarProducto()
         {
             InitializeComponent();
@@ -29,18 +33,13 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
         private void dgv_productos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                ProductoSeleccionado = new Producto
-                {
-                    Id_Producto = Convert.ToInt32(dgv_productos.Rows[e.RowIndex].Cells["Id_Producto"].Value),
-                    Nombre = dgv_productos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString()
-                    // Agregá más campos si querés
-                };
+            string Id_Producto = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Id_Producto"].Value);
+            string Nombre = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Nombre"].Value);
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
+            // Invocás el evento si hay algún método suscripto
+            ProductoSeleccionado?.Invoke(Id_Producto, Nombre);
+
+            this.Close();
 
         }
 
@@ -64,7 +63,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
 
 
-            dgv_productos.Columns["Id_Producto"].Visible = false;
+            //dgv_productos.Columns["Id_Producto"].Visible = false;
             dgv_productos.Columns["Id_Producto"].Width = 120;
             dgv_productos.Columns["Codigo"].Width = 300;
             dgv_productos.Columns["Nombre"].Width = 400;

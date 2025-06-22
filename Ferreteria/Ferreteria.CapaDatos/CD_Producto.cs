@@ -126,7 +126,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Descripcion", Nuevo.Descripcion);
                 Conexion.SetearParametro("@Precio", Nuevo.Precio);
                 Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Nuevo.FechaUltimaActualizacionPrecio);
-                Conexion.SetearParametro("@Stock", Nuevo.Stock);
+              
                 Conexion.SetearParametro("@StockMinimo", Nuevo.StockMinimo);
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
                 Conexion.SetearParametro("@Id_Subcategoria", Nuevo.Subcategoria.Id_Subcategoria);
@@ -205,7 +205,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Descripcion", Producto.Descripcion);
                 Conexion.SetearParametro("@Precio", Producto.Precio);
                 Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Producto.FechaUltimaActualizacionPrecio);
-                Conexion.SetearParametro("@Stock", Producto.Stock);
+                
                 Conexion.SetearParametro("@StockMinimo", Producto.StockMinimo);
                 Conexion.SetearParametro("@Estado", Producto.Estado);
                 Conexion.SetearParametro("@Id_Subcategoria", Producto.Subcategoria.Id_Subcategoria);

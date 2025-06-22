@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActualizarContrasenia));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.check_estado = new System.Windows.Forms.CheckBox();
             this.lbl_Id = new System.Windows.Forms.Label();
             this.lbl_usuario = new System.Windows.Forms.Label();
             this.lbl_estado = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.lbl_acceso = new System.Windows.Forms.Label();
             this.lbl_apellido = new System.Windows.Forms.Label();
             this.lbl_nombre = new System.Windows.Forms.Label();
-            this.check_estado = new System.Windows.Forms.CheckBox();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.txt_contrasenia = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,6 +65,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informacion del Usuario";
+            // 
+            // check_estado
+            // 
+            this.check_estado.AutoSize = true;
+            this.check_estado.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.check_estado.Location = new System.Drawing.Point(109, 353);
+            this.check_estado.Name = "check_estado";
+            this.check_estado.Size = new System.Drawing.Size(22, 21);
+            this.check_estado.TabIndex = 100;
+            this.check_estado.UseVisualStyleBackColor = true;
             // 
             // lbl_Id
             // 
@@ -134,16 +144,6 @@
             this.lbl_nombre.TabIndex = 2;
             this.lbl_nombre.Text = "Nombre:";
             // 
-            // check_estado
-            // 
-            this.check_estado.AutoSize = true;
-            this.check_estado.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_estado.Location = new System.Drawing.Point(109, 353);
-            this.check_estado.Name = "check_estado";
-            this.check_estado.Size = new System.Drawing.Size(22, 21);
-            this.check_estado.TabIndex = 100;
-            this.check_estado.UseVisualStyleBackColor = true;
-            // 
             // errorIcono
             // 
             this.errorIcono.ContainerControl = this;
@@ -153,6 +153,7 @@
             this.txt_contrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_contrasenia.Location = new System.Drawing.Point(321, 564);
             this.txt_contrasenia.Name = "txt_contrasenia";
+            this.txt_contrasenia.PasswordChar = '*';
             this.txt_contrasenia.Size = new System.Drawing.Size(397, 44);
             this.txt_contrasenia.TabIndex = 103;
             // 

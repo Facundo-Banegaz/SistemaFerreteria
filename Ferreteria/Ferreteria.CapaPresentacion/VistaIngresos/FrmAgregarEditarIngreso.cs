@@ -16,5 +16,10 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             InitializeComponent();
         }
+
+        private void FrmAgregarEditarIngreso_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

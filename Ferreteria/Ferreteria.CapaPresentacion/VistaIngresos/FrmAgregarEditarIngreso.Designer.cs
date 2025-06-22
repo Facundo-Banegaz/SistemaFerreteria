@@ -178,6 +178,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmAgregarEditarIngreso";
             this.Text = "FrmAgregarEditarIngreso";
+            this.Load += new System.EventHandler(this.FrmAgregarEditarIngreso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_categorias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

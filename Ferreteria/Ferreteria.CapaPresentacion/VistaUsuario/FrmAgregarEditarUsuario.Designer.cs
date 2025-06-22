@@ -288,6 +288,7 @@
             this.txt_clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_clave.Location = new System.Drawing.Point(983, 97);
             this.txt_clave.Name = "txt_clave";
+            this.txt_clave.PasswordChar = '*';
             this.txt_clave.Size = new System.Drawing.Size(375, 35);
             this.txt_clave.TabIndex = 162;
             // 
