@@ -125,8 +125,8 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
                 Conexion.SetearParametro("@Descripcion", Nuevo.Descripcion);
                 Conexion.SetearParametro("@Precio", Nuevo.Precio);
-                Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Nuevo.FechaUltimaActualizacionPrecio);
-              
+                Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Nuevo.FechaUltimaActualizacionPrecio.ToString("yyyy-MM-dd hh:mm:ss"));
+                Conexion.SetearParametro("@Stock", Nuevo.Stock);
                 Conexion.SetearParametro("@StockMinimo", Nuevo.StockMinimo);
                 Conexion.SetearParametro("@Estado", Nuevo.Estado);
                 Conexion.SetearParametro("@Id_Subcategoria", Nuevo.Subcategoria.Id_Subcategoria);
@@ -243,6 +243,17 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion();
 
 
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 547) // Violación FK
+                {
+                    throw new Exception("No se puede eliminar este Producto porque está relacionada con otros registros.");
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {

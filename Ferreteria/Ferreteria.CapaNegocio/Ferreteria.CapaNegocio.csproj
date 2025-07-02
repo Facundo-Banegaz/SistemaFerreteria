@@ -43,13 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Categoria.cs" />
+    <Compile Include="CN_DetalleIngreso.cs" />
     <Compile Include="CN_Especificacion.cs" />
+    <Compile Include="CN_Ingreso.cs" />
     <Compile Include="CN_Marca.cs" />
     <Compile Include="CN_Metodos.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_Proveedor.cs" />
     <Compile Include="CN_SubCategoria.cs" />
     <Compile Include="CN_TipoEspecificacion.cs" />
+    <Compile Include="CN_TipoMovimiento.cs" />
     <Compile Include="CN_UnidadMedida.cs" />
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="CN_ValorEspecificacion.cs" />

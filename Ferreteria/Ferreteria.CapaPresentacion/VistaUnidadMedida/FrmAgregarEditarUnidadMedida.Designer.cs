@@ -163,6 +163,10 @@
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.lbl_costo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(711, 574);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(711, 574);
             this.Name = "FrmAgregarEditarUnidadMedida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarUnidadMedida";

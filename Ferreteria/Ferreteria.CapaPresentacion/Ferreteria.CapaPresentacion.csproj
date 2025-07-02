@@ -66,11 +66,35 @@
     <Compile Include="VistaCategoria\FrmCategoria.Designer.cs">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarMarca.Designer.cs">
+      <DependentUpon>FrmSeleccionarMarca.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaCompartida\FrmSeleccionarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VistaCompartida\FrmSeleccionarProducto.Designer.cs">
       <DependentUpon>FrmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarTipoEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarTipoEspecificacion.Designer.cs">
+      <DependentUpon>FrmSeleccionarTipoEspecificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarTipoMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarTipoMovimiento.Designer.cs">
+      <DependentUpon>FrmSeleccionarTipoMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarValorEspecificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarValorEspecificacion.Designer.cs">
+      <DependentUpon>FrmSeleccionarValorEspecificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.cs">
       <SubType>Form</SubType>
@@ -114,6 +138,12 @@
     <Compile Include="VistaIngresos\FrmAgregarEditarIngreso.Designer.cs">
       <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaIngresos\FrmDetalleIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaIngresos\FrmDetalleIngreso.Designer.cs">
+      <DependentUpon>FrmDetalleIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaIngresos\FrmIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +173,24 @@
     </Compile>
     <Compile Include="VistaMDIPrincipal\FrmMdiPrincipal.Designer.cs">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmHistorialMovimientoStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmHistorialMovimientoStock.Designer.cs">
+      <DependentUpon>FrmHistorialMovimientoStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmMovimientoStockDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmMovimientoStockDetalle.Designer.cs">
+      <DependentUpon>FrmMovimientoStockDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmMovimientoStockManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMovimientoStock\FrmMovimientoStockManual.Designer.cs">
+      <DependentUpon>FrmMovimientoStockManual.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaProducto\FrmActualizarProducto.cs">
       <SubType>Form</SubType>
@@ -249,8 +297,20 @@
     <EmbeddedResource Include="VistaCategoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarMarca.resx">
+      <DependentUpon>FrmSeleccionarMarca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaCompartida\FrmSeleccionarProducto.resx">
       <DependentUpon>FrmSeleccionarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarTipoEspecificacion.resx">
+      <DependentUpon>FrmSeleccionarTipoEspecificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarTipoMovimiento.resx">
+      <DependentUpon>FrmSeleccionarTipoMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarValorEspecificacion.resx">
+      <DependentUpon>FrmSeleccionarValorEspecificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEspecificacion\FrmAgregarEditarEspecificacion.resx">
       <DependentUpon>FrmAgregarEditarEspecificacion.cs</DependentUpon>
@@ -273,6 +333,9 @@
     <EmbeddedResource Include="VistaIngresos\FrmAgregarEditarIngreso.resx">
       <DependentUpon>FrmAgregarEditarIngreso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaIngresos\FrmDetalleIngreso.resx">
+      <DependentUpon>FrmDetalleIngreso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaMDIPrincipal\FrmMdiPrincipal.resx">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaMovimientoStock\FrmHistorialMovimientoStock.resx">
+      <DependentUpon>FrmHistorialMovimientoStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaMovimientoStock\FrmMovimientoStockManual.resx">
+      <DependentUpon>FrmMovimientoStockManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaProducto\FrmActualizarProducto.resx">
       <DependentUpon>FrmActualizarProducto.cs</DependentUpon>

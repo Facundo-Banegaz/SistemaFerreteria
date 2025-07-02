@@ -214,6 +214,10 @@
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1081, 809);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1081, 809);
             this.Name = "FrmActualizarContrasenia";
             this.Text = "FrmActualizarContrasenia";
             this.Load += new System.EventHandler(this.FrmActualizarContrasenia_Load);

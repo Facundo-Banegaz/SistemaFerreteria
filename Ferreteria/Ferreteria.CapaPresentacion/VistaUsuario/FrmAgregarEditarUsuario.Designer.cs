@@ -306,6 +306,10 @@
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1599, 675);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1599, 675);
             this.Name = "FrmAgregarEditarUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarUsuario";

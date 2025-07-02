@@ -136,6 +136,9 @@
             this.Controls.Add(this.txt_nombre_ValorEspecificacion);
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.lbl_costo);
+            this.MaximumSize = new System.Drawing.Size(711, 574);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(711, 574);
             this.Name = "FrmAgregarEditarValorEspecificacion";
             this.Text = "FrmAgregarEditarValorEspecificacion";
             this.Load += new System.EventHandler(this.FrmAgregarEditarValorEspecificacion_Load);

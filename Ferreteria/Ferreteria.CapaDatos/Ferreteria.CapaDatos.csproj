@@ -54,12 +54,14 @@
     <Compile Include="CD_Ingreso.cs" />
     <Compile Include="CD_Marca.cs" />
     <Compile Include="CD_Metodos.cs" />
+    <Compile Include="CD_MovimientoStock.cs" />
     <Compile Include="CD_Presupuesto.cs" />
     <Compile Include="CD_Producto.cs" />
     <Compile Include="CD_Proveedor.cs" />
     <Compile Include="CD_SubCategoria.cs" />
     <Compile Include="CD_Ticket.cs" />
     <Compile Include="CD_TipoEspecificacion.cs" />
+    <Compile Include="CD_TipoMovimiento.cs" />
     <Compile Include="CD_UnidadMedida.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="CD_ValorEspecificacion.cs" />

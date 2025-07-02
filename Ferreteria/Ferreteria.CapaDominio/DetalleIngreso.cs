@@ -12,7 +12,7 @@ namespace Ferreteria.CapaDominio
         public int Cantidad { get; set; }
         public decimal PrecioCompra { get; set; }
 
-        
+        ////public decimal Subtotal => Cantidad * PrecioCompra;
         public Producto Producto { get; set; }
 
         

@@ -94,7 +94,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(389, 431);
+            this.btn_cancelar.Location = new System.Drawing.Point(411, 487);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 89;
@@ -113,7 +113,7 @@
             this.btn_Agregar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Agregar.Image")));
             this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Agregar.Location = new System.Drawing.Point(106, 431);
+            this.btn_Agregar.Location = new System.Drawing.Point(106, 487);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(180, 66);
             this.btn_Agregar.TabIndex = 88;
@@ -137,7 +137,10 @@
             this.Controls.Add(this.txt_nombre_categoria);
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.lbl_costo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(711, 574);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(711, 574);
             this.Name = "FrmAgregarEditarCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarCategoria";

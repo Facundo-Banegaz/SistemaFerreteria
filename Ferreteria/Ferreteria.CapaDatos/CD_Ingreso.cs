@@ -27,7 +27,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_ingreso");
+                Conexion.SetConsultaProcedure("Sp_MostrarIngresos");
 
                 Conexion.EjecutarLectura();
 
@@ -49,9 +49,16 @@ namespace Ferreteria.CapaDatos
 
                     Ingreso.Proveedor.Id_Proveedor = (int)Conexion.Lector["Id_Proveedor"];
                     Ingreso.Proveedor.Nombre = (string)Conexion.Lector["Proveedor"];
-                   
-                    
 
+
+
+                    Ingreso.Tipo_Comprobante = (string)Conexion.Lector["Tipo_comprobante"];
+                    Ingreso.Serie = (string)Conexion.Lector["Serie"];
+
+                    Ingreso.Correlativo = (string)Conexion.Lector["Correlativo"];
+                
+                    Ingreso.Estado = (string)Conexion.Lector["Estado"];
+                    Ingreso.Total = (decimal)Conexion.Lector["Total"];
 
                     listaIngreso.Add(Ingreso);
                 }
@@ -70,59 +77,44 @@ namespace Ferreteria.CapaDatos
         }
 
 
-        public void InsertarIngreso(Ingreso Nuevo, List<DetalleIngreso> DetalleIngreso)
+        public void InsertarIngreso(Ingreso Nuevo, List<DetalleIngreso> detalles)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                //Conexion.IniciarTransaccion();
+                Conexion.IniciarTransaccion();
 
-                Conexion.SetConsultaProcedure("SpInsertar_ingreso");
-                
-                Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
+                Conexion.SetConsultaProcedure("Sp_Insertar_ingreso");
+
+                // Enviar solo parámetros que el SP espera (no @Fecha si es OUTPUT o generado internamente)
                 Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Id_Proveedor", Nuevo.Proveedor.Id_Proveedor);
- 
-              
-
-
-
-                // Configurar el parámetro de salida para el ID de ingreso
+                Conexion.SetearParametro("@Serie", Nuevo.Serie ?? "");
+                Conexion.SetearParametro("@Correlativo", Nuevo.Correlativo ?? "");
+                Conexion.SetearParametro("@Estado", Nuevo.Estado ?? "ACTIVO");
+                Conexion.SetearParametro("@Tipo_Comprobante", Nuevo.Tipo_Comprobante ?? "");
 
                 Conexion.SetearParametroSalida("@Id_Ingreso", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
+                int idIngreso = Conexion.ObtenerValorParametroSalida("@Id_Ingreso");
 
-                // Capturar el ID del ingreso insertado
-                int Id_ingreso = Conexion.ObtenerValorParametroSalida("@Id_Ingreso");
+                CD_DetalleIngreso detalleIngresoDatos = new CD_DetalleIngreso();
 
-
-
-
-                CD_DetalleIngreso _Detalle_Ingreso = new CD_DetalleIngreso();
-
-                // Insertar detalles de ingreso
-                foreach (DetalleIngreso detalle in DetalleIngreso)
+                foreach (var detalle in detalles)
                 {
-                    detalle.Ingreso.Id_Ingreso = Id_ingreso; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
-
-
-
-                    _Detalle_Ingreso.InsertarDetalleIngreso(detalle);
+                    detalle.Ingreso = new Ingreso { Id_Ingreso = idIngreso };
+                    detalleIngresoDatos.InsertarDetalleIngreso(detalle);
                 }
 
-
-
-                //Conexion.ConfirmarTransaccion();
-
-
+                Conexion.ConfirmarTransaccion();
             }
-            catch (Exception ex)
+            catch
             {
                 Conexion.AnularTransaccion();
-                throw ex;
+                throw;  // Mantener pila original
             }
             finally
             {
@@ -133,25 +125,20 @@ namespace Ferreteria.CapaDatos
 
 
         //Metodo eliminar
-        public void AnularIngreso(int Id_ingreso)
+        public void AnularIngreso(int Id_Ingreso)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpAnular_ingreso");
-
-                Conexion.SetearParametro("@Id_Ingreso", Id_ingreso);
-
+                Conexion.SetConsultaProcedure("Sp_AnularIngreso"); // Verificá el nombre exacto
+                Conexion.SetearParametro("@Id_Ingreso", Id_Ingreso);
 
                 Conexion.EjecutarAccion();
-
-
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                throw new Exception("Error al anular el ingreso: " + ex.Message, ex);
             }
             finally
             {
@@ -159,33 +146,8 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-        //Metodo modificar stock
-        public void AumentarStock(int Id_detalle_ingreso, int Stock_Actual)
-        {
-
-            Conexion = new CD_Conexion();
-
-            try
-            {
-                Conexion.SetConsultaProcedure("SpDisminuir_stock");
-
-                Conexion.SetearParametro("@Id_DetalleIngreso", Id_detalle_ingreso);
-                Conexion.SetearParametro("@Cantidad", Stock_Actual);
-
-                Conexion.EjecutarAccion();
 
 
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
-            }
-        }
 
         //Metodo Buscar
 

@@ -90,8 +90,7 @@ namespace Ferreteria.CapaPresentacion.VistaUsuario
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

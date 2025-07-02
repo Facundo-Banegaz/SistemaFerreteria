@@ -1,6 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,27 +73,29 @@ namespace Ferreteria.CapaDatos
 
         //metodo insertar
 
-        public void InsertarDetalleIngreso(DetalleIngreso Nuevo)
+        public void InsertarDetalleIngreso(DetalleIngreso detalle)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpInsertar_detalle_ingreso");
+                Conexion.SetConsultaProcedure("Sp_Insertar_DetalleIngreso");
 
-                Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
-                Conexion.SetearParametro("@Preciocompra", Nuevo.PrecioCompra);
-                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
-                Conexion.SetearParametro("@Id_Ingreso", Nuevo.Ingreso.Id_Ingreso);
+                Conexion.SetearParametro("@Cantidad", detalle.Cantidad);
+                Conexion.SetearParametro("@PrecioCompra", detalle.PrecioCompra);
+                Conexion.SetearParametro("@Id_Producto", detalle.Producto.Id_Producto);
+                Conexion.SetearParametro("@Id_Ingreso", detalle.Ingreso.Id_Ingreso);
+
+                Conexion.SetearParametroSalida("@Id_DetalleIngreso", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
-
+                int idDetalle = Conexion.ObtenerValorParametroSalida("@Id_DetalleIngreso");
+                detalle.Id_DetalleIngreso = idDetalle;
             }
-            catch (Exception ex)
+            catch
             {
-
-                throw ex;
+                throw;
             }
             finally
             {

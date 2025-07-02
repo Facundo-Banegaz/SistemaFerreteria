@@ -77,8 +77,8 @@ namespace Ferreteria.CapaPresentacion.VistaCategoria
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                // Mostrar solo el mensaje amigable que tiramos en la lógica
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

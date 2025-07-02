@@ -49,12 +49,14 @@
     <Compile Include="Especificacion.cs" />
     <Compile Include="Ingreso.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="MovimientoStock.cs" />
     <Compile Include="Presupuesto.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="Subcategoria.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TipoEspecificacion.cs" />
+    <Compile Include="TipoMovimiento.cs" />
     <Compile Include="UnidadMedida.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

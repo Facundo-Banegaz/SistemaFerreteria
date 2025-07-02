@@ -13,7 +13,7 @@ namespace Ferreteria.CapaDominio
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; } = 0;
-        public int StockMinimo { get; set; }
+        public int StockMinimo { get; set; } = 0;
         public string Descripcion { get; set; }      
         public bool Estado { get; set; } = true;
 

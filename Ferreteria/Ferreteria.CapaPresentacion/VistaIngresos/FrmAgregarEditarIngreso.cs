@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferreteria.CapaDominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 {
     public partial class FrmAgregarEditarIngreso : Form
     {
+        public Usuario _Usuario;
         public FrmAgregarEditarIngreso()
         {
             InitializeComponent();
+        }
+        public FrmAgregarEditarIngreso(Usuario usuario)
+        {
+            InitializeComponent();
+            this._Usuario = usuario;
         }
 
         private void FrmAgregarEditarIngreso_Load(object sender, EventArgs e)

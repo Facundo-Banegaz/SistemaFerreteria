@@ -125,7 +125,7 @@
             // 
             this.errorIcono.ContainerControl = this;
             // 
-            // FormAgregarEditarTipoEspecificacion
+            // FrmAgregarEditarTipoEspecificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,7 +136,10 @@
             this.Controls.Add(this.txt_nombre_TiposEspecificacion);
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.lbl_costo);
-            this.Name = "FormAgregarEditarTipoEspecificacion";
+            this.MaximumSize = new System.Drawing.Size(711, 574);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(711, 574);
+            this.Name = "FrmAgregarEditarTipoEspecificacion";
             this.Text = "FormAgregarEditarTipoEspecificacion";
             this.Load += new System.EventHandler(this.FormAgregarEditarTipoEspecificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();

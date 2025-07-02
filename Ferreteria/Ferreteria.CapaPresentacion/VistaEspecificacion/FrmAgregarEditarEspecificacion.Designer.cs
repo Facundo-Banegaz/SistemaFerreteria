@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarEditarEspecificacion));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
@@ -45,6 +46,8 @@
             this.btn_valor_especificacion = new System.Windows.Forms.Button();
             this.btn_tipo_especificacion = new System.Windows.Forms.Button();
             this.btn_producto = new System.Windows.Forms.Button();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -142,6 +145,7 @@
             this.txt_id_producto.ReadOnly = true;
             this.txt_id_producto.Size = new System.Drawing.Size(115, 44);
             this.txt_id_producto.TabIndex = 108;
+            this.txt_id_producto.Visible = false;
             // 
             // txt_id_valorEspecificacion
             // 
@@ -153,6 +157,7 @@
             this.txt_id_valorEspecificacion.ReadOnly = true;
             this.txt_id_valorEspecificacion.Size = new System.Drawing.Size(103, 44);
             this.txt_id_valorEspecificacion.TabIndex = 109;
+            this.txt_id_valorEspecificacion.Visible = false;
             // 
             // txt_id_TipoEspecificacion
             // 
@@ -164,6 +169,7 @@
             this.txt_id_TipoEspecificacion.ReadOnly = true;
             this.txt_id_TipoEspecificacion.Size = new System.Drawing.Size(103, 44);
             this.txt_id_TipoEspecificacion.TabIndex = 110;
+            this.txt_id_TipoEspecificacion.Visible = false;
             // 
             // txt_nombre_TipoEspecificacion
             // 
@@ -261,6 +267,10 @@
             this.btn_producto.UseVisualStyleBackColor = false;
             this.btn_producto.Click += new System.EventHandler(this.btn_producto_Click);
             // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
+            // 
             // FrmAgregarEditarEspecificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -284,6 +294,7 @@
             this.Controls.Add(this.lbl_id_especificacion);
             this.Controls.Add(this.lbl_nombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(852, 728);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(852, 728);
@@ -291,6 +302,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarEspecificacion";
             this.Load += new System.EventHandler(this.FrmAgregarEditarEspecificacion_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +325,6 @@
         private System.Windows.Forms.Button btn_valor_especificacion;
         private System.Windows.Forms.Button btn_tipo_especificacion;
         private System.Windows.Forms.Button btn_producto;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

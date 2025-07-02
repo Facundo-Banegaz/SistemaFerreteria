@@ -74,14 +74,14 @@
             this.dgv_categorias.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_categorias.EnableHeadersVisualStyles = false;
             this.dgv_categorias.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_categorias.Location = new System.Drawing.Point(25, 172);
+            this.dgv_categorias.Location = new System.Drawing.Point(18, 151);
             this.dgv_categorias.Name = "dgv_categorias";
             this.dgv_categorias.ReadOnly = true;
             this.dgv_categorias.RowHeadersVisible = false;
             this.dgv_categorias.RowHeadersWidth = 62;
             this.dgv_categorias.RowTemplate.Height = 28;
             this.dgv_categorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_categorias.Size = new System.Drawing.Size(1500, 444);
+            this.dgv_categorias.Size = new System.Drawing.Size(1522, 500);
             this.dgv_categorias.TabIndex = 69;
             // 
             // btn_eliminar
@@ -92,7 +92,7 @@
             this.btn_eliminar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(778, 665);
+            this.btn_eliminar.Location = new System.Drawing.Point(756, 676);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(197, 66);
             this.btn_eliminar.TabIndex = 68;
@@ -110,7 +110,7 @@
             this.btn_editar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_editar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
-            this.btn_editar.Location = new System.Drawing.Point(439, 663);
+            this.btn_editar.Location = new System.Drawing.Point(417, 674);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(197, 66);
             this.btn_editar.TabIndex = 66;
@@ -128,7 +128,7 @@
             this.btn_nuevo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_nuevo.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_nuevo.Image = ((System.Drawing.Image)(resources.GetObject("btn_nuevo.Image")));
-            this.btn_nuevo.Location = new System.Drawing.Point(112, 663);
+            this.btn_nuevo.Location = new System.Drawing.Point(90, 674);
             this.btn_nuevo.Name = "btn_nuevo";
             this.btn_nuevo.Size = new System.Drawing.Size(197, 66);
             this.btn_nuevo.TabIndex = 67;
@@ -162,13 +162,13 @@
             // 
             // btn_limpiar
             // 
-            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_limpiar.BackColor = System.Drawing.Color.Goldenrod;
             this.btn_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_limpiar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_limpiar.Image = ((System.Drawing.Image)(resources.GetObject("btn_limpiar.Image")));
-            this.btn_limpiar.Location = new System.Drawing.Point(1312, 20);
+            this.btn_limpiar.Location = new System.Drawing.Point(1212, 23);
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(152, 56);
             this.btn_limpiar.TabIndex = 62;
@@ -180,13 +180,13 @@
             // 
             // btn_buscar
             // 
-            this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_buscar.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn_buscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_buscar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buscar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
-            this.btn_buscar.Location = new System.Drawing.Point(1077, 20);
+            this.btn_buscar.Location = new System.Drawing.Point(1034, 23);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(152, 56);
             this.btn_buscar.TabIndex = 61;
@@ -208,11 +208,13 @@
             // 
             // txt_buscar
             // 
+            this.txt_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_buscar.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.txt_buscar.Location = new System.Drawing.Point(248, 30);
             this.txt_buscar.Name = "txt_buscar";
-            this.txt_buscar.Size = new System.Drawing.Size(730, 37);
+            this.txt_buscar.Size = new System.Drawing.Size(752, 37);
             this.txt_buscar.TabIndex = 59;
             this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
             // 
@@ -225,7 +227,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(1343, 661);
+            this.btn_cancelar.Location = new System.Drawing.Point(1343, 672);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 70;
@@ -250,7 +252,9 @@
             this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.lbl_buscar);
             this.Controls.Add(this.txt_buscar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1574, 806);
             this.Name = "FrmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCategoria";

@@ -85,7 +85,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btn_actualizar_Click(object sender, EventArgs e)

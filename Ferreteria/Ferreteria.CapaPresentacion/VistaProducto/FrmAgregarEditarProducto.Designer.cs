@@ -42,9 +42,7 @@
             this.lbl_subcategoria = new System.Windows.Forms.Label();
             this.txt_codigo = new System.Windows.Forms.TextBox();
             this.lbl_codigo = new System.Windows.Forms.Label();
-            this.txt_stock_minimo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbo_marca = new System.Windows.Forms.ComboBox();
             this.cbo_unidadMedida = new System.Windows.Forms.ComboBox();
             this.lbl_categoria = new System.Windows.Forms.Label();
             this.lbl_marca = new System.Windows.Forms.Label();
@@ -53,6 +51,10 @@
             this.lbl_id = new System.Windows.Forms.Label();
             this.lbl_fecha = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txt_stock_minimo = new System.Windows.Forms.TextBox();
+            this.btn_marca = new System.Windows.Forms.Button();
+            this.txt_nombre_marca = new System.Windows.Forms.TextBox();
+            this.txt_id_marca = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +77,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(28, 488);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1162, 246);
+            this.groupBox1.Size = new System.Drawing.Size(1162, 181);
             this.groupBox1.TabIndex = 92;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Desccripcion del Producto ( opcional ) :";
@@ -88,7 +90,7 @@
             this.txt_descripcion.Multiline = true;
             this.txt_descripcion.Name = "txt_descripcion";
             this.txt_descripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_descripcion.Size = new System.Drawing.Size(1130, 193);
+            this.txt_descripcion.Size = new System.Drawing.Size(1130, 128);
             this.txt_descripcion.TabIndex = 23;
             // 
             // txt_nombre
@@ -178,6 +180,7 @@
             this.txt_codigo.Name = "txt_codigo";
             this.txt_codigo.Size = new System.Drawing.Size(333, 35);
             this.txt_codigo.TabIndex = 82;
+            this.txt_codigo.TextChanged += new System.EventHandler(this.txt_codigo_TextChanged);
             this.txt_codigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_codigo_KeyPress);
             // 
             // lbl_codigo
@@ -192,16 +195,6 @@
             this.lbl_codigo.TabIndex = 81;
             this.lbl_codigo.Text = "Código:";
             // 
-            // txt_stock_minimo
-            // 
-            this.txt_stock_minimo.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_stock_minimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_stock_minimo.Location = new System.Drawing.Point(446, 188);
-            this.txt_stock_minimo.Name = "txt_stock_minimo";
-            this.txt_stock_minimo.Size = new System.Drawing.Size(333, 35);
-            this.txt_stock_minimo.TabIndex = 99;
-            this.txt_stock_minimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_stock_minimo_KeyPress);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -213,17 +206,6 @@
             this.label3.Size = new System.Drawing.Size(175, 35);
             this.label3.TabIndex = 96;
             this.label3.Text = "Stock Minimo:";
-            // 
-            // cbo_marca
-            // 
-            this.cbo_marca.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbo_marca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_marca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbo_marca.FormattingEnabled = true;
-            this.cbo_marca.Location = new System.Drawing.Point(59, 386);
-            this.cbo_marca.Name = "cbo_marca";
-            this.cbo_marca.Size = new System.Drawing.Size(540, 37);
-            this.cbo_marca.TabIndex = 104;
             // 
             // cbo_unidadMedida
             // 
@@ -268,7 +250,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(671, 750);
+            this.btn_cancelar.Location = new System.Drawing.Point(672, 675);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 106;
@@ -287,7 +269,7 @@
             this.btn_Agregar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Agregar.Image")));
             this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Agregar.Location = new System.Drawing.Point(287, 750);
+            this.btn_Agregar.Location = new System.Drawing.Point(288, 675);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(180, 66);
             this.btn_Agregar.TabIndex = 105;
@@ -320,20 +302,73 @@
             // 
             this.errorIcono.ContainerControl = this;
             // 
+            // txt_stock_minimo
+            // 
+            this.txt_stock_minimo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_stock_minimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_stock_minimo.Location = new System.Drawing.Point(425, 192);
+            this.txt_stock_minimo.Name = "txt_stock_minimo";
+            this.txt_stock_minimo.Size = new System.Drawing.Size(333, 35);
+            this.txt_stock_minimo.TabIndex = 109;
+            this.txt_stock_minimo.TextChanged += new System.EventHandler(this.txt_stock_minimo_TextChanged);
+            this.txt_stock_minimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_stock_minimo_KeyPress);
+            // 
+            // btn_marca
+            // 
+            this.btn_marca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_marca.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btn_marca.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_marca.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_marca.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_marca.Image = ((System.Drawing.Image)(resources.GetObject("btn_marca.Image")));
+            this.btn_marca.Location = new System.Drawing.Point(530, 374);
+            this.btn_marca.Name = "btn_marca";
+            this.btn_marca.Size = new System.Drawing.Size(62, 56);
+            this.btn_marca.TabIndex = 121;
+            this.btn_marca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_marca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_marca.UseVisualStyleBackColor = false;
+            this.btn_marca.Click += new System.EventHandler(this.btn_marca_Click);
+            // 
+            // txt_nombre_marca
+            // 
+            this.txt_nombre_marca.BackColor = System.Drawing.SystemColors.Window;
+            this.txt_nombre_marca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nombre_marca.ForeColor = System.Drawing.Color.Black;
+            this.txt_nombre_marca.Location = new System.Drawing.Point(52, 386);
+            this.txt_nombre_marca.Name = "txt_nombre_marca";
+            this.txt_nombre_marca.ReadOnly = true;
+            this.txt_nombre_marca.Size = new System.Drawing.Size(472, 35);
+            this.txt_nombre_marca.TabIndex = 120;
+            // 
+            // txt_id_marca
+            // 
+            this.txt_id_marca.Enabled = false;
+            this.txt_id_marca.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_id_marca.ForeColor = System.Drawing.Color.Black;
+            this.txt_id_marca.Location = new System.Drawing.Point(52, 339);
+            this.txt_id_marca.Name = "txt_id_marca";
+            this.txt_id_marca.ReadOnly = true;
+            this.txt_id_marca.Size = new System.Drawing.Size(115, 44);
+            this.txt_id_marca.TabIndex = 119;
+            this.txt_id_marca.Visible = false;
+            // 
             // FrmAgregarEditarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 828);
+            this.ClientSize = new System.Drawing.Size(1217, 753);
+            this.Controls.Add(this.btn_marca);
+            this.Controls.Add(this.txt_nombre_marca);
+            this.Controls.Add(this.txt_id_marca);
+            this.Controls.Add(this.txt_stock_minimo);
             this.Controls.Add(this.lbl_fecha);
             this.Controls.Add(this.lbl_id);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
-            this.Controls.Add(this.cbo_marca);
             this.Controls.Add(this.cbo_unidadMedida);
             this.Controls.Add(this.lbl_categoria);
             this.Controls.Add(this.lbl_marca);
-            this.Controls.Add(this.txt_stock_minimo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbo_subcategoria);
             this.Controls.Add(this.groupBox1);
@@ -347,6 +382,10 @@
             this.Controls.Add(this.txt_codigo);
             this.Controls.Add(this.lbl_codigo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1239, 809);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1239, 809);
             this.Name = "FrmAgregarEditarProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarProducto";
@@ -373,9 +412,7 @@
         private System.Windows.Forms.Label lbl_subcategoria;
         private System.Windows.Forms.TextBox txt_codigo;
         private System.Windows.Forms.Label lbl_codigo;
-        private System.Windows.Forms.TextBox txt_stock_minimo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbo_marca;
         private System.Windows.Forms.ComboBox cbo_unidadMedida;
         private System.Windows.Forms.Label lbl_categoria;
         private System.Windows.Forms.Label lbl_marca;
@@ -384,5 +421,9 @@
         private System.Windows.Forms.Label lbl_id;
         private System.Windows.Forms.Label lbl_fecha;
         private System.Windows.Forms.ErrorProvider errorIcono;
+        private System.Windows.Forms.TextBox txt_stock_minimo;
+        private System.Windows.Forms.Button btn_marca;
+        private System.Windows.Forms.TextBox txt_nombre_marca;
+        private System.Windows.Forms.TextBox txt_id_marca;
     }
 }

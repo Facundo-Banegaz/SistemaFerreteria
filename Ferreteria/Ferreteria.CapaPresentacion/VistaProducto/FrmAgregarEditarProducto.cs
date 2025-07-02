@@ -1,6 +1,9 @@
 ﻿
 using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaCompartida;
+using Ferreteria.CapaPresentacion.VistaEspecificacion.VistaTipoEspecificacion;
+using Ferreteria.CapaPresentacion.VistaMarca;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,7 +48,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         {
 
             CN_Categoria _Categoria = new CN_Categoria();
-            CN_Marca _Marca = new CN_Marca();
+            //CN_Marca _Marca = new CN_Marca();
             CN_UnidadMedida _UnidadMedida = new CN_UnidadMedida();
  
             try
@@ -57,9 +60,9 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
                
 
-                cbo_marca.DataSource = _Marca.CargarCbo();
-                cbo_marca.ValueMember = "Id_Marca";
-                cbo_marca.DisplayMember = "Nombre";
+                ////cbo_marca.DataSource = _Marca.CargarCbo();
+                ////cbo_marca.ValueMember = "Id_Marca";
+                ////cbo_marca.DisplayMember = "Nombre";
 
                 cbo_unidadMedida.DataSource = _UnidadMedida.CargarCbo();
                 cbo_unidadMedida.ValueMember = "Id_UnidadMedida";
@@ -94,8 +97,10 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     cbo_subcategoria.SelectedValue = producto.Subcategoria.Id_Subcategoria;
 
                     cbo_categoria.SelectedValue = producto.Subcategoria.Categoria.Id_Categoria;
+                    txt_nombre_marca.Text = producto.Marca.Nombre;
+                    txt_id_marca.Text = producto.Marca.Id_Marca.ToString();
 
-                    cbo_marca.SelectedValue = producto.Marca.Id_Marca;
+                    //cbo_marca.SelectedValue = producto.Marca.Id_Marca;
                     cbo_unidadMedida.SelectedValue = producto.UnidadMedida.Id_UnidadMedida;
 
                 }
@@ -121,16 +126,24 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
         private void txt_stock_minimo_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            // Permite teclas de control como Backspace
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
             // Permitir dígitos
             if (char.IsDigit(e.KeyChar))
             {
                 return;
             }
 
-       
-            // Bloquear todo lo demás (letras, símbolos, múltiples puntos)
+            // Si no es número, ni control, ni punto válido: se bloquea
             e.Handled = true;
+            if (!mensajeMostrado)
+            {
+                MessageBox.Show("Solo se permiten números.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeMostrado = true;
+            }
         }
 
 
@@ -160,10 +173,45 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         }
         private void txt_codigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+
+            // Permitir teclas de control (backspace, delete, flechas...)
+            if (char.IsControl(e.KeyChar))
             {
-                e.Handled = true;
-                txt_nombre.Focus();     // focus
+                mensajeMostrado = false; // Resetea el mensaje
+                return;
+            }
+
+            // Permitir solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+        
+                // Solo permitir si no supera los 13 caracteres
+                if (txt_codigo.Text.Length >= 13)
+                {
+                    e.Handled = true; // Bloquear más escritura
+                  
+
+                    if (!mensajeMostrado)
+                    {
+                        MessageBox.Show("El código de barras no puede tener más de 13 números.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        mensajeMostrado = true;
+                    }
+                
+                }
+                else
+                {
+                    mensajeMostrado = false; // Resetea mensaje si no excede
+                }
+                
+                return;
+
+            }
+            // Bloquear cualquier otro carácter
+            e.Handled = true;
+            if (!mensajeMostrado)
+            {
+                MessageBox.Show("Solo se permiten números.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeMostrado = true;
             }
         }
 
@@ -213,9 +261,14 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
                     producto.StockMinimo = Convert.ToInt32(txt_stock_minimo.Text.Trim());
 
+                    producto.Marca = new Marca();
+
+                    producto.Marca.Id_Marca = Convert.ToInt32(txt_id_marca.Text.Trim());
+          
 
                     producto.Subcategoria = (Subcategoria)cbo_subcategoria.SelectedItem;
-                    producto.Marca = (Marca)cbo_marca.SelectedItem;
+                    ////producto.Marca = (Marca)cbo_marca.SelectedItem;
+                   
                     producto.UnidadMedida = (UnidadMedida)cbo_unidadMedida.SelectedItem;
 
 
@@ -288,6 +341,13 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
                 error = false;
             }
+            else if (txt_nombre_marca.Text == string.Empty)
+            {
+                errorIcono.SetError(txt_nombre_marca, "El campo  es obligatorio, ingrese la Marca ");
+
+
+                error = false;
+            }
             else if (cbo_subcategoria.SelectedIndex == -1)
             {
                 errorIcono.SetError(cbo_subcategoria, "El campo  es obligatorio, ingrese la Subcategoria ");
@@ -301,6 +361,47 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             }
 
             return error;
+        }
+
+        private void txt_codigo_TextChanged(object sender, EventArgs e)
+        {
+            string codigo = txt_codigo.Text;
+
+            // Solo actuar si hay 13 dígitos exactos
+            if (codigo.Length == 13)
+            {
+                // Validar que no todos los números sean iguales
+                if (codigo.Distinct().Count() == 1)
+                {
+                    MessageBox.Show("El código de barras no puede tener todos los números iguales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_codigo.Focus();
+                    txt_codigo.SelectAll();// Selecciona todo para que el usuario reescriba
+                    return;
+                }
+
+                // Si está todo bien, enfocar el siguiente campo
+                txt_nombre.Focus();
+            }
+        }
+
+        private void txt_stock_minimo_TextChanged(object sender, EventArgs e)
+        {
+            mensajeMostrado = false;
+        }
+
+
+        private void btn_marca_Click(object sender, EventArgs e)
+        {
+            FrmSeleccionarMarca frmSeleccionar = new FrmSeleccionarMarca();
+
+            // Suscribís al evento
+            frmSeleccionar.MarcaSeleccionada += (Id_Marca, Nombre) =>
+            {
+                txt_id_marca.Text = Id_Marca;
+                txt_nombre_marca.Text = Nombre;
+            };
+
+            frmSeleccionar.ShowDialog();
         }
     }
 }

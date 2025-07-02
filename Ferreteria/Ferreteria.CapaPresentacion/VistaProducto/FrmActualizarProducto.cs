@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,8 +43,8 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             lbl_nombre.Text ="Nombre:   "+ producto.Nombre;
             lbl_descripcion.Text ="Descripción: "+ producto.Descripcion;
             lbl_fecha.Text= "Fecha de la Ultima Actualización del Precio:  "+ producto.FechaUltimaActualizacionPrecio;
-            lbl_precio.Text = "Precio Actual:  "+ producto.Precio;
-            lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio;
+            lbl_precio.Text = "Nuevo Precio :  "+ producto.Precio.ToString("0.00", CultureInfo.InvariantCulture); ;
+            lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio.ToString("0.00", CultureInfo.InvariantCulture); ;
             lbl_stock.Text = "Stock Actual: "+producto.Stock;
             lbl_subcategoria.Text = "Subcategoria:  " + producto.Subcategoria.Nombre;
             lbl_stock_minimo.Text = "Stock Minimo:  " + producto.StockMinimo;
@@ -105,7 +106,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     if (producto.Id_Producto != 0)
                     {
                         Id_Producto = Convert.ToInt32(lbl_Id.Text);
-                        Precio = Convert.ToDecimal(txt_nuevo_precio.Text);
+                        Precio = Convert.ToDecimal(txt_nuevo_precio.Text.Trim(), CultureInfo.InvariantCulture);
 
                         logicaProducto.ActualizarPrecio(Id_Producto,Precio);
 

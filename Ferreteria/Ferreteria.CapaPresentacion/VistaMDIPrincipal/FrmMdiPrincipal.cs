@@ -3,6 +3,7 @@ using Ferreteria.CapaPresentacion.VistaCategoria;
 using Ferreteria.CapaPresentacion.VistaEspecificacion;
 using Ferreteria.CapaPresentacion.VistaIngresos;
 using Ferreteria.CapaPresentacion.VistaMarca;
+using Ferreteria.CapaPresentacion.VistaMovimientoStock;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
@@ -98,24 +99,45 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
             formularioActivo = formulario;
 
+            // Configuración del formulario hijo
+            formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
-
-
             formulario.MdiParent = this;
-            formulario.BringToFront();
+            formulario.Dock = DockStyle.Fill; // Asegura que ocupe todo el espacio sin errores
+            formulario.WindowState = FormWindowState.Maximized;
+
             formulario.Show();
         }
+
         private void Menu_item_salir_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show($"¿Estás seguro de que deseas salir del sistema {Usuario.Nombre} {Usuario.Apellido}? Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.", "Salir del Sistema de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            // Verificamos si hay formularios hijos abiertos
+            bool hayFormulariosAbiertos = this.MdiChildren.Any();
+
+            if (hayFormulariosAbiertos)
+            {
+                MessageBox.Show("Primero debe cerrar todas las ventanas abiertas antes de salir del sistema.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Desea salir del sistema?\n\n" +
+                $"Usuario: {Usuario.Nombre} {Usuario.Apellido}\n" +
+                $"Nombre de usuario: {Usuario.UsuarioNombre}\n" +
+                $"Acceso: {Usuario.Acceso}",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
             if (respuesta == DialogResult.Yes)
             {
+                // Desuscribir el evento de FormClosing para permitir el cierre real
+                this.FormClosing -= FrmMdiPrincipal_FormClosing;
                 Application.Exit();
             }
         }
 
-     
+
+
 
         private void tn_tiempo_Tick(object sender, EventArgs e)
         {
@@ -192,6 +214,37 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         }
 
-    
+        private void Menu_gestion_consultas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_gestion_ventas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_item_proveedores_Click_1(object sender, EventArgs e)
+        {
+            abrirForm(new FrmProveedor());
+        }
+
+        private void Menu_item_movientoStock_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmMovimientoStockManual());
+        }
+
+        private void FrmMdiPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Cancelar el cierre por la X u otras formas no permitidas
+            e.Cancel = true;
+
+            MessageBox.Show(
+                "Para salir del sistema, usá el botón 'Salir' del menú.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
     }
 }

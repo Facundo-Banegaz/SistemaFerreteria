@@ -176,6 +176,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lbl_compra);
             this.Controls.Add(this.groupBox1);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1813, 835);
             this.Name = "FrmAgregarEditarIngreso";
             this.Text = "FrmAgregarEditarIngreso";
             this.Load += new System.EventHandler(this.FrmAgregarEditarIngreso_Load);

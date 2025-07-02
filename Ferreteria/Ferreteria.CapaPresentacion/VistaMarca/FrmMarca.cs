@@ -59,12 +59,11 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
             CN_Marca _Marca = new CN_Marca();
             Marca seleccionado = null;
 
-
             try
             {
                 if (dgv_marcas.CurrentRow != null)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Marca?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult respuesta = MessageBox.Show("¿Quieres eliminar esta marca?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if (respuesta == DialogResult.Yes)
                     {
@@ -72,15 +71,18 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
                         _Marca.EliminarMarca(seleccionado.Id_Marca);
 
                         CargarGrilla();
+
+                        MessageBox.Show("Marca eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                // Mostrar solo el mensaje amigable que tiramos en la lógica
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {

@@ -271,6 +271,10 @@
             this.Controls.Add(this.lbl_resultado);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.btn_buscar);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1874, 887);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1874, 887);
             this.Name = "FrmHistorialVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmHistorialVenta";

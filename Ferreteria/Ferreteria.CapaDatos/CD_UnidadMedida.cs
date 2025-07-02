@@ -1,6 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -175,6 +176,17 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion();
 
 
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 547) // Violación FK
+                {
+                    throw new Exception("No se puede eliminar esta UnidadMedida porque está relacionada con otros registros.");
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {

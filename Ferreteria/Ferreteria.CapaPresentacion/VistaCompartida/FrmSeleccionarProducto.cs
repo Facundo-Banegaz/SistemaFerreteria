@@ -159,5 +159,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             txt_buscar.Clear();
             CargarGrilla();
         }
+
+
     }
 }

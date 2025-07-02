@@ -240,7 +240,7 @@
             this.lbl_precio_anterior.TabIndex = 99;
             this.lbl_precio_anterior.Text = "Precio:";
             // 
-            // FrmActualizarContraseña
+            // FrmActualizarPrecio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +251,11 @@
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FrmActualizarContraseña";
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1748, 809);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1748, 809);
+            this.Name = "FrmActualizarPrecio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmActualizarProducto";
             this.Load += new System.EventHandler(this.FrmActualizarProducto_Load);

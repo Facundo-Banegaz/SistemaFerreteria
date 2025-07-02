@@ -1,6 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -210,24 +211,30 @@ namespace Ferreteria.CapaDatos
             try
             {
                 Conexion.SetConsultaProcedure("SpEliminar_Marca");
-
                 Conexion.SetearParametro("@Id_Marca", Id_Marca);
-
-
                 Conexion.EjecutarAccion();
-
-
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 547) // Error FK constraint violation
+                {
+                    throw new Exception("No se puede eliminar esta marca porque está asociada a uno o más productos.");
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                throw;
             }
             finally
             {
                 Conexion.CerrarConexion();
             }
         }
+
 
         //Metodo Buscar
 

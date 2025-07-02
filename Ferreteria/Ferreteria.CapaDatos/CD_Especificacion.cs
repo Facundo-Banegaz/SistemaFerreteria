@@ -2,6 +2,7 @@
 using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -146,12 +147,18 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                if (EspecificacionExiste(Nuevo.Producto.Id_Producto, Nuevo.TipoEspecificacion.Id_TipoEspecificacion, Nuevo.ValorEspecificacion.Id_ValorEspecificacion))
+                {
+                    throw new Exception("La especificación ya existe para ese producto con ese tipo y valor.");
+                }
+
+
                 Conexion.SetConsultaProcedure("Sp_Insertar_Especificacion");
 
                 //relaciones
-                Conexion.SetearParametro("@Id_Producto", Especificacion.Producto.Id_Producto);
-                Conexion.SetearParametro("@Id_TipoEspecificacion", Especificacion.TipoEspecificacion.Id_TipoEspecificacion);
-                Conexion.SetearParametro("@Id_ValorEspecificacion", Especificacion.ValorEspecificacion.Id_ValorEspecificacion);
+                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", Nuevo.TipoEspecificacion.Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", Nuevo.ValorEspecificacion.Id_ValorEspecificacion);
 
 
                 Conexion.EjecutarAccion();
@@ -178,14 +185,20 @@ namespace Ferreteria.CapaDatos
 
             try
             {
+                if (EspecificacionExiste(Especificacion.Producto.Id_Producto, Especificacion.TipoEspecificacion.Id_TipoEspecificacion, Especificacion.ValorEspecificacion.Id_ValorEspecificacion, Especificacion.Id_Especificacion))
+                {
+                    throw new Exception("Ya existe otra especificación con la misma combinación de producto, tipo y valor.");
+                }
+
+
                 Conexion.SetConsultaProcedure("Sp_Editar_Especificacion");
 
                 Conexion.SetearParametro("@Id_Especificacion", Especificacion.Id_Especificacion);
 
                 //relaciones
                 Conexion.SetearParametro("@Id_Producto", Especificacion.Producto.Id_Producto);
-                Conexion.SetearParametro("@Id_TipoEspecificacionId", Especificacion.TipoEspecificacion.Id_TipoEspecificacion);
-                Conexion.SetearParametro("@Id_ValorEspecificacionId", Especificacion.ValorEspecificacion.Id_ValorEspecificacion);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", Especificacion.TipoEspecificacion.Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", Especificacion.ValorEspecificacion.Id_ValorEspecificacion);
                
 
                 Conexion.EjecutarAccion();
@@ -203,6 +216,40 @@ namespace Ferreteria.CapaDatos
             }
 
         }
+        public bool EspecificacionExiste(int Id_Producto, int Id_TipoEspecificacion, int Id_ValorEspecificacion, int? Id_Especificacion = null)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                string consulta = "SELECT COUNT(*) FROM Especificaciones WHERE Id_Producto = @Id_Producto AND Id_TipoEspecificacion = @Id_TipoEspecificacion AND Id_ValorEspecificacion = @Id_ValorEspecificacion";
+
+                // Si estás editando, evitá que cuente el mismo registro
+                if (Id_Especificacion.HasValue)
+                {
+                    consulta += " AND Id_Especificacion != @Id_Especificacion";
+                }
+
+                Conexion.SetConsulta(consulta);
+                Conexion.SetearParametro("@Id_Producto", Id_Producto);
+                Conexion.SetearParametro("@Id_TipoEspecificacion", Id_TipoEspecificacion);
+                Conexion.SetearParametro("@Id_ValorEspecificacion", Id_ValorEspecificacion);
+
+                if (Id_Especificacion.HasValue)
+                    Conexion.SetearParametro("@Id_Especificacion", Id_Especificacion.Value);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
         //Metodo eliminar
         public void EliminarEspecificacion(int Id_Especificacion)
@@ -219,6 +266,17 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion();
 
 
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 547) // Violación FK
+                {
+                    throw new Exception("No se puede eliminar esta especificación porque está relacionada con otros registros.");
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {

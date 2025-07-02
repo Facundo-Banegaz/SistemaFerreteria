@@ -71,7 +71,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(1517, 702);
+            this.btn_cancelar.Location = new System.Drawing.Point(1483, 537);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 95;
@@ -276,9 +276,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1726, 780);
+            this.ClientSize = new System.Drawing.Size(1692, 615);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_cancelar);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1714, 671);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1714, 671);
             this.Name = "FrmDetalleProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDetalleProducto";
