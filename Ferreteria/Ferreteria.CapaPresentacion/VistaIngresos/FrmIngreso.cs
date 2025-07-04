@@ -32,6 +32,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             CargarGrilla();
 
             ArregloDataGridView(dgv_ingresos);
+     
         }
 
         private void CargarGrilla()
@@ -42,10 +43,34 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             Listaingresos = _Ingreso.ListaIngreso();
 
             dgv_ingresos.DataSource = Listaingresos;
-            lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_ingresos.Rows.Count);
-            lbl_resultado.Text = "";
+            int anulados = 0;
+            int emitidos = 0;
+
+            foreach (DataGridViewRow fila in dgv_ingresos.Rows)
+            {
+                if (fila.Cells["Estado"].Value != null)
+                {
+                    string estado = fila.Cells["Estado"].Value.ToString();
+
+                    if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                    {
+                        anulados++;
+                      
+                    }
+                    else if (estado.Equals("Emitido", StringComparison.OrdinalIgnoreCase))
+                    {
+                        emitidos++;
+                    }
+                }
+            }
+
+            lbl_total.Text = "Total de Ingresos: " + Convert.ToString(dgv_ingresos.Rows.Count);
+            lbl_anulados.Text = "Ingresos Anulados: " + Convert.ToString(anulados);
+            lbl_emitidos.Text = "Ingresos Emitidos: " + Convert.ToString(emitidos);
 
         }
+
+  
 
         private void ArregloDataGridView(DataGridView dgv_ingresos)
         {
@@ -91,22 +116,45 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             CN_Ingreso _Ingreso = new CN_Ingreso();
 
-            if (dtp_fecha_inicio.Value == DateTime.MinValue || dtp_fecha_fin.Value == DateTime.MinValue)
+
+            if (dtp_fecha_inicio.Value.Date > dtp_fecha_fin.Value.Date)
             {
-                MessageBox.Show("Ambas fechas deben ser seleccionadas.", "ADVERTENCIA");
-                lbl_resultado.Text = "No ha seleccionado ambas fechas.";
+                MessageBox.Show("La fecha de 'Inicio' no puede ser mayor que la fecha de 'Fin'.", "ADVERTENCIA");
+                lbl_resultado.Text = "La fecha de 'Inicio' no puede ser mayor que la fecha de 'Fin'.";
+                return;
             }
-            else if (dtp_fecha_inicio.Value >= dtp_fecha_fin.Value)
-            {
-                MessageBox.Show("La fecha de 'Inicio' no puede ser mayor o igual que la fecha de 'Fin'.", "ADVERTENCIA");
-                lbl_resultado.Text = "La fecha de 'Inicio' no puede ser mayor o igual que la fecha de 'Fin'.";
-            }
-            else
+
+
+            try
             {
                 dgv_ingresos.DataSource = _Ingreso.IngresoBuscarFecha(dtp_fecha_inicio.Value, dtp_fecha_fin.Value);
 
-                lbl_total.Text = "Total de Registros Encontrados: " + dgv_ingresos.Rows.Count;
+                // Limpiar conteos
+                int anulados = 0;
+                int emitidos = 0;
+
+                foreach (DataGridViewRow fila in dgv_ingresos.Rows)
+                {
+                    if (fila.Cells["Estado"].Value != null)
+                    {
+                        string estado = fila.Cells["Estado"].Value.ToString();
+
+                        if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                            anulados++;
+                        else if (estado.Equals("Emitido", StringComparison.OrdinalIgnoreCase))
+                            emitidos++;
+                    }
+                }
+
+                lbl_total.Text = $"Total de Registros Encontrados: {dgv_ingresos.Rows.Count}";
+                lbl_anulados.Text = $"Ingresos Anulados: {anulados}";
+                lbl_emitidos.Text = $"Ingresos Emitidos: {emitidos}";
                 lbl_resultado.Text = "Para volver a ver el listado completo, 'Limpiar' el campo.";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar ingresos: " + ex.Message, "ERROR");
+                lbl_resultado.Text = "Error al buscar ingresos.";
             }
         }
 
@@ -175,13 +223,30 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                         _Ingreso.AnularIngreso(seleccionado.Id_Ingreso);
 
                         CargarGrilla();
+                        MessageBox.Show("Ingreso Anulado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
-                MessageBox.Show(ex.ToString());
+        private void dgv_ingresos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var fila = dgv_ingresos.Rows[e.RowIndex];
+
+            if (fila.Cells["Estado"].Value != null)
+            {
+                string estado = fila.Cells["Estado"].Value.ToString();
+
+                if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                {
+                    fila.DefaultCellStyle.BackColor = Color.DarkRed;
+                    fila.DefaultCellStyle.ForeColor = Color.White;
+
+                }
             }
         }
     }

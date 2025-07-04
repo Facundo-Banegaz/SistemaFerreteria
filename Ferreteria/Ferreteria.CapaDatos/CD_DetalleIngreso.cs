@@ -28,9 +28,9 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_detalle_ingreso");
+                Conexion.SetConsultaProcedure("SpMostrar_DetalleIngreso");
 
-                Conexion.SetearParametro("@Id_DetalleIngreso", Id_ingreso);
+                Conexion.SetearParametro("@Id_Ingreso", Id_ingreso);
 
 
                 Conexion.EjecutarLectura();
@@ -38,6 +38,8 @@ namespace Ferreteria.CapaDatos
                 while (Conexion.Lector.Read())
                 {
                     _DetalleIngreso = new DetalleIngreso();
+
+                    _DetalleIngreso.Id_DetalleIngreso = (int)Conexion.Lector["Id_DetalleIngreso"];
 
 
                     _DetalleIngreso.Producto = new Producto();
@@ -47,12 +49,13 @@ namespace Ferreteria.CapaDatos
 
 
                     _DetalleIngreso.Cantidad = (int)Conexion.Lector["Cantidad"];
-                    _DetalleIngreso.PrecioCompra = (decimal)Conexion.Lector["Preciocompra"];
-                 
-              
-              
+                    _DetalleIngreso.PrecioCompra = (decimal)Conexion.Lector["PrecioCompra"];
+
+                    _DetalleIngreso.Subtotal = (decimal)Conexion.Lector["Subtotal"];
 
 
+
+                
 
                     listaDetalleIngreso.Add(_DetalleIngreso);
                 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -136,10 +137,20 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.EjecutarAccion();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Error al anular el ingreso: " + ex.Message, ex);
+                switch (ex.Number)
+                {
+
+                    case 50001:
+                        throw new Exception("Este ingreso ya ha sido anulado anteriormente.");
+                    case 50002:
+                        throw new Exception("No hay suficiente stock para anular este ingreso.");
+                    default:
+                        throw; 
+                }
             }
+
             finally
             {
                 Conexion.CerrarConexion();
@@ -158,18 +169,17 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_ingreso_fecha");
+                Conexion.SetConsultaProcedure("Sp_BuscarIngresoPorFecha");
 
 
-                Conexion.SetearParametro("@txt_fecha_inicio", FechaInicio);
-                Conexion.SetearParametro("@txt_fecha_fin", FechaFin);
+                Conexion.SetearParametro("@FechaInicio", FechaInicio);
+                Conexion.SetearParametro("@FechaFin", FechaFin);
 
                 Conexion.EjecutarLectura();
 
                 while (Conexion.Lector.Read())
                 {
                     Ingreso = new Ingreso();
-            
 
 
                     Ingreso.Id_Ingreso = (int)Conexion.Lector["Id_Ingreso"];
@@ -187,9 +197,17 @@ namespace Ferreteria.CapaDatos
                     Ingreso.Proveedor.Nombre = (string)Conexion.Lector["Proveedor"];
 
 
+
+                    Ingreso.Tipo_Comprobante = (string)Conexion.Lector["Tipo_comprobante"];
+                    Ingreso.Serie = (string)Conexion.Lector["Serie"];
+
+                    Ingreso.Correlativo = (string)Conexion.Lector["Correlativo"];
+
+                    Ingreso.Estado = (string)Conexion.Lector["Estado"];
+                    Ingreso.Total = (decimal)Conexion.Lector["Total"];
+
                     listaIngreso.Add(Ingreso);
                 }
-
                 return listaIngreso;
             }
             catch (Exception ex)

@@ -19,9 +19,10 @@ namespace Ferreteria.CapaDominio
         // Propiedad calculada Total sumando subtotales
         //public decimal Total => Detalles?.Sum(d => d.Subtotal) ?? 0;
         public Usuario Usuario { get; set; }
+        public Proveedor Proveedor { get; set; }
         public decimal Total { get; set; }
 
-        public Proveedor Proveedor { get; set; }
+ 
 
         public List<DetalleIngreso> Detalles { get; set; }
 

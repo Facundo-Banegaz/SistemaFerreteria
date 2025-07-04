@@ -48,21 +48,21 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
-            dgv_productos.Columns["Id_detalle_ingreso"].Visible = false;
-            dgv_productos.Columns["Id_Producto"].Visible = false;
+            dgv_productos.Columns["Id_detalleIngreso"].Visible = false;
       
+            dgv_productos.Columns["Ingreso"].Visible = false;
+
 
 
 
             dgv_productos.Columns["Producto"].Width = 450;// nombre_producto
-            dgv_productos.Columns["Precio_compra"].Width = 300;// nombre_producto
+            dgv_productos.Columns["PrecioCompra"].Width = 300;// nombre_producto
             dgv_productos.Columns["Cantidad"].Width = 300;// Categoria
             dgv_productos.Columns["Subtotal"].Width = 300;// Presentacion
 
 
-
             dgv_productos.Columns["Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["Precio_compra"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["PrecioCompra"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Subtotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Subtotal"].DefaultCellStyle.Format = "N0";

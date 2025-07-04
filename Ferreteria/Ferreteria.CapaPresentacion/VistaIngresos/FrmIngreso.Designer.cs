@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmIngreso));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_ver_detalle = new System.Windows.Forms.Button();
             this.btn_nuevo = new System.Windows.Forms.Button();
             this.lbl_fin = new System.Windows.Forms.Label();
@@ -38,13 +38,15 @@
             this.dtp_fecha_fin = new System.Windows.Forms.DateTimePicker();
             this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
             this.lbl_resultado = new System.Windows.Forms.Label();
-            this.lbl_total = new System.Windows.Forms.Label();
             this.btn_imprimir = new System.Windows.Forms.Button();
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
             this.dgv_ingresos = new System.Windows.Forms.DataGridView();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_anular = new System.Windows.Forms.Button();
+            this.lbl_emitidos = new System.Windows.Forms.Label();
+            this.lbl_total = new System.Windows.Forms.Label();
+            this.lbl_anulados = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ingresos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,25 +132,15 @@
             this.lbl_resultado.BackColor = System.Drawing.SystemColors.Control;
             this.lbl_resultado.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_resultado.ForeColor = System.Drawing.Color.Red;
-            this.lbl_resultado.Location = new System.Drawing.Point(1201, 131);
+            this.lbl_resultado.Location = new System.Drawing.Point(1091, 131);
             this.lbl_resultado.Name = "lbl_resultado";
             this.lbl_resultado.Size = new System.Drawing.Size(0, 25);
             this.lbl_resultado.TabIndex = 100;
-            // 
-            // lbl_total
-            // 
-            this.lbl_total.AutoSize = true;
-            this.lbl_total.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_total.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_total.ForeColor = System.Drawing.Color.LawnGreen;
-            this.lbl_total.Location = new System.Drawing.Point(514, 131);
-            this.lbl_total.Name = "lbl_total";
-            this.lbl_total.Size = new System.Drawing.Size(0, 25);
-            this.lbl_total.TabIndex = 99;
+            this.lbl_resultado.Tag = "";
             // 
             // btn_imprimir
             // 
-            this.btn_imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_imprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_imprimir.BackColor = System.Drawing.Color.LimeGreen;
             this.btn_imprimir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_imprimir.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -166,7 +158,7 @@
             // 
             // btn_limpiar
             // 
-            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_limpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_limpiar.BackColor = System.Drawing.Color.Goldenrod;
             this.btn_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_limpiar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -184,7 +176,7 @@
             // 
             // btn_buscar
             // 
-            this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_buscar.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btn_buscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_buscar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -210,34 +202,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_ingresos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_ingresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_ingresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_ingresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_ingresos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_ingresos.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_ingresos.EnableHeadersVisualStyles = false;
             this.dgv_ingresos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_ingresos.Location = new System.Drawing.Point(12, 191);
+            this.dgv_ingresos.Location = new System.Drawing.Point(12, 206);
             this.dgv_ingresos.Name = "dgv_ingresos";
             this.dgv_ingresos.ReadOnly = true;
             this.dgv_ingresos.RowHeadersVisible = false;
             this.dgv_ingresos.RowHeadersWidth = 62;
             this.dgv_ingresos.RowTemplate.Height = 28;
             this.dgv_ingresos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ingresos.Size = new System.Drawing.Size(1828, 522);
+            this.dgv_ingresos.Size = new System.Drawing.Size(1828, 481);
             this.dgv_ingresos.TabIndex = 95;
+            this.dgv_ingresos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgv_ingresos_RowPrePaint);
             // 
             // btn_cancelar
             // 
@@ -276,11 +269,50 @@
             this.btn_anular.UseVisualStyleBackColor = false;
             this.btn_anular.Click += new System.EventHandler(this.btn_anular_Click);
             // 
+            // lbl_emitidos
+            // 
+            this.lbl_emitidos.AutoSize = true;
+            this.lbl_emitidos.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_emitidos.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_emitidos.ForeColor = System.Drawing.Color.LawnGreen;
+            this.lbl_emitidos.Location = new System.Drawing.Point(669, 165);
+            this.lbl_emitidos.Name = "lbl_emitidos";
+            this.lbl_emitidos.Size = new System.Drawing.Size(200, 25);
+            this.lbl_emitidos.TabIndex = 107;
+            this.lbl_emitidos.Text = "Ingresos Emitidos:1000";
+            // 
+            // lbl_total
+            // 
+            this.lbl_total.AutoSize = true;
+            this.lbl_total.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_total.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_total.ForeColor = System.Drawing.Color.LawnGreen;
+            this.lbl_total.Location = new System.Drawing.Point(17, 165);
+            this.lbl_total.Name = "lbl_total";
+            this.lbl_total.Size = new System.Drawing.Size(196, 25);
+            this.lbl_total.TabIndex = 109;
+            this.lbl_total.Text = "Total de Ingresos:1000";
+            // 
+            // lbl_anulados
+            // 
+            this.lbl_anulados.AutoSize = true;
+            this.lbl_anulados.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_anulados.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_anulados.ForeColor = System.Drawing.Color.Red;
+            this.lbl_anulados.Location = new System.Drawing.Point(1396, 165);
+            this.lbl_anulados.Name = "lbl_anulados";
+            this.lbl_anulados.Size = new System.Drawing.Size(200, 25);
+            this.lbl_anulados.TabIndex = 110;
+            this.lbl_anulados.Text = "Ingresos Emitidos:1000";
+            // 
             // FrmIngreso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1852, 803);
+            this.Controls.Add(this.lbl_anulados);
+            this.Controls.Add(this.lbl_total);
+            this.Controls.Add(this.lbl_emitidos);
             this.Controls.Add(this.btn_ver_detalle);
             this.Controls.Add(this.btn_nuevo);
             this.Controls.Add(this.lbl_fin);
@@ -288,7 +320,6 @@
             this.Controls.Add(this.dtp_fecha_fin);
             this.Controls.Add(this.dtp_fecha_inicio);
             this.Controls.Add(this.lbl_resultado);
-            this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.btn_imprimir);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btn_buscar);
@@ -316,12 +347,14 @@
         private System.Windows.Forms.DateTimePicker dtp_fecha_fin;
         private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
         private System.Windows.Forms.Label lbl_resultado;
-        private System.Windows.Forms.Label lbl_total;
         private System.Windows.Forms.Button btn_imprimir;
         private System.Windows.Forms.Button btn_limpiar;
         private System.Windows.Forms.Button btn_buscar;
         public System.Windows.Forms.DataGridView dgv_ingresos;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_anular;
+        private System.Windows.Forms.Label lbl_emitidos;
+        private System.Windows.Forms.Label lbl_total;
+        private System.Windows.Forms.Label lbl_anulados;
     }
 }

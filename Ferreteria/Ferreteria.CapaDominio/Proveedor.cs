@@ -13,7 +13,10 @@ namespace Ferreteria.CapaDominio
         public string Nombre { get; set; }
 
         public string SectorComercial { get; set; }
-
+        public override string ToString()
+        {
+            return Nombre;
+        }
         public List<Ingreso> Ingresos { get; set; }
     }
 }

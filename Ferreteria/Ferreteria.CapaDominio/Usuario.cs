@@ -16,7 +16,10 @@ namespace Ferreteria.CapaDominio
         public string Dni { get; set; }
         public string Clave { get; set; }
         public bool Estado { get; set; }=true;
-
+        public override string ToString()
+        {
+            return Nombre;
+        }
         public List<Ingreso> Ingresos { get; set; }
         public List<Venta> Ventas { get; set; }
         public List<Presupuesto> Presupuestos { get; set; }
