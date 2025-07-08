@@ -47,7 +47,10 @@ namespace Ferreteria.CapaDatos
                     Producto.Stock = (int)Conexion.Lector["Stock"];
                     Producto.StockMinimo = (int)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
-
+                    Producto.RequiereVencimiento = (bool)Conexion.Lector["RequiereVencimiento"];
+                    Producto.EnPromocion = (bool)Conexion.Lector["EnPromocion"];
+                    Producto.ActualizarPrecioAutomaticamente = (bool)Conexion.Lector["ActualizarPrecioAutomaticamente"];
+                    Producto.PorcentajeDescuentoPromocion = (decimal)Conexion.Lector["PorcentajeDescuentoPromocion"];
                     Producto.Subcategoria = new Subcategoria();
                     Producto.Subcategoria.Categoria = new Categoria();
                     Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
@@ -132,7 +135,10 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Id_Subcategoria", Nuevo.Subcategoria.Id_Subcategoria);
                 Conexion.SetearParametro("@Id_Marca", Nuevo.Marca.Id_Marca);
                 Conexion.SetearParametro("@Id_UnidadMedida", Nuevo.UnidadMedida.Id_UnidadMedida);
-
+                Conexion.SetearParametro("@RequiereVencimiento", Nuevo.RequiereVencimiento);
+                Conexion.SetearParametro("@ActualizarPrecioAutomaticamente", Nuevo.ActualizarPrecioAutomaticamente);
+                Conexion.SetearParametro("@EnPromocion", Nuevo.EnPromocion);
+                Conexion.SetearParametro("@PorcentajeDescuentoPromocion", Nuevo.PorcentajeDescuentoPromocion);
                 Conexion.EjecutarAccion();
 
 
@@ -211,6 +217,11 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Id_Subcategoria", Producto.Subcategoria.Id_Subcategoria);
                 Conexion.SetearParametro("@Id_Marca", Producto.Marca.Id_Marca);
                 Conexion.SetearParametro("@Id_UnidadMedida", Producto.UnidadMedida.Id_UnidadMedida);
+
+
+                Conexion.SetearParametro("@RequiereVencimiento", Producto.RequiereVencimiento);
+                Conexion.SetearParametro("@ActualizarPrecioAutomaticamente", Producto.ActualizarPrecioAutomaticamente);
+
 
                 Conexion.EjecutarAccion();
 

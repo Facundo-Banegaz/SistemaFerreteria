@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Ferreteria.CapaNegocio
 {
@@ -12,15 +13,16 @@ namespace Ferreteria.CapaNegocio
     {
         CD_Metodos objMetodos = new CD_Metodos();
 
-
         // Metodo para alternar los colores en las filas de un data grid
         public void AlternarColor(DataGridView Dgv)
         {
             objMetodos.AlternarColor(Dgv);
         }
-        public string GenerarCodigo(string Tabla)
+        public (string Serie, string Correlativo) GenerarSerieYCorrelativo(string tabla, string tipoDocumento)
         {
-            return objMetodos.GenerarCodigo(Tabla);
+            return objMetodos.GenerarSerieYCorrelativo(tabla, tipoDocumento);
         }
+
+
     }
 }

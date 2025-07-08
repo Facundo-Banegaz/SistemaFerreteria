@@ -89,6 +89,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     txt_precio.Text = producto.Precio.ToString("0.00", CultureInfo.InvariantCulture);
 
 
+                    Chk_RequiereVencimiento.Checked = producto.RequiereVencimiento;
+
+                    Chk_actualizarPrecioAutomaticamente.Checked = producto.ActualizarPrecioAutomaticamente;
+
+
                     txt_stock_minimo.Text = producto.StockMinimo.ToString();
                     lbl_id.Text = producto.Id_Producto.ToString();
                     lbl_fecha.Visible = true;
@@ -260,6 +265,13 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     producto.Precio = Convert.ToDecimal(txt_precio.Text.Trim(), CultureInfo.InvariantCulture);
 
                     producto.StockMinimo = Convert.ToInt32(txt_stock_minimo.Text.Trim());
+
+                 
+                    
+                    producto.RequiereVencimiento = Chk_RequiereVencimiento.Checked;
+
+                    producto.ActualizarPrecioAutomaticamente = Chk_actualizarPrecioAutomaticamente.Checked;
+
 
                     producto.Marca = new Marca();
 

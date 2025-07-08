@@ -47,7 +47,9 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             lbl_stock.Text = "Stock Actual: " + _Producto.Stock;
             lbl_subcategoria.Text = "Subcategoria:  " + _Producto.Subcategoria.Nombre;
             lbl_stock_minimo.Text = "Stock Minimo:  " + _Producto.StockMinimo;
-            chek_estado.Checked = _Producto.Estado;
+            Chk_estado.Checked = _Producto.Estado;
+            Chk_actualizarPrecioAutomaticamente.Checked = _Producto.ActualizarPrecioAutomaticamente;
+            Chk_requiereVencimiento.Checked = _Producto.RequiereVencimiento;
             lbl_marca.Text = "Marca:    " + _Producto.Marca.Nombre;
             lbl_Id.Text = _Producto.Id_Producto.ToString();
             lbl_unidad.Text = "Unidad de Medida:    " + _Producto.UnidadMedida.Nombre;
@@ -94,6 +96,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
             dgv_caracteristicas.DataSource = listaEspecificacion;
           
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
 
         }
     }

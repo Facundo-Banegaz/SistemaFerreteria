@@ -19,29 +19,39 @@ namespace Ferreteria.CapaDatos
             Dgv.DefaultCellStyle.BackColor = Color.White;
         }
 
-        //Metodo para dar formato moneda a un texBox
-
-
-        // Metodo para generar un código para un nuevo registro en esa tabla
-
-        public string GenerarCodigo(string Tabla)
+        public (string Serie, string Correlativo) GenerarSerieYCorrelativo(string tabla, string tipoDocumento)
         {
-            Conexion = new CD_Conexion();
-            Conexion.SetConsulta("Select COUNT(*) as TotalRegistros from " + Tabla);
+            string serie;
 
+            switch (tipoDocumento)
+            {
+                
+                case "TICKET":
+                    serie = "T001";
+                    break;
+                case "BOLETA":
+                    serie = "B001";
+                    break;
+                default:
+                    serie = "S001";
+                    break;
+            }
+
+            Conexion = new CD_Conexion();
+            Conexion.SetConsulta($"SELECT COUNT(*) AS Total FROM {tabla}");
             Conexion.EjecutarLectura();
 
             long total = 0;
             if (Conexion.Lector.Read())
-            {
-                total = Convert.ToInt64(Conexion.Lector["TotalRegistros"]) + 1;
-            }
+                total = Convert.ToInt64(Conexion.Lector["Total"]) + 1;
+
             Conexion.CerrarConexion();
 
-            string codigo = total.ToString().PadLeft(10, '0'); // 8 es el ancho total del código
-
-            return codigo;
+            string correlativo = total.ToString().PadLeft(8, '0');
+            return (serie, correlativo);
         }
+
+
 
 
     }

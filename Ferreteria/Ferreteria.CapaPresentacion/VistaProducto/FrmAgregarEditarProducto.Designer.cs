@@ -55,8 +55,12 @@
             this.btn_marca = new System.Windows.Forms.Button();
             this.txt_nombre_marca = new System.Windows.Forms.TextBox();
             this.txt_id_marca = new System.Windows.Forms.TextBox();
+            this.Chk_RequiereVencimiento = new System.Windows.Forms.CheckBox();
+            this.Chk_actualizarPrecioAutomaticamente = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbo_subcategoria
@@ -75,7 +79,7 @@
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.txt_descripcion);
             this.groupBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(28, 488);
+            this.groupBox1.Location = new System.Drawing.Point(28, 568);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1162, 181);
             this.groupBox1.TabIndex = 92;
@@ -250,7 +254,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(672, 675);
+            this.btn_cancelar.Location = new System.Drawing.Point(672, 755);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 106;
@@ -269,7 +273,7 @@
             this.btn_Agregar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Agregar.Image")));
             this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Agregar.Location = new System.Drawing.Point(288, 675);
+            this.btn_Agregar.Location = new System.Drawing.Point(288, 755);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(180, 66);
             this.btn_Agregar.TabIndex = 105;
@@ -292,7 +296,7 @@
             this.lbl_fecha.AutoSize = true;
             this.lbl_fecha.BackColor = System.Drawing.Color.Coral;
             this.lbl_fecha.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha.Location = new System.Drawing.Point(282, 439);
+            this.lbl_fecha.Location = new System.Drawing.Point(282, 514);
             this.lbl_fecha.Name = "lbl_fecha";
             this.lbl_fecha.Size = new System.Drawing.Size(279, 29);
             this.lbl_fecha.TabIndex = 108;
@@ -315,7 +319,7 @@
             // 
             // btn_marca
             // 
-            this.btn_marca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_marca.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_marca.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btn_marca.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_marca.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -353,11 +357,45 @@
             this.txt_id_marca.TabIndex = 119;
             this.txt_id_marca.Visible = false;
             // 
+            // Chk_RequiereVencimiento
+            // 
+            this.Chk_RequiereVencimiento.AutoSize = true;
+            this.Chk_RequiereVencimiento.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Chk_RequiereVencimiento.Location = new System.Drawing.Point(45, 25);
+            this.Chk_RequiereVencimiento.Name = "Chk_RequiereVencimiento";
+            this.Chk_RequiereVencimiento.Size = new System.Drawing.Size(216, 29);
+            this.Chk_RequiereVencimiento.TabIndex = 122;
+            this.Chk_RequiereVencimiento.Text = "Requiere Vencimiento";
+            this.Chk_RequiereVencimiento.UseVisualStyleBackColor = true;
+            // 
+            // Chk_actualizarPrecioAutomaticamente
+            // 
+            this.Chk_actualizarPrecioAutomaticamente.AutoSize = true;
+            this.Chk_actualizarPrecioAutomaticamente.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Chk_actualizarPrecioAutomaticamente.Location = new System.Drawing.Point(669, 25);
+            this.Chk_actualizarPrecioAutomaticamente.Name = "Chk_actualizarPrecioAutomaticamente";
+            this.Chk_actualizarPrecioAutomaticamente.Size = new System.Drawing.Size(340, 29);
+            this.Chk_actualizarPrecioAutomaticamente.TabIndex = 123;
+            this.Chk_actualizarPrecioAutomaticamente.Text = "Actualizar Automaticamente el Precio";
+            this.Chk_actualizarPrecioAutomaticamente.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Chk_actualizarPrecioAutomaticamente);
+            this.groupBox2.Controls.Add(this.Chk_RequiereVencimiento);
+            this.groupBox2.Location = new System.Drawing.Point(52, 436);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1120, 62);
+            this.groupBox2.TabIndex = 124;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Recomendaciones Opcionales:";
+            // 
             // FrmAgregarEditarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 753);
+            this.ClientSize = new System.Drawing.Size(1217, 833);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_marca);
             this.Controls.Add(this.txt_nombre_marca);
             this.Controls.Add(this.txt_id_marca);
@@ -382,8 +420,6 @@
             this.Controls.Add(this.txt_codigo);
             this.Controls.Add(this.lbl_codigo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1239, 809);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1239, 809);
             this.Name = "FrmAgregarEditarProducto";
@@ -393,6 +429,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,5 +463,8 @@
         private System.Windows.Forms.Button btn_marca;
         private System.Windows.Forms.TextBox txt_nombre_marca;
         private System.Windows.Forms.TextBox txt_id_marca;
+        private System.Windows.Forms.CheckBox Chk_RequiereVencimiento;
+        private System.Windows.Forms.CheckBox Chk_actualizarPrecioAutomaticamente;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

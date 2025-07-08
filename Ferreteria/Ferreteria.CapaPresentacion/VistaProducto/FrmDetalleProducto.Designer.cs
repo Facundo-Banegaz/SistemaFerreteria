@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleProducto));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.chek_estado = new System.Windows.Forms.CheckBox();
+            this.Chk_estado = new System.Windows.Forms.CheckBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv_caracteristicas = new System.Windows.Forms.DataGridView();
@@ -48,19 +48,23 @@
             this.lbl_precio = new System.Windows.Forms.Label();
             this.lbl_nombre = new System.Windows.Forms.Label();
             this.lbl_codigo = new System.Windows.Forms.Label();
+            this.lbl_requierevencimineto = new System.Windows.Forms.Label();
+            this.Chk_requiereVencimiento = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Chk_actualizarPrecioAutomaticamente = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_caracteristicas)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chek_estado
+            // Chk_estado
             // 
-            this.chek_estado.AutoSize = true;
-            this.chek_estado.Location = new System.Drawing.Point(1404, 186);
-            this.chek_estado.Name = "chek_estado";
-            this.chek_estado.Size = new System.Drawing.Size(22, 21);
-            this.chek_estado.TabIndex = 94;
-            this.chek_estado.UseVisualStyleBackColor = true;
+            this.Chk_estado.AutoSize = true;
+            this.Chk_estado.Location = new System.Drawing.Point(1404, 186);
+            this.Chk_estado.Name = "Chk_estado";
+            this.Chk_estado.Size = new System.Drawing.Size(22, 21);
+            this.Chk_estado.TabIndex = 94;
+            this.Chk_estado.UseVisualStyleBackColor = true;
             // 
             // btn_cancelar
             // 
@@ -87,7 +91,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(35, 396);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1628, 215);
+            this.groupBox1.Size = new System.Drawing.Size(1628, 199);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caracteristicas adicional del Producto:";
@@ -120,7 +124,7 @@
             this.dgv_caracteristicas.RowHeadersWidth = 62;
             this.dgv_caracteristicas.RowTemplate.Height = 28;
             this.dgv_caracteristicas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_caracteristicas.Size = new System.Drawing.Size(1565, 159);
+            this.dgv_caracteristicas.Size = new System.Drawing.Size(1565, 143);
             this.dgv_caracteristicas.TabIndex = 81;
             // 
             // txt_descripcion_producto
@@ -136,13 +140,17 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.Chk_actualizarPrecioAutomaticamente);
+            this.groupBox2.Controls.Add(this.lbl_requierevencimineto);
+            this.groupBox2.Controls.Add(this.Chk_requiereVencimiento);
             this.groupBox2.Controls.Add(this.txt_descripcion_producto);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.lbl_unidad);
             this.groupBox2.Controls.Add(this.lbl_Id);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Controls.Add(this.chek_estado);
+            this.groupBox2.Controls.Add(this.Chk_estado);
             this.groupBox2.Controls.Add(this.lbl_stock_minimo);
             this.groupBox2.Controls.Add(this.lbl_marca);
             this.groupBox2.Controls.Add(this.lbl_subcategoria);
@@ -154,10 +162,11 @@
             this.groupBox2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1714, 671);
+            this.groupBox2.Size = new System.Drawing.Size(1684, 601);
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles Del Producto Seleccionado";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label1
             // 
@@ -272,6 +281,42 @@
             this.lbl_codigo.TabIndex = 1;
             this.lbl_codigo.Text = "Codigo:";
             // 
+            // lbl_requierevencimineto
+            // 
+            this.lbl_requierevencimineto.AutoSize = true;
+            this.lbl_requierevencimineto.Location = new System.Drawing.Point(293, 232);
+            this.lbl_requierevencimineto.Name = "lbl_requierevencimineto";
+            this.lbl_requierevencimineto.Size = new System.Drawing.Size(235, 29);
+            this.lbl_requierevencimineto.TabIndex = 104;
+            this.lbl_requierevencimineto.Text = "Requiere Vencimiento:";
+            // 
+            // Chk_requiereVencimiento
+            // 
+            this.Chk_requiereVencimiento.AutoSize = true;
+            this.Chk_requiereVencimiento.Location = new System.Drawing.Point(562, 240);
+            this.Chk_requiereVencimiento.Name = "Chk_requiereVencimiento";
+            this.Chk_requiereVencimiento.Size = new System.Drawing.Size(22, 21);
+            this.Chk_requiereVencimiento.TabIndex = 103;
+            this.Chk_requiereVencimiento.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(791, 230);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(361, 29);
+            this.label4.TabIndex = 106;
+            this.label4.Text = "Actualizar Precio Automaticamente:";
+            // 
+            // Chk_actualizarPrecioAutomaticamente
+            // 
+            this.Chk_actualizarPrecioAutomaticamente.AutoSize = true;
+            this.Chk_actualizarPrecioAutomaticamente.Location = new System.Drawing.Point(1209, 235);
+            this.Chk_actualizarPrecioAutomaticamente.Name = "Chk_actualizarPrecioAutomaticamente";
+            this.Chk_actualizarPrecioAutomaticamente.Size = new System.Drawing.Size(22, 21);
+            this.Chk_actualizarPrecioAutomaticamente.TabIndex = 105;
+            this.Chk_actualizarPrecioAutomaticamente.UseVisualStyleBackColor = true;
+            // 
             // FrmDetalleProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -296,7 +341,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.CheckBox chek_estado;
+        private System.Windows.Forms.CheckBox Chk_estado;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_descripcion_producto;
@@ -314,5 +359,9 @@
         private System.Windows.Forms.Label lbl_unidad;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView dgv_caracteristicas;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox Chk_actualizarPrecioAutomaticamente;
+        private System.Windows.Forms.Label lbl_requierevencimineto;
+        private System.Windows.Forms.CheckBox Chk_requiereVencimiento;
     }
 }

@@ -158,7 +158,12 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             dgv_productos.Columns["Subcategoria"].Width = 200;
             dgv_productos.Columns["Marca"].Width = 200;
             dgv_productos.Columns["UnidadMedida"].Width = 200;
-      
+
+            dgv_productos.Columns["RequiereVencimiento"].Width = 250;
+            dgv_productos.Columns["ActualizarPrecioAutomaticamente"].Width = 300;
+            dgv_productos.Columns["EnPromocion"].Width = 200;
+            dgv_productos.Columns["PorcentajeDescuentoPromocion"].Width = 300;
+
 
             dgv_productos.Columns["Id_Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -173,6 +178,10 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             dgv_productos.Columns["UnidadMedida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["FechaUltimaActualizacionPrecio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            dgv_productos.Columns["RequiereVencimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["ActualizarPrecioAutomaticamente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["EnPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["PorcentajeDescuentoPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 
 
