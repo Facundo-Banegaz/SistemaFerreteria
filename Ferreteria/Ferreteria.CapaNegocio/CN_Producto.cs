@@ -61,8 +61,14 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Producto.BuscarProducto(buscar);
         }
+        //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
+        public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)
+        {
+            _CD_Producto = new CD_Producto();
 
-   
+            return _CD_Producto.BuscarProductoPorCodigoEnIngresos(Codigo);
+        }
+
 
     }
 }

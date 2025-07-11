@@ -21,6 +21,11 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
         // Definís un delegado y un evento para pasar datos
         public delegate void ProductoSeleccionadoHandler(string Id_Producto, string Nombre);
         public event ProductoSeleccionadoHandler ProductoSeleccionado;
+
+        public delegate void ProductoIngresoSeleccionadoHandler(string Id_Producto, string Nombre,bool RequiereVencimiento,bool ActualizarPrecioAutomaticamente  );
+        public event ProductoIngresoSeleccionadoHandler ProductoIngresoSeleccionado;
+
+
         public FrmSeleccionarProducto()
         {
             InitializeComponent();
@@ -35,10 +40,12 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
         {
             string Id_Producto = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Id_Producto"].Value);
             string Nombre = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Nombre"].Value);
+            bool RequiereVencimiento = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["RequiereVencimiento"].Value);
+            bool ActualizarPrecioAutomaticamente = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["ActualizarPrecioAutomaticamente"].Value);
 
             // Invocás el evento si hay algún método suscripto
             ProductoSeleccionado?.Invoke(Id_Producto, Nombre);
-
+            ProductoIngresoSeleccionado?.Invoke(Id_Producto, Nombre,RequiereVencimiento,ActualizarPrecioAutomaticamente);
             this.Close();
 
         }
@@ -50,7 +57,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             ArregloDataGridView(dgv_productos);
         }
 
-     
+
 
 
 
@@ -61,22 +68,24 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
 
-
-
-            //dgv_productos.Columns["Id_Producto"].Visible = false;
+            dgv_productos.Columns["Id_Producto"].Visible = false;
             dgv_productos.Columns["Id_Producto"].Width = 120;
-            dgv_productos.Columns["Codigo"].Width = 300;
+            dgv_productos.Columns["Codigo"].Width = 200;
             dgv_productos.Columns["Nombre"].Width = 400;
             dgv_productos.Columns["Precio"].Width = 200;
             dgv_productos.Columns["Stock"].Width = 100;
             dgv_productos.Columns["StockMinimo"].Width = 120;
             dgv_productos.Columns["Descripcion"].Width = 600;
             dgv_productos.Columns["FechaUltimaActualizacionPrecio"].Width = 300;
-     
-            dgv_productos.Columns["Subcategoria"].Width = 300;
-
-            dgv_productos.Columns["Marca"].Width = 250;
+            dgv_productos.Columns["Estado"].Width = 100;
+            dgv_productos.Columns["Subcategoria"].Width = 200;
+            dgv_productos.Columns["Marca"].Width = 200;
             dgv_productos.Columns["UnidadMedida"].Width = 200;
+
+            dgv_productos.Columns["RequiereVencimiento"].Width = 250;
+            dgv_productos.Columns["ActualizarPrecioAutomaticamente"].Width = 300;
+            dgv_productos.Columns["EnPromocion"].Width = 200;
+            dgv_productos.Columns["PorcentajeDescuentoPromocion"].Width = 300;
 
 
             dgv_productos.Columns["Id_Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -88,11 +97,14 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             dgv_productos.Columns["StockMinimo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Subcategoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-     
             dgv_productos.Columns["Marca"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["UnidadMedida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["FechaUltimaActualizacionPrecio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            dgv_productos.Columns["RequiereVencimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["ActualizarPrecioAutomaticamente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["EnPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["PorcentajeDescuentoPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 
 

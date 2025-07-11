@@ -341,5 +341,49 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+        //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
+        public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)
+        {
+            // Conexión a base de datos
+            Conexion = new CD_Conexion();
+
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpBuscarProductoPorCodigoEnIngresos");
+
+
+                Conexion.SetearParametro("@Codigo", Codigo);
+
+
+                Conexion.EjecutarLectura();
+
+                // Si hay al menos un Producto lo mostramos
+                if (Conexion.Lector.Read())
+                {
+                    Producto = new Producto();
+                    
+                    Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    Producto.Nombre = (string)Conexion.Lector["Nombre"];
+                    Producto.RequiereVencimiento = (bool)Conexion.Lector["RequiereVencimiento"];
+                    Producto.ActualizarPrecioAutomaticamente = (bool)Conexion.Lector["ActualizarPrecioAutomaticamente"];
+
+
+
+                }
+            
+                return Producto;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
     }
 }

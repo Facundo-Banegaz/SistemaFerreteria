@@ -173,7 +173,6 @@
             this.Controls.Add(this.lbl_buscar);
             this.Controls.Add(this.txt_buscar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(1623, 806);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1623, 806);
             this.Name = "FrmSeleccionarProducto";

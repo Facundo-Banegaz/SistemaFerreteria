@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace Ferreteria.CapaDominio
     {
         public int Id_Ingreso { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
+        [DisplayName("Tipo Comprobante")]
         public string Tipo_Comprobante { get; set; }
         public string Serie { get; set; }
         public string Correlativo { get; set; }
