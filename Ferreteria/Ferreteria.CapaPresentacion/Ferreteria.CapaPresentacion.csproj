@@ -150,6 +150,12 @@
     <Compile Include="VistaIngresos\FrmDetalleIngreso.Designer.cs">
       <DependentUpon>FrmDetalleIngreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaIngresos\FrmIngresarCantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaIngresos\FrmIngresarCantidad.Designer.cs">
+      <DependentUpon>FrmIngresarCantidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaIngresos\FrmIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmDetalleIngreso.resx">
       <DependentUpon>FrmDetalleIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaIngresos\FrmIngresarCantidad.resx">
+      <DependentUpon>FrmIngresarCantidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
       <DependentUpon>FrmIngreso.cs</DependentUpon>

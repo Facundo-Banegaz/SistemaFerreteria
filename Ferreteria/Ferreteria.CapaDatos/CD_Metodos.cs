@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Globalization;
 
 namespace Ferreteria.CapaDatos
 {
@@ -52,7 +53,23 @@ namespace Ferreteria.CapaDatos
         }
 
 
+        //Metodo de moneda
+        public void FormatoMoneda(TextBox xTextBox)
+        {
+            if (string.IsNullOrWhiteSpace(xTextBox.Text))
+                return;
 
+            if (decimal.TryParse(xTextBox.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal monto))
+            {
+                xTextBox.Text = monto.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"));
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un valor numérico válido.", "Formato incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                xTextBox.Focus();
+                xTextBox.SelectAll();
+            }
+        }
 
     }
 }

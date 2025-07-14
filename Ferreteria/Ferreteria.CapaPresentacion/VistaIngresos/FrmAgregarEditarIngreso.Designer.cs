@@ -49,7 +49,8 @@
             this.lbl_encabezado = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbl_precioDeVenta = new System.Windows.Forms.Label();
+            this.btn_editar = new System.Windows.Forms.Button();
+            this.lbl_precioVentaCalculado = new System.Windows.Forms.Label();
             this.lbl_precioVenta = new System.Windows.Forms.Label();
             this.txt_porcentaje = new System.Windows.Forms.TextBox();
             this.lbl_porcentaje = new System.Windows.Forms.Label();
@@ -58,7 +59,7 @@
             this.lbl_fechaVencimiento = new System.Windows.Forms.Label();
             this.lbl_fechaFabricacion = new System.Windows.Forms.Label();
             this.txt_producto = new System.Windows.Forms.TextBox();
-            this.txt_producto_cantidad = new System.Windows.Forms.TextBox();
+            this.txt_productoCantidad = new System.Windows.Forms.TextBox();
             this.txt_precioCompra = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,7 +69,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_id_producto = new System.Windows.Forms.TextBox();
             this.btn_quitar = new System.Windows.Forms.Button();
-            this.btn_agregar = new System.Windows.Forms.Button();
+            this.btn_agregar_fila = new System.Windows.Forms.Button();
             this.Btn_producto = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -347,7 +348,8 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox2.Controls.Add(this.lbl_precioDeVenta);
+            this.groupBox2.Controls.Add(this.btn_editar);
+            this.groupBox2.Controls.Add(this.lbl_precioVentaCalculado);
             this.groupBox2.Controls.Add(this.lbl_precioVenta);
             this.groupBox2.Controls.Add(this.txt_porcentaje);
             this.groupBox2.Controls.Add(this.lbl_porcentaje);
@@ -356,7 +358,7 @@
             this.groupBox2.Controls.Add(this.lbl_fechaVencimiento);
             this.groupBox2.Controls.Add(this.lbl_fechaFabricacion);
             this.groupBox2.Controls.Add(this.txt_producto);
-            this.groupBox2.Controls.Add(this.txt_producto_cantidad);
+            this.groupBox2.Controls.Add(this.txt_productoCantidad);
             this.groupBox2.Controls.Add(this.txt_precioCompra);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
@@ -366,7 +368,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txt_id_producto);
             this.groupBox2.Controls.Add(this.btn_quitar);
-            this.groupBox2.Controls.Add(this.btn_agregar);
+            this.groupBox2.Controls.Add(this.btn_agregar_fila);
             this.groupBox2.Controls.Add(this.Btn_producto);
             this.groupBox2.Location = new System.Drawing.Point(15, 269);
             this.groupBox2.Name = "groupBox2";
@@ -375,22 +377,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Productos";
             // 
-            // lbl_precioDeVenta
+            // btn_editar
             // 
-            this.lbl_precioDeVenta.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_precioDeVenta.AutoSize = true;
-            this.lbl_precioDeVenta.Font = new System.Drawing.Font("Impact", 10F);
-            this.lbl_precioDeVenta.Location = new System.Drawing.Point(987, 208);
-            this.lbl_precioDeVenta.Name = "lbl_precioDeVenta";
-            this.lbl_precioDeVenta.Size = new System.Drawing.Size(0, 25);
-            this.lbl_precioDeVenta.TabIndex = 208;
+            this.btn_editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_editar.BackColor = System.Drawing.Color.Orange;
+            this.btn_editar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
+            this.btn_editar.Location = new System.Drawing.Point(1246, 98);
+            this.btn_editar.Name = "btn_editar";
+            this.btn_editar.Size = new System.Drawing.Size(86, 60);
+            this.btn_editar.TabIndex = 185;
+            this.btn_editar.UseVisualStyleBackColor = false;
+            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // lbl_precioVentaCalculado
+            // 
+            this.lbl_precioVentaCalculado.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_precioVentaCalculado.AutoSize = true;
+            this.lbl_precioVentaCalculado.Font = new System.Drawing.Font("Impact", 10F);
+            this.lbl_precioVentaCalculado.Location = new System.Drawing.Point(721, 208);
+            this.lbl_precioVentaCalculado.Name = "lbl_precioVentaCalculado";
+            this.lbl_precioVentaCalculado.Size = new System.Drawing.Size(0, 25);
+            this.lbl_precioVentaCalculado.TabIndex = 208;
             // 
             // lbl_precioVenta
             // 
             this.lbl_precioVenta.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_precioVenta.AutoSize = true;
             this.lbl_precioVenta.Font = new System.Drawing.Font("Impact", 10F);
-            this.lbl_precioVenta.Location = new System.Drawing.Point(987, 159);
+            this.lbl_precioVenta.Location = new System.Drawing.Point(721, 161);
             this.lbl_precioVenta.Name = "lbl_precioVenta";
             this.lbl_precioVenta.Size = new System.Drawing.Size(137, 25);
             this.lbl_precioVenta.TabIndex = 207;
@@ -402,17 +417,19 @@
             this.txt_porcentaje.BackColor = System.Drawing.Color.Orange;
             this.txt_porcentaje.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_porcentaje.Font = new System.Drawing.Font("Impact", 12F);
-            this.txt_porcentaje.Location = new System.Drawing.Point(723, 196);
+            this.txt_porcentaje.Location = new System.Drawing.Point(505, 198);
             this.txt_porcentaje.Name = "txt_porcentaje";
             this.txt_porcentaje.Size = new System.Drawing.Size(172, 37);
             this.txt_porcentaje.TabIndex = 206;
+            this.txt_porcentaje.TextChanged += new System.EventHandler(this.txt_porcentaje_TextChanged);
+            this.txt_porcentaje.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_porcentaje_KeyPress);
             // 
             // lbl_porcentaje
             // 
             this.lbl_porcentaje.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_porcentaje.AutoSize = true;
             this.lbl_porcentaje.Font = new System.Drawing.Font("Impact", 10F);
-            this.lbl_porcentaje.Location = new System.Drawing.Point(707, 159);
+            this.lbl_porcentaje.Location = new System.Drawing.Point(489, 161);
             this.lbl_porcentaje.Name = "lbl_porcentaje";
             this.lbl_porcentaje.Size = new System.Drawing.Size(204, 25);
             this.lbl_porcentaje.TabIndex = 205;
@@ -469,16 +486,17 @@
             this.txt_producto.TabIndex = 200;
             this.txt_producto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txt_producto_cantidad
+            // txt_productoCantidad
             // 
-            this.txt_producto_cantidad.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_producto_cantidad.BackColor = System.Drawing.Color.Orange;
-            this.txt_producto_cantidad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txt_producto_cantidad.Font = new System.Drawing.Font("Impact", 12F);
-            this.txt_producto_cantidad.Location = new System.Drawing.Point(968, 97);
-            this.txt_producto_cantidad.Name = "txt_producto_cantidad";
-            this.txt_producto_cantidad.Size = new System.Drawing.Size(172, 37);
-            this.txt_producto_cantidad.TabIndex = 199;
+            this.txt_productoCantidad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productoCantidad.BackColor = System.Drawing.Color.Orange;
+            this.txt_productoCantidad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txt_productoCantidad.Font = new System.Drawing.Font("Impact", 12F);
+            this.txt_productoCantidad.Location = new System.Drawing.Point(968, 97);
+            this.txt_productoCantidad.Name = "txt_productoCantidad";
+            this.txt_productoCantidad.Size = new System.Drawing.Size(172, 37);
+            this.txt_productoCantidad.TabIndex = 199;
+            this.txt_productoCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_producto_cantidad_KeyPress);
             // 
             // txt_precioCompra
             // 
@@ -490,6 +508,8 @@
             this.txt_precioCompra.Name = "txt_precioCompra";
             this.txt_precioCompra.Size = new System.Drawing.Size(172, 37);
             this.txt_precioCompra.TabIndex = 198;
+            this.txt_precioCompra.TextChanged += new System.EventHandler(this.txt_precioCompra_TextChanged);
+            this.txt_precioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precioCompra_KeyPress);
             // 
             // label9
             // 
@@ -582,18 +602,20 @@
             this.btn_quitar.Size = new System.Drawing.Size(86, 60);
             this.btn_quitar.TabIndex = 186;
             this.btn_quitar.UseVisualStyleBackColor = false;
+            this.btn_quitar.Click += new System.EventHandler(this.btn_quitar_Click);
             // 
-            // btn_agregar
+            // btn_agregar_fila
             // 
-            this.btn_agregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_agregar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_agregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar.Image")));
-            this.btn_agregar.Location = new System.Drawing.Point(1246, 25);
-            this.btn_agregar.Name = "btn_agregar";
-            this.btn_agregar.Size = new System.Drawing.Size(86, 60);
-            this.btn_agregar.TabIndex = 185;
-            this.btn_agregar.UseVisualStyleBackColor = false;
+            this.btn_agregar_fila.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_agregar_fila.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btn_agregar_fila.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_agregar_fila.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar_fila.Image")));
+            this.btn_agregar_fila.Location = new System.Drawing.Point(1246, 25);
+            this.btn_agregar_fila.Name = "btn_agregar_fila";
+            this.btn_agregar_fila.Size = new System.Drawing.Size(86, 60);
+            this.btn_agregar_fila.TabIndex = 185;
+            this.btn_agregar_fila.UseVisualStyleBackColor = false;
+            this.btn_agregar_fila.Click += new System.EventHandler(this.btn_agregar_fila_Click);
             // 
             // Btn_producto
             // 
@@ -833,7 +855,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_quitar;
-        private System.Windows.Forms.Button btn_agregar;
+        private System.Windows.Forms.Button btn_agregar_fila;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_sectorComercial;
@@ -855,7 +877,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txt_producto_cantidad;
+        private System.Windows.Forms.TextBox txt_productoCantidad;
         private System.Windows.Forms.TextBox txt_precioCompra;
         private System.Windows.Forms.TextBox txt_producto;
         private System.Windows.Forms.Label lbl_fechaVencimiento;
@@ -865,7 +887,8 @@
         private System.Windows.Forms.TextBox txt_porcentaje;
         private System.Windows.Forms.Label lbl_porcentaje;
         private System.Windows.Forms.Label lbl_precioVenta;
-        private System.Windows.Forms.Label lbl_precioDeVenta;
+        private System.Windows.Forms.Label lbl_precioVentaCalculado;
         private System.Windows.Forms.ErrorProvider errorIcono;
+        private System.Windows.Forms.Button btn_editar;
     }
 }
