@@ -73,10 +73,11 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
                     lbl_encabezado.Text = "BOLETA DE COMPRA";
                 }
-                   
-                lbl_correlativo.Text = serie;
-                lbl_serie.Text = correlativo; 
-                
+
+                lbl_serie.Text = serie;
+                lbl_correlativo.Text = correlativo;
+           
+
                 lbl_serie_correlativo.Text = $"Comprobante N°: {serie}-{correlativo}";
             }
             catch (Exception ex)
@@ -457,7 +458,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                         int nuevaCantidad = formCantidad.Cantidad;
 
                         DataGridViewRow fila = dgv_detalles_ingresos.CurrentRow;
-                        decimal precioCompra = decimal.Parse(fila.Cells["Precio Compra"].Value.ToString(), CultureInfo.CreateSpecificCulture("es-AR"));
+                        decimal precioCompra = decimal.Parse(fila.Cells["PrecioCompra"].Value.ToString(), CultureInfo.CreateSpecificCulture("es-AR"));
                         decimal nuevoSubtotal = nuevaCantidad * precioCompra;
 
                         fila.Cells["Cantidad"].Value = nuevaCantidad;
