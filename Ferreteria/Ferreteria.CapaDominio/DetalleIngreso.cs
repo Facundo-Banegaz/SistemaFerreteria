@@ -17,9 +17,9 @@ namespace Ferreteria.CapaDominio
         public decimal PrecioCompra { get; set; }
 
        
-        public DateTime FechaFabricacion = DateTime.Now;
+        public DateTime? FechaFabricacion { get; set; } 
 
-        public DateTime FechaVencimiento ;
+        public DateTime? FechaVencimiento { get; set; }
 
         [DisplayName("Porcentaje Ganancia")]
         public decimal PorcentajeGanancia { get; set; }

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -240,8 +241,12 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                         PrecioCompra = decimal.TryParse(fila.Cells[COL_PRECIO].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal precioCompra) ? precioCompra : 0,
                         Cantidad = decimal.TryParse(fila.Cells[COL_CANTIDAD].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal cantidad) ? cantidad : 0,
                         PorcentajeGanancia = decimal.TryParse(fila.Cells[COL_GANANCIA].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal ganancia) ? ganancia : 0,
-                        FechaFabricacion = DateTime.TryParse(fila.Cells[COL_FECHA_FAB].Value?.ToString(), out DateTime fab) ? fab : DateTime.MinValue,
-                        FechaVencimiento = DateTime.TryParse(fila.Cells[COL_FECHA_VENC].Value?.ToString(), out DateTime venc) ? venc : DateTime.MinValue
+                        FechaFabricacion = DateTime.TryParse(fila.Cells[COL_FECHA_FAB].Value?.ToString(), out DateTime fab)
+                    && fab >= SqlDateTime.MinValue.Value ? fab : (DateTime?)null,
+
+                        FechaVencimiento = DateTime.TryParse(fila.Cells[COL_FECHA_VENC].Value?.ToString(), out DateTime venc)
+                    && venc >= SqlDateTime.MinValue.Value ? venc : (DateTime?)null,
+
                     };
 
                     // Validar campos críticos
@@ -497,8 +502,9 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                     ? decimal.Parse(txt_porcentaje.Text, CultureInfo.CreateSpecificCulture("es-AR"))
                     : 0;
 
-                string fechaFabricacion = dtp_fechaFabricacion.Visible ? dtp_fechaFabricacion.Value.ToString("yyyy-MM-dd") : "--";
-                string fechaVencimiento = dtp_fechaVencimiento.Visible ? dtp_fechaVencimiento.Value.ToString("yyyy-MM-dd") : "--";
+                object fechaFabricacion = dtp_fechaFabricacion.Visible ? (object)dtp_fechaFabricacion.Value.Date : DBNull.Value;
+                object fechaVencimiento = dtp_fechaVencimiento.Visible ? (object)dtp_fechaVencimiento.Value.Date : DBNull.Value;
+
 
                 decimal subtotal = precioCompra * cantidad;
 

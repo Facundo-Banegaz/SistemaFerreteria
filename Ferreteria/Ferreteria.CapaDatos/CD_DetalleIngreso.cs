@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Ferreteria.CapaDatos
 {
@@ -55,7 +54,7 @@ namespace Ferreteria.CapaDatos
 
 
 
-                
+
 
                     listaDetalleIngreso.Add(_DetalleIngreso);
                 }
@@ -74,41 +73,45 @@ namespace Ferreteria.CapaDatos
 
         }
 
-        //metodo insertar
 
-        public void InsertarDetalleIngreso(DetalleIngreso detalle)
+        public void InsertarDetalleIngreso(DetalleIngreso detalle, SqlConnection conn, SqlTransaction trans)
         {
-            Conexion = new CD_Conexion();
-
-            try
+            using (SqlCommand cmd = new SqlCommand("Sp_Insertar_DetalleIngreso", conn, trans))
             {
-                Conexion.SetConsultaProcedure("Sp_Insertar_DetalleIngreso");
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                Conexion.SetearParametro("@Cantidad", detalle.Cantidad);
-                Conexion.SetearParametro("@PrecioCompra", detalle.PrecioCompra);
-                Conexion.SetearParametro("@Id_Producto", detalle.Producto.Id_Producto);
-                Conexion.SetearParametro("@Id_Ingreso", detalle.Ingreso.Id_Ingreso);
-                Conexion.SetearParametro("@FechaFabricacion", detalle.FechaFabricacion.ToString("yyyy-MM-dd hh:mm:ss"));
-                Conexion.SetearParametro("@FechaVencimiento", detalle.FechaVencimiento.ToString("yyyy-MM-dd hh:mm:ss"));
-                Conexion.SetearParametro("@PorcentajeGanancia", detalle.PorcentajeGanancia);
+                cmd.Parameters.AddWithValue("@Id_Ingreso", detalle.Ingreso.Id_Ingreso);
+                cmd.Parameters.AddWithValue("@Id_Producto", detalle.Producto.Id_Producto);
+                cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                cmd.Parameters.AddWithValue("@PrecioCompra", detalle.PrecioCompra);
 
+                // Validar FechaFabricacion
+                if (detalle.FechaFabricacion.HasValue && detalle.FechaFabricacion.Value >= SqlDateTime.MinValue.Value)
+                    cmd.Parameters.AddWithValue("@FechaFabricacion", detalle.FechaFabricacion.Value);
+                else
+                    cmd.Parameters.AddWithValue("@FechaFabricacion", DBNull.Value);
 
-                Conexion.SetearParametroSalida("@Id_DetalleIngreso", SqlDbType.Int);
+                // Validar FechaVencimiento
+                if (detalle.FechaVencimiento.HasValue && detalle.FechaVencimiento.Value >= SqlDateTime.MinValue.Value)
+                    cmd.Parameters.AddWithValue("@FechaVencimiento", detalle.FechaVencimiento.Value);
+                else
+                    cmd.Parameters.AddWithValue("@FechaVencimiento", DBNull.Value);
 
-                Conexion.EjecutarAccion();
+                cmd.Parameters.AddWithValue("@PorcentajeGanancia", detalle.PorcentajeGanancia);
 
-                int idDetalle = Conexion.ObtenerValorParametroSalida("@Id_DetalleIngreso");
-                detalle.Id_DetalleIngreso = idDetalle;
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
+                SqlParameter pIdDetalle = new SqlParameter("@Id_DetalleIngreso", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(pIdDetalle);
+
+                cmd.ExecuteNonQuery();
+
+                detalle.Id_DetalleIngreso = Convert.ToInt32(pIdDetalle.Value);
             }
         }
+
+
 
     }
 }

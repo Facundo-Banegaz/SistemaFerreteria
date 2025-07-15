@@ -61,21 +61,27 @@ namespace Ferreteria.CapaDatos
             comando.Connection = conexion;
             try
             {
-                conexion.Open();
+                if (conexion.State != ConnectionState.Open)
+                    conexion.Open();
+
                 lector = comando.ExecuteReader();
             }
             catch
             {
-                throw; 
+                throw;
             }
         }
+
 
         public void EjecutarAccion()
         {
             comando.Connection = conexion;
+
             try
             {
-                conexion.Open();
+                if (conexion.State != ConnectionState.Open)
+                    conexion.Open();
+
                 comando.ExecuteNonQuery();
             }
             catch
@@ -84,10 +90,14 @@ namespace Ferreteria.CapaDatos
             }
             finally
             {
-                CerrarConexion();
-                comando.Parameters.Clear(); // Limpia después de cada uso
+                if (transaccion == null) // solo cerrá si no estás en transacción
+                {
+                    CerrarConexion();
+                    comando.Parameters.Clear();
+                }
             }
         }
+
 
         public void SetearParametro(string nombre, object valor)
         {
@@ -128,6 +138,15 @@ namespace Ferreteria.CapaDatos
                 CerrarConexion();
                 comando.Parameters.Clear(); // Limpia los parámetros luego de ejecutar
             }
+        }
+        public SqlConnection ObtenerConexion()
+        {
+            return conexion;
+        }
+
+        public SqlTransaction ObtenerTransaccion()
+        {
+            return transaccion;
         }
 
         public void CerrarConexion()

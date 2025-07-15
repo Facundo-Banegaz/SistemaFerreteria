@@ -78,51 +78,52 @@ namespace Ferreteria.CapaDatos
         }
 
 
-        public void InsertarIngreso(Ingreso Nuevo, List<DetalleIngreso> detalles)
+        public void InsertarIngreso(Ingreso nuevo, List<DetalleIngreso> detalles)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.IniciarTransaccion();
+                Conexion.IniciarTransaccion(); // Abre conexión y crea transacción
 
-                Conexion.SetConsultaProcedure("Sp_Insertar_ingreso");
+                Conexion.SetConsultaProcedure("Sp_Insertar_Ingreso");
 
-                // Enviar solo parámetros que el SP espera (no @Fecha si es OUTPUT o generado internamente)
-                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
-                Conexion.SetearParametro("@Id_Proveedor", Nuevo.Proveedor.Id_Proveedor);
-                Conexion.SetearParametro("@Serie", Nuevo.Serie);
-                Conexion.SetearParametro("@Correlativo", Nuevo.Correlativo);
-                Conexion.SetearParametro("@Estado", Nuevo.Estado ?? "EMITIDO");
-                Conexion.SetearParametro("@Tipo_Comprobante", Nuevo.Tipo_Comprobante);
-                Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss")); 
+                Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
+                Conexion.SetearParametro("@Id_Proveedor", nuevo.Proveedor.Id_Proveedor);
+                Conexion.SetearParametro("@Serie", nuevo.Serie);
+                Conexion.SetearParametro("@Correlativo", nuevo.Correlativo);
+                Conexion.SetearParametro("@Estado", nuevo.Estado ?? "EMITIDO");
+                Conexion.SetearParametro("@Tipo_Comprobante", nuevo.Tipo_Comprobante);
+                Conexion.SetearParametro("@Fecha", nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
                 Conexion.SetearParametroSalida("@Id_Ingreso", SqlDbType.Int);
 
-                Conexion.EjecutarAccion();
+                Conexion.EjecutarAccion(); // Ejecuta y no cierra conexión
 
                 int idIngreso = Conexion.ObtenerValorParametroSalida("@Id_Ingreso");
+
+                SqlConnection conn = Conexion.ObtenerConexion();
+                SqlTransaction trans = Conexion.ObtenerTransaccion();
 
                 CD_DetalleIngreso detalleIngresoDatos = new CD_DetalleIngreso();
 
                 foreach (var detalle in detalles)
                 {
                     detalle.Ingreso = new Ingreso { Id_Ingreso = idIngreso };
-                    detalleIngresoDatos.InsertarDetalleIngreso(detalle);
+                    detalleIngresoDatos.InsertarDetalleIngreso(detalle, conn, trans);
                 }
 
-                Conexion.ConfirmarTransaccion();
+                Conexion.ConfirmarTransaccion(); // Commit final
             }
             catch
             {
-                Conexion.AnularTransaccion();
-                throw;  // Mantener pila original
+                Conexion.AnularTransaccion(); // Rollback si hay error
+                throw;
             }
             finally
             {
-                Conexion.CerrarConexion();
+                Conexion.CerrarConexion(); // Cierre limpio
             }
         }
-
 
 
         //Metodo eliminar
