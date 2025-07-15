@@ -61,6 +61,7 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
 
                     _UnidadMedida.Nombre = txt_nombre.Text.Trim().ToUpper();
                     _UnidadMedida.Abreviacion = txt_abreviacion.Text.Trim().ToUpper();
+                    _UnidadMedida.PermiteDecimales = Chk_PermiteDecimales.Checked;
 
                     if (_UnidadMedida.Id_UnidadMedida != 0)
                     {
@@ -94,8 +95,9 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
             lbl_categoria.Text = _UnidadMedida.Id_UnidadMedida.ToString();
             txt_nombre.Text = _UnidadMedida.Nombre;
             txt_abreviacion.Text = _UnidadMedida.Abreviacion;
-
+            Chk_PermiteDecimales.Checked = _UnidadMedida.PermiteDecimales;
         }
+
 
 
         private bool ValidarVacio()

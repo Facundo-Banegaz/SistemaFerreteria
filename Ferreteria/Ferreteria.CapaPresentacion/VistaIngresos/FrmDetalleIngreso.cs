@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,20 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             dgv_productos.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Subtotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Subtotal"].DefaultCellStyle.Format = "N0";
+
+
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_productos.Columns["PrecioCompra"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["PrecioCompra"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            dgv_productos.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Cantidad"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            // Si Stock también es decimal:
+            dgv_productos.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Subtotal"].DefaultCellStyle.FormatProvider = culturaAR;
 
             _Metodos.AlternarColor(dgv_productos);
         }

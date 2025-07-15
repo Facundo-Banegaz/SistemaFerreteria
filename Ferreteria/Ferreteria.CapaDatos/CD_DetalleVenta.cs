@@ -43,7 +43,7 @@ namespace Ferreteria.CapaDatos
 
                     _DetalleVenta.Producto.Nombre = (string)Conexion.Lector["Producto"];
 
-                    _DetalleVenta.Cantidad = (int)Conexion.Lector["Cantidad"];
+                    _DetalleVenta.Cantidad = (decimal)Conexion.Lector["Cantidad"];
 
                     _DetalleVenta.PrecioVenta = (decimal)Conexion.Lector["PrecioVenta"];
                 

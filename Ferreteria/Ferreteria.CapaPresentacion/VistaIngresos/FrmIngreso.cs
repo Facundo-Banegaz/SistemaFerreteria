@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         public FrmIngreso(Usuario usuario)
         {
             InitializeComponent();
-            this._Usuario = usuario ;
+            this._Usuario = usuario;
         }
         private void FrmIngreso_Load(object sender, EventArgs e)
         {
@@ -90,6 +91,13 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             dgv_ingresos.Columns["Estado"].Width = 400; // nombre_producto
             dgv_ingresos.Columns["Total"].Width = 500; // descripcion_producto 
 
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_ingresos.Columns["Total"].DefaultCellStyle.Format = "N2";
+            dgv_ingresos.Columns["Total"].DefaultCellStyle.FormatProvider = culturaAR;
+
+         
 
             dgv_ingresos.Columns["Id_ingreso"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_ingresos.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

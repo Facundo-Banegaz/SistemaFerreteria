@@ -18,6 +18,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         private Producto producto = null;
         private int Id_Producto;
         private decimal Precio;
+        private CN_Metodos CN_Metodos = new CN_Metodos();
         public FrmActualizarPrecio()
         {
             InitializeComponent();
@@ -43,11 +44,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             lbl_nombre.Text ="Nombre:   "+ producto.Nombre;
             lbl_descripcion.Text ="Descripción: "+ producto.Descripcion;
             lbl_fecha.Text= "Fecha de la Ultima Actualización del Precio:  "+ producto.FechaUltimaActualizacionPrecio;
-            lbl_precio.Text = "Nuevo Precio :  "+ producto.Precio.ToString("0.00", CultureInfo.InvariantCulture); ;
-            lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio.ToString("0.00", CultureInfo.InvariantCulture); ;
-            lbl_stock.Text = "Stock Actual: "+producto.Stock;
+            lbl_precio.Text = "Nuevo Precio :  "+ producto.Precio.ToString("N2", new CultureInfo("es-AR"));
+            lbl_precio_anterior.Text = "Precio Actual:  " + producto.Precio.ToString("N2", new CultureInfo("es-AR"));
+            lbl_stock.Text = "Stock Actual: "+producto.Stock.ToString("N2", new CultureInfo("es-AR"));
             lbl_subcategoria.Text = "Subcategoria:  " + producto.Subcategoria.Nombre;
-            lbl_stock_minimo.Text = "Stock Minimo:  " + producto.StockMinimo;
+            lbl_stock_minimo.Text = "Stock Minimo:  " + producto.StockMinimo.ToString("N2", new CultureInfo("es-AR"));
             lbl_marca.Text = "Marca:    " + producto.Marca.Nombre;
             lbl_Id.Text = producto.Id_Producto.ToString();
         }
@@ -59,26 +60,28 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
         private void txt_nuevo_precio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir tecla backspace u otras teclas de control
+            TextBox txt = sender as TextBox;
+
+            // Permitir control (backspace, delete)
             if (char.IsControl(e.KeyChar))
+                return;
+
+            // Solo permitir dígitos y coma/punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
             {
+                e.Handled = true;
                 return;
             }
 
-            // Permitir dígitos
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
+            // Reemplazar punto por coma (opcional, según cultura)
+            if (e.KeyChar == '.')
+                e.KeyChar = ',';
 
-            // Permitir un solo punto decimal
-            if (e.KeyChar == '.' && !txt_nuevo_precio.Text.Contains("."))
+            // Evitar más de una coma
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
             {
-                return;
+                e.Handled = true;
             }
-
-            // Bloquear todo lo demás (letras, símbolos, múltiples puntos)
-            e.Handled = true;
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     if (producto.Id_Producto != 0)
                     {
                         Id_Producto = Convert.ToInt32(lbl_Id.Text);
-                        Precio = Convert.ToDecimal(txt_nuevo_precio.Text.Trim(), CultureInfo.InvariantCulture);
+                        Precio = Convert.ToDecimal(txt_nuevo_precio.Text.Trim(), new CultureInfo("es-AR"));
 
                         logicaProducto.ActualizarPrecio(Id_Producto,Precio);
 
@@ -150,6 +153,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         private void txt_nuevo_precio_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_nuevo_precio_Leave(object sender, EventArgs e)
+        {
+            CN_Metodos.FormatoMoneda((TextBox)sender);
         }
     }
 }

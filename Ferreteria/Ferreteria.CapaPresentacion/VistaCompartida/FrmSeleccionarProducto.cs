@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
         public delegate void ProductoSeleccionadoHandler(string Id_Producto, string Nombre);
         public event ProductoSeleccionadoHandler ProductoSeleccionado;
 
-        public delegate void ProductoIngresoSeleccionadoHandler(string Id_Producto, string Nombre,bool RequiereVencimiento,bool ActualizarPrecioAutomaticamente  );
+        public delegate void ProductoIngresoSeleccionadoHandler(string Id_Producto, string Nombre,bool RequiereVencimiento,bool ActualizarPrecioAutomaticamente,bool PermiteDecimales  );
         public event ProductoIngresoSeleccionadoHandler ProductoIngresoSeleccionado;
 
 
@@ -42,10 +43,10 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             string Nombre = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Nombre"].Value);
             bool RequiereVencimiento = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["RequiereVencimiento"].Value);
             bool ActualizarPrecioAutomaticamente = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["ActualizarPrecioAutomaticamente"].Value);
-
+            bool PermiteDecimales = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["PermiteDecimales"].Value);
             // Invocás el evento si hay algún método suscripto
             ProductoSeleccionado?.Invoke(Id_Producto, Nombre);
-            ProductoIngresoSeleccionado?.Invoke(Id_Producto, Nombre,RequiereVencimiento,ActualizarPrecioAutomaticamente);
+            ProductoIngresoSeleccionado?.Invoke(Id_Producto, Nombre,RequiereVencimiento,ActualizarPrecioAutomaticamente,PermiteDecimales);
             this.Close();
 
         }
@@ -81,11 +82,22 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             dgv_productos.Columns["Subcategoria"].Width = 200;
             dgv_productos.Columns["Marca"].Width = 200;
             dgv_productos.Columns["UnidadMedida"].Width = 200;
-
+            dgv_productos.Columns["PermiteDecimales"].Width = 200;
             dgv_productos.Columns["RequiereVencimiento"].Width = 250;
             dgv_productos.Columns["ActualizarPrecioAutomaticamente"].Width = 300;
-            dgv_productos.Columns["EnPromocion"].Width = 200;
-            dgv_productos.Columns["PorcentajeDescuentoPromocion"].Width = 300;
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_productos.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Precio"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            dgv_productos.Columns["StockMinimo"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["StockMinimo"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            // Si Stock también es decimal:
+            dgv_productos.Columns["Stock"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Stock"].DefaultCellStyle.FormatProvider = culturaAR;
+
 
 
             dgv_productos.Columns["Id_Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -99,12 +111,12 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             dgv_productos.Columns["Subcategoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Marca"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["UnidadMedida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["PermiteDecimales"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["FechaUltimaActualizacionPrecio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgv_productos.Columns["RequiereVencimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["ActualizarPrecioAutomaticamente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["EnPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["PorcentajeDescuentoPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+   
 
 
 

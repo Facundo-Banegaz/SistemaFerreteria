@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.tt_mensaje = new System.Windows.Forms.ToolTip(this.components);
+            this.Chk_PermiteDecimales = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,7 +96,7 @@
             // 
             this.txt_nombre.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nombre.Location = new System.Drawing.Point(52, 177);
+            this.txt_nombre.Location = new System.Drawing.Point(52, 136);
             this.txt_nombre.Name = "txt_nombre";
             this.txt_nombre.Size = new System.Drawing.Size(578, 35);
             this.txt_nombre.TabIndex = 92;
@@ -106,7 +107,7 @@
             this.lbl_nombre.BackColor = System.Drawing.Color.Black;
             this.lbl_nombre.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_nombre.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_nombre.Location = new System.Drawing.Point(148, 98);
+            this.lbl_nombre.Location = new System.Drawing.Point(148, 84);
             this.lbl_nombre.Name = "lbl_nombre";
             this.lbl_nombre.Size = new System.Drawing.Size(381, 35);
             this.lbl_nombre.TabIndex = 91;
@@ -128,7 +129,7 @@
             // 
             this.txt_abreviacion.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_abreviacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_abreviacion.Location = new System.Drawing.Point(52, 317);
+            this.txt_abreviacion.Location = new System.Drawing.Point(51, 249);
             this.txt_abreviacion.Name = "txt_abreviacion";
             this.txt_abreviacion.Size = new System.Drawing.Size(578, 35);
             this.txt_abreviacion.TabIndex = 97;
@@ -139,7 +140,7 @@
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(148, 238);
+            this.label1.Location = new System.Drawing.Point(147, 199);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(381, 35);
             this.label1.TabIndex = 96;
@@ -149,11 +150,23 @@
             // 
             this.errorIcono.ContainerControl = this;
             // 
+            // Chk_PermiteDecimales
+            // 
+            this.Chk_PermiteDecimales.AutoSize = true;
+            this.Chk_PermiteDecimales.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Chk_PermiteDecimales.Location = new System.Drawing.Point(153, 312);
+            this.Chk_PermiteDecimales.Name = "Chk_PermiteDecimales";
+            this.Chk_PermiteDecimales.Size = new System.Drawing.Size(374, 29);
+            this.Chk_PermiteDecimales.TabIndex = 123;
+            this.Chk_PermiteDecimales.Text = "Esta Unidad de Medida Permite Decimales";
+            this.Chk_PermiteDecimales.UseVisualStyleBackColor = true;
+            // 
             // FrmAgregarEditarUnidadMedida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 518);
+            this.Controls.Add(this.Chk_PermiteDecimales);
             this.Controls.Add(this.txt_abreviacion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_cancelar);
@@ -189,5 +202,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorIcono;
         private System.Windows.Forms.ToolTip tt_mensaje;
+        private System.Windows.Forms.CheckBox Chk_PermiteDecimales;
     }
 }

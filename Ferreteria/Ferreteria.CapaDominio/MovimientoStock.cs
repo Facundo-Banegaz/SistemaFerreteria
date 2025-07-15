@@ -17,9 +17,9 @@ namespace Ferreteria.CapaDominio
         // Relación con TipoMovimiento
         public TipoMovimiento TipoMovimiento { get; set; }
 
-        public int Cantidad { get; set; }
-        public int StockAnterior { get; set; }
-        public int StockNuevo { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal StockAnterior { get; set; }
+        public decimal StockNuevo { get; set; }
 
         // Relación con Usuario
         public Usuario Usuario { get; set; }

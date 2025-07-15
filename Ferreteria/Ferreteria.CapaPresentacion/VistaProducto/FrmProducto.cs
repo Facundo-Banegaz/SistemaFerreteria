@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -158,11 +159,22 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             dgv_productos.Columns["Subcategoria"].Width = 200;
             dgv_productos.Columns["Marca"].Width = 200;
             dgv_productos.Columns["UnidadMedida"].Width = 200;
-
+            dgv_productos.Columns["PermiteDecimales"].Width = 200;
             dgv_productos.Columns["RequiereVencimiento"].Width = 250;
             dgv_productos.Columns["ActualizarPrecioAutomaticamente"].Width = 300;
-            dgv_productos.Columns["EnPromocion"].Width = 200;
-            dgv_productos.Columns["PorcentajeDescuentoPromocion"].Width = 300;
+
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_productos.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Precio"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            dgv_productos.Columns["StockMinimo"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["StockMinimo"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            // Si Stock también es decimal:
+            dgv_productos.Columns["Stock"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Stock"].DefaultCellStyle.FormatProvider = culturaAR;
 
 
             dgv_productos.Columns["Id_Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -176,13 +188,12 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             dgv_productos.Columns["Subcategoria"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Marca"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["UnidadMedida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["PermiteDecimales"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["FechaUltimaActualizacionPrecio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgv_productos.Columns["RequiereVencimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["ActualizarPrecioAutomaticamente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["EnPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["PorcentajeDescuentoPromocion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+     
 
 
             _Metodos.AlternarColor(dgv_productos);

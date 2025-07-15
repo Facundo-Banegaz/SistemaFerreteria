@@ -36,6 +36,10 @@
             this.dgv_caracteristicas = new System.Windows.Forms.DataGridView();
             this.txt_descripcion_producto = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Chk_actualizarPrecioAutomaticamente = new System.Windows.Forms.CheckBox();
+            this.lbl_requierevencimineto = new System.Windows.Forms.Label();
+            this.Chk_requiereVencimiento = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_unidad = new System.Windows.Forms.Label();
@@ -48,10 +52,6 @@
             this.lbl_precio = new System.Windows.Forms.Label();
             this.lbl_nombre = new System.Windows.Forms.Label();
             this.lbl_codigo = new System.Windows.Forms.Label();
-            this.lbl_requierevencimineto = new System.Windows.Forms.Label();
-            this.Chk_requiereVencimiento = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Chk_actualizarPrecioAutomaticamente = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_caracteristicas)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -60,6 +60,7 @@
             // Chk_estado
             // 
             this.Chk_estado.AutoSize = true;
+            this.Chk_estado.Enabled = false;
             this.Chk_estado.Location = new System.Drawing.Point(1404, 186);
             this.Chk_estado.Name = "Chk_estado";
             this.Chk_estado.Size = new System.Drawing.Size(22, 21);
@@ -167,6 +168,44 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles Del Producto Seleccionado";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(791, 230);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(361, 29);
+            this.label4.TabIndex = 106;
+            this.label4.Text = "Actualizar Precio Automaticamente:";
+            // 
+            // Chk_actualizarPrecioAutomaticamente
+            // 
+            this.Chk_actualizarPrecioAutomaticamente.AutoSize = true;
+            this.Chk_actualizarPrecioAutomaticamente.Enabled = false;
+            this.Chk_actualizarPrecioAutomaticamente.Location = new System.Drawing.Point(1209, 235);
+            this.Chk_actualizarPrecioAutomaticamente.Name = "Chk_actualizarPrecioAutomaticamente";
+            this.Chk_actualizarPrecioAutomaticamente.Size = new System.Drawing.Size(22, 21);
+            this.Chk_actualizarPrecioAutomaticamente.TabIndex = 105;
+            this.Chk_actualizarPrecioAutomaticamente.UseVisualStyleBackColor = true;
+            // 
+            // lbl_requierevencimineto
+            // 
+            this.lbl_requierevencimineto.AutoSize = true;
+            this.lbl_requierevencimineto.Location = new System.Drawing.Point(293, 232);
+            this.lbl_requierevencimineto.Name = "lbl_requierevencimineto";
+            this.lbl_requierevencimineto.Size = new System.Drawing.Size(235, 29);
+            this.lbl_requierevencimineto.TabIndex = 104;
+            this.lbl_requierevencimineto.Text = "Requiere Vencimiento:";
+            // 
+            // Chk_requiereVencimiento
+            // 
+            this.Chk_requiereVencimiento.AutoSize = true;
+            this.Chk_requiereVencimiento.Enabled = false;
+            this.Chk_requiereVencimiento.Location = new System.Drawing.Point(562, 240);
+            this.Chk_requiereVencimiento.Name = "Chk_requiereVencimiento";
+            this.Chk_requiereVencimiento.Size = new System.Drawing.Size(22, 21);
+            this.Chk_requiereVencimiento.TabIndex = 103;
+            this.Chk_requiereVencimiento.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -280,42 +319,6 @@
             this.lbl_codigo.Size = new System.Drawing.Size(85, 29);
             this.lbl_codigo.TabIndex = 1;
             this.lbl_codigo.Text = "Codigo:";
-            // 
-            // lbl_requierevencimineto
-            // 
-            this.lbl_requierevencimineto.AutoSize = true;
-            this.lbl_requierevencimineto.Location = new System.Drawing.Point(293, 232);
-            this.lbl_requierevencimineto.Name = "lbl_requierevencimineto";
-            this.lbl_requierevencimineto.Size = new System.Drawing.Size(235, 29);
-            this.lbl_requierevencimineto.TabIndex = 104;
-            this.lbl_requierevencimineto.Text = "Requiere Vencimiento:";
-            // 
-            // Chk_requiereVencimiento
-            // 
-            this.Chk_requiereVencimiento.AutoSize = true;
-            this.Chk_requiereVencimiento.Location = new System.Drawing.Point(562, 240);
-            this.Chk_requiereVencimiento.Name = "Chk_requiereVencimiento";
-            this.Chk_requiereVencimiento.Size = new System.Drawing.Size(22, 21);
-            this.Chk_requiereVencimiento.TabIndex = 103;
-            this.Chk_requiereVencimiento.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(791, 230);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(361, 29);
-            this.label4.TabIndex = 106;
-            this.label4.Text = "Actualizar Precio Automaticamente:";
-            // 
-            // Chk_actualizarPrecioAutomaticamente
-            // 
-            this.Chk_actualizarPrecioAutomaticamente.AutoSize = true;
-            this.Chk_actualizarPrecioAutomaticamente.Location = new System.Drawing.Point(1209, 235);
-            this.Chk_actualizarPrecioAutomaticamente.Name = "Chk_actualizarPrecioAutomaticamente";
-            this.Chk_actualizarPrecioAutomaticamente.Size = new System.Drawing.Size(22, 21);
-            this.Chk_actualizarPrecioAutomaticamente.TabIndex = 105;
-            this.Chk_actualizarPrecioAutomaticamente.UseVisualStyleBackColor = true;
             // 
             // FrmDetalleProducto
             // 

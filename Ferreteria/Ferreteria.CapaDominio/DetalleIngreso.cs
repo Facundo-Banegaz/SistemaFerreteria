@@ -11,7 +11,7 @@ namespace Ferreteria.CapaDominio
     {
         public int Id_DetalleIngreso { get; set; }
         public Producto Producto { get; set; }
-        public int Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
 
         [DisplayName("Precio Compra")]
         public decimal PrecioCompra { get; set; }

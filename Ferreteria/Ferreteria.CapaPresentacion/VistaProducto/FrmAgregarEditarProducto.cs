@@ -21,6 +21,9 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
     {
         private Producto producto = null;
         private bool mensajeMostrado = false;
+        bool PermiteDecimales = true; 
+
+        private CN_Metodos CN_Metodos = new CN_Metodos();
         public FrmAgregarEditarProducto()
         {
             InitializeComponent();
@@ -32,11 +35,12 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             InitializeComponent();
             this.producto = producto;
             Text = "Editar Producto";
+          
+
         }
         private void FrmAgregarEditarProducto_Load(object sender, EventArgs e)
         {
             CargarCbo();
-
 
             if (producto != null)
             {
@@ -44,31 +48,32 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             }
         }
 
+
         private void CargarCbo()
         {
 
             CN_Categoria _Categoria = new CN_Categoria();
             //CN_Marca _Marca = new CN_Marca();
-            CN_UnidadMedida _UnidadMedida = new CN_UnidadMedida();
- 
+            ////CN_UnidadMedida _UnidadMedida = new CN_UnidadMedida();
+
             try
             {
 
-                cbo_categoria.DataSource =_Categoria.CargarCbo();
+                cbo_categoria.DataSource = _Categoria.CargarCbo();
                 cbo_categoria.ValueMember = "Id_categoria";
                 cbo_categoria.DisplayMember = "Nombre";
 
-               
+
 
                 ////cbo_marca.DataSource = _Marca.CargarCbo();
                 ////cbo_marca.ValueMember = "Id_Marca";
                 ////cbo_marca.DisplayMember = "Nombre";
 
-                cbo_unidadMedida.DataSource = _UnidadMedida.CargarCbo();
-                cbo_unidadMedida.ValueMember = "Id_UnidadMedida";
-                cbo_unidadMedida.DisplayMember = "Nombre";
+                //cbo_unidadMedida.DataSource = _UnidadMedida.CargarCbo();
+                //cbo_unidadMedida.ValueMember = "Id_UnidadMedida";
+                //cbo_unidadMedida.DisplayMember = "Nombre";
 
-   
+
             }
             catch (Exception ex)
             {
@@ -76,7 +81,6 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 MessageBox.Show("Error al cargar: " + ex.Message);
             }
         }
-   
         private void MostrarDatos()
         {
             try
@@ -86,7 +90,9 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     txt_codigo.Text = producto.Codigo;
                     txt_nombre.Text = producto.Nombre;
                     txt_descripcion.Text = producto.Descripcion;
-                    txt_precio.Text = producto.Precio.ToString("0.00", CultureInfo.InvariantCulture);
+                    txt_precio.Text = producto.Precio.ToString("N2", new CultureInfo("es-AR"));
+
+                    txt_stock_minimo.Text = producto.StockMinimo.ToString("N2", new CultureInfo("es-AR"));
 
 
                     Chk_RequiereVencimiento.Checked = producto.RequiereVencimiento;
@@ -94,7 +100,6 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     Chk_actualizarPrecioAutomaticamente.Checked = producto.ActualizarPrecioAutomaticamente;
 
 
-                    txt_stock_minimo.Text = producto.StockMinimo.ToString();
                     lbl_id.Text = producto.Id_Producto.ToString();
                     lbl_fecha.Visible = true;
                     lbl_fecha.Text = "Ultima actualización:      "+producto.FechaUltimaActualizacionPrecio.ToString();
@@ -105,8 +110,11 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     txt_nombre_marca.Text = producto.Marca.Nombre;
                     txt_id_marca.Text = producto.Marca.Id_Marca.ToString();
 
+                    txt_unidadMedida.Text = producto.UnidadMedida.Nombre;
+                    txt_id_unidadMedida.Text = producto.UnidadMedida.Id_UnidadMedida.ToString();
+
                     //cbo_marca.SelectedValue = producto.Marca.Id_Marca;
-                    cbo_unidadMedida.SelectedValue = producto.UnidadMedida.Id_UnidadMedida;
+                    //cbo_unidadMedida.SelectedValue = producto.UnidadMedida.Id_UnidadMedida;
 
                 }
             }
@@ -129,53 +137,6 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
       
 
-        private void txt_stock_minimo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite teclas de control como Backspace
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-            // Permitir dígitos
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            // Si no es número, ni control, ni punto válido: se bloquea
-            e.Handled = true;
-            if (!mensajeMostrado)
-            {
-                MessageBox.Show("Solo se permiten números.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                mensajeMostrado = true;
-            }
-        }
-
-
-        private void txt_precio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite teclas de control como Backspace
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // Permite números (0–9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-       
-     
-            // Si no es número, ni control, ni punto válido: se bloquea
-            e.Handled = true;
-            if (!mensajeMostrado)
-            {
-                MessageBox.Show("Solo se permiten números.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                mensajeMostrado = true;
-            }
-        }
         private void txt_codigo_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -262,12 +223,10 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     producto.Codigo = txt_codigo.Text.Trim().ToUpper();
                     producto.Nombre = txt_nombre.Text.Trim().ToUpper();
                     producto.Descripcion = txt_descripcion.Text.Trim();
-                    producto.Precio = Convert.ToDecimal(txt_precio.Text.Trim(), CultureInfo.InvariantCulture);
+                    producto.Precio = Convert.ToDecimal(txt_precio.Text.Trim(), new CultureInfo("es-AR"));
+                    producto.StockMinimo = Convert.ToDecimal(txt_stock_minimo.Text.Trim(), new CultureInfo("es-AR"));
 
-                    producto.StockMinimo = Convert.ToInt32(txt_stock_minimo.Text.Trim());
 
-                 
-                    
                     producto.RequiereVencimiento = Chk_RequiereVencimiento.Checked;
 
                     producto.ActualizarPrecioAutomaticamente = Chk_actualizarPrecioAutomaticamente.Checked;
@@ -276,12 +235,18 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     producto.Marca = new Marca();
 
                     producto.Marca.Id_Marca = Convert.ToInt32(txt_id_marca.Text.Trim());
-          
+
+
+                    producto.UnidadMedida = new UnidadMedida();
+
+                    producto.UnidadMedida.Id_UnidadMedida = Convert.ToInt32(txt_id_unidadMedida.Text.Trim());
 
                     producto.Subcategoria = (Subcategoria)cbo_subcategoria.SelectedItem;
                     ////producto.Marca = (Marca)cbo_marca.SelectedItem;
                    
-                    producto.UnidadMedida = (UnidadMedida)cbo_unidadMedida.SelectedItem;
+                    //producto.UnidadMedida = (UnidadMedida)cbo_unidadMedida.SelectedItem;
+
+
 
 
                     if (producto.Id_Producto != 0)
@@ -414,6 +379,130 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             };
 
             frmSeleccionar.ShowDialog();
+        }
+
+
+   
+    
+
+
+
+        private void btn_unidadMedida_Click(object sender, EventArgs e)
+        {
+            FrmSeleccionarUnidadMedida frmSeleccionar = new FrmSeleccionarUnidadMedida();
+
+            // Suscribís al evento
+            frmSeleccionar.UnidadMedidaSeleccionada += (Id_UnidadMedida, Nombre, PermiteDecimales) =>
+            {
+                txt_id_unidadMedida.Text = Id_UnidadMedida;
+                txt_unidadMedida.Text = Nombre;
+                this.PermiteDecimales = PermiteDecimales;
+
+            };
+
+            frmSeleccionar.ShowDialog();
+        }
+
+        private void txt_precio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+
+            // Permitir control (backspace, delete)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Solo permitir dígitos y coma/punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Reemplazar punto por coma (opcional, según cultura)
+            if (e.KeyChar == '.')
+                e.KeyChar = ',';
+
+            // Evitar más de una coma
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_precio_Leave(object sender, EventArgs e)
+        {
+           CN_Metodos.FormatoMoneda((TextBox)sender);
+        }
+
+        private void txt_stock_minimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+
+            // Permitir teclas de control (Backspace, Delete, etc)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Permitir solo dígitos siempre
+            if (!char.IsDigit(e.KeyChar))
+            {
+                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
+                if (!PermiteDecimales)
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                // Si permite decimales, solo permitimos coma (o punto) una sola vez
+                if (e.KeyChar == ',' || e.KeyChar == '.')
+                {
+                    // Reemplazamos punto por coma para estandarizar
+                    e.KeyChar = ',';
+
+                    // Si ya existe una coma en el texto, bloqueamos
+                    if (txt.Text.Contains(","))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    // Cualquier otro caracter no permitido
+                    e.Handled = true;
+                }
+            }
+        }
+
+
+
+        private void txt_stock_minimo_Leave(object sender, EventArgs e)
+        {
+            if (PermiteDecimales)
+            {
+                CN_Metodos.FormatoMoneda((TextBox)sender);// permite decimales
+            }
+            else
+            {
+                // Intentamos formatear como entero
+                if (decimal.TryParse(txt_stock_minimo.Text, NumberStyles.Number, new CultureInfo("es-AR"), out decimal valor))
+                {
+                    if (valor % 1 != 0)
+                    {
+                        MessageBox.Show("Este tipo de unidad no permite decimales.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_stock_minimo.Focus();
+                        txt_stock_minimo.SelectAll();
+                    }
+                    else
+                    {
+                        txt_stock_minimo.Text = ((int)valor).ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_stock_minimo.Focus();
+                    txt_stock_minimo.SelectAll();
+                }
+            }
         }
     }
 }

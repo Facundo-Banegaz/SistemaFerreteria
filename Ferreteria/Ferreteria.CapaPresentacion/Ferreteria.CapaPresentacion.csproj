@@ -96,6 +96,12 @@
     <Compile Include="VistaCompartida\FrmSeleccionarTipoMovimiento.Designer.cs">
       <DependentUpon>FrmSeleccionarTipoMovimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarUnidadMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmSeleccionarUnidadMedida.Designer.cs">
+      <DependentUpon>FrmSeleccionarUnidadMedida.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaCompartida\FrmSeleccionarValorEspecificacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCompartida\FrmSeleccionarTipoMovimiento.resx">
       <DependentUpon>FrmSeleccionarTipoMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmSeleccionarUnidadMedida.resx">
+      <DependentUpon>FrmSeleccionarUnidadMedida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCompartida\FrmSeleccionarValorEspecificacion.resx">
       <DependentUpon>FrmSeleccionarValorEspecificacion.cs</DependentUpon>

@@ -51,17 +51,15 @@ namespace Ferreteria.CapaDatos
             string correlativo = total.ToString().PadLeft(8, '0');
             return (serie, correlativo);
         }
-
-
-        //Metodo de moneda
         public void FormatoMoneda(TextBox xTextBox)
         {
             if (string.IsNullOrWhiteSpace(xTextBox.Text))
                 return;
 
-            if (decimal.TryParse(xTextBox.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal monto))
+            // Intentar convertir respetando coma decimal
+            if (decimal.TryParse(xTextBox.Text, NumberStyles.Any, new CultureInfo("es-AR"), out decimal monto))
             {
-                xTextBox.Text = monto.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"));
+                xTextBox.Text = monto.ToString("N2", new CultureInfo("es-AR"));
             }
             else
             {
@@ -70,6 +68,11 @@ namespace Ferreteria.CapaDatos
                 xTextBox.SelectAll();
             }
         }
+
+
+
+
+
 
     }
 }

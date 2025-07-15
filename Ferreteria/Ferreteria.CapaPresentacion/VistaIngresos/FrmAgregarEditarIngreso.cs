@@ -19,9 +19,9 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
     public partial class FrmAgregarEditarIngreso : Form
     {
         public int Cantidad { get; private set; } = 0;
-      
+        bool PermiteDecimales = true;
 
-
+        private CN_Metodos CN_Metodos = new CN_Metodos();
         public Usuario _Usuario;
         public FrmAgregarEditarIngreso()
         {
@@ -73,6 +73,9 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                     lbl_encabezado.Text = "BOLETA DE COMPRA";
                 }
                    
+                lbl_correlativo.Text = serie;
+                lbl_serie.Text = correlativo; 
+                
                 lbl_serie_correlativo.Text = $"Comprobante N°: {serie}-{correlativo}";
             }
             catch (Exception ex)
@@ -87,18 +90,9 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             MostrarOcultarControles(false, false);
             MostrarTabla();
-    
         }
 
-        private void btn_guardar_Click(object sender, EventArgs e)
-        {
-            bool requiereVencimiento = lbl_fechaFabricacion.Visible;
-            bool actualizarPrecio = lbl_porcentaje.Visible;
-
-            if (!ValidarCamposObligatorios(requiereVencimiento, actualizarPrecio))
-                return;
-
-        }
+ 
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
@@ -120,10 +114,11 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             FrmSeleccionarProducto frmSeleccionar = new FrmSeleccionarProducto();
 
             // Suscribís al evento
-            frmSeleccionar.ProductoIngresoSeleccionado += (Id_Producto, Nombre, RequiereVencimiento,ActualizarPrecioAutomaticamente) =>
+            frmSeleccionar.ProductoIngresoSeleccionado += (Id_Producto, Nombre, RequiereVencimiento,ActualizarPrecioAutomaticamente,PermiteDecimales) =>
             {
                 txt_id_producto.Text = Id_Producto;
                 txt_producto.Text = Nombre;
+                this.PermiteDecimales = PermiteDecimales;
 
 
                 MostrarOcultarControles( RequiereVencimiento, ActualizarPrecioAutomaticamente);
@@ -180,55 +175,151 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
             frmSeleccionar.ShowDialog();
         }
-
-        private bool ValidarCamposObligatorios(bool requiereVencimiento, bool actualizarPrecio)
+        private void btn_guardar_Click(object sender, EventArgs e)
         {
-            bool esValido = true;
-            errorIcono.Clear(); // Limpiar errores anteriores
 
-            if (requiereVencimiento)
+            GuardarIngreso();
+        }
+        private void GuardarIngreso()
+        {
+            CN_Ingreso _CN_Ingreso = new CN_Ingreso();
+
+            try
             {
-                if (dtp_fechaFabricacion.Value == DateTime.MinValue)
+                // Verificar si el DataGridView está vacío
+                if (dgv_detalles_ingresos.Rows.Count == 0)
                 {
-                    errorIcono.SetError(dtp_fechaFabricacion, "Ingrese la fecha de fabricación.");
-                    esValido = false;
+                    MessageBox.Show("Debe agregar al menos un detalle de ingreso.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                if (dtp_fechaVencimiento.Value == DateTime.MinValue)
+                // Validar campos generales
+                if (!ValidarVacio())
                 {
-                    errorIcono.SetError(dtp_fechaVencimiento, "Ingrese la fecha de vencimiento.");
-                    esValido = false;
+                    MessageBox.Show("Debe completar todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                // Validar que vencimiento sea posterior a fabricación
-                if (dtp_fechaVencimiento.Value <= dtp_fechaFabricacion.Value)
-                {
-                    errorIcono.SetError(dtp_fechaVencimiento, "La fecha de vencimiento debe ser mayor a la de fabricación.");
-                    esValido = false;
-                }
-            }
+                errorIcono.Clear();
 
-            if (actualizarPrecio)
-            {
-                if (string.IsNullOrWhiteSpace(txt_porcentaje.Text))
+                // Crear objeto Ingreso
+                Ingreso _Ingreso = new Ingreso
                 {
-                    errorIcono.SetError(txt_porcentaje, "Ingrese el porcentaje de actualización.");
-                    esValido = false;
-                }
-                else
+                    Usuario = new Usuario { Id_Usuario = _Usuario.Id_Usuario },
+                    Proveedor = new Proveedor { Id_Proveedor = Convert.ToInt32(txt_id_proveedor.Text) },
+                    Fecha = dtp_fecha.Value,
+                    Tipo_Comprobante = cbo_comprobante.SelectedItem?.ToString(),
+                    Serie = lbl_serie.Text,
+                    Correlativo = lbl_correlativo.Text,
+                    Estado = "EMITIDO"
+                };
+
+                List<DetalleIngreso> _Detalle_Ingreso = new List<DetalleIngreso>();
+
+                // Nombres de columnas centralizados
+                const string COL_ID = "Id_Producto";
+                const string COL_NOMBRE = "Producto";
+                const string COL_PRECIO = "PrecioCompra";
+                const string COL_CANTIDAD = "Cantidad";
+                const string COL_FECHA_FAB = "FechaFabricacion";
+                const string COL_FECHA_VENC = "FechaVencimiento";
+                const string COL_GANANCIA = "PorcentajeGanancia";
+
+                // Recorrer el DataGridView
+                foreach (DataGridViewRow fila in dgv_detalles_ingresos.Rows)
                 {
-                    // Validar que sea un número válido
-                    if (!decimal.TryParse(txt_porcentaje.Text, out decimal porcentaje) || porcentaje < 0)
+                    if (fila.IsNewRow) continue;
+
+                    DetalleIngreso detalle = new DetalleIngreso
                     {
-                        errorIcono.SetError(txt_porcentaje, "Ingrese un porcentaje válido mayor  0.");
-                        esValido = false;
-                    }
-                }
-            }
+                        Producto = new Producto
+                        {
+                            Id_Producto = Convert.ToInt32(fila.Cells[COL_ID].Value),
+                            Nombre = fila.Cells[COL_NOMBRE].Value?.ToString()
+                        },
+                        PrecioCompra = decimal.TryParse(fila.Cells[COL_PRECIO].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal precioCompra) ? precioCompra : 0,
+                        Cantidad = decimal.TryParse(fila.Cells[COL_CANTIDAD].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal cantidad) ? cantidad : 0,
+                        PorcentajeGanancia = decimal.TryParse(fila.Cells[COL_GANANCIA].Value?.ToString(), NumberStyles.Any, CultureInfo.CreateSpecificCulture("es-AR"), out decimal ganancia) ? ganancia : 0,
+                        FechaFabricacion = DateTime.TryParse(fila.Cells[COL_FECHA_FAB].Value?.ToString(), out DateTime fab) ? fab : DateTime.MinValue,
+                        FechaVencimiento = DateTime.TryParse(fila.Cells[COL_FECHA_VENC].Value?.ToString(), out DateTime venc) ? venc : DateTime.MinValue
+                    };
 
-            return esValido;
+                    // Validar campos críticos
+                    if (detalle.PrecioCompra <= 0 || detalle.Cantidad <= 0)
+                    {
+                        MessageBox.Show($"La fila {fila.Index + 1} contiene datos inválidos (precio o cantidad).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    _Detalle_Ingreso.Add(detalle);
+                }
+
+                // Guardar en la base de datos
+                _CN_Ingreso.InsertarIngreso(_Ingreso, _Detalle_Ingreso);
+
+                // Mostrar resumen y cerrar
+                MessageBox.Show("¡El ingreso fue agregado exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MostrarResumenIngreso(_Detalle_Ingreso);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void MostrarResumenIngreso(List<DetalleIngreso> detalles)
+        {
+            StringBuilder resumen = new StringBuilder();
+            decimal total = 0;
+
+            resumen.AppendLine("Resumen del Ingreso:");
+            resumen.AppendLine("--------------------------------------------------");
+
+            foreach (var item in detalles)
+            {
+                decimal subtotal = item.PrecioCompra * item.Cantidad;
+                total += subtotal;
+
+                resumen.AppendLine($"Producto: {item.Producto.Nombre}");
+                resumen.AppendLine($"Cantidad: {item.Cantidad}");
+                resumen.AppendLine($"Precio Compra: ${item.PrecioCompra:N2}");
+                resumen.AppendLine($"Subtotal: ${subtotal:N2}");
+                resumen.AppendLine("--------------------------------------------------");
+            }
+
+            resumen.AppendLine($"TOTAL: ${total:N2}");
+
+            MessageBox.Show(resumen.ToString(), "Resumen del Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private bool ValidarVacio()
+        {
+            bool error = true;
+
+            if (txt_id_proveedor.Text == string.Empty)
+            {
+                errorIcono.SetError(txt_id_proveedor, "El campo  es obligatorio, ingrese el Nombre ");
+
+
+                error = false;
+            }
+            else  if (txt_nombre_proveedor.Text == string.Empty)
+            {
+                errorIcono.SetError(txt_nombre_proveedor, "El campo  es obligatorio, ingrese el Nombre ");
+
+
+                error = false;
+            }
+            else
+            {
+                errorIcono.Clear();
+            }
+
+            return error;
+        }
+    
         //Logica de la Grilla
         //Crea la tabla de Detalle 
 
@@ -236,30 +327,43 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         private void MostrarTabla()
         {
             // Limpiar columnas si es necesario
-            dgv_ingresos.Columns.Clear();
+            dgv_detalles_ingresos.Columns.Clear();
 
             // Agregar columnas
-            dgv_ingresos.Columns.Add("Id_Producto", "Id_Producto");
-            dgv_ingresos.Columns.Add("Producto", "Producto");
-            dgv_ingresos.Columns.Add("Fecha Fabricación", "Fecha Fabricación");
-            dgv_ingresos.Columns.Add("Fecha Vencimiento", "Fecha Vencimiento");
-            dgv_ingresos.Columns.Add("Precio Compra", "Precio Compra");
-            dgv_ingresos.Columns.Add("Porcentaje Ganancia", "Porcentaje Ganancia");
-            dgv_ingresos.Columns.Add("Cantidad", "Cantidad");
-            dgv_ingresos.Columns.Add("SubTotal", "SubTotal");
+            dgv_detalles_ingresos.Columns.Add("Id_Producto", "Id_Producto");
+            dgv_detalles_ingresos.Columns.Add("Producto", "Producto");
+            dgv_detalles_ingresos.Columns.Add("FechaFabricacion", "FechaFabricacion");
+            dgv_detalles_ingresos.Columns.Add("FechaVencimiento", "FechaVencimiento");
+            dgv_detalles_ingresos.Columns.Add("PrecioCompra", "PrecioCompra");
+            dgv_detalles_ingresos.Columns.Add("PorcentajeGanancia", "PorcentajeGanancia");
+            dgv_detalles_ingresos.Columns.Add("Cantidad", "Cantidad");
+            dgv_detalles_ingresos.Columns.Add("SubTotal", "SubTotal");
             // Autoajustar columnas 
-            dgv_ingresos.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["SubTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Id_Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Precio Compra"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Fecha Fabricación"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Fecha Vencimiento"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv_ingresos.Columns["Porcentaje Ganancia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["SubTotal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["Id_Producto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["PrecioCompra"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["FechaFabricacion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["FechaVencimiento"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_detalles_ingresos.Columns["PorcentajeGanancia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_detalles_ingresos.Columns["SubTotal"].DefaultCellStyle.Format = "N2";
+            dgv_detalles_ingresos.Columns["SubTotal"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            dgv_detalles_ingresos.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+            dgv_detalles_ingresos.Columns["Cantidad"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            // Si Stock también es decimal:
+            dgv_detalles_ingresos.Columns["PorcentajeGanancia"].DefaultCellStyle.Format = "N2";
+            dgv_detalles_ingresos.Columns["PorcentajeGanancia"].DefaultCellStyle.FormatProvider = culturaAR;
 
         }
 
-      
+
 
         private void txt_codigoBarra_KeyDown(object sender, KeyEventArgs e)
         {
@@ -280,7 +384,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 {
                     txt_id_producto.Text = producto.Id_Producto.ToString();
                     txt_producto.Text = producto.Nombre;
-
+                   this.PermiteDecimales= producto.PermiteDecimales;
                     MostrarOcultarControles(producto.RequiereVencimiento, producto.ActualizarPrecioAutomaticamente);
                 }
                 else
@@ -305,10 +409,11 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         private void btn_agregar_fila_Click(object sender, EventArgs e)
         {
             AgregarFilaIngreso();
+            MostrarResumenIngreso(dgv_detalles_ingresos);
         }
         private void btn_quitar_Click(object sender, EventArgs e)
         {
-            if (dgv_ingresos.CurrentRow == null)
+            if (dgv_detalles_ingresos.CurrentRow == null)
             {
                 MessageBox.Show("Seleccione una fila para eliminar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -317,13 +422,15 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             var confirmacion = MessageBox.Show("¿Está seguro que desea eliminar este producto del detalle?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirmacion == DialogResult.Yes)
             {
-                dgv_ingresos.Rows.Remove(dgv_ingresos.CurrentRow);
+                dgv_detalles_ingresos.Rows.Remove(dgv_detalles_ingresos.CurrentRow);
+             
             }
+            
         }
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
-            if (dgv_ingresos.CurrentRow == null)
+            if (dgv_detalles_ingresos.CurrentRow == null)
             {
                 MessageBox.Show("Seleccione una fila para modificar la cantidad.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -344,18 +451,19 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                     {
                         int nuevaCantidad = formCantidad.Cantidad;
 
-                        DataGridViewRow fila = dgv_ingresos.CurrentRow;
-                        decimal precioCompra = decimal.Parse(fila.Cells["Precio Compra"].Value.ToString(), CultureInfo.CurrentCulture);
+                        DataGridViewRow fila = dgv_detalles_ingresos.CurrentRow;
+                        decimal precioCompra = decimal.Parse(fila.Cells["Precio Compra"].Value.ToString(), CultureInfo.CreateSpecificCulture("es-AR"));
                         decimal nuevoSubtotal = nuevaCantidad * precioCompra;
 
                         fila.Cells["Cantidad"].Value = nuevaCantidad;
-                        fila.Cells["SubTotal"].Value = nuevoSubtotal.ToString("N2", CultureInfo.CurrentCulture);
+                        fila.Cells["SubTotal"].Value = nuevoSubtotal.ToString("N2",CultureInfo.CreateSpecificCulture("es-AR"));
 
                         MessageBox.Show("La cantidad fue modificada correctamente.", "Modificación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
                     }
                 }
             }
-
+          
         }
 
         private void AgregarFilaIngreso()
@@ -363,13 +471,16 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             try
             {
                 if (!ValidarCamposDetalle())
+                {
+                    MessageBox.Show("Debe completar todos los campos requeridos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
 
                 int idProducto = Convert.ToInt32(txt_id_producto.Text);
                 string nombreProducto = txt_producto.Text;
 
-                // Verificar si el producto ya está en la grilla
-                foreach (DataGridViewRow row in dgv_ingresos.Rows)
+                // Verificar si el producto ya está presente en la grilla
+                foreach (DataGridViewRow row in dgv_detalles_ingresos.Rows)
                 {
                     if (Convert.ToInt32(row.Cells["Id_Producto"].Value) == idProducto)
                     {
@@ -379,27 +490,34 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                     }
                 }
 
-                decimal precioCompra = decimal.Parse(txt_precioCompra.Text, CultureInfo.InvariantCulture);
-                int cantidad = int.Parse(txt_productoCantidad.Text);
+                // Conversión de campos con validación regional
+                decimal precioCompra = decimal.Parse(txt_precioCompra.Text, CultureInfo.CreateSpecificCulture("es-AR"));
+                decimal cantidad = decimal.Parse(txt_productoCantidad.Text, CultureInfo.CreateSpecificCulture("es-AR"));
+                decimal porcentajeGanancia = txt_porcentaje.Visible && !string.IsNullOrWhiteSpace(txt_porcentaje.Text)
+                    ? decimal.Parse(txt_porcentaje.Text, CultureInfo.CreateSpecificCulture("es-AR"))
+                    : 0;
 
                 string fechaFabricacion = dtp_fechaFabricacion.Visible ? dtp_fechaFabricacion.Value.ToString("yyyy-MM-dd") : "--";
                 string fechaVencimiento = dtp_fechaVencimiento.Visible ? dtp_fechaVencimiento.Value.ToString("yyyy-MM-dd") : "--";
-                decimal porcentajeGanancia = txt_porcentaje.Visible && !string.IsNullOrWhiteSpace(txt_porcentaje.Text)? decimal.Parse(txt_porcentaje.Text, CultureInfo.CreateSpecificCulture("es-AR"))      : 0;
-
 
                 decimal subtotal = precioCompra * cantidad;
 
-                dgv_ingresos.Rows.Add(
-                    idProducto,
-                    nombreProducto,
-                    fechaFabricacion,
-                    fechaVencimiento,
-                    precioCompra.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR")),
-                    porcentajeGanancia.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR")),
-                    cantidad,
-                    subtotal.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"))
-                );
+                // Crear y asignar los valores de la fila
+                DataGridViewRow nuevaFila = new DataGridViewRow();
+                nuevaFila.CreateCells(dgv_detalles_ingresos);
 
+                nuevaFila.Cells[0].Value = idProducto;
+                nuevaFila.Cells[1].Value = nombreProducto;
+                nuevaFila.Cells[2].Value = fechaFabricacion;
+                nuevaFila.Cells[3].Value = fechaVencimiento;
+                nuevaFila.Cells[4].Value = precioCompra.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"));
+                nuevaFila.Cells[5].Value = porcentajeGanancia.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"));
+                nuevaFila.Cells[6].Value = cantidad;
+                nuevaFila.Cells[7].Value = subtotal.ToString("N2", CultureInfo.CreateSpecificCulture("es-AR"));
+
+                dgv_detalles_ingresos.Rows.Add(nuevaFila);
+
+                // Limpiar los campos
                 LimpiarCamposDetalle();
             }
             catch (Exception ex)
@@ -407,7 +525,6 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 MessageBox.Show("Error al agregar fila: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
 
         private void LimpiarCamposDetalle()
@@ -454,21 +571,8 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 return false;
             }
 
-            if (!decimal.TryParse(txt_precioCompra.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal precio) || precio <= 0)
-            {
-                errorIcono.SetError(txt_precioCompra, "Precio inválido.");
-                MessageBox.Show("Ingrese un precio válido mayor a cero.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_precioCompra.Focus();
-                return false;
-            }
+        
 
-            if (!int.TryParse(txt_productoCantidad.Text.Trim(), out int cantidad) || cantidad <= 0)
-            {
-                errorIcono.SetError(txt_productoCantidad, "Cantidad inválida.");
-                MessageBox.Show("Ingrese una cantidad válida mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_productoCantidad.Focus();
-                return false;
-            }
 
             if (dtp_fechaFabricacion.Visible || dtp_fechaVencimiento.Visible)
             {
@@ -501,23 +605,63 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void txt_producto_cantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            TextBox txt = sender as TextBox;
+
+            // Permitir teclas de control (Backspace, Delete, etc)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Permitir solo dígitos siempre
+            if (!char.IsDigit(e.KeyChar))
             {
-                MessageBox.Show("Solo se permiten números enteros.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
+                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
+                if (!PermiteDecimales)
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                // Si permite decimales, solo permitimos coma (o punto) una sola vez
+                if (e.KeyChar == ',' || e.KeyChar == '.')
+                {
+                    // Reemplazamos punto por coma para estandarizar
+                    e.KeyChar = ',';
+
+                    // Si ya existe una coma en el texto, bloqueamos
+                    if (txt.Text.Contains(","))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    // Cualquier otro caracter no permitido
+                    e.Handled = true;
+                }
             }
         }
 
         private void txt_precioCompra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            TextBox txt = sender as TextBox;
+
+            // Permitir control (backspace, delete)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Solo permitir dígitos y coma/punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
             {
-                MessageBox.Show("Solo se permiten números y punto decimal.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
+                return;
             }
 
-            // Permitir solo un punto decimal
-            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            // Reemplazar punto por coma (opcional, según cultura)
+            if (e.KeyChar == '.')
+                e.KeyChar = ',';
+
+            // Evitar más de una coma
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
             {
                 e.Handled = true;
             }
@@ -525,14 +669,25 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void txt_porcentaje_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            TextBox txt = sender as TextBox;
+
+            // Permitir control (backspace, delete)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Solo permitir dígitos y coma/punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
             {
-                MessageBox.Show("Solo se permiten números y punto decimal.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
+                return;
             }
 
-            // Permitir solo un punto decimal
-            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            // Reemplazar punto por coma (opcional, según cultura)
+            if (e.KeyChar == '.')
+                e.KeyChar = ',';
+
+            // Evitar más de una coma
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
             {
                 e.Handled = true;
             }
@@ -591,6 +746,80 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         private void txt_porcentaje_TextChanged(object sender, EventArgs e)
         {
             CalcularPrecioVenta();
+        }
+
+        private void txt_precioCompra_Leave(object sender, EventArgs e)
+        {
+            CN_Metodos.FormatoMoneda((TextBox)sender);
+        }
+
+        private void txt_productoCantidad_Leave(object sender, EventArgs e)
+        {
+            if (PermiteDecimales)
+            {
+                CN_Metodos.FormatoMoneda((TextBox)sender);// permite decimales
+            }
+            else
+            {
+                // Intentamos formatear como entero
+                if (decimal.TryParse(txt_productoCantidad.Text, NumberStyles.Number, new CultureInfo("es-AR"), out decimal valor))
+                {
+                    if (valor % 1 != 0)
+                    {
+                        MessageBox.Show("Este tipo de unidad no permite decimales.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txt_productoCantidad.Focus();
+                        txt_productoCantidad.SelectAll();
+                    }
+                    else
+                    {
+                        txt_productoCantidad.Text = ((int)valor).ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_productoCantidad.Focus();
+                    txt_productoCantidad.SelectAll();
+                }
+            }
+        }
+
+        private void txt_porcentaje_Leave(object sender, EventArgs e)
+        {
+            CN_Metodos.FormatoMoneda((TextBox)sender);
+        }
+
+        private void MostrarResumenIngreso(DataGridView dgv)
+        {
+            int cantidadProductos = dgv.Rows.Count;
+            decimal totalUnidades = 0;
+            decimal totalFinal = 0;
+
+            foreach (DataGridViewRow fila in dgv.Rows)
+            {
+                if (fila.Cells["Cantidad"].Value != null && fila.Cells["PrecioCompra"].Value != null)
+                {
+                    decimal cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value);
+                    decimal precio = Convert.ToDecimal(fila.Cells["PrecioCompra"].Value);
+
+                    totalUnidades += cantidad;
+                    totalFinal += cantidad * precio; // subtotal acumulado
+                }
+            }
+
+            lbl_cantidadProductos.Text = $"Productos: {cantidadProductos.ToString("N2", new CultureInfo("es-AR"))}";
+            lbl_totalUnidades.Text = $"Unidades: {totalUnidades.ToString("N2", new CultureInfo("es-AR"))}";
+            lbl_totalFinal.Text = $"Total: ${totalFinal.ToString("N2", new CultureInfo("es-AR"))}";
+        }
+
+        private void dgv_detalles_ingresos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarResumenIngreso(dgv_detalles_ingresos);
+        }
+
+        private void dgv_detalles_ingresos_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            MostrarResumenIngreso(dgv_detalles_ingresos);
         }
     }
 }

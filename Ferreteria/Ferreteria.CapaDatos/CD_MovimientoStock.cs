@@ -40,9 +40,9 @@ namespace Ferreteria.CapaDatos
 
                     MovimientoStock.Id_MovimientoStock = (int)Conexion.Lector["Id_MovimientoStock"];
                     MovimientoStock.Fecha = (DateTime)Conexion.Lector["Fecha"];
-                    MovimientoStock.Cantidad = (int)Conexion.Lector["Cantidad"];
-                    MovimientoStock.StockAnterior = (int)Conexion.Lector["StockAnterior"];
-                    MovimientoStock.StockNuevo = (int)Conexion.Lector["StockNuevo"];
+                    MovimientoStock.Cantidad = (decimal)Conexion.Lector["Cantidad"];
+                    MovimientoStock.StockAnterior = (decimal)Conexion.Lector["StockAnterior"];
+                    MovimientoStock.StockNuevo = (decimal)Conexion.Lector["StockNuevo"];
                     MovimientoStock.Estado = (bool)Conexion.Lector["Estado"];
 
                     MovimientoStock.Observacion = (string)Conexion.Lector["Observacion"];

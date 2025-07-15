@@ -44,13 +44,11 @@ namespace Ferreteria.CapaDatos
                     Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
                     Producto.Precio = (decimal)Conexion.Lector["Precio"];
                     Producto.FechaUltimaActualizacionPrecio = (DateTime)Conexion.Lector["FechaUltimaActualizacionPrecio"];
-                    Producto.Stock = (int)Conexion.Lector["Stock"];
-                    Producto.StockMinimo = (int)Conexion.Lector["StockMinimo"];
+                    Producto.Stock = (decimal)Conexion.Lector["Stock"];
+                    Producto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
                     Producto.RequiereVencimiento = (bool)Conexion.Lector["RequiereVencimiento"];
-                    Producto.EnPromocion = (bool)Conexion.Lector["EnPromocion"];
-                    Producto.ActualizarPrecioAutomaticamente = (bool)Conexion.Lector["ActualizarPrecioAutomaticamente"];
-                    Producto.PorcentajeDescuentoPromocion = (decimal)Conexion.Lector["PorcentajeDescuentoPromocion"];
+                   
                     Producto.Subcategoria = new Subcategoria();
                     Producto.Subcategoria.Categoria = new Categoria();
                     Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
@@ -68,7 +66,7 @@ namespace Ferreteria.CapaDatos
                     Producto.UnidadMedida = new UnidadMedida();
                     Producto.UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     Producto.UnidadMedida.Nombre = (string)Conexion.Lector["UnidadMedida"];
-
+                    Producto.UnidadMedida.PermiteDecimales = (bool)Conexion.Lector["PermiteDecimales"];
                     listaProducto.Add(Producto);
                 }
 
@@ -137,8 +135,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Id_UnidadMedida", Nuevo.UnidadMedida.Id_UnidadMedida);
                 Conexion.SetearParametro("@RequiereVencimiento", Nuevo.RequiereVencimiento);
                 Conexion.SetearParametro("@ActualizarPrecioAutomaticamente", Nuevo.ActualizarPrecioAutomaticamente);
-                Conexion.SetearParametro("@EnPromocion", Nuevo.EnPromocion);
-                Conexion.SetearParametro("@PorcentajeDescuentoPromocion", Nuevo.PorcentajeDescuentoPromocion);
+              
                 Conexion.EjecutarAccion();
 
 
@@ -210,18 +207,14 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Nombre", Producto.Nombre);
                 Conexion.SetearParametro("@Descripcion", Producto.Descripcion);
                 Conexion.SetearParametro("@Precio", Producto.Precio);
-                Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Producto.FechaUltimaActualizacionPrecio);
-                
+                Conexion.SetearParametro("@FechaUltimaActualizacionPrecio", Producto.FechaUltimaActualizacionPrecio.ToString("yyyy-MM-dd hh:mm:ss"));
                 Conexion.SetearParametro("@StockMinimo", Producto.StockMinimo);
                 Conexion.SetearParametro("@Estado", Producto.Estado);
                 Conexion.SetearParametro("@Id_Subcategoria", Producto.Subcategoria.Id_Subcategoria);
                 Conexion.SetearParametro("@Id_Marca", Producto.Marca.Id_Marca);
                 Conexion.SetearParametro("@Id_UnidadMedida", Producto.UnidadMedida.Id_UnidadMedida);
-
-
                 Conexion.SetearParametro("@RequiereVencimiento", Producto.RequiereVencimiento);
                 Conexion.SetearParametro("@ActualizarPrecioAutomaticamente", Producto.ActualizarPrecioAutomaticamente);
-
 
                 Conexion.EjecutarAccion();
 
@@ -230,7 +223,7 @@ namespace Ferreteria.CapaDatos
             catch (Exception ex)
             {
 
-                throw ex;
+                throw new Exception("Error al editar el producto: " + ex.Message);
             }
             finally
             {
@@ -304,8 +297,8 @@ namespace Ferreteria.CapaDatos
                     Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
                     Producto.Precio = (decimal)Conexion.Lector["Precio"];
                     Producto.FechaUltimaActualizacionPrecio = (DateTime)Conexion.Lector["FechaUltimaActualizacionPrecio"];
-                    Producto.Stock = (int)Conexion.Lector["Stock"];
-                    Producto.StockMinimo = (int)Conexion.Lector["StockMinimo"];
+                    Producto.Stock = (decimal)Conexion.Lector["Stock"];
+                    Producto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
 
                     Producto.Subcategoria = new Subcategoria();
@@ -369,9 +362,12 @@ namespace Ferreteria.CapaDatos
                     Producto.ActualizarPrecioAutomaticamente = (bool)Conexion.Lector["ActualizarPrecioAutomaticamente"];
 
 
+                    Producto.UnidadMedida = new UnidadMedida();
+                   
+                    Producto.UnidadMedida.PermiteDecimales = (bool)Conexion.Lector["PermiteDecimales"];
 
                 }
-            
+
                 return Producto;
             }
 

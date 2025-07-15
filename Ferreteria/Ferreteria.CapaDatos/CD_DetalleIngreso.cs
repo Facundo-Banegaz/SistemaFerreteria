@@ -48,7 +48,7 @@ namespace Ferreteria.CapaDatos
                     _DetalleIngreso.Producto.Nombre = (string)Conexion.Lector["Producto"];
 
 
-                    _DetalleIngreso.Cantidad = (int)Conexion.Lector["Cantidad"];
+                    _DetalleIngreso.Cantidad = (decimal)Conexion.Lector["Cantidad"];
                     _DetalleIngreso.PrecioCompra = (decimal)Conexion.Lector["PrecioCompra"];
 
                     _DetalleIngreso.Subtotal = (decimal)Conexion.Lector["Subtotal"];
@@ -88,6 +88,10 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@PrecioCompra", detalle.PrecioCompra);
                 Conexion.SetearParametro("@Id_Producto", detalle.Producto.Id_Producto);
                 Conexion.SetearParametro("@Id_Ingreso", detalle.Ingreso.Id_Ingreso);
+                Conexion.SetearParametro("@FechaFabricacion", detalle.FechaFabricacion.ToString("yyyy-MM-dd hh:mm:ss"));
+                Conexion.SetearParametro("@FechaVencimiento", detalle.FechaVencimiento.ToString("yyyy-MM-dd hh:mm:ss"));
+                Conexion.SetearParametro("@PorcentajeGanancia", detalle.PorcentajeGanancia);
+
 
                 Conexion.SetearParametroSalida("@Id_DetalleIngreso", SqlDbType.Int);
 

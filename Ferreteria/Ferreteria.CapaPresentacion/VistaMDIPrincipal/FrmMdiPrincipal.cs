@@ -26,7 +26,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
     public partial class FrmMdiPrincipal : Form
     {
 
-        private Usuario Usuario;
+        private Usuario _Usuario;
         private static Form formularioActivo = null;
         public FrmMdiPrincipal()
         { 
@@ -34,22 +34,22 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         public FrmMdiPrincipal(Usuario usuario)
         {
             InitializeComponent();
-            this.Usuario = usuario;
+            this._Usuario = usuario;
 
 
-            Text = $"¡¡Bienvenido al Sistema  {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+            Text = $"¡¡Bienvenido al Sistema  {_Usuario.Nombre} {_Usuario.Apellido}!! Nombre de  Usuario: ''{_Usuario.UsuarioNombre}'' | Acceso: ''{_Usuario.Acceso}''.";
         }
 
 
         private void FrmMdiPrincipal_Load(object sender, EventArgs e)
         {
             GestionUsuario();
-            lbl_usuario.Text = $"¡¡Bienvenido al Sistema  {Usuario.Nombre} {Usuario.Apellido}!! Nombre de  Usuario: ''{Usuario.UsuarioNombre}'' | Acceso: ''{Usuario.Acceso}''.";
+            lbl_usuario.Text = $"¡¡Bienvenido al Sistema  {_Usuario.Nombre}   {_Usuario.Apellido}!! Nombre de  Usuario: ''{_Usuario.UsuarioNombre}'' | Acceso: ''{_Usuario.Acceso}''.";
         }
 
         private void GestionUsuario()
         {
-            if (Usuario.Acceso == "Administrador")
+            if (_Usuario.Acceso == "Administrador")
             {
                 this.Menu_gestion_mantenimientos.Enabled = true;
                 this.Menu_gestion_compras.Enabled = true;
@@ -63,7 +63,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
             }
 
-            else if (Usuario.Acceso == "Vendedor")
+            else if (_Usuario.Acceso == "Vendedor")
             {
                 this.Menu_gestion_mantenimientos.Enabled = false;
                 this.Menu_gestion_compras.Enabled = false;
@@ -121,9 +121,9 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             }
             DialogResult respuesta = MessageBox.Show(
                 $"¿Desea salir del sistema?\n\n" +
-                $"Usuario: {Usuario.Nombre} {Usuario.Apellido}\n" +
-                $"Nombre de usuario: {Usuario.UsuarioNombre}\n" +
-                $"Acceso: {Usuario.Acceso}",
+                $"Usuario: {_Usuario.Nombre} {_Usuario.Apellido}\n" +
+                $"Nombre de usuario: {_Usuario.UsuarioNombre}\n" +
+                $"Acceso: {_Usuario.Acceso}",
                 "Confirmar salida",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -184,7 +184,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_ingresos_Click(object sender, EventArgs e)
         {
-            abrirForm(new FrmIngreso());
+            abrirForm(new FrmIngreso(_Usuario));
 
         }
 

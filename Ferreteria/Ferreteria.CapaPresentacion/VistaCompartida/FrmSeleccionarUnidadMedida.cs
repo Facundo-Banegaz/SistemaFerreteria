@@ -1,6 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
-using Ferreteria.CapaPresentacion.VistaCategoria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,29 +10,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
+namespace Ferreteria.CapaPresentacion.VistaCompartida
 {
-    public partial class FrmUnidadMedida : Form
+    public partial class FrmSeleccionarUnidadMedida : Form
     {
         private List<UnidadMedida> listaUnidadMedida;
-        public FrmUnidadMedida()
+        // Definís un delegado y un evento para pasar datos
+        public delegate void UnidadMedidaSeleccionadoHandler(string Id_UnidadMedida, string Nombre, bool PermiteDecimales);
+        public event UnidadMedidaSeleccionadoHandler UnidadMedidaSeleccionada;
+        public FrmSeleccionarUnidadMedida()
         {
             InitializeComponent();
-            Text = "Gestion Unidad Medida:";
+            Text = "Seleccionar Unidad Medida:";
         }
 
-        private void FrmUnidadMedida_Load(object sender, EventArgs e)
+        private void FrmSeleccionarUnidadMedida_Load(object sender, EventArgs e)
         {
             CargarGrilla();
 
             ArregloDataGridView(dgv_unidadMedida);
-        }
-
-        private void btn_buscar_Click(object sender, EventArgs e)
-        {
-            BuscarUnidadMedida();
-            txt_buscar.Clear();     // limpia el campo
-            txt_buscar.Focus();     // focus
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)
@@ -42,60 +37,11 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
             CargarGrilla();
         }
 
-        private void btn_nuevo_Click(object sender, EventArgs e)
+        private void btn_buscar_Click(object sender, EventArgs e)
         {
-            FrmAgregarEditarUnidadMedida frmAgregar = new FrmAgregarEditarUnidadMedida();
-            frmAgregar.ShowDialog();
-            CargarGrilla();
-        }
-
-        private void btn_editar_Click(object sender, EventArgs e)
-        {
-            UnidadMedida seleccionado = null;
-            if (dgv_unidadMedida.CurrentRow != null)
-            {
-                DialogResult respuesta = MessageBox.Show("¿Quieres Editar esta Unidad de medida?", "Editar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (respuesta == DialogResult.Yes)
-                {
-                    seleccionado = (UnidadMedida)dgv_unidadMedida.CurrentRow.DataBoundItem;
-                    FrmAgregarEditarUnidadMedida frmEditar = new FrmAgregarEditarUnidadMedida(seleccionado);
-                    frmEditar.ShowDialog();
-                    CargarGrilla();
-                }
-            }
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-            CN_UnidadMedida _UnidadMedida = new CN_UnidadMedida();
-            UnidadMedida seleccionado = null;
-
-
-            try
-            {
-                if (dgv_unidadMedida.CurrentRow != null)
-                {
-                    DialogResult respuesta = MessageBox.Show("¿Quieres Eliminar esta Unidad de Medida?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (respuesta == DialogResult.Yes)
-                    {
-                        seleccionado = (UnidadMedida)dgv_unidadMedida.CurrentRow.DataBoundItem;
-                        _UnidadMedida.EliminarUnidadMedida(seleccionado.Id_UnidadMedida);
-
-                        CargarGrilla();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            BuscarUnidadMedida();
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();     // focus
         }
 
         ///Funciones propias
@@ -125,7 +71,7 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
         {
             //logica del dataGridView
             CN_UnidadMedida _UnidadMedida = new CN_UnidadMedida();
-          
+
             listaUnidadMedida = _UnidadMedida.ListaUnidadMedida();
 
             dgv_unidadMedida.DataSource = listaUnidadMedida;
@@ -153,5 +99,15 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
             }
         }
 
+        private void dgv_unidadMedida_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string Id_UnidadMedida = Convert.ToString(this.dgv_unidadMedida.CurrentRow.Cells["Id_UnidadMedida"].Value);
+            string Nombre = Convert.ToString(this.dgv_unidadMedida.CurrentRow.Cells["Nombre"].Value);
+            bool PermiteDecimales = Convert.ToBoolean(this.dgv_unidadMedida.CurrentRow.Cells["PermiteDecimales"].Value);
+            // Invocás el evento si hay algún método suscripto
+            UnidadMedidaSeleccionada?.Invoke(Id_UnidadMedida,  Nombre,  PermiteDecimales);
+
+            this.Close();
+        }
     }
 }

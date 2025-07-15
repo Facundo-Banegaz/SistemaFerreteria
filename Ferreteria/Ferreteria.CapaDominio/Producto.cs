@@ -13,19 +13,16 @@ namespace Ferreteria.CapaDominio
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
-        public int Stock { get; set; } = 0;
+        public decimal Stock { get; set; } = 0;
         [DisplayName("Stock Minimo")]
-        public int StockMinimo { get; set; } = 0;
+        public decimal StockMinimo { get; set; } = 0;
         public string Descripcion { get; set; }      
         public bool Estado { get; set; } = true;
         [DisplayName("Requiere Vencimiento")]
         public bool RequiereVencimiento { get; set; }= false;
+
         [DisplayName("Actualizar Precio Automaticamente")]
-        public bool ActualizarPrecioAutomaticamente { get; set; } = true;
-        [DisplayName("En Promocion")]
-        public bool EnPromocion { get; set; } = false;
-        [DisplayName("Porcentaje Descuento Promocion")]
-        public decimal PorcentajeDescuentoPromocion { get; set; } = 0;
+        public bool ActualizarPrecioAutomaticamente { get; set; } = false;
 
 
 
@@ -44,6 +41,7 @@ namespace Ferreteria.CapaDominio
             return Nombre;
         }
 
+        public bool PermiteDecimales => UnidadMedida?.PermiteDecimales ?? false;
 
         [DisplayName("Unidad Medida")]
         public UnidadMedida UnidadMedida { get; set; }

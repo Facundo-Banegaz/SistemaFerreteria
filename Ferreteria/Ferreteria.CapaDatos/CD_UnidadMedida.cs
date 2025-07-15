@@ -42,7 +42,7 @@ namespace Ferreteria.CapaDatos
                     UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
                     UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviacion"];
-
+                    UnidadMedida.PermiteDecimales = (bool)Conexion.Lector["PermiteDecimales"];
                     listaUnidadMedida.Add(UnidadMedida);
                 }
 
@@ -84,6 +84,7 @@ namespace Ferreteria.CapaDatos
 
                     UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
+          
                     listaUnidadMedida.Add(UnidadMedida);
                 }
 
@@ -113,8 +114,7 @@ namespace Ferreteria.CapaDatos
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
                 Conexion.SetearParametro("@Abreviacion", Nuevo.Abreviacion);
-
-
+                Conexion.SetearParametro("@PermiteDecimales", Nuevo.PermiteDecimales);
                 Conexion.EjecutarAccion();
 
 
@@ -144,6 +144,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Id_UnidadMedida", UnidadMedida.Id_UnidadMedida);
                 Conexion.SetearParametro("@Nombre", UnidadMedida.Nombre);
                 Conexion.SetearParametro("@Abreviacion", UnidadMedida.Abreviacion);
+                Conexion.SetearParametro("@PermiteDecimales", UnidadMedida.PermiteDecimales);
 
                 Conexion.EjecutarAccion();
 
@@ -224,7 +225,7 @@ namespace Ferreteria.CapaDatos
                     UnidadMedida.Id_UnidadMedida = (int)Conexion.Lector["Id_UnidadMedida"];
                     UnidadMedida.Nombre = (string)Conexion.Lector["Nombre"];
                     UnidadMedida.Abreviacion = (string)Conexion.Lector["Abreviacion"];
-               
+                    UnidadMedida.PermiteDecimales = (bool)Conexion.Lector["PermiteDecimales"];
 
                     listaUnidadMedida.Add(UnidadMedida);
                 }

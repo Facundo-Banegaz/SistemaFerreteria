@@ -91,11 +91,11 @@ namespace Ferreteria.CapaDatos
                 // Enviar solo parámetros que el SP espera (no @Fecha si es OUTPUT o generado internamente)
                 Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Id_Proveedor", Nuevo.Proveedor.Id_Proveedor);
-                Conexion.SetearParametro("@Serie", Nuevo.Serie ?? "");
-                Conexion.SetearParametro("@Correlativo", Nuevo.Correlativo ?? "");
-                Conexion.SetearParametro("@Estado", Nuevo.Estado ?? "ACTIVO");
-                Conexion.SetearParametro("@Tipo_Comprobante", Nuevo.Tipo_Comprobante ?? "");
-
+                Conexion.SetearParametro("@Serie", Nuevo.Serie);
+                Conexion.SetearParametro("@Correlativo", Nuevo.Correlativo);
+                Conexion.SetearParametro("@Estado", Nuevo.Estado ?? "EMITIDO");
+                Conexion.SetearParametro("@Tipo_Comprobante", Nuevo.Tipo_Comprobante);
+                Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss")); 
                 Conexion.SetearParametroSalida("@Id_Ingreso", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
