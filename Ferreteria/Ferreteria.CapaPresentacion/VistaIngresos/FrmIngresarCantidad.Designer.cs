@@ -46,6 +46,8 @@
             this.txt_Cantidad.Name = "txt_Cantidad";
             this.txt_Cantidad.Size = new System.Drawing.Size(296, 37);
             this.txt_Cantidad.TabIndex = 201;
+            this.txt_Cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Cantidad_KeyPress);
+            this.txt_Cantidad.Leave += new System.EventHandler(this.txt_Cantidad_Leave);
             // 
             // label8
             // 

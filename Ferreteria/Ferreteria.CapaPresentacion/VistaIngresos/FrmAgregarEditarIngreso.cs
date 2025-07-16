@@ -451,11 +451,11 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
             if (confirmacion == DialogResult.Yes)
             {
-                using (var formCantidad = new FrmIngresarCantidad())
+                using (var formCantidad = new FrmIngresarCantidad(PermiteDecimales))
                 {
                     if (formCantidad.ShowDialog() == DialogResult.OK)
                     {
-                        int nuevaCantidad = formCantidad.Cantidad;
+                        decimal nuevaCantidad = formCantidad.Cantidad;
 
                         DataGridViewRow fila = dgv_detalles_ingresos.CurrentRow;
                         decimal precioCompra = decimal.Parse(fila.Cells["PrecioCompra"].Value.ToString(), CultureInfo.CreateSpecificCulture("es-AR"));
