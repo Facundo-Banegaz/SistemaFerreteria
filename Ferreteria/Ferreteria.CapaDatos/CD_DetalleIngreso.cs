@@ -49,9 +49,14 @@ namespace Ferreteria.CapaDatos
 
                     _DetalleIngreso.Cantidad = (decimal)Conexion.Lector["Cantidad"];
                     _DetalleIngreso.PrecioCompra = (decimal)Conexion.Lector["PrecioCompra"];
+                    _DetalleIngreso.FechaFabricacion = Conexion.Lector["FechaFabricacion"] == DBNull.Value
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(Conexion.Lector["FechaFabricacion"]);
 
-                    _DetalleIngreso.FechaFabricacion = (DateTime)Conexion.Lector["FechaFabricacion"];
-                    _DetalleIngreso.FechaVencimiento = (DateTime)Conexion.Lector["FechaVencimiento"];
+                    _DetalleIngreso.FechaVencimiento = Conexion.Lector["FechaVencimiento"] == DBNull.Value
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(Conexion.Lector["FechaVencimiento"]);
+
                     _DetalleIngreso.PorcentajeGanancia = (decimal)Conexion.Lector["PorcentajeGanancia"];
                     _DetalleIngreso.Subtotal = (decimal)Conexion.Lector["Subtotal"];
 
