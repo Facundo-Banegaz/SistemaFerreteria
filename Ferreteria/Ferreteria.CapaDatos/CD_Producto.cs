@@ -380,6 +380,50 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+        public Producto BuscarProductoPorCodigoEnVentas(string Codigo)
+        {
+            // Conexión a base de datos
+            Conexion = new CD_Conexion();
 
+
+            try
+            {
+                Conexion.SetConsultaProcedure("SpBuscarProductoPorCodigoEnVentas");
+
+
+                Conexion.SetearParametro("@Codigo", Codigo);
+
+
+                Conexion.EjecutarLectura();
+
+                // Si hay al menos un Producto lo mostramos
+                if (Conexion.Lector.Read())
+                {
+                    Producto = new Producto();
+
+                    Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    Producto.Nombre = (string)Conexion.Lector["Nombre"];
+                    Producto.Precio = (decimal)Conexion.Lector["PrecioVenta"];
+                    Producto.Stock = (decimal)Conexion.Lector["Stock"];
+                   
+
+                    Producto.UnidadMedida = new UnidadMedida();
+
+                    Producto.UnidadMedida.PermiteDecimales = (bool)Conexion.Lector["PermiteDecimales"];
+
+                }
+
+                return Producto;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
     }
 }

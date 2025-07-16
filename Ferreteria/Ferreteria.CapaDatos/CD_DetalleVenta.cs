@@ -1,6 +1,8 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_detalle_venta");
+                Conexion.SetConsultaProcedure("SpMostrar_DetalleVenta");
 
                 Conexion.SetearParametro("@Id_venta", Id_Venta);
 
@@ -46,9 +48,9 @@ namespace Ferreteria.CapaDatos
                     _DetalleVenta.Cantidad = (decimal)Conexion.Lector["Cantidad"];
 
                     _DetalleVenta.PrecioVenta = (decimal)Conexion.Lector["PrecioVenta"];
-                
 
 
+                    _DetalleVenta.Subtotal = (decimal)Conexion.Lector["Subtotal"];
 
 
                     listaDetalleVenta.Add(_DetalleVenta);
@@ -70,34 +72,21 @@ namespace Ferreteria.CapaDatos
 
         //metodo insertar
 
-        public void InsertarDetalleVenta(DetalleVenta Nuevo)
+        public void InsertarDetalleVenta(DetalleVenta detalle, SqlConnection conn, SqlTransaction trans)
         {
-            Conexion = new CD_Conexion();
-
-            try
+            using (SqlCommand cmd = new SqlCommand("Sp_Insertar_DetalleVenta", conn, trans))
             {
-                Conexion.SetConsultaProcedure("SpInsertar_detalle_venta");
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                Conexion.SetearParametro("@Id_venta", Nuevo.Venta.Id_Venta);
-                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
-                Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
-                Conexion.SetearParametro("@Precioventa", Nuevo.PrecioVenta);
-                
+                cmd.Parameters.AddWithValue("@Id_Venta", detalle.Venta.Id_Venta);
+                cmd.Parameters.AddWithValue("@Id_Producto", detalle.Producto.Id_Producto);
+                cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                cmd.Parameters.AddWithValue("@PrecioVenta", detalle.PrecioVenta);
 
-
-                Conexion.EjecutarAccion();
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
+                // Ejecuta el comando dentro de la transacción compartida
+                cmd.ExecuteNonQuery();
             }
         }
+
     }
 }

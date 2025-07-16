@@ -288,17 +288,23 @@
     <Compile Include="VistaUsuario\FrmUsuario.Designer.cs">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaVenta\FrmDetalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaVenta\FrmDetalleVenta.Designer.cs">
+      <DependentUpon>FrmDetalleVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaVenta\FrmHistorialVenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VistaVenta\FrmHistorialVenta.Designer.cs">
       <DependentUpon>FrmHistorialVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaVenta\FrmVenta.cs">
+    <Compile Include="VistaVenta\FrmAgregarVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaVenta\FrmVenta.Designer.cs">
-      <DependentUpon>FrmVenta.cs</DependentUpon>
+    <Compile Include="VistaVenta\FrmAgregarVenta.Designer.cs">
+      <DependentUpon>FrmAgregarVenta.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -423,11 +429,14 @@
     <EmbeddedResource Include="VistaUsuario\FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaVenta\FrmDetalleVenta.resx">
+      <DependentUpon>FrmDetalleVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaVenta\FrmHistorialVenta.resx">
       <DependentUpon>FrmHistorialVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaVenta\FrmVenta.resx">
-      <DependentUpon>FrmVenta.cs</DependentUpon>
+    <EmbeddedResource Include="VistaVenta\FrmAgregarVenta.resx">
+      <DependentUpon>FrmAgregarVenta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

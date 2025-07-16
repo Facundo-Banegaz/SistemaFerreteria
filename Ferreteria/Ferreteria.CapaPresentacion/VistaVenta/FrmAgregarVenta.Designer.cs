@@ -1,6 +1,6 @@
 ﻿namespace Ferreteria.CapaPresentacion.VistaVenta
 {
-    partial class FrmVenta
+    partial class FrmAgregarVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,18 @@
         {
             this.SuspendLayout();
             // 
-            // FrmVenta
+            // FrmAgregarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1852, 831);
+            this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1874, 887);
-            this.Name = "FrmVenta";
+            this.Name = "FrmAgregarVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVenta";
+            this.Load += new System.EventHandler(this.FrmAgregarVenta_Load);
             this.ResumeLayout(false);
 
         }

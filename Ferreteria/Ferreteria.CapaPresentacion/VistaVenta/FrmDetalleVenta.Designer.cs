@@ -1,6 +1,6 @@
-﻿namespace Ferreteria.CapaPresentacion.VistaIngresos
+﻿namespace Ferreteria.CapaPresentacion.VistaVenta
 {
-    partial class FrmDetalleIngreso
+    partial class FrmDetalleVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleIngreso));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleVenta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl_total = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.lbl_total.Location = new System.Drawing.Point(18, 748);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(0, 60);
-            this.lbl_total.TabIndex = 189;
+            this.lbl_total.TabIndex = 192;
             // 
             // btn_cancelar
             // 
@@ -61,7 +61,7 @@
             this.btn_cancelar.Location = new System.Drawing.Point(1637, 753);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
-            this.btn_cancelar.TabIndex = 188;
+            this.btn_cancelar.TabIndex = 191;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancelar.UseVisualStyleBackColor = false;
@@ -104,9 +104,9 @@
             this.dgv_detalles.RowTemplate.Height = 28;
             this.dgv_detalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_detalles.Size = new System.Drawing.Size(1816, 694);
-            this.dgv_detalles.TabIndex = 187;
+            this.dgv_detalles.TabIndex = 190;
             // 
-            // FrmDetalleIngreso
+            // FrmDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,9 +116,9 @@
             this.Controls.Add(this.dgv_detalles);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1874, 887);
-            this.Name = "FrmDetalleIngreso";
-            this.Text = "FrmDetalleIngreso";
-            this.Load += new System.EventHandler(this.FrmDetalleIngreso_Load);
+            this.Name = "FrmDetalleVenta";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmDetalleVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

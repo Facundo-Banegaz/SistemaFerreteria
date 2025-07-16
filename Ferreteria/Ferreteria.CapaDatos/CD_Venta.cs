@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,40 +15,34 @@ namespace Ferreteria.CapaDatos
         private Venta _Venta;
         private List<Venta> listaVenta;
 
-
         public List<Venta> ListaVenta()
         {
-
-            //instancia
-
             Conexion = new CD_Conexion();
-
             listaVenta = new List<Venta>();
 
             try
             {
-
-                Conexion.SetConsultaProcedure("SpMostrar_venta");
-
+                Conexion.SetConsultaProcedure("Sp_Mostrarventas");
                 Conexion.EjecutarLectura();
 
                 while (Conexion.Lector.Read())
                 {
-                    _Venta = new Venta();
+                    _Venta = new Venta
+                    {
+                        Id_Venta = (int)Conexion.Lector["Id_Venta"],
+                        Tipo_Comprobante = (string)Conexion.Lector["Tipo_Comprobante"],
+                        Serie = (string)Conexion.Lector["Serie"],
+                        Correlativo = (string)Conexion.Lector["Correlativo"],
+                        Estado = (string)Conexion.Lector["Estado"],
+                        MetodoPago = (string)Conexion.Lector["MetodoPago"],
+                        Fecha = (DateTime)Conexion.Lector["Fecha"],
+                        Total = (decimal)Conexion.Lector["Total"],
+                        Usuario = new Usuario
+                        {
+                            Nombre = (string)Conexion.Lector["Usuario"]
+                        }
 
-
-                    _Venta.Id_Venta = (int)Conexion.Lector["Id_Venta"];
-
-                    _Venta.Usuario = new Usuario();
-
-                    _Venta.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
-
-
-                    _Venta.Fecha = (DateTime)Conexion.Lector["Fecha"];
-
-                  
-                    _Venta.Total = (decimal)Conexion.Lector["Total"];
-
+                    };
 
                     listaVenta.Add(_Venta);
                 }
@@ -56,7 +51,6 @@ namespace Ferreteria.CapaDatos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -65,59 +59,65 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-
-        public void InsertarVenta(Venta Nuevo, List<DetalleVenta> DetalleVenta)
+        public void InsertarVenta(Venta nuevo, List<DetalleVenta> detalles)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                //Conexion.IniciarTransaccion();
+                Conexion.IniciarTransaccion(); // Inicia conexión y transacción
 
-                Conexion.SetConsultaProcedure("SpInsertar_Venta");
+                Conexion.SetConsultaProcedure("Sp_Insertar_Venta");
 
-                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
-                Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
-                Conexion.SetearParametro("@Total", Nuevo.Total);
-         
+                Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
+                Conexion.SetearParametro("@Fecha", nuevo.Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
+                Conexion.SetearParametro("@Total", nuevo.Total);
+                Conexion.SetearParametro("@Tipo_Comprobante", nuevo.Tipo_Comprobante);
+                Conexion.SetearParametro("@Serie", nuevo.Serie);
+                Conexion.SetearParametro("@Correlativo", nuevo.Correlativo);
+                Conexion.SetearParametro("@MetodoPago", nuevo.MetodoPago);
+                Conexion.SetearParametro("@Estado", nuevo.Estado);
 
-
-
-                // Configurar el parámetro de salida para el ID de ingreso
 
                 Conexion.SetearParametroSalida("@Id_Venta", SqlDbType.Int);
 
-                Conexion.EjecutarAccion();
+                Conexion.EjecutarAccion(); // No cierra conexión
 
+                int idVenta = Conexion.ObtenerValorParametroSalida("@Id_Venta");
 
-                // Capturar el ID del ingreso insertado
-                int Id_venta = Conexion.ObtenerValorParametroSalida("@Id_Venta");
+                // Reutilizamos conexión y transacción para los detalles
+                SqlConnection conn = Conexion.ObtenerConexion();
+                SqlTransaction trans = Conexion.ObtenerTransaccion();
 
+                CD_DetalleVenta detalleVentaDatos = new CD_DetalleVenta();
 
-
-
-                CD_DetalleVenta _Detalle_Venta = new CD_DetalleVenta();
-
-                // Insertar detalles de ingreso
-                foreach (DetalleVenta detalle in DetalleVenta)
+                foreach (var detalle in detalles)
                 {
-                    detalle.Venta.Id_Venta = Id_venta; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
-
-
-
-                    _Detalle_Venta.InsertarDetalleVenta(detalle);
+                    detalle.Venta = new Venta { Id_Venta = idVenta };
+                    detalleVentaDatos.InsertarDetalleVenta(detalle, conn, trans);
                 }
 
-
-
-                //Conexion.ConfirmarTransaccion();
-
-
+                Conexion.ConfirmarTransaccion(); // Commit exitoso
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Conexion.AnularTransaccion();
-                throw ex;
+
+                // Manejo específico (opcional)
+                switch (ex.Number)
+                {
+                    case 50001:
+                        throw new Exception("No hay suficiente stock para esta venta.");
+                    case 2627: // Duplicado
+                        throw new Exception("Ya existe una venta con ese ID.");
+                    default:
+                        throw;
+                }
+            }
+            catch
+            {
+                Conexion.AnularTransaccion();
+                throw;
             }
             finally
             {
@@ -125,28 +125,28 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-
-
-        //Metodo eliminar
-        public void EliminarVenta(int Id_venta)
+        public void AnularVenta(int idVenta)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_venta");
-
-                Conexion.SetearParametro("@Id_Venta", Id_venta);
-
+                Conexion.SetConsultaProcedure("Sp_AnularVenta");
+                Conexion.SetearParametro("@Id_Venta", idVenta);
 
                 Conexion.EjecutarAccion();
-
-
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-
-                throw ex;
+                switch (ex.Number)
+                {
+                    case 50001:
+                        throw new Exception("Esta venta ya fue anulada anteriormente.");
+                    case 50002:
+                        throw new Exception("No hay stock suficiente para anular la venta.");
+                    default:
+                        throw;
+                }
             }
             finally
             {
@@ -154,76 +154,45 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-
-        //Metodo modificar stock
-        public void DisminuirStock(int Id_detalle_ingreso, int Stock_Actual)
-        {
-
-            Conexion = new CD_Conexion();
-
-            try
-            {
-                Conexion.SetConsultaProcedure("SpDisminuir_stock");
-
-                Conexion.SetearParametro("@Id_DetalleIngreso", Id_detalle_ingreso);
-                Conexion.SetearParametro("@Cantidad", Stock_Actual);
-
-                Conexion.EjecutarAccion();
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
-            }
-        }
-        //Metodo Buscar
-
-        public List<Venta> VentaBuscarFecha(DateTime FechaInicio, DateTime FechaFin)
+        public List<Venta> VentaBuscarFecha(DateTime fechaInicio, DateTime fechaFin)
         {
             Conexion = new CD_Conexion();
             listaVenta = new List<Venta>();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_venta_fecha");
+                Conexion.SetConsultaProcedure("Sp_BuscarVentaPorFecha");
 
-
-                Conexion.SetearParametro("@txt_fecha_inicio", FechaInicio);
-                Conexion.SetearParametro("@txt_fecha_fin", FechaFin);
+                Conexion.SetearParametro("@FechaInicio", fechaInicio);
+                Conexion.SetearParametro("@FechaFin", fechaFin);
 
                 Conexion.EjecutarLectura();
+
                 while (Conexion.Lector.Read())
                 {
-                    _Venta = new Venta();
+                    _Venta = new Venta
+                    {
+                        Id_Venta = (int)Conexion.Lector["Id_Venta"],
+                        Tipo_Comprobante = (string)Conexion.Lector["Tipo_Comprobante"],
+                        Serie = (string)Conexion.Lector["Serie"],
+                        Correlativo = (string)Conexion.Lector["Correlativo"],
+                        Estado = (string)Conexion.Lector["Estado"],
+                        MetodoPago = (string)Conexion.Lector["MetodoPago"],
+                        Fecha = (DateTime)Conexion.Lector["Fecha"],
+                        Total = (decimal)Conexion.Lector["Total"],
+                        Usuario = new Usuario
+                        {
+                            Nombre = (string)Conexion.Lector["Usuario"]
+                        }
 
-
-                    _Venta.Id_Venta= (int)Conexion.Lector["Id_Venta"];
-
-                    _Venta.Usuario = new Usuario();
-
-                    _Venta.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
-
-
-                    _Venta.Fecha = (DateTime)Conexion.Lector["Fecha"];
-
-
-                    _Venta.Total = (decimal)Conexion.Lector["Total"];
-
+                    };
 
                     listaVenta.Add(_Venta);
                 }
-
                 return listaVenta;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -232,4 +201,5 @@ namespace Ferreteria.CapaDatos
             }
         }
     }
+
 }

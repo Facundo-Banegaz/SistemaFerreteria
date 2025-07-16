@@ -78,6 +78,9 @@ namespace Ferreteria.CapaDatos
                 if (ValidarUsuario(Nuevo.Dni))
                     throw new Exception("El  Usuario ya esta Registrado.");
 
+                if (ValidarNombreUsuario(Nuevo.UsuarioNombre))
+                    throw new Exception("Ese nombre de usuario ya está en uso. Elija otro.");
+
                 Conexion.SetConsultaProcedure("SpInsertar_Usuario");
 
                 Conexion.SetearParametro("@Nombre", Nuevo.Nombre);
@@ -95,6 +98,10 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion();
 
 
+            }
+            catch (SqlException ex) when (ex.Message.Contains("duplicate key"))
+            {
+                throw new Exception("El nombre de usuario o DNI ya está registrado.");
             }
             catch (Exception ex)
             {
@@ -127,6 +134,23 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+        public bool ValidarNombreUsuario(string nombreUsuario)
+        {
+            Conexion = new CD_Conexion();
+            try
+            {
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE UsuarioNombre = @Nombre");
+                Conexion.SetearParametro("@Nombre", nombreUsuario);
+
+                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
+                return count > 0;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         //actualizar precio
         public void ActualizarContrasenia(int Id_Usario, string Clave)
         {
@@ -156,48 +180,50 @@ namespace Ferreteria.CapaDatos
             }
         }
         //metodo editar
-
         public void EditarUsuario(Usuario Usuario)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-
-                // Validar que el nuevo Dni no exista en otro Usuario
+                // Validar que el DNI no esté en otro usuario
                 Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni AND Id_Usuario != @Id_Usuario");
                 Conexion.SetearParametro("@Dni", Usuario.Dni);
                 Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
+                int dniCount = Convert.ToInt32(Conexion.EjecutarEscalar());
 
-                int count = Convert.ToInt32(Conexion.EjecutarEscalar());
-                if (count > 0)
-                    throw new Exception("El  Usuario ya esta Registrado.");
+                if (dniCount > 0)
+                    throw new Exception("El DNI ya está registrado por otro usuario.");
 
+                // Validar que el nombre de usuario no esté en otro usuario
+                Conexion.SetConsulta("SELECT COUNT(*) FROM Usuarios WHERE UsuarioNombre = @UsuarioNombre AND Id_Usuario != @Id_Usuario");
+                Conexion.SetearParametro("@UsuarioNombre", Usuario.UsuarioNombre);
+                Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
+                int nombreUsuarioCount = Convert.ToInt32(Conexion.EjecutarEscalar());
+
+                if (nombreUsuarioCount > 0)
+                    throw new Exception("El nombre de usuario ya está registrado por otro usuario.");
+
+                // Ejecutar SP de edición
                 Conexion.SetConsultaProcedure("SpEditar_Usuario");
-
                 Conexion.SetearParametro("@Id_Usuario", Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Nombre", Usuario.Nombre);
                 Conexion.SetearParametro("@Apellido", Usuario.Apellido);
                 Conexion.SetearParametro("@Dni", Usuario.Dni);
                 Conexion.SetearParametro("@UsuarioNombre", Usuario.UsuarioNombre);
                 Conexion.SetearParametro("@Estado", Usuario.Estado);
-         
                 Conexion.SetearParametro("@Acceso", Usuario.Acceso);
 
                 Conexion.EjecutarAccion();
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 Conexion.CerrarConexion();
             }
-
         }
 
         //Metodo eliminar

@@ -2,6 +2,7 @@
 using Ferreteria.CapaPresentacion.VistaCategoria;
 using Ferreteria.CapaPresentacion.VistaEspecificacion;
 using Ferreteria.CapaPresentacion.VistaIngresos;
+using Ferreteria.CapaPresentacion.VistaLogin;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaMovimientoStock;
 using Ferreteria.CapaPresentacion.VistaProducto;
@@ -132,7 +133,12 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             {
                 // Desuscribir el evento de FormClosing para permitir el cierre real
                 this.FormClosing -= FrmMdiPrincipal_FormClosing;
-                Application.Exit();
+                // Mostrar el login
+                FrmLogin login = new FrmLogin();
+                login.Show();
+
+                // Cerrar el formulario principal
+                this.Close();
             }
         }
 
@@ -197,7 +203,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_venta_Click(object sender, EventArgs e)
         {
-            abrirForm(new  FrmVenta() );
+            abrirForm(new   FrmAgregarVenta());
            
         }
 

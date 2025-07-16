@@ -21,7 +21,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         public FrmIngreso()
         {
             InitializeComponent();
-            Text = "Gestion Ingreso";
+            Text = "Gestion Historial de  Ingresos";
         }
         public FrmIngreso(Usuario usuario)
         {
@@ -79,6 +79,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             CN_Metodos _Metodos = new CN_Metodos();
 
 
+          
 
             dgv_ingresos.Columns["Id_ingreso"].Width = 300;
             dgv_ingresos.Columns["Usuario"].Width = 400; // nombre_producto
