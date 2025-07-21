@@ -187,6 +187,7 @@
             this.groupBox1.TabIndex = 181;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingresos";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox5
             // 
@@ -384,6 +385,7 @@
             this.groupBox2.TabIndex = 94;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Productos";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btn_editar
             // 
@@ -391,7 +393,7 @@
             this.btn_editar.BackColor = System.Drawing.Color.Orange;
             this.btn_editar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
-            this.btn_editar.Location = new System.Drawing.Point(1246, 98);
+            this.btn_editar.Location = new System.Drawing.Point(1247, 97);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(86, 60);
             this.btn_editar.TabIndex = 185;
@@ -505,6 +507,7 @@
             this.txt_productoCantidad.Name = "txt_productoCantidad";
             this.txt_productoCantidad.Size = new System.Drawing.Size(172, 37);
             this.txt_productoCantidad.TabIndex = 199;
+            this.txt_productoCantidad.TextChanged += new System.EventHandler(this.txt_productoCantidad_TextChanged);
             this.txt_productoCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_producto_cantidad_KeyPress);
             this.txt_productoCantidad.Leave += new System.EventHandler(this.txt_productoCantidad_Leave);
             // 
@@ -608,7 +611,7 @@
             this.btn_quitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(192)))));
             this.btn_quitar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_quitar.Image = ((System.Drawing.Image)(resources.GetObject("btn_quitar.Image")));
-            this.btn_quitar.Location = new System.Drawing.Point(1246, 169);
+            this.btn_quitar.Location = new System.Drawing.Point(1247, 173);
             this.btn_quitar.Name = "btn_quitar";
             this.btn_quitar.Size = new System.Drawing.Size(86, 60);
             this.btn_quitar.TabIndex = 186;
@@ -621,7 +624,7 @@
             this.btn_agregar_fila.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btn_agregar_fila.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_agregar_fila.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar_fila.Image")));
-            this.btn_agregar_fila.Location = new System.Drawing.Point(1246, 25);
+            this.btn_agregar_fila.Location = new System.Drawing.Point(1247, 15);
             this.btn_agregar_fila.Name = "btn_agregar_fila";
             this.btn_agregar_fila.Size = new System.Drawing.Size(86, 60);
             this.btn_agregar_fila.TabIndex = 185;

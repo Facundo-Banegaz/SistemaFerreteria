@@ -265,7 +265,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
                 // Mostrar resumen y cerrar
                 MessageBox.Show("¡El ingreso fue agregado exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarResumenIngreso(_Detalle_Ingreso);
+         
                 this.Close();
             }
             catch (Exception ex)
@@ -274,58 +274,39 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             }
         }
 
-        private void MostrarResumenIngreso(List<DetalleIngreso> detalles)
-        {
-            StringBuilder resumen = new StringBuilder();
-            decimal total = 0;
 
-            resumen.AppendLine("Resumen del Ingreso:");
-            resumen.AppendLine("--------------------------------------------------");
-
-            foreach (var item in detalles)
-            {
-                decimal subtotal = item.PrecioCompra * item.Cantidad;
-                total += subtotal;
-
-                resumen.AppendLine($"Producto: {item.Producto.Nombre}");
-                resumen.AppendLine($"Cantidad: {item.Cantidad}");
-                resumen.AppendLine($"Precio Compra: ${item.PrecioCompra:N2}");
-                resumen.AppendLine($"Subtotal: ${subtotal:N2}");
-                resumen.AppendLine("--------------------------------------------------");
-            }
-
-            resumen.AppendLine($"TOTAL: ${total:N2}");
-
-            MessageBox.Show(resumen.ToString(), "Resumen del Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
 
         private bool ValidarVacio()
         {
-            bool error = true;
+            bool esValido = true;
 
-            if (txt_id_proveedor.Text == string.Empty)
+            // Validar campo txt_id_proveedor
+            if (string.IsNullOrWhiteSpace(txt_id_proveedor.Text))
             {
-                errorIcono.SetError(txt_id_proveedor, "El campo  es obligatorio, ingrese el Nombre ");
-
-
-                error = false;
-            }
-            else  if (txt_nombre_proveedor.Text == string.Empty)
-            {
-                errorIcono.SetError(txt_nombre_proveedor, "El campo  es obligatorio, ingrese el Nombre ");
-
-
-                error = false;
+                errorIcono.SetError(txt_id_proveedor, "El campo es obligatorio. Ingrese el ID del proveedor.");
+                esValido = false;
             }
             else
             {
-                errorIcono.Clear();
+                errorIcono.SetError(txt_id_proveedor, "");
             }
 
-            return error;
+            // Validar campo txt_nombre_proveedor
+            if (string.IsNullOrWhiteSpace(txt_nombre_proveedor.Text))
+            {
+                errorIcono.SetError(txt_nombre_proveedor, "El campo es obligatorio. Ingrese el nombre del proveedor.");
+                esValido = false;
+            }
+            else
+            {
+                errorIcono.SetError(txt_nombre_proveedor, "");
+            }
+
+            return esValido;
         }
-    
+
+
         //Logica de la Grilla
         //Crea la tabla de Detalle 
 
@@ -338,10 +319,10 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             // Agregar columnas
             dgv_detalles_ingresos.Columns.Add("Id_Producto", "Id_Producto");
             dgv_detalles_ingresos.Columns.Add("Producto", "Producto");
-            dgv_detalles_ingresos.Columns.Add("FechaFabricacion", "FechaFabricacion");
-            dgv_detalles_ingresos.Columns.Add("FechaVencimiento", "FechaVencimiento");
-            dgv_detalles_ingresos.Columns.Add("PrecioCompra", "PrecioCompra");
-            dgv_detalles_ingresos.Columns.Add("PorcentajeGanancia", "PorcentajeGanancia");
+            dgv_detalles_ingresos.Columns.Add("FechaFabricacion", "Fecha Fabricacion");
+            dgv_detalles_ingresos.Columns.Add("FechaVencimiento", "Fecha Vencimiento");
+            dgv_detalles_ingresos.Columns.Add("PrecioCompra", "Precio Compra");
+            dgv_detalles_ingresos.Columns.Add("PorcentajeGanancia", "Porcentaje Ganancia");
             dgv_detalles_ingresos.Columns.Add("Cantidad", "Cantidad");
             dgv_detalles_ingresos.Columns.Add("SubTotal", "SubTotal");
             // Autoajustar columnas 
@@ -368,7 +349,6 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             dgv_detalles_ingresos.Columns["PorcentajeGanancia"].DefaultCellStyle.FormatProvider = culturaAR;
 
         }
-
 
         private void LimpiarCampos()
         {
@@ -437,11 +417,14 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             if (confirmacion == DialogResult.Yes)
             {
                 dgv_detalles_ingresos.Rows.Remove(dgv_detalles_ingresos.CurrentRow);
-             
-            }
-            
-        }
 
+            }
+
+        }
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btn_editar_Click(object sender, EventArgs e)
         {
             if (dgv_detalles_ingresos.CurrentRow == null)
@@ -562,8 +545,12 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             lbl_porcentaje.Visible = false;
             txt_porcentaje.Visible = false;
 
+
+            lbl_precioVenta.Visible = false;
+            lbl_precioVenta.Visible = false;
+
             // Dejar enfocado el primer campo si querés
-            txt_id_producto.Focus();
+            txt_codigoBarra.Focus();
         }
 
         private bool ValidarCamposDetalle()
@@ -602,7 +589,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
             if (txt_porcentaje.Visible)
             {
-                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentaje) || porcentaje < 0)
+                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentaje) || porcentaje <= 0)
                 {
                     errorIcono.SetError(txt_porcentaje, "Porcentaje inválido.");
                     MessageBox.Show("Ingrese un porcentaje válido mayor o igual a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -707,51 +694,49 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 e.Handled = true;
             }
         }
-
+#warning se ve mal la actualizacion de precio mejorar
         private void CalcularPrecioVenta()
         {
-            lbl_precioVentaCalculado.ForeColor = Color.Black; // Color por defecto
+            lbl_precioVentaCalculado.ForeColor = Color.Black;
 
             string textoCompra = txt_precioCompra.Text.Trim();
             string textoPorcentaje = txt_porcentaje.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(textoCompra) && string.IsNullOrWhiteSpace(textoPorcentaje))
+            var culturaAR = new CultureInfo("es-AR");
+
+            if (string.IsNullOrWhiteSpace(textoCompra) || string.IsNullOrWhiteSpace(textoPorcentaje))
             {
-                lbl_precioVentaCalculado.Text = "Ingrese el precio de compra y porcentaje.";
+                lbl_precioVentaCalculado.Text = "Ingrese precio y porcentaje.";
                 lbl_precioVentaCalculado.ForeColor = Color.DarkOrange;
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(textoCompra))
+            if (decimal.TryParse(textoCompra, NumberStyles.Number, culturaAR, out decimal precioCompra) &&
+                decimal.TryParse(textoPorcentaje, NumberStyles.Number, culturaAR, out decimal porcentajeGanancia))
             {
-                lbl_precioVentaCalculado.Text = "Ingrese el precio de compra.";
-                lbl_precioVentaCalculado.ForeColor = Color.DarkOrange;
-                return;
-            }
+                if (porcentajeGanancia < 0)
+                {
+                    lbl_precioVentaCalculado.Text = "Porcentaje no puede ser negativo.";
+                    lbl_precioVentaCalculado.ForeColor = Color.Red;
+                    return;
+                }
 
-            if (string.IsNullOrWhiteSpace(textoPorcentaje))
-            {
-                lbl_precioVentaCalculado.Text = "Ingrese el porcentaje de ganancia.";
-                lbl_precioVentaCalculado.ForeColor = Color.DarkOrange;
-                return;
-            }
-
-            // Validar y calcular
-            if (decimal.TryParse(textoCompra, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal precioCompra) &&
-                decimal.TryParse(textoPorcentaje, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentajeGanancia))
-            {
-                decimal precioVenta = precioCompra + (precioCompra * (porcentajeGanancia / 100));
-                lbl_precioVentaCalculado.Text = $"Precio final: {precioVenta.ToString("0.00", CultureInfo.InvariantCulture)}";
+                decimal precioVentaSugerido = precioCompra + (precioCompra * (porcentajeGanancia / 100));
+                lbl_precioVentaCalculado.Text = $"Precio sugerido: {precioVentaSugerido.ToString("N2", culturaAR)}";
                 lbl_precioVentaCalculado.ForeColor = Color.Green;
             }
             else
             {
-                lbl_precioVentaCalculado.Text = "Verifique los datos ingresados.";
+                lbl_precioVentaCalculado.Text = "Porcentaje o precio inválido.";
                 lbl_precioVentaCalculado.ForeColor = Color.Red;
             }
         }
 
 
+        private void txt_productoCantidad_TextChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioVenta();
+        }
         private void txt_precioCompra_TextChanged(object sender, EventArgs e)
         {
             CalcularPrecioVenta();
@@ -841,5 +826,17 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             txt_codigoBarra.Focus();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

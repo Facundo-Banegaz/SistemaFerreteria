@@ -178,6 +178,52 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         {
 
         }
+        private void btn_agregar_Click(object sender, EventArgs e)
+        {
+            if (dgv_detalles_ventas.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una fila para incrementar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirmacion = MessageBox.Show("¿Desea agregar una unidad del producto seleccionado?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmacion != DialogResult.Yes)
+            {
+                return;
+            }
+
+            var fila = dgv_detalles_ventas.CurrentRow;
+            var celdaCantidad = fila.Cells["Cantidad"];
+            var celdaStock = fila.Cells["Stock"];
+            var celdaPrecio = fila.Cells["PrecioVenta"];
+            var celdaTotal = fila.Cells["Subtotal"];
+
+            if (celdaCantidad != null && celdaStock != null &&
+                decimal.TryParse(celdaCantidad.Value?.ToString(), out decimal cantidadActual) &&
+                decimal.TryParse(celdaStock.Value?.ToString(), out decimal stockDisponible))
+            {
+                if (cantidadActual < stockDisponible)
+                {
+                    cantidadActual++;
+                    celdaCantidad.Value = cantidadActual;
+
+                    // Recalcular total
+                    if (celdaPrecio != null && decimal.TryParse(celdaPrecio.Value?.ToString(), out decimal precio))
+                    {
+                        celdaTotal.Value = cantidadActual * precio;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede agregar más unidades. Se alcanzó el stock disponible.", "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error al leer la cantidad o el stock del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btn_quitar_Click(object sender, EventArgs e)
         {
@@ -212,7 +258,21 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         }
 
 
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            if (dgv_detalles_ventas.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una fila para eliminar.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            var confirmacion = MessageBox.Show("¿Está seguro que desea eliminar este producto del detalle?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmacion == DialogResult.Yes)
+            {
+                dgv_detalles_ventas.Rows.Remove(dgv_detalles_ventas.CurrentRow);
+
+            }
+        }
         private void btn_editar_Click(object sender, EventArgs e)
         {
             if (dgv_detalles_ventas.CurrentRow == null)
@@ -263,10 +323,6 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                     }
                 }
             }
-
-        }
-        private void btn_agregar_fila_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -470,5 +526,12 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         {
 
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

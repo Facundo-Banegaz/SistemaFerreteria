@@ -59,7 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_id_producto = new System.Windows.Forms.TextBox();
             this.btn_quitar = new System.Windows.Forms.Button();
-            this.btn_agregar_fila = new System.Windows.Forms.Button();
+            this.btn_agregar = new System.Windows.Forms.Button();
             this.Btn_producto = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,6 +75,7 @@
             this.cbo_comprobante = new System.Windows.Forms.ComboBox();
             this.lbl_comprobante = new System.Windows.Forms.Label();
             this.dgv_detalles_ventas = new System.Windows.Forms.DataGridView();
+            this.btn_eliminar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -306,7 +307,9 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox2.Controls.Add(this.btn_eliminar);
             this.groupBox2.Controls.Add(this.btn_editar);
+            this.groupBox2.Controls.Add(this.btn_agregar);
             this.groupBox2.Controls.Add(this.txt_producto);
             this.groupBox2.Controls.Add(this.txt_stock);
             this.groupBox2.Controls.Add(this.txt_precioVenta);
@@ -318,7 +321,6 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txt_id_producto);
             this.groupBox2.Controls.Add(this.btn_quitar);
-            this.groupBox2.Controls.Add(this.btn_agregar_fila);
             this.groupBox2.Controls.Add(this.Btn_producto);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox2.Location = new System.Drawing.Point(15, 280);
@@ -327,6 +329,7 @@
             this.groupBox2.TabIndex = 94;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Productos";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btn_editar
             // 
@@ -334,7 +337,7 @@
             this.btn_editar.BackColor = System.Drawing.Color.Orange;
             this.btn_editar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_editar.Image = ((System.Drawing.Image)(resources.GetObject("btn_editar.Image")));
-            this.btn_editar.Location = new System.Drawing.Point(1129, 156);
+            this.btn_editar.Location = new System.Drawing.Point(963, 156);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(85, 65);
             this.btn_editar.TabIndex = 185;
@@ -467,25 +470,25 @@
             this.btn_quitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(192)))));
             this.btn_quitar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_quitar.Image = ((System.Drawing.Image)(resources.GetObject("btn_quitar.Image")));
-            this.btn_quitar.Location = new System.Drawing.Point(1248, 156);
+            this.btn_quitar.Location = new System.Drawing.Point(1129, 156);
             this.btn_quitar.Name = "btn_quitar";
             this.btn_quitar.Size = new System.Drawing.Size(85, 65);
             this.btn_quitar.TabIndex = 186;
             this.btn_quitar.UseVisualStyleBackColor = false;
             this.btn_quitar.Click += new System.EventHandler(this.btn_quitar_Click);
             // 
-            // btn_agregar_fila
+            // btn_agregar
             // 
-            this.btn_agregar_fila.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_agregar_fila.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_agregar_fila.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_agregar_fila.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar_fila.Image")));
-            this.btn_agregar_fila.Location = new System.Drawing.Point(1016, 158);
-            this.btn_agregar_fila.Name = "btn_agregar_fila";
-            this.btn_agregar_fila.Size = new System.Drawing.Size(85, 65);
-            this.btn_agregar_fila.TabIndex = 185;
-            this.btn_agregar_fila.UseVisualStyleBackColor = false;
-            this.btn_agregar_fila.Click += new System.EventHandler(this.btn_agregar_fila_Click);
+            this.btn_agregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_agregar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btn_agregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar.Image")));
+            this.btn_agregar.Location = new System.Drawing.Point(1244, 156);
+            this.btn_agregar.Name = "btn_agregar";
+            this.btn_agregar.Size = new System.Drawing.Size(85, 65);
+            this.btn_agregar.TabIndex = 185;
+            this.btn_agregar.UseVisualStyleBackColor = false;
+            this.btn_agregar.Click += new System.EventHandler(this.btn_agregar_Click);
             // 
             // Btn_producto
             // 
@@ -715,6 +718,19 @@
             this.dgv_detalles_ventas.TabIndex = 100;
             this.dgv_detalles_ventas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_detalles_ventas_RowsRemoved);
             // 
+            // btn_eliminar
+            // 
+            this.btn_eliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_eliminar.BackColor = System.Drawing.Color.Snow;
+            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
+            this.btn_eliminar.Location = new System.Drawing.Point(848, 158);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(86, 60);
+            this.btn_eliminar.TabIndex = 210;
+            this.btn_eliminar.UseVisualStyleBackColor = false;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
+            // 
             // FrmAgregarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -780,7 +796,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_id_producto;
         private System.Windows.Forms.Button btn_quitar;
-        private System.Windows.Forms.Button btn_agregar_fila;
+        private System.Windows.Forms.Button btn_agregar;
         private System.Windows.Forms.Button Btn_producto;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
@@ -796,5 +812,6 @@
         public System.Windows.Forms.DataGridView dgv_detalles_ventas;
         private System.Windows.Forms.ComboBox cbo_metodoPago;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_eliminar;
     }
 }

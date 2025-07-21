@@ -48,7 +48,7 @@ namespace Ferreteria.CapaDatos
                     Producto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
                     Producto.Estado = (bool)Conexion.Lector["Estado"];
                     Producto.RequiereVencimiento = (bool)Conexion.Lector["RequiereVencimiento"];
-                   
+                    Producto.ActualizarPrecioAutomaticamente = (bool)Conexion.Lector["ActualizarPrecioAutomaticamente"];
                     Producto.Subcategoria = new Subcategoria();
                     Producto.Subcategoria.Categoria = new Categoria();
                     Producto.Subcategoria.Id_Subcategoria = (int)Conexion.Lector["Id_Subcategoria"];
