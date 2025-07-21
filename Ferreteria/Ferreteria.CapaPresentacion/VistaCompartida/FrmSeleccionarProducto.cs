@@ -26,7 +26,8 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
         public delegate void ProductoIngresoSeleccionadoHandler(string Id_Producto, string Nombre,bool RequiereVencimiento,bool ActualizarPrecioAutomaticamente,bool PermiteDecimales  );
         public event ProductoIngresoSeleccionadoHandler ProductoIngresoSeleccionado;
 
-
+        public delegate void ProductoVentaSeleccionadoHandler(string Id_Producto, string Nombre, decimal Precio, decimal Stock, string Codigo, bool PermiteDecimales);
+        public event ProductoVentaSeleccionadoHandler ProductoVentaSeleccionado;
         public FrmSeleccionarProducto()
         {
             InitializeComponent();
@@ -41,12 +42,17 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
         {
             string Id_Producto = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Id_Producto"].Value);
             string Nombre = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Nombre"].Value);
+            string Codigo = Convert.ToString(this.dgv_productos.CurrentRow.Cells["Codigo"].Value);
             bool RequiereVencimiento = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["RequiereVencimiento"].Value);
             bool ActualizarPrecioAutomaticamente = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["ActualizarPrecioAutomaticamente"].Value);
             bool PermiteDecimales = Convert.ToBoolean(this.dgv_productos.CurrentRow.Cells["PermiteDecimales"].Value);
+            decimal Precio = Convert.ToDecimal(this.dgv_productos.CurrentRow.Cells["Precio"].Value);
+            decimal Stock = Convert.ToDecimal(this.dgv_productos.CurrentRow.Cells["Stock"].Value);
+
             // Invocás el evento si hay algún método suscripto
             ProductoSeleccionado?.Invoke(Id_Producto, Nombre);
             ProductoIngresoSeleccionado?.Invoke(Id_Producto, Nombre,RequiereVencimiento,ActualizarPrecioAutomaticamente,PermiteDecimales);
+            ProductoVentaSeleccionado?.Invoke(Id_Producto,  Nombre,  Precio, Stock, Codigo,  PermiteDecimales);
             this.Close();
 
         }

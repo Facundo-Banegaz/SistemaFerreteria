@@ -826,6 +826,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAgregarEditarIngreso";
             this.Load += new System.EventHandler(this.FrmAgregarEditarIngreso_Load);
+            this.Shown += new System.EventHandler(this.FrmAgregarEditarIngreso_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles_ingresos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);

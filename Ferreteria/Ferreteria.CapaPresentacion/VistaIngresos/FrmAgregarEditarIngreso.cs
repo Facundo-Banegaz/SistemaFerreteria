@@ -35,7 +35,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             this._Usuario = usuario;
          
             CargarCboComprobante();
-            string tipo = cbo_comprobante.SelectedItem?.ToString(); // ✅ correcto
+            string tipo = cbo_comprobante.SelectedItem?.ToString(); 
             CargarTextBox(tipo);
         }
 
@@ -370,7 +370,16 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         }
 
 
+        private void LimpiarCampos()
+        {
 
+            txt_id_producto.Clear();
+            txt_producto.Clear();
+            txt_precioCompra.Clear();
+            txt_productoCantidad.Clear();
+            txt_codigoBarra.Clear();
+            txt_id_producto.Clear();
+        }
         private void txt_codigoBarra_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -400,8 +409,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                MessageBoxButtons.OK,
                MessageBoxIcon.Information);
 
-                    txt_id_producto.Clear();
-                    txt_producto.Clear();
+                LimpiarCampos();
                 }
             // Limpiar el campo del código de barras después de procesar
             txt_codigoBarra.Clear();
@@ -827,6 +835,11 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         private void dgv_detalles_ingresos_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             MostrarResumenIngreso(dgv_detalles_ingresos);
+        }
+
+        private void FrmAgregarEditarIngreso_Shown(object sender, EventArgs e)
+        {
+            txt_codigoBarra.Focus();
         }
     }
 }

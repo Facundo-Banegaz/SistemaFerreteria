@@ -14,10 +14,25 @@ namespace Ferreteria.CapaDatos
         private CD_Conexion Conexion;
 
         // Metodo para alternar los colores en las filas de un data grid
-        public void AlternarColor(DataGridView Dgv)
+        public void AlternarColor(DataGridView dgv)
         {
-            Dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue;
-            Dgv.DefaultCellStyle.BackColor = Color.White;
+            // Color alternado para filas
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(230, 240, 255); // Celeste claro
+
+            // Color de fondo para filas normales
+            dgv.DefaultCellStyle.BackColor = Color.White;
+
+            // Color del texto
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+
+            // Color de selección
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 153, 255); // Azul fuerte
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Color de cabecera
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 122, 204); // Azul cabecera
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.EnableHeadersVisualStyles = false; // Para aplicar color de cabecera
         }
 
         public (string Serie, string Correlativo) GenerarSerieYCorrelativo(string tabla, string tipoDocumento)

@@ -203,13 +203,13 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_venta_Click(object sender, EventArgs e)
         {
-            abrirForm(new   FrmAgregarVenta());
+            abrirForm(new   FrmAgregarVenta(_Usuario));
            
         }
 
         private void Menu_item_historial_vendedor_Click(object sender, EventArgs e)
         {
-            abrirForm(new FrmHistorialVenta());
+            abrirForm(new FrmHistorialVenta(_Usuario));
         }
 
   
