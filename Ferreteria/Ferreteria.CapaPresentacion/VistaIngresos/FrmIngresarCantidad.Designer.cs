@@ -124,7 +124,7 @@
             this.MinimumSize = new System.Drawing.Size(444, 462);
             this.Name = "FrmIngresarCantidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmIngresarCantidad";
+            this.Text = "Ingresar Cantidad";
             this.Load += new System.EventHandler(this.FrmIngresarCantidad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

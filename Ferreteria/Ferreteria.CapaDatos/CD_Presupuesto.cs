@@ -128,25 +128,19 @@ namespace Ferreteria.CapaDatos
 
 
 
-        //Metodo eliminar
-        public void EliminarPresupuesto(int Id_Presupuesto)
+        //Metodo Estado
+        public void CancelarPresupuesto(int Id_Presupuesto)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpEliminar_Presupuesto");
-
+                Conexion.SetConsultaProcedure("SpCancelar_Presupuesto");
                 Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
-
-
                 Conexion.EjecutarAccion();
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -156,7 +150,8 @@ namespace Ferreteria.CapaDatos
         }
 
 
-     
+
+
 
         public List<Presupuesto> PresupuestoBuscarFecha(DateTime FechaInicio, DateTime FechaFin)
         {

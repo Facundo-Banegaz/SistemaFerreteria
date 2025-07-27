@@ -107,15 +107,9 @@ namespace Ferreteria.CapaDatos
 
                 cmd.Parameters.AddWithValue("@PorcentajeGanancia", detalle.PorcentajeGanancia);
 
-                SqlParameter pIdDetalle = new SqlParameter("@Id_DetalleIngreso", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(pIdDetalle);
-
+     
                 cmd.ExecuteNonQuery();
 
-                detalle.Id_DetalleIngreso = Convert.ToInt32(pIdDetalle.Value);
             }
         }
 

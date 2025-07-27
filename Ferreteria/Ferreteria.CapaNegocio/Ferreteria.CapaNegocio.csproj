@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_DetallePresupuesto.cs" />
     <Compile Include="CN_Categoria.cs" />
     <Compile Include="CN_DetalleIngreso.cs" />
     <Compile Include="CN_DetalleVenta.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="CN_Ingreso.cs" />
     <Compile Include="CN_Marca.cs" />
     <Compile Include="CN_Metodos.cs" />
+    <Compile Include="CN_Presupuesto.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_Proveedor.cs" />
     <Compile Include="CN_SubCategoria.cs" />

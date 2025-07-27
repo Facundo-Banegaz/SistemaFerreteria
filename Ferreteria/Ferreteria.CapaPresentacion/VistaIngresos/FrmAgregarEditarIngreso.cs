@@ -836,7 +836,5 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
 
         }
-
-       
     }
 }

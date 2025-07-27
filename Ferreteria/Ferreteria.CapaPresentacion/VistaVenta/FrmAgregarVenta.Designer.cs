@@ -47,7 +47,9 @@
             this.btn_guardar = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminar = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
+            this.btn_agregar = new System.Windows.Forms.Button();
             this.txt_producto = new System.Windows.Forms.TextBox();
             this.txt_stock = new System.Windows.Forms.TextBox();
             this.txt_precioVenta = new System.Windows.Forms.TextBox();
@@ -59,7 +61,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_id_producto = new System.Windows.Forms.TextBox();
             this.btn_quitar = new System.Windows.Forms.Button();
-            this.btn_agregar = new System.Windows.Forms.Button();
             this.Btn_producto = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.cbo_comprobante = new System.Windows.Forms.ComboBox();
             this.lbl_comprobante = new System.Windows.Forms.Label();
             this.dgv_detalles_ventas = new System.Windows.Forms.DataGridView();
-            this.btn_eliminar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -138,9 +138,8 @@
             this.lbl_totalFinal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbl_totalFinal.Location = new System.Drawing.Point(6, 219);
             this.lbl_totalFinal.Name = "lbl_totalFinal";
-            this.lbl_totalFinal.Size = new System.Drawing.Size(108, 35);
+            this.lbl_totalFinal.Size = new System.Drawing.Size(0, 35);
             this.lbl_totalFinal.TabIndex = 201;
-            this.lbl_totalFinal.Text = "Total S/:";
             // 
             // label4
             // 
@@ -162,9 +161,8 @@
             this.lbl_totalUnidades.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbl_totalUnidades.Location = new System.Drawing.Point(6, 139);
             this.lbl_totalUnidades.Name = "lbl_totalUnidades";
-            this.lbl_totalUnidades.Size = new System.Drawing.Size(191, 35);
+            this.lbl_totalUnidades.Size = new System.Drawing.Size(0, 35);
             this.lbl_totalUnidades.TabIndex = 199;
-            this.lbl_totalUnidades.Text = "Total Unidades:";
             // 
             // lbl_cantidadProductos
             // 
@@ -174,9 +172,8 @@
             this.lbl_cantidadProductos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbl_cantidadProductos.Location = new System.Drawing.Point(6, 86);
             this.lbl_cantidadProductos.Name = "lbl_cantidadProductos";
-            this.lbl_cantidadProductos.Size = new System.Drawing.Size(126, 35);
+            this.lbl_cantidadProductos.Size = new System.Drawing.Size(0, 35);
             this.lbl_cantidadProductos.TabIndex = 191;
-            this.lbl_cantidadProductos.Text = "Cantidad:";
             // 
             // btn_cancelar
             // 
@@ -331,6 +328,19 @@
             this.groupBox2.Text = "Información Productos";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // btn_eliminar
+            // 
+            this.btn_eliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_eliminar.BackColor = System.Drawing.Color.Snow;
+            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
+            this.btn_eliminar.Location = new System.Drawing.Point(848, 158);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(86, 60);
+            this.btn_eliminar.TabIndex = 210;
+            this.btn_eliminar.UseVisualStyleBackColor = false;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
+            // 
             // btn_editar
             // 
             this.btn_editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -343,6 +353,19 @@
             this.btn_editar.TabIndex = 185;
             this.btn_editar.UseVisualStyleBackColor = false;
             this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // btn_agregar
+            // 
+            this.btn_agregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_agregar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btn_agregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar.Image")));
+            this.btn_agregar.Location = new System.Drawing.Point(1244, 156);
+            this.btn_agregar.Name = "btn_agregar";
+            this.btn_agregar.Size = new System.Drawing.Size(85, 65);
+            this.btn_agregar.TabIndex = 185;
+            this.btn_agregar.UseVisualStyleBackColor = false;
+            this.btn_agregar.Click += new System.EventHandler(this.btn_agregar_Click);
             // 
             // txt_producto
             // 
@@ -476,19 +499,6 @@
             this.btn_quitar.TabIndex = 186;
             this.btn_quitar.UseVisualStyleBackColor = false;
             this.btn_quitar.Click += new System.EventHandler(this.btn_quitar_Click);
-            // 
-            // btn_agregar
-            // 
-            this.btn_agregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_agregar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btn_agregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_agregar.Image")));
-            this.btn_agregar.Location = new System.Drawing.Point(1244, 156);
-            this.btn_agregar.Name = "btn_agregar";
-            this.btn_agregar.Size = new System.Drawing.Size(85, 65);
-            this.btn_agregar.TabIndex = 185;
-            this.btn_agregar.UseVisualStyleBackColor = false;
-            this.btn_agregar.Click += new System.EventHandler(this.btn_agregar_Click);
             // 
             // Btn_producto
             // 
@@ -716,20 +726,8 @@
             this.dgv_detalles_ventas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_detalles_ventas.Size = new System.Drawing.Size(1884, 327);
             this.dgv_detalles_ventas.TabIndex = 100;
+            this.dgv_detalles_ventas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_detalles_ventas_CellValueChanged);
             this.dgv_detalles_ventas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_detalles_ventas_RowsRemoved);
-            // 
-            // btn_eliminar
-            // 
-            this.btn_eliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_eliminar.BackColor = System.Drawing.Color.Snow;
-            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(848, 158);
-            this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.Size = new System.Drawing.Size(86, 60);
-            this.btn_eliminar.TabIndex = 210;
-            this.btn_eliminar.UseVisualStyleBackColor = false;
-            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
             // FrmAgregarVenta
             // 

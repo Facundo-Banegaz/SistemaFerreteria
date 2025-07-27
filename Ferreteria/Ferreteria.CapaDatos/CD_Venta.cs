@@ -65,27 +65,24 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.IniciarTransaccion(); // Inicia conexión y transacción
+                Conexion.IniciarTransaccion(); // Abre conexión y transacción
 
                 Conexion.SetConsultaProcedure("Sp_Insertar_Venta");
 
                 Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
                 Conexion.SetearParametro("@Fecha", nuevo.Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
-                Conexion.SetearParametro("@Total", nuevo.Total);
                 Conexion.SetearParametro("@Tipo_Comprobante", nuevo.Tipo_Comprobante);
                 Conexion.SetearParametro("@Serie", nuevo.Serie);
                 Conexion.SetearParametro("@Correlativo", nuevo.Correlativo);
                 Conexion.SetearParametro("@MetodoPago", nuevo.MetodoPago);
-                Conexion.SetearParametro("@Estado", nuevo.Estado);
-
+                Conexion.SetearParametro("@Estado", string.IsNullOrEmpty(nuevo.Estado) ? "EMITIDO" : nuevo.Estado);
 
                 Conexion.SetearParametroSalida("@Id_Venta", SqlDbType.Int);
 
-                Conexion.EjecutarAccion(); // No cierra conexión
+                Conexion.EjecutarAccion(); // Ejecuta sin cerrar la conexión
 
                 int idVenta = Conexion.ObtenerValorParametroSalida("@Id_Venta");
 
-                // Reutilizamos conexión y transacción para los detalles
                 SqlConnection conn = Conexion.ObtenerConexion();
                 SqlTransaction trans = Conexion.ObtenerTransaccion();
 
@@ -97,19 +94,16 @@ namespace Ferreteria.CapaDatos
                     detalleVentaDatos.InsertarDetalleVenta(detalle, conn, trans);
                 }
 
-                Conexion.ConfirmarTransaccion(); // Commit exitoso
+                Conexion.ConfirmarTransaccion(); // Commit final
             }
             catch (SqlException ex)
             {
                 Conexion.AnularTransaccion();
 
-                // Manejo específico (opcional)
                 switch (ex.Number)
                 {
                     case 50001:
                         throw new Exception("No hay suficiente stock para esta venta.");
-                    case 2627: // Duplicado
-                        throw new Exception("Ya existe una venta con ese ID.");
                     default:
                         throw;
                 }
@@ -142,8 +136,8 @@ namespace Ferreteria.CapaDatos
                 {
                     case 50001:
                         throw new Exception("Esta venta ya fue anulada anteriormente.");
-                    case 50002:
-                        throw new Exception("No hay stock suficiente para anular la venta.");
+                    case 50000:
+                        throw new Exception($"Error al anular la venta: {ex.Message}");
                     default:
                         throw;
                 }
@@ -153,6 +147,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+
 
         public List<Venta> VentaBuscarFecha(DateTime fechaInicio, DateTime fechaFin)
         {

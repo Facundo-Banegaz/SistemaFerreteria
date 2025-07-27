@@ -176,8 +176,74 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-
+            GuardarVenta();
         }
+        private void GuardarVenta()
+        {
+            CN_Venta _CN_Venta = new CN_Venta();
+
+            try
+            {
+                if (dgv_detalles_ventas.Rows.Count == 0)
+                {
+                    MessageBox.Show("Debe agregar al menos un producto a la venta.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+
+
+                // Crear objeto Venta
+                Venta _Venta = new Venta
+                {
+                    Fecha = dtp_fecha.Value,
+                    Tipo_Comprobante = cbo_comprobante.SelectedItem?.ToString(),
+                    Serie = lbl_serie.Text,
+                    Correlativo = lbl_correlativo.Text,
+                    MetodoPago = cbo_metodoPago.SelectedItem?.ToString(),
+                    Usuario = new Usuario { Id_Usuario = _Usuario.Id_Usuario }
+                };
+
+                List<DetalleVenta> _Detalle_Venta = new List<DetalleVenta>();
+
+                foreach (DataGridViewRow fila in dgv_detalles_ventas.Rows)
+                {
+                    if (fila.IsNewRow) continue;
+
+                    int idProducto = Convert.ToInt32(fila.Cells["Id_Producto"].Value);
+                    decimal cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value);
+                    decimal precioVenta = Convert.ToDecimal(fila.Cells["PrecioVenta"].Value);
+
+                    if (cantidad <= 0 || precioVenta <= 0)
+                    {
+                        MessageBox.Show($"Fila {fila.Index + 1}: cantidad o precio inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    DetalleVenta detalle = new DetalleVenta
+                    {
+                        Producto = new Producto { Id_Producto = idProducto },
+                        Cantidad = cantidad,
+                        PrecioVenta = precioVenta
+                    };
+
+                    _Detalle_Venta.Add(detalle);
+                }
+
+                _CN_Venta.InsertarVenta(_Venta, _Detalle_Venta);
+
+                MessageBox.Show("¡La venta se registró exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
         private void btn_agregar_Click(object sender, EventArgs e)
         {
             if (dgv_detalles_ventas.CurrentRow == null)
@@ -350,6 +416,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             if (e.KeyCode == Keys.Enter)
             {
                 BuscarYAsignarProductoPorCodigo(txt_codigoBarra.Text.Trim());
+               
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -384,6 +451,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                 cN_Metodos.FormatoMoneda(txt_stock);
 
                 AgregarProductoAGrilla(producto);
+                MostrarResumenVenta(dgv_detalles_ventas);
             }
             else
             {
@@ -511,19 +579,11 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             lbl_totalUnidades.Text = $"Unidades: {totalUnidades.ToString("N2", new CultureInfo("es-AR"))}";
             lbl_totalFinal.Text = $"Total: ${totalFinal.ToString("N2", new CultureInfo("es-AR"))}";
         }
-        private void dgv_detalles_ingresos_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            MostrarResumenVenta(dgv_detalles_ventas);
-        }
 
-        private void dgv_detalles_ingresos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-           MostrarResumenVenta(dgv_detalles_ventas);
-
-        }
 
         private void dgv_detalles_ventas_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
+            MostrarResumenVenta(dgv_detalles_ventas);
 
         }
 
@@ -532,6 +592,10 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         }
 
-       
+        private void dgv_detalles_ventas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarResumenVenta(dgv_detalles_ventas);
+
+        }
     }
 }

@@ -53,10 +53,11 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             if (_Usuario.Acceso == "Administrador")
             {
                 this.Menu_gestion_mantenimientos.Enabled = true;
-                this.Menu_gestion_compras.Enabled = true;
+                this.Menu_gestion_movimientos.Enabled = true;
                 this.Menu_gestion_analisis.Enabled = true;
                 this.Menu_gestion_reportes.Enabled = true;
-
+                this.Menu_gestion_movimientos.Enabled = true;
+                this.Menu_gestion_compras.Enabled = true;
 
                 this.Menu_gestion_ventas.Enabled = false;
                 this.Menu_gestion_presupuestos.Enabled = false;
@@ -67,10 +68,11 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             else if (_Usuario.Acceso == "Vendedor")
             {
                 this.Menu_gestion_mantenimientos.Enabled = false;
-                this.Menu_gestion_compras.Enabled = false;
+                this.Menu_gestion_movimientos.Enabled = false;
                 this.Menu_gestion_analisis.Enabled = false;
                 this.Menu_gestion_reportes.Enabled = false;
-
+                this.Menu_gestion_movimientos.Enabled = false;
+                this.Menu_gestion_compras.Enabled = false;
 
                 this.Menu_gestion_ventas.Enabled = true;
                 this.Menu_gestion_presupuestos.Enabled =true;
@@ -82,7 +84,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             else
             {
                 this.Menu_gestion_mantenimientos.Enabled = false;
-                this.Menu_gestion_compras.Enabled = false;
+                this.Menu_gestion_movimientos.Enabled = false;
                 this.Menu_gestion_analisis.Enabled = false;
                 this.Menu_gestion_analisis.Enabled = false;
                 this.Menu_gestion_ventas.Enabled = false;
@@ -203,8 +205,8 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_venta_Click(object sender, EventArgs e)
         {
-            abrirForm(new   FrmAgregarVenta(_Usuario));
-           
+            abrirForm(new FrmHistorialVenta(_Usuario));
+
         }
 
         private void Menu_item_historial_vendedor_Click(object sender, EventArgs e)
@@ -221,11 +223,6 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         }
 
         private void Menu_gestion_consultas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Menu_gestion_ventas_Click(object sender, EventArgs e)
         {
 
         }
@@ -252,5 +249,11 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
                 MessageBoxIcon.Information
             );
         }
+
+        private void Menu_item_Ingresos_Click_1(object sender, EventArgs e)
+        {
+            abrirForm(new FrmIngreso());
+        }
     }
-}
+    }
+

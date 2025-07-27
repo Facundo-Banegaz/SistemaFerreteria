@@ -38,9 +38,6 @@ namespace Ferreteria.CapaDatos
                     _DetallePresupuesto = new DetallePresupuesto();
 
 
-                    _DetallePresupuesto.Presupuesto = new Presupuesto();
-
-                    _DetallePresupuesto.Presupuesto.Id_Presupuesto = (int)Conexion.Lector["Id_Presupuesto"];
                     
                     _DetallePresupuesto.Producto = new Producto();
 
@@ -48,7 +45,8 @@ namespace Ferreteria.CapaDatos
 
                     _DetallePresupuesto.Cantidad = (decimal)Conexion.Lector["Cantidad"];
                     _DetallePresupuesto.PrecioUnitario = (decimal)Conexion.Lector["PrecioUnitario"];
-                   
+
+                    _DetallePresupuesto.Subtotal = (decimal)Conexion.Lector["Subtotal"];
 
 
                     listaDetallePresupuesto.Add(_DetallePresupuesto);
