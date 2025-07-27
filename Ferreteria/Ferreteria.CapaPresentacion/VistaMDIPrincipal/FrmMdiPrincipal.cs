@@ -5,6 +5,7 @@ using Ferreteria.CapaPresentacion.VistaIngresos;
 using Ferreteria.CapaPresentacion.VistaLogin;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaMovimientoStock;
+using Ferreteria.CapaPresentacion.VistaPresupuesto;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
@@ -209,13 +210,11 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         }
 
-        private void Menu_item_historial_vendedor_Click(object sender, EventArgs e)
-        {
-            abrirForm(new FrmHistorialVenta(_Usuario));
-        }
 
-  
-  
+        private void Menu_item_presupuesto_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmHistorialPresupuesto(_Usuario));
+        }
 
         private void toolStripMenuItem16_Click(object sender, EventArgs e)
         {
@@ -254,6 +253,9 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         {
             abrirForm(new FrmIngreso());
         }
+
+     
     }
-    }
+    
+}
 

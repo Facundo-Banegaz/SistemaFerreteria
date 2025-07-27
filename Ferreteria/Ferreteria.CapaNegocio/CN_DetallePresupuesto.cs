@@ -1,4 +1,5 @@
-﻿using Ferreteria.CapaDominio;
+﻿using Ferreteria.CapaDatos;
+using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ferreteria.CapaNegocio
 {
-    public class CD_DetallePresupuesto
+    public class CN_DetallePresupuesto
     {
         private CD_DetallePresupuesto DetallePresupuesto;
 

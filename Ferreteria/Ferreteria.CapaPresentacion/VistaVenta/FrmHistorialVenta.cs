@@ -75,46 +75,47 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         }
 
-        private void ArregloDataGridView(DataGridView dgv_ingresos)
+        private void ArregloDataGridView(DataGridView dgv_ventas)
         {
             // Lógica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
 
-            dgv_ingresos.Columns["Presupuesto"].Visible = false;
+            dgv_ventas.Columns["Presupuesto"].Visible = false;
        
 
-            dgv_ingresos.Columns["Id_Venta"].Width = 300;
-            dgv_ingresos.Columns["Usuario"].Width = 400; 
-            dgv_ingresos.Columns["Fecha"].Width = 350;
-            dgv_ingresos.Columns["Tipo_Comprobante"].Width = 400; // nombre_producto
-            dgv_ingresos.Columns["Serie"].Width = 400; // descripcion_producto 
-            dgv_ingresos.Columns["Correlativo"].Width = 400;
+            dgv_ventas.Columns["Id_Venta"].Width = 300;
+            dgv_ventas.Columns["Usuario"].Width = 400; 
+            dgv_ventas.Columns["Fecha"].Width = 350;
+            dgv_ventas.Columns["Tipo_Comprobante"].Width = 400; // nombre_producto
+            dgv_ventas.Columns["Serie"].Width = 400; // descripcion_producto 
+            dgv_ventas.Columns["Correlativo"].Width = 400;
 
-            dgv_ingresos.Columns["Estado"].Width = 400; // nombre_producto
-            dgv_ingresos.Columns["MetodoPago"].Width = 500; // descripcion_producto 
-            dgv_ingresos.Columns["Total"].Width = 500; // descripcion_producto 
+            dgv_ventas.Columns["Estado"].Width = 400; // nombre_producto
+            dgv_ventas.Columns["MetodoPago"].Width = 500; // descripcion_producto 
+            dgv_ventas.Columns["Total"].Width = 500; // descripcion_producto 
+
+
+
+
+            dgv_ventas.Columns["Id_Venta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Tipo_comprobante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgv_ventas.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["MetodoPago"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_ventas.Columns["Total"].DefaultCellStyle.Format = "N0";
 
             // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
             CultureInfo culturaAR = new CultureInfo("es-AR");
 
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Format = "N2";
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.FormatProvider = culturaAR;
+            dgv_ventas.Columns["Total"].DefaultCellStyle.Format = "N2";
+            dgv_ventas.Columns["Total"].DefaultCellStyle.FormatProvider = culturaAR;
 
-
-
-            dgv_ingresos.Columns["Id_Venta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Tipo_comprobante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgv_ingresos.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["MetodoPago"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Format = "N0";
-
-            _Metodos.AlternarColor(dgv_ingresos);
+            _Metodos.AlternarColor(dgv_ventas);
         }
 
         private void btn_buscar_Click(object sender, EventArgs e)

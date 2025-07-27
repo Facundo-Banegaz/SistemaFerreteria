@@ -1,6 +1,8 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,32 +70,18 @@ namespace Ferreteria.CapaDatos
 
         //metodo insertar
 
-        public void InsertarDetallePresupuesto(DetallePresupuesto Nuevo)
+        public void InsertarDetallePresupuesto(DetallePresupuesto detalle, SqlConnection conn, SqlTransaction trans)
         {
-            Conexion = new CD_Conexion();
-
-            try
+            using (SqlCommand cmd = new SqlCommand("Sp_Insertar_DetallePresupuesto", conn, trans))
             {
-                Conexion.SetConsultaProcedure("SpInsertar_DetallePresupuesto");
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                Conexion.SetearParametro("@Id_Presupuesto", Nuevo.Presupuesto.Id_Presupuesto);
-                Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
-                Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
-                Conexion.SetearParametro("@PrecioUnitario", Nuevo.PrecioUnitario);
+                cmd.Parameters.AddWithValue("@Id_Presupuesto", detalle.Presupuesto.Id_Presupuesto);
+                cmd.Parameters.AddWithValue("@Id_Producto", detalle.Producto.Id_Producto);
+                cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                cmd.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
 
-
-                Conexion.EjecutarAccion();
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
+                cmd.ExecuteNonQuery();
             }
         }
 

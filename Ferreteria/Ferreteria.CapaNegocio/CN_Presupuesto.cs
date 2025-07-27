@@ -27,11 +27,11 @@ namespace Ferreteria.CapaNegocio
         }
 
         //Metodo para Anular un  Presupuesto en la Base de Datos
-        public void CancelarPresupuesto(int Id_Presupuesto)
+        public void CambiarEstadoPresupuesto(int Id_Presupuesto)
         {
             _Presupuesto = new CD_Presupuesto();
 
-            _Presupuesto.CancelarPresupuesto(Id_Presupuesto);
+            _Presupuesto.CambiarEstadoPresupuesto(Id_Presupuesto);
         }
 
         public List<Presupuesto> PresupuestoBuscarFecha(DateTime FechaInicio, DateTime FechaFin)
@@ -42,4 +42,4 @@ namespace Ferreteria.CapaNegocio
         }
     }
 }
-}
+

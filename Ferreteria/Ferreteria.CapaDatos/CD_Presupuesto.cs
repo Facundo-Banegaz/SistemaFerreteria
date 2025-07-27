@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_Presupuesto");
+                Conexion.SetConsultaProcedure("SpMostrar_Presupuestos");
 
                 Conexion.EjecutarLectura();
 
@@ -39,6 +40,8 @@ namespace Ferreteria.CapaDatos
                     _Presupuesto.Id_Presupuesto= (int)Conexion.Lector["Id_Presupuesto"];
 
                     _Presupuesto.Usuario = new Usuario();
+                    _Presupuesto.Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
+
                     _Presupuesto.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
 
                 
@@ -67,75 +70,61 @@ namespace Ferreteria.CapaDatos
         }
 
 
-        public void InsertarPresupuesto(Presupuesto Nuevo, List<DetallePresupuesto> DetallePresupuesto)
+        public void InsertarPresupuesto(Presupuesto nuevo, List<DetallePresupuesto> detalles)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                //Conexion.IniciarTransaccion();
+                Conexion.IniciarTransaccion(); // Abre conexión y transacción
 
-                Conexion.SetConsultaProcedure("SpInsertar_Presupuesto");
-                Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
-                Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
-                Conexion.SetearParametro("@Cliente", Nuevo.Cliente);
-                Conexion.SetearParametro("@Total", Nuevo.Total);
-                Conexion.SetearParametro("@Estado", Nuevo.Estado);
+                Conexion.SetConsultaProcedure("Sp_Insertar_Presupuesto");
 
-
-
-                // Configurar el parámetro de salida para el ID de ingreso
-
+                Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
+                Conexion.SetearParametro("@Fecha", nuevo.Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
+                Conexion.SetearParametro("@Cliente", nuevo.Cliente);
+                Conexion.SetearParametro("@Serie", nuevo.Serie);
+                Conexion.SetearParametro("@Correlativo", nuevo.Correlativo);
+                Conexion.SetearParametro("@Estado", nuevo.Estado ?? "Activo");
                 Conexion.SetearParametroSalida("@Id_Presupuesto", SqlDbType.Int);
 
                 Conexion.EjecutarAccion();
 
+                int idPresupuesto = Conexion.ObtenerValorParametroSalida("@Id_Presupuesto");
 
-                // Capturar el ID del ingreso insertado
-                int Id_Presupuesto = Conexion.ObtenerValorParametroSalida("@Id_Presupuesto");
+                SqlConnection conn = Conexion.ObtenerConexion();
+                SqlTransaction trans = Conexion.ObtenerTransaccion();
 
+                CD_DetallePresupuesto detallePresupuestoDatos = new CD_DetallePresupuesto();
 
-
-
-                CD_DetallePresupuesto _Detalle_Presupuesto = new CD_DetallePresupuesto();
-
-                // Insertar detalles de ingreso
-                foreach (DetallePresupuesto detalle in DetallePresupuesto)
+                foreach (var detalle in detalles)
                 {
-                    detalle.Presupuesto.Id_Presupuesto = Id_Presupuesto; // Suponiendo que tienes un método para obtener el último ID de ingreso insertado
-
-
-
-                    _Detalle_Presupuesto.InsertarDetallePresupuesto(detalle);
+                    detalle.Presupuesto = new Presupuesto { Id_Presupuesto = idPresupuesto };
+                    detallePresupuestoDatos.InsertarDetallePresupuesto(detalle, conn, trans);
                 }
 
-
-
-                //Conexion.ConfirmarTransaccion();
-
-
+                Conexion.ConfirmarTransaccion(); // Si todo va bien, commitea
             }
-            catch (Exception ex)
+            catch
             {
-                Conexion.AnularTransaccion();
-                throw ex;
+                Conexion.AnularTransaccion(); // Rollback si falla algo
+                throw;
             }
             finally
             {
-                Conexion.CerrarConexion();
+                Conexion.CerrarConexion(); // Cierre limpio
             }
         }
 
 
-
         //Metodo Estado
-        public void CancelarPresupuesto(int Id_Presupuesto)
+        public void CambiarEstadoPresupuesto(int Id_Presupuesto)
         {
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpCancelar_Presupuesto");
+                Conexion.SetConsultaProcedure("SpCambiarEstado_Presupuesto");
                 Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
                 Conexion.EjecutarAccion();
             }
@@ -160,11 +149,11 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("SpBuscar_Presupuesto_fecha");
+                Conexion.SetConsultaProcedure("Sp_BuscarPresupuestoPorFecha");
 
 
-                Conexion.SetearParametro("@txt_fecha_inicio", FechaInicio);
-                Conexion.SetearParametro("@txt_fecha_fin", FechaFin);
+                Conexion.SetearParametro("@FechaInicio", FechaInicio);
+                Conexion.SetearParametro("@FechaFin", FechaFin);
 
                 Conexion.EjecutarLectura();
                 while (Conexion.Lector.Read())
