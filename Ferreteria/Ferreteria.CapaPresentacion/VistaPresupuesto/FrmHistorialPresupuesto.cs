@@ -54,21 +54,21 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
                 {
                     string estado = fila.Cells["Estado"].Value.ToString();
 
-                    if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                    if (estado.Equals("Cancelado", StringComparison.OrdinalIgnoreCase))
                     {
                         anulados++;
 
                     }
-                    else if (estado.Equals("Emitido", StringComparison.OrdinalIgnoreCase))
+                    else if (estado.Equals("Activo", StringComparison.OrdinalIgnoreCase))
                     {
                         emitidos++;
                     }
                 }
             }
 
-            lbl_total.Text = "Total de Ingresos: " + Convert.ToString(dgv_presupuestos.Rows.Count);
-            lbl_anulados.Text = "Ingresos Anulados: " + Convert.ToString(anulados);
-            lbl_emitidos.Text = "Ingresos Emitidos: " + Convert.ToString(emitidos);
+            lbl_total.Text = "Total de Presupuestos: " + Convert.ToString(dgv_presupuestos.Rows.Count);
+            lbl_anulados.Text = "Presupuestos Cancelados: " + Convert.ToString(anulados);
+            lbl_emitidos.Text = "Presupuestos Activos: " + Convert.ToString(emitidos);
 
         }
 
@@ -216,23 +216,31 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
         private void btn_estado_Click(object sender, EventArgs e)
         {
             CN_Presupuesto CN_Presupuesto = new CN_Presupuesto();
-
-            Venta seleccionado = null;
-
+            Presupuesto seleccionado = null;
 
             try
             {
                 if (dgv_presupuestos.CurrentRow != null)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Quieres Anular esta Venta?", "Anular", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    seleccionado = (Presupuesto)dgv_presupuestos.CurrentRow.DataBoundItem;
+
+                    string accion = seleccionado.Estado == "Cancelado" ? "activar" : "cancelar";
+                    string titulo = seleccionado.Estado == "Cancelado" ? "Activar" : "Anular";
+
+                    DialogResult respuesta = MessageBox.Show(
+                        $"¿Quieres {accion} este Presupuesto?",
+                        titulo,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
                     if (respuesta == DialogResult.Yes)
                     {
-                        seleccionado = (Venta)dgv_presupuestos.CurrentRow.DataBoundItem;
-                        CN_Presupuesto.CambiarEstadoPresupuesto(seleccionado.Id_Venta);
-
+                        CN_Presupuesto.CambiarEstadoPresupuesto(seleccionado.Id_Presupuesto);
                         CargarGrilla();
-                        MessageBox.Show("Venta Anulada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        string mensajeFinal = seleccionado.Estado == "Cancelado" ? "Presupuesto activado correctamente." : "Presupuesto cancelado correctamente.";
+                        MessageBox.Show(mensajeFinal, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -240,6 +248,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             {
                 MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void dgv_presupuestos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -250,7 +259,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             {
                 string estado = fila.Cells["Estado"].Value.ToString();
 
-                if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                if (estado.Equals("Cancelado", StringComparison.OrdinalIgnoreCase))
                 {
                     fila.DefaultCellStyle.BackColor = Color.DarkRed;
                     fila.DefaultCellStyle.ForeColor = Color.White;

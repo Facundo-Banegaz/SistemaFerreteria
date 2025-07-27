@@ -44,7 +44,9 @@ namespace Ferreteria.CapaDatos
 
                     _Presupuesto.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
 
-                
+                    _Presupuesto.Serie = (string)Conexion.Lector["Serie"];
+
+                    _Presupuesto.Correlativo = (string)Conexion.Lector["Correlativo"];
 
                     _Presupuesto.Fecha = (DateTime)Conexion.Lector["Fecha"];
                     _Presupuesto.Cliente = (string)Conexion.Lector["Cliente"];
@@ -128,15 +130,22 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
                 Conexion.EjecutarAccion();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw ex;
+                switch (ex.Number)
+                {
+                    case 50001:
+                        throw new Exception("El presupuesto no fue encontrado.");
+                    default:
+                        throw new Exception("Error al cambiar el estado del presupuesto: " + ex.Message);
+                }
             }
             finally
             {
                 Conexion.CerrarConexion();
             }
         }
+
 
 
 
