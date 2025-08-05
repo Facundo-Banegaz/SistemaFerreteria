@@ -19,5 +19,12 @@ namespace Ferreteria.CapaNegocio
 
             return DetallePresupuesto.ListaDetallePresupuesto(Id_Presupuesto);
         }
+
+        public List<DetallePresupuesto> ObtenerDetallePresupuesto(int Id_Presupuesto)
+        {
+            DetallePresupuesto = new CD_DetallePresupuesto();
+
+            return DetallePresupuesto.ObtenerDetallePresupuesto(Id_Presupuesto);
+        }
     }
 }

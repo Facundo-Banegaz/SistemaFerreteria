@@ -19,6 +19,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
 
         private List<Presupuesto> ListaPresupuestos;
         public Usuario _Usuario;
+        private CN_DetallePresupuesto _CNDetallePresupuesto = new CN_DetallePresupuesto();
 
         public FrmHistorialPresupuesto()
         {
@@ -149,6 +150,101 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
 
+            if (dgv_presupuestos.CurrentRow != null)
+            {
+                var seleccionado = (Presupuesto)dgv_presupuestos.CurrentRow.DataBoundItem;
+
+                DialogResult respuesta = MessageBox.Show("¿Deseas imprimir este presupuesto?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Preguntar tipo de comprobante
+                    DialogResult tipo = MessageBox.Show("¿Desea imprimir como Ticket?", "Tipo de Comprobante",
+                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+                    if (tipo == DialogResult.Yes)
+                    {
+                        // Imprimir como Ticket
+                        ImprimirTicketPresupuesto(seleccionado);
+                    }
+                    else if (tipo == DialogResult.No)
+                    {
+                        // Imprimir como Boleta (reporte)
+                        ImprimirComoBoleta(seleccionado);
+                    }
+                    // Si elige Cancelar, no se imprime nada
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+    
+        private void ImprimirComoBoleta(Presupuesto presupuesto)
+        {
+            //FrmReporteFacturaIngreso frmReporte = new FrmReporteFacturaIngreso(presupuesto);
+            //frmReporte.ShowDialog();
+        }
+        private void ImprimirTicketPresupuesto(Presupuesto seleccionado)
+        {
+            CrearTicket ticket = new CrearTicket();
+
+    
+            // Encabezado
+            ticket.TextoCentro("CORRALON SAN MIGUEL", true);
+            ticket.TextoCentro("TICKET DE PRESUPUESTO", false);
+            ticket.TextoIzquierda("CIUDAD: POZO HONDO");
+            ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
+            ticket.TextoIzquierda("TELEF: 3856654232");
+            ticket.TextoIzquierda("C.U.I.T: 27-27906930-2");
+            ticket.TextoCentro("EMAIL:");
+            ticket.TextoCentro("CorralonSanMiguel@gmail.com");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("Comprobante N°: " + seleccionado.Serie + "-" + seleccionado.Correlativo);
+
+            ticket.lineasGuion();
+
+            // Datos cliente
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("VENDEDOR: " + seleccionado.Usuario);
+            ticket.TextoIzquierda("CLIENTE: " + seleccionado.Cliente);
+            ticket.TextoIzquierda("");
+            ticket.TextoExtremos("FECHA: " + seleccionado.Fecha.ToString("dd/MM/yyyy"), "HORA: " + seleccionado.Fecha.ToString("HH:mm"));
+            ticket.lineasGuion();
+          
+
+            // Encabezado de ítems
+            ticket.EncabezadoVenta();
+            ticket.lineasGuion();
+
+            var detalles = _CNDetallePresupuesto.ObtenerDetallePresupuesto(seleccionado.Id_Presupuesto);
+
+
+            foreach (var item in detalles)
+            {
+                ticket.AgregaArticulo(item.Producto.Nombre, item.Cantidad, item.PrecioUnitario);
+            }
+
+
+
+            ticket.lineasGuion();
+            ticket.TextoCentro(seleccionado.Total.ToString("C2", new CultureInfo("es-AR")), true);
+
+            ticket.lineasGuion();
+
+            ticket.TextoCentro("Total de Items: " + detalles.Sum(d => d.Cantidad),false);
+            ticket.lineasGuion();
+
+            ticket.TextoCentro("¡No valido como factura!");
+            ticket.TextoIzquierda("");
+            ticket.TextoCentro("¡Gracias por su consulta!");
+
+            ticket.CortaTicket();
+            // Imprimir en la impresora POS
+            ticket.ImprimirTicket("POS-58");
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)

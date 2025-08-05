@@ -28,11 +28,11 @@ namespace Ferreteria.CapaNegocio
         }
 
         //Metodo para Anular un  Venta en la Base de Datos
-        public void AnularVenta(int Id_Venta)
+        public void CambiarEstadoVenta(int Id_Venta)
         {
             _Venta = new CD_Venta();
 
-            _Venta.AnularVenta(Id_Venta);
+            _Venta.CambiarEstadoVenta(Id_Venta);
         }
 
         public List<Venta> VentaBuscarFecha(DateTime FechaInicio, DateTime FechaFin)

@@ -68,6 +68,49 @@ namespace Ferreteria.CapaDatos
 
         }
 
+
+        public List<DetallePresupuesto> ObtenerDetallePresupuesto(int Id_Presupuesto)
+        {
+        
+            Conexion = new CD_Conexion();
+            listaDetallePresupuesto = new List<DetallePresupuesto>();
+            try
+            {
+               
+                Conexion.SetConsultaProcedure("SpObtener_DetallePresupuesto");
+                Conexion.SetearParametro("@Id_Presupuesto", Id_Presupuesto);
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    _DetallePresupuesto = new DetallePresupuesto();
+
+
+
+                    _DetallePresupuesto.Producto = new Producto();
+
+                    _DetallePresupuesto.Producto.Nombre = (string)Conexion.Lector["Producto"];
+
+                    _DetallePresupuesto.Cantidad = (decimal)Conexion.Lector["Cantidad"];
+                    _DetallePresupuesto.PrecioUnitario = (decimal)Conexion.Lector["PrecioUnitario"];
+
+                   
+
+
+                    listaDetallePresupuesto.Add(_DetallePresupuesto);
+                }
+                return listaDetallePresupuesto;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
         //metodo insertar
 
         public void InsertarDetallePresupuesto(DetallePresupuesto detalle, SqlConnection conn, SqlTransaction trans)

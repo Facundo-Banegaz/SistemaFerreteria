@@ -191,11 +191,6 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             abrirForm(new FrmProveedor());
         }
 
-        private void Menu_item_ingresos_Click(object sender, EventArgs e)
-        {
-            abrirForm(new FrmIngreso(_Usuario));
-
-        }
 
         private void Menu_item_usuarios_Click(object sender, EventArgs e)
         {
@@ -251,7 +246,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_item_Ingresos_Click_1(object sender, EventArgs e)
         {
-            abrirForm(new FrmIngreso());
+            abrirForm(new FrmIngreso(_Usuario));
         }
 
      

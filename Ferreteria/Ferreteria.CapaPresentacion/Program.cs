@@ -1,6 +1,7 @@
 ﻿
 
 using Ferreteria.CapaPresentacion.VistaLogin;
+using Ferreteria.CapaPresentacion.VistaTicket;
 using System;
 using System.Collections.Generic;
 using System.Linq;

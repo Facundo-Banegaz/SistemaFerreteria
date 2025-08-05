@@ -119,34 +119,39 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-        public void AnularVenta(int idVenta)
+    public void CambiarEstadoVenta(int idVenta)
+{
+    Conexion = new CD_Conexion();
+
+    try
+    {
+        Conexion.SetConsultaProcedure("Sp_CambiarEstadoVenta");
+        Conexion.SetearParametro("@Id_Venta", idVenta);
+        Conexion.EjecutarAccion();
+    }
+    catch (SqlException ex)
+    {
+        switch (ex.Number)
         {
-            Conexion = new CD_Conexion();
 
-            try
-            {
-                Conexion.SetConsultaProcedure("Sp_AnularVenta");
-                Conexion.SetearParametro("@Id_Venta", idVenta);
-
-                Conexion.EjecutarAccion();
-            }
-            catch (SqlException ex)
-            {
-                switch (ex.Number)
-                {
-                    case 50001:
-                        throw new Exception("Esta venta ya fue anulada anteriormente.");
-                    case 50000:
-                        throw new Exception($"Error al anular la venta: {ex.Message}");
-                    default:
-                        throw;
-                }
-            }
-            finally
-            {
-                Conexion.CerrarConexion();
-            }
+            case 50003:
+                throw new Exception("Solo se puede reactivar una venta dentro de las 48 horas.");
+            case 50004:
+                throw new Exception("No hay suficiente stock para reactivar esta venta.");
+            case 50005:
+                throw new Exception("Solo se puede anular una venta dentro de las 48 horas.");
+            case 50000:
+                throw new Exception($"Error al cambiar el estado de la venta: {ex.Message}");
+            default:
+                throw;
         }
+    }
+    finally
+    {
+        Conexion.CerrarConexion();
+    }
+}
+
 
 
         public List<Venta> VentaBuscarFecha(DateTime fechaInicio, DateTime fechaFin)

@@ -127,31 +127,37 @@ namespace Ferreteria.CapaDatos
 
 
         //Metodo eliminar
-        public void AnularIngreso(int Id_Ingreso)
+        public void CambiarEstadoIngreso(int Id_Ingreso)
         {
+            if (Id_Ingreso <= 0)
+                throw new ArgumentException("El ID del ingreso no es válido.");
+
             Conexion = new CD_Conexion();
 
             try
             {
-                Conexion.SetConsultaProcedure("Sp_AnularIngreso"); // Verificá el nombre exacto
+                Conexion.SetConsultaProcedure("Sp_CambiarEstadoIngreso");
                 Conexion.SetearParametro("@Id_Ingreso", Id_Ingreso);
 
                 Conexion.EjecutarAccion();
             }
             catch (SqlException ex)
             {
+                // Manejamos errores específicos
                 switch (ex.Number)
                 {
-
                     case 50001:
-                        throw new Exception("Este ingreso ya ha sido anulado anteriormente.");
+                        throw new Exception("Este ingreso ya se encuentra en el estado solicitado.");
                     case 50002:
-                        throw new Exception("No hay suficiente stock para anular este ingreso.");
+                        throw new Exception("No hay suficiente stock para realizar la operación.");
                     default:
-                        throw; 
+                        // Si el procedimiento lanza un RAISERROR personalizado sin número de error fijo
+                        if (!string.IsNullOrWhiteSpace(ex.Message))
+                            throw new Exception("Error al cambiar el estado del ingreso: " + ex.Message);
+                        else
+                            throw new Exception("Ocurrió un error inesperado en la base de datos.", ex);
                 }
             }
-
             finally
             {
                 Conexion.CerrarConexion();

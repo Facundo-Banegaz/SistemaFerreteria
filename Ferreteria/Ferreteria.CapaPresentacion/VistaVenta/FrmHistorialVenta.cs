@@ -217,31 +217,56 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         private void btn_anular_Click(object sender, EventArgs e)
         {
-            CN_Venta cN_Venta = new CN_Venta();
-
-            Venta seleccionado = null;
-
+           
 
             try
             {
-                if (dgv_ventas.CurrentRow != null)
+                if (dgv_ventas.CurrentRow == null)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Quieres Anular esta Venta?", "Anular", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (respuesta == DialogResult.Yes)
-                    {
-                        seleccionado = (Venta)dgv_ventas.CurrentRow.DataBoundItem;
-                        cN_Venta.AnularVenta(seleccionado.Id_Venta);
-
-                        CargarGrilla();
-                        MessageBox.Show("Venta Anulada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("Seleccione una venta de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+
+                var seleccionado = (Venta)dgv_ventas.CurrentRow.DataBoundItem;
+
+                if (!ConfirmarCambioEstadoVenta(seleccionado)) return;
+
+                var ventaService = new CN_Venta();
+                ventaService.CambiarEstadoVenta(seleccionado.Id_Venta); // También se usa para reactivar si está implementado así
+
+                CargarGrilla();
+
+                MostrarMensajeExitoVenta(seleccionado.Estado);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+        }
+        private bool ConfirmarCambioEstadoVenta(Venta venta)
+        {
+            string accion = venta.Estado == "ANULADO" ? "reactivar" : "anular";
+            string titulo = venta.Estado == "ANULADO" ? "Reactivar Venta" : "Anular Venta";
+
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Desea {accion} esta venta?",
+                titulo,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            return respuesta == DialogResult.Yes;
+        }
+
+        private void MostrarMensajeExitoVenta(string estadoAnterior)
+        {
+            string mensaje = estadoAnterior == "ANULADO"
+                ? "Venta reactivada correctamente."
+                : "Venta anulada correctamente.";
+
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dgv_ventas_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)

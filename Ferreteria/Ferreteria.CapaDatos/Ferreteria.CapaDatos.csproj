@@ -59,7 +59,6 @@
     <Compile Include="CD_Producto.cs" />
     <Compile Include="CD_Proveedor.cs" />
     <Compile Include="CD_SubCategoria.cs" />
-    <Compile Include="CD_Ticket.cs" />
     <Compile Include="CD_TipoEspecificacion.cs" />
     <Compile Include="CD_TipoMovimiento.cs" />
     <Compile Include="CD_UnidadMedida.cs" />

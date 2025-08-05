@@ -217,32 +217,53 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void btn_anular_Click(object sender, EventArgs e)
         {
-            CN_Ingreso _Ingreso = new CN_Ingreso();
-            Ingreso seleccionado = null;
-
-
             try
             {
-                if (dgv_ingresos.CurrentRow != null)
+                if (dgv_ingresos.CurrentRow == null)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Quieres Anular este Ingreso?", "Anular", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (respuesta == DialogResult.Yes)
-                    {
-                        seleccionado = (Ingreso)dgv_ingresos.CurrentRow.DataBoundItem;
-                        _Ingreso.AnularIngreso(seleccionado.Id_Ingreso);
-
-                        CargarGrilla();
-                        MessageBox.Show("Ingreso Anulado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("Seleccione un ingreso de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+
+                var seleccionado = (Ingreso)dgv_ingresos.CurrentRow.DataBoundItem;
+
+                if (!ConfirmarCambioEstado(seleccionado)) return;
+
+                var ingresoService = new CN_Ingreso();
+                ingresoService.CambiarEstadoIngreso(seleccionado.Id_Ingreso);
+
+                CargarGrilla();
+
+                MostrarMensajeExito(seleccionado.Estado);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private bool ConfirmarCambioEstado(Ingreso ingreso)
+        {
+            string accion = ingreso.Estado == "ANULADO" ? "reactivar" : "anular";
+            string titulo = ingreso.Estado == "ANULADO" ? "Reactivar Ingreso" : "Anular Ingreso";
 
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Desea {accion} este ingreso?",
+                titulo,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            return respuesta == DialogResult.Yes;
+        }
+
+        private void MostrarMensajeExito(string estadoAnterior)
+        {
+            string mensaje = estadoAnterior == "ANULADO"
+                ? "Ingreso reactivado correctamente."
+                : "Ingreso anulado correctamente.";
+
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         private void dgv_ingresos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             var fila = dgv_ingresos.Rows[e.RowIndex];

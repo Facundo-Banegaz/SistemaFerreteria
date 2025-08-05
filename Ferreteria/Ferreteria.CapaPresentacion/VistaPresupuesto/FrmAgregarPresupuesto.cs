@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -240,12 +241,85 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
                 CN_Presupuesto.InsertarPresupuesto(_Presupuesto, _Detalle_Presupuesto);
 
                 MessageBox.Show("¡El Presupuesto se generó exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (cbo_comprobante.SelectedItem != null && cbo_comprobante.SelectedItem.ToString() == "TICKET")
+                {
+                    DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        ImprimirTicketPresupuesto(); // Llamás a tu método para imprimir
+                    }
+                }
+
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void ImprimirTicketPresupuesto()
+        {
+            CrearTicket ticket = new CrearTicket();
+
+            // Encabezado
+            ticket.TextoCentro("CORRALON SAN MIGUEL", true);
+            ticket.TextoCentro("TICKET DE PRESUPUESTO", false);
+            ticket.TextoIzquierda("CIUDAD: POZO HONDO");
+            ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
+            ticket.TextoIzquierda("TELEF: 3856654232");
+            ticket.TextoIzquierda("C.U.I.T: 27-27906930-2");
+            ticket.TextoCentro("EMAIL:");
+            ticket.TextoCentro("CorralonSanMiguel@gmail.com");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda(lbl_serie_correlativo.Text);
+            ticket.lineasGuion();
+
+            // Datos cliente
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("VENDEDOR: "+txt_nombre_usuario.Text);
+            ticket.TextoIzquierda("CLIENTE: "+ txt_cliente.Text);
+            ticket.TextoIzquierda("");
+            ticket.TextoExtremos("FECHA: " + DateTime.Now.ToString("dd/MM/yyyy"), "HORA: " + DateTime.Now.ToString("HH:mm:ss"));
+            ticket.lineasGuion();
+
+            // Encabezado de ítems
+            ticket.EncabezadoVenta();
+            ticket.lineasGuion();
+
+            foreach (DataGridViewRow fila in dgv_detalles_ventas.Rows)
+            {
+                if (fila.IsNewRow) continue; // Omitir fila vacía al final
+
+                string nombreProducto = fila.Cells["Producto"].Value?.ToString() ?? "";
+                decimal cantidad = 0;
+                decimal precioUnitario = 0;
+
+                // Intentar parsear los valores
+                decimal.TryParse(fila.Cells["Cantidad"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out cantidad);
+                decimal.TryParse(fila.Cells["PrecioUnitario"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
+
+                // Agregar al ticket
+                ticket.AgregaArticulo(nombreProducto, cantidad, precioUnitario);
+            }
+
+
+            ticket.lineasGuion();
+
+
+            ticket.TextoCentro( lbl_totalFinal.Text, true);
+         
+            ticket.lineasGuion();
+
+            ticket.TextoCentro("Total de Items: " + lbl_totalUnidades.Text,false);
+            ticket.lineasGuion();
+
+            ticket.TextoCentro("¡No valido como factura!");
+            ticket.TextoIzquierda("");
+            ticket.TextoCentro("¡Gracias por su consulta!");
+
+            ticket.CortaTicket();
+            // Imprimir en la impresora POS
+            ticket.ImprimirTicket("POS-58");
         }
 
         private void btn_agregar_Click(object sender, EventArgs e)
