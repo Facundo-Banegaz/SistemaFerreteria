@@ -72,6 +72,9 @@
             this.lbl_fecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_usuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Menu_gestion_Configuracion = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Item_Ticket = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_principal.SuspendLayout();
             this.Menu_secundario.SuspendLayout();
             this.SuspendLayout();
@@ -91,11 +94,12 @@
             this.Menu_gestion_analisis,
             this.Menu_item_salir,
             this.Menu_gestion_movimientos,
-            this.Menu_gestion_mantenimientos});
+            this.Menu_gestion_mantenimientos,
+            this.Menu_gestion_Configuracion});
             this.Menu_principal.Location = new System.Drawing.Point(0, 0);
             this.Menu_principal.Name = "Menu_principal";
             this.Menu_principal.Padding = new System.Windows.Forms.Padding(9, 10, 0, 10);
-            this.Menu_principal.Size = new System.Drawing.Size(1719, 84);
+            this.Menu_principal.Size = new System.Drawing.Size(1924, 84);
             this.Menu_principal.TabIndex = 10;
             this.Menu_principal.Text = "Menu";
             // 
@@ -142,7 +146,7 @@
             this.Menu_item_presupuesto.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_presupuesto.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_presupuesto.Image")));
             this.Menu_item_presupuesto.Name = "Menu_item_presupuesto";
-            this.Menu_item_presupuesto.Size = new System.Drawing.Size(278, 42);
+            this.Menu_item_presupuesto.Size = new System.Drawing.Size(248, 36);
             this.Menu_item_presupuesto.Text = "Presupuestos";
             this.Menu_item_presupuesto.Click += new System.EventHandler(this.Menu_item_presupuesto_Click);
             // 
@@ -324,7 +328,7 @@
             this.Menu_item_analis_venta.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_analis_venta.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_analis_venta.Image")));
             this.Menu_item_analis_venta.Name = "Menu_item_analis_venta";
-            this.Menu_item_analis_venta.Size = new System.Drawing.Size(292, 36);
+            this.Menu_item_analis_venta.Size = new System.Drawing.Size(300, 42);
             this.Menu_item_analis_venta.Text = "Análisis de ventas";
             // 
             // Menu_item_analisis_stock
@@ -333,7 +337,7 @@
             this.Menu_item_analisis_stock.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_analisis_stock.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_analisis_stock.Image")));
             this.Menu_item_analisis_stock.Name = "Menu_item_analisis_stock";
-            this.Menu_item_analisis_stock.Size = new System.Drawing.Size(292, 36);
+            this.Menu_item_analisis_stock.Size = new System.Drawing.Size(300, 42);
             this.Menu_item_analisis_stock.Text = "Análisis de stock";
             // 
             // Menu_item_salir
@@ -386,7 +390,7 @@
             this.menu_item_productos.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_productos.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_productos.Image")));
             this.menu_item_productos.Name = "menu_item_productos";
-            this.menu_item_productos.Size = new System.Drawing.Size(295, 36);
+            this.menu_item_productos.Size = new System.Drawing.Size(303, 42);
             this.menu_item_productos.Text = "Productos";
             this.menu_item_productos.Click += new System.EventHandler(this.menu_item_productos_Click);
             // 
@@ -396,7 +400,7 @@
             this.menu_items_categorias.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_items_categorias.Image = ((System.Drawing.Image)(resources.GetObject("menu_items_categorias.Image")));
             this.menu_items_categorias.Name = "menu_items_categorias";
-            this.menu_items_categorias.Size = new System.Drawing.Size(295, 36);
+            this.menu_items_categorias.Size = new System.Drawing.Size(303, 42);
             this.menu_items_categorias.Text = "Categorias";
             this.menu_items_categorias.Click += new System.EventHandler(this.menu_items_categorias_Click);
             // 
@@ -406,7 +410,7 @@
             this.menu_item_subcategorias.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_subcategorias.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_subcategorias.Image")));
             this.menu_item_subcategorias.Name = "menu_item_subcategorias";
-            this.menu_item_subcategorias.Size = new System.Drawing.Size(295, 36);
+            this.menu_item_subcategorias.Size = new System.Drawing.Size(303, 42);
             this.menu_item_subcategorias.Text = "Subcategorias";
             this.menu_item_subcategorias.Click += new System.EventHandler(this.menu_item_subcategorias_Click);
             // 
@@ -416,7 +420,7 @@
             this.toolStripMenuItem12.ForeColor = System.Drawing.Color.SeaShell;
             this.toolStripMenuItem12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem12.Image")));
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(295, 36);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(303, 42);
             this.toolStripMenuItem12.Text = "Marcas";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.menu_item_marcas_Click);
             // 
@@ -426,7 +430,7 @@
             this.Menu_item_UnidadMedida.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_UnidadMedida.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_UnidadMedida.Image")));
             this.Menu_item_UnidadMedida.Name = "Menu_item_UnidadMedida";
-            this.Menu_item_UnidadMedida.Size = new System.Drawing.Size(295, 36);
+            this.Menu_item_UnidadMedida.Size = new System.Drawing.Size(303, 42);
             this.Menu_item_UnidadMedida.Text = "Unidad de Medida";
             this.Menu_item_UnidadMedida.Click += new System.EventHandler(this.Menu_item_UnidadMedida_Click);
             // 
@@ -436,7 +440,7 @@
             this.Menu_item_proveedores.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_proveedores.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_proveedores.Image")));
             this.Menu_item_proveedores.Name = "Menu_item_proveedores";
-            this.Menu_item_proveedores.Size = new System.Drawing.Size(295, 36);
+            this.Menu_item_proveedores.Size = new System.Drawing.Size(303, 42);
             this.Menu_item_proveedores.Text = "Proveedores";
             this.Menu_item_proveedores.Click += new System.EventHandler(this.Menu_item_proveedores_Click_1);
             // 
@@ -446,7 +450,7 @@
             this.menu_item_especificación.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_especificación.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_especificación.Image")));
             this.menu_item_especificación.Name = "menu_item_especificación";
-            this.menu_item_especificación.Size = new System.Drawing.Size(295, 36);
+            this.menu_item_especificación.Size = new System.Drawing.Size(303, 42);
             this.menu_item_especificación.Text = "Especificación";
             this.menu_item_especificación.Click += new System.EventHandler(this.menu_item_especificación_Click);
             // 
@@ -456,7 +460,7 @@
             this.Menu_item_usuarios.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_usuarios.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_usuarios.Image")));
             this.Menu_item_usuarios.Name = "Menu_item_usuarios";
-            this.Menu_item_usuarios.Size = new System.Drawing.Size(295, 36);
+            this.Menu_item_usuarios.Size = new System.Drawing.Size(303, 42);
             this.Menu_item_usuarios.Text = "Usuarios";
             this.Menu_item_usuarios.Click += new System.EventHandler(this.Menu_item_usuarios_Click);
             // 
@@ -476,9 +480,9 @@
             this.lbl_fecha,
             this.toolStripStatusLabel3,
             this.lbl_usuario});
-            this.Menu_secundario.Location = new System.Drawing.Point(0, 634);
+            this.Menu_secundario.Location = new System.Drawing.Point(0, 655);
             this.Menu_secundario.Name = "Menu_secundario";
-            this.Menu_secundario.Size = new System.Drawing.Size(1719, 36);
+            this.Menu_secundario.Size = new System.Drawing.Size(1924, 36);
             this.Menu_secundario.TabIndex = 11;
             this.Menu_secundario.Text = "statusStrip1";
             // 
@@ -515,11 +519,44 @@
             this.lbl_usuario.Name = "lbl_usuario";
             this.lbl_usuario.Size = new System.Drawing.Size(0, 29);
             // 
+            // Menu_gestion_Configuracion
+            // 
+            this.Menu_gestion_Configuracion.BackColor = System.Drawing.Color.Black;
+            this.Menu_gestion_Configuracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Item_Ticket,
+            this.toolStripMenuItem3});
+            this.Menu_gestion_Configuracion.Font = new System.Drawing.Font("Segoe UI Black", 10F, System.Drawing.FontStyle.Bold);
+            this.Menu_gestion_Configuracion.ForeColor = System.Drawing.Color.Orange;
+            this.Menu_gestion_Configuracion.Image = ((System.Drawing.Image)(resources.GetObject("Menu_gestion_Configuracion.Image")));
+            this.Menu_gestion_Configuracion.Name = "Menu_gestion_Configuracion";
+            this.Menu_gestion_Configuracion.Size = new System.Drawing.Size(95, 64);
+            this.Menu_gestion_Configuracion.Text = "Config";
+            this.Menu_gestion_Configuracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // Menu_Item_Ticket
+            // 
+            this.Menu_Item_Ticket.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Menu_Item_Ticket.ForeColor = System.Drawing.Color.SeaShell;
+            this.Menu_Item_Ticket.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Ticket.Image")));
+            this.Menu_Item_Ticket.Name = "Menu_Item_Ticket";
+            this.Menu_Item_Ticket.Size = new System.Drawing.Size(330, 42);
+            this.Menu_Item_Ticket.Text = "Configuración Ticket";
+            this.Menu_Item_Ticket.Click += new System.EventHandler(this.Menu_Item_Ticket_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.toolStripMenuItem3.ForeColor = System.Drawing.Color.SeaShell;
+            this.toolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3.Image")));
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(330, 42);
+            this.toolStripMenuItem3.Text = "Análisis de stock";
+            // 
             // FrmMdiPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1719, 670);
+            this.ClientSize = new System.Drawing.Size(1924, 691);
             this.Controls.Add(this.Menu_secundario);
             this.Controls.Add(this.Menu_principal);
             this.ForeColor = System.Drawing.Color.CornflowerBlue;
@@ -581,5 +618,8 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_item_proveedores;
         private System.Windows.Forms.ToolStripMenuItem Menu_gestion_compras;
         private System.Windows.Forms.ToolStripMenuItem Menu_item_Ingresos;
+        private System.Windows.Forms.ToolStripMenuItem Menu_gestion_Configuracion;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Item_Ticket;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

@@ -270,17 +270,17 @@
     <Compile Include="VistaSubcategoria\FrmSubcategoria.Designer.cs">
       <DependentUpon>FrmSubcategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaTicket\FrmCrearTicketPresupuesto.cs">
+    <Compile Include="VistaTicket\FrmEditarTicket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaTicket\FrmCrearTicketPresupuesto.Designer.cs">
-      <DependentUpon>FrmCrearTicketPresupuesto.cs</DependentUpon>
+    <Compile Include="VistaTicket\FrmEditarTicket.Designer.cs">
+      <DependentUpon>FrmEditarTicket.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaTicket\FrmCrearTicketVenta.cs">
+    <Compile Include="VistaTicket\FrmVistaTicket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaTicket\FrmCrearTicketVenta.Designer.cs">
-      <DependentUpon>FrmCrearTicketVenta.cs</DependentUpon>
+    <Compile Include="VistaTicket\FrmVistaTicket.Designer.cs">
+      <DependentUpon>FrmVistaTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaUnidadMedida\FrmAgregarEditarUnidadMedida.cs">
       <SubType>Form</SubType>
@@ -447,11 +447,11 @@
     <EmbeddedResource Include="VistaSubcategoria\FrmSubcategoria.resx">
       <DependentUpon>FrmSubcategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaTicket\FrmCrearTicketPresupuesto.resx">
-      <DependentUpon>FrmCrearTicketPresupuesto.cs</DependentUpon>
+    <EmbeddedResource Include="VistaTicket\FrmEditarTicket.resx">
+      <DependentUpon>FrmEditarTicket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaTicket\FrmCrearTicketVenta.resx">
-      <DependentUpon>FrmCrearTicketVenta.cs</DependentUpon>
+    <EmbeddedResource Include="VistaTicket\FrmVistaTicket.resx">
+      <DependentUpon>FrmVistaTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaUnidadMedida\FrmAgregarEditarUnidadMedida.resx">
       <DependentUpon>FrmAgregarEditarUnidadMedida.cs</DependentUpon>

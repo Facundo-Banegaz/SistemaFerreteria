@@ -9,6 +9,7 @@ using Ferreteria.CapaPresentacion.VistaPresupuesto;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
+using Ferreteria.CapaPresentacion.VistaTicket;
 using Ferreteria.CapaPresentacion.VistaUnidadMedida;
 using Ferreteria.CapaPresentacion.VistaUsuario;
 using Ferreteria.CapaPresentacion.VistaVenta;
@@ -249,7 +250,10 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             abrirForm(new FrmIngreso(_Usuario));
         }
 
-     
+        private void Menu_Item_Ticket_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmVistaTicket());
+        }
     }
     
 }

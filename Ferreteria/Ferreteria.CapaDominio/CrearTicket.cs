@@ -190,7 +190,7 @@ namespace Ferreteria.CapaDominio
         //Creamos el encabezado para los articulos
         public void EncabezadoVenta()
         {
-            linea.AppendLine("ITEM             CANT     PRECIO"); // Total: 32 caracteres
+            linea.AppendLine("ITEM           CANT     PRECIO.U"); // Total: 32 caracteres
         }
 
 
@@ -388,17 +388,23 @@ public void AgregaArticulo(string articulo, decimal cant, decimal precio)
         public static bool SendStringToPrinter(string szPrinterName, string szString)
         {
             IntPtr pBytes;
-            Int32 dwCount;
-            // How many characters are in the string?
-            dwCount = szString.Length;
-            // Assume that the printer is expecting ANSI text, and then convert
-            // the string to ANSI text.
-            pBytes = Marshal.StringToCoTaskMemAnsi(szString);
-            // Send the converted ANSI string to the printer.
-            SendBytesToPrinter(szPrinterName, pBytes, dwCount);
+            int dwCount;
+
+            // Convertir string a bytes con una codificación compatible
+            Encoding encoding = Encoding.GetEncoding(850); // CP850: Español extendido
+            byte[] bytes = encoding.GetBytes(szString);
+            dwCount = bytes.Length;
+
+            // Asignar los bytes en memoria no administrada
+            pBytes = Marshal.AllocCoTaskMem(dwCount);
+            Marshal.Copy(bytes, 0, pBytes, dwCount);
+
+            // Enviar a la impresora
+            bool result = SendBytesToPrinter(szPrinterName, pBytes, dwCount);
             Marshal.FreeCoTaskMem(pBytes);
-            return true;
+            return result;
         }
+
     }
 
 }

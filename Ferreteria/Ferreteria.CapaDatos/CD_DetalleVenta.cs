@@ -82,7 +82,6 @@ namespace Ferreteria.CapaDatos
                 cmd.Parameters.AddWithValue("@Id_Producto", detalle.Producto.Id_Producto);
                 cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
                 cmd.Parameters.AddWithValue("@PrecioVenta", detalle.PrecioVenta);
-
                 // Ejecuta el comando dentro de la transacción compartida
                 cmd.ExecuteNonQuery();
             }

@@ -231,7 +231,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
 
 
             ticket.lineasGuion();
-            ticket.TextoCentro(seleccionado.Total.ToString("C2", new CultureInfo("es-AR")), true);
+            ticket.TextoCentro("Total:"+seleccionado.Total.ToString("C2", new CultureInfo("es-AR")), true);
 
             ticket.lineasGuion();
 

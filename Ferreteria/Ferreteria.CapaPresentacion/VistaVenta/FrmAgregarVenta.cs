@@ -258,6 +258,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             // Encabezado
             ticket.TextoCentro("CORRALON SAN MIGUEL", true);
             ticket.TextoCentro("TICKET DE VENTA", false);
+            ticket.TextoIzquierda("");
             ticket.TextoIzquierda("CIUDAD: POZO HONDO");
             ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
             ticket.TextoIzquierda("TELEF: 3856654232");
@@ -290,7 +291,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
                 // Intentar parsear los valores
                 decimal.TryParse(fila.Cells["Cantidad"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out cantidad);
-                decimal.TryParse(fila.Cells["PrecioUnitario"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
+                decimal.TryParse(fila.Cells["PrecioVenta"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
 
                 // Agregar al ticket
                 ticket.AgregaArticulo(nombreProducto, cantidad, precioUnitario);
@@ -307,7 +308,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             ticket.TextoDerecha("Total de Items: "+ lbl_totalUnidades.Text);
             ticket.lineasGuion();
 
-            ticket.TextoCentro("¡No valido como factura!");
+            //ticket.TextoCentro("¡No valido como factura!");
             ticket.TextoIzquierda("");
             ticket.TextoCentro("¡Gracias por su Compra!");
 

@@ -260,16 +260,21 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
         private void ImprimirTicketPresupuesto()
         {
             CrearTicket ticket = new CrearTicket();
+            CN_ConfigurarTicket cnConfiguracion = new CN_ConfigurarTicket();
+            ConfigurarTicket config = cnConfiguracion.ObtenerConfiguracion();
+
+
 
             // Encabezado
-            ticket.TextoCentro("CORRALON SAN MIGUEL", true);
-            ticket.TextoCentro("TICKET DE PRESUPUESTO", false);
-            ticket.TextoIzquierda("CIUDAD: POZO HONDO");
-            ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
-            ticket.TextoIzquierda("TELEF: 3856654232");
-            ticket.TextoIzquierda("C.U.I.T: 27-27906930-2");
+            
+            ticket.TextoCentro(config.NombreNegocio, true);
+            ticket.TextoCentro(config.TextoPresupuesto, false);
+            ticket.TextoIzquierda("CIUDAD: " + config.Ciudad);
+            ticket.TextoIzquierda("DIREC: " + config.Direccion);
+            ticket.TextoIzquierda("TELEF: " + config.Telefono);
+            ticket.TextoIzquierda("C.U.I.T: " + config.CUIT);
             ticket.TextoCentro("EMAIL:");
-            ticket.TextoCentro("CorralonSanMiguel@gmail.com");
+            ticket.TextoCentro(config.Email);
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda(lbl_serie_correlativo.Text);
             ticket.lineasGuion();
@@ -313,13 +318,13 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             ticket.TextoCentro("Total de Items: " + lbl_totalUnidades.Text,false);
             ticket.lineasGuion();
 
-            ticket.TextoCentro("¡No valido como factura!");
+            ticket.TextoCentro(config.TextoNoFactura);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro("¡Gracias por su consulta!");
+            ticket.TextoCentro(config.FraseDespedidaPresupuesto);
 
             ticket.CortaTicket();
             // Imprimir en la impresora POS
-            ticket.ImprimirTicket("POS-58");
+            ticket.ImprimirTicket(config.NombreImpresoraTermica);
         }
 
         private void btn_agregar_Click(object sender, EventArgs e)
