@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferreteria.CapaDominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,17 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 {
     public partial class FrmMovimientoStockManual : Form
     {
+        public Usuario _Usuario;
         public FrmMovimientoStockManual()
         {
             InitializeComponent();
+            Text = "Gestión Movimientos De Stock";
         }
-
+        public FrmMovimientoStockManual(Usuario usuario)
+        {
+            InitializeComponent();
+            this._Usuario = usuario;
+        }
         private void FrmMovimientoStockManual_Load(object sender, EventArgs e)
         {
 

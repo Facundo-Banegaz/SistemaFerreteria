@@ -35,6 +35,7 @@ namespace Ferreteria.CapaDatos
                         Correlativo = (string)Conexion.Lector["Correlativo"],
                         Estado = (string)Conexion.Lector["Estado"],
                         MetodoPago = (string)Conexion.Lector["MetodoPago"],
+                        Cliente = (string)Conexion.Lector["Cliente"],
                         Fecha = (DateTime)Conexion.Lector["Fecha"],
                         Total = (decimal)Conexion.Lector["Total"],
                         Usuario = new Usuario
@@ -75,7 +76,9 @@ namespace Ferreteria.CapaDatos
                 Conexion.SetearParametro("@Serie", nuevo.Serie);
                 Conexion.SetearParametro("@Correlativo", nuevo.Correlativo);
                 Conexion.SetearParametro("@MetodoPago", nuevo.MetodoPago);
+                Conexion.SetearParametro("@Cliente", nuevo.Cliente);
                 Conexion.SetearParametro("@Estado", string.IsNullOrEmpty(nuevo.Estado) ? "EMITIDO" : nuevo.Estado);
+                 
 
                 Conexion.SetearParametroSalida("@Id_Venta", SqlDbType.Int);
 
@@ -178,6 +181,7 @@ namespace Ferreteria.CapaDatos
                         Correlativo = (string)Conexion.Lector["Correlativo"],
                         Estado = (string)Conexion.Lector["Estado"],
                         MetodoPago = (string)Conexion.Lector["MetodoPago"],
+                        Cliente = (string)Conexion.Lector["Cliente"],
                         Fecha = (DateTime)Conexion.Lector["Fecha"],
                         Total = (decimal)Conexion.Lector["Total"],
                         Usuario = new Usuario

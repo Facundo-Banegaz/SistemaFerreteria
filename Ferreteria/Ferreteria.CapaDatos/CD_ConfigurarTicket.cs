@@ -21,7 +21,7 @@ namespace Ferreteria.CapaDatos
 
             try
             {
-                Conexion.SetConsultaProcedure("sp_MostrarConfiguracionTicket");
+                Conexion.SetConsultaProcedure("Sp_MostrarConfiguracionTicket");
                 Conexion.EjecutarLectura();
 
                 if (Conexion.Lector.Read())

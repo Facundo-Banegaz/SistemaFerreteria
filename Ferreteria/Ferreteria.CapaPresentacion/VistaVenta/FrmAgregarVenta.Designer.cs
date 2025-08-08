@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarVenta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -69,6 +69,9 @@
             this.txt_id_usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chk_EditarNombre = new System.Windows.Forms.CheckBox();
+            this.txt_cliente = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.cbo_metodoPago = new System.Windows.Forms.ComboBox();
             this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
@@ -76,6 +79,7 @@
             this.cbo_comprobante = new System.Windows.Forms.ComboBox();
             this.lbl_comprobante = new System.Windows.Forms.Label();
             this.dgv_detalles_ventas = new System.Windows.Forms.DataGridView();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -86,6 +90,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles_ventas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -96,10 +101,9 @@
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1884, 568);
+            this.groupBox1.Size = new System.Drawing.Size(1884, 533);
             this.groupBox1.TabIndex = 182;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Venta";
             // 
             // groupBox5
             // 
@@ -109,7 +113,7 @@
             this.groupBox5.Controls.Add(this.btn_cancelar);
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.btn_guardar);
-            this.groupBox5.Location = new System.Drawing.Point(1378, 37);
+            this.groupBox5.Location = new System.Drawing.Point(1378, 0);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(506, 522);
             this.groupBox5.TabIndex = 99;
@@ -293,7 +297,7 @@
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Controls.Add(this.groupBox8);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox4.Location = new System.Drawing.Point(0, 37);
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1378, 522);
             this.groupBox4.TabIndex = 98;
@@ -602,6 +606,9 @@
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox8.Controls.Add(this.chk_EditarNombre);
+            this.groupBox8.Controls.Add(this.txt_cliente);
+            this.groupBox8.Controls.Add(this.label6);
             this.groupBox8.Controls.Add(this.cbo_metodoPago);
             this.groupBox8.Controls.Add(this.dtp_fecha);
             this.groupBox8.Controls.Add(this.label5);
@@ -614,6 +621,43 @@
             this.groupBox8.TabIndex = 93;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Información Compra";
+            // 
+            // chk_EditarNombre
+            // 
+            this.chk_EditarNombre.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chk_EditarNombre.AutoSize = true;
+            this.chk_EditarNombre.Font = new System.Drawing.Font("Impact", 10F);
+            this.chk_EditarNombre.Location = new System.Drawing.Point(1233, 95);
+            this.chk_EditarNombre.Name = "chk_EditarNombre";
+            this.chk_EditarNombre.Size = new System.Drawing.Size(115, 29);
+            this.chk_EditarNombre.TabIndex = 184;
+            this.chk_EditarNombre.Text = "Modificar";
+            this.chk_EditarNombre.UseVisualStyleBackColor = true;
+            this.chk_EditarNombre.CheckedChanged += new System.EventHandler(this.chk_EditarNombre_CheckedChanged);
+            // 
+            // txt_cliente
+            // 
+            this.txt_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.txt_cliente.ForeColor = System.Drawing.Color.Black;
+            this.txt_cliente.Location = new System.Drawing.Point(793, 91);
+            this.txt_cliente.Name = "txt_cliente";
+            this.txt_cliente.Size = new System.Drawing.Size(423, 35);
+            this.txt_cliente.TabIndex = 182;
+            this.txt_cliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Black;
+            this.label6.Font = new System.Drawing.Font("Impact", 14F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Location = new System.Drawing.Point(684, 91);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 35);
+            this.label6.TabIndex = 183;
+            this.label6.Text = "Cliente:";
             // 
             // cbo_metodoPago
             // 
@@ -632,9 +676,9 @@
             this.dtp_fecha.CalendarFont = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha.Enabled = false;
             this.dtp_fecha.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha.Location = new System.Drawing.Point(738, 89);
+            this.dtp_fecha.Location = new System.Drawing.Point(898, 29);
             this.dtp_fecha.Name = "dtp_fecha";
-            this.dtp_fecha.Size = new System.Drawing.Size(571, 37);
+            this.dtp_fecha.Size = new System.Drawing.Size(421, 37);
             this.dtp_fecha.TabIndex = 179;
             // 
             // label5
@@ -657,7 +701,7 @@
             this.lbl_fecha.BackColor = System.Drawing.Color.Black;
             this.lbl_fecha.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_fecha.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_fecha.Location = new System.Drawing.Point(923, 31);
+            this.lbl_fecha.Location = new System.Drawing.Point(680, 31);
             this.lbl_fecha.Name = "lbl_fecha";
             this.lbl_fecha.Size = new System.Drawing.Size(199, 35);
             this.lbl_fecha.TabIndex = 178;
@@ -698,48 +742,44 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_detalles_ventas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_detalles_ventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detalles_ventas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_detalles_ventas.EnableHeadersVisualStyles = false;
             this.dgv_detalles_ventas.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_detalles_ventas.Location = new System.Drawing.Point(12, 586);
+            this.dgv_detalles_ventas.Location = new System.Drawing.Point(12, 540);
             this.dgv_detalles_ventas.Name = "dgv_detalles_ventas";
             this.dgv_detalles_ventas.ReadOnly = true;
             this.dgv_detalles_ventas.RowHeadersVisible = false;
             this.dgv_detalles_ventas.RowHeadersWidth = 62;
             this.dgv_detalles_ventas.RowTemplate.Height = 28;
             this.dgv_detalles_ventas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_detalles_ventas.Size = new System.Drawing.Size(1884, 327);
+            this.dgv_detalles_ventas.Size = new System.Drawing.Size(1884, 288);
             this.dgv_detalles_ventas.TabIndex = 100;
             this.dgv_detalles_ventas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_detalles_ventas_CellValueChanged);
             this.dgv_detalles_ventas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_detalles_ventas_RowsRemoved);
+            // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
             // 
             // FrmAgregarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1908, 925);
+            this.ClientSize = new System.Drawing.Size(1908, 840);
             this.Controls.Add(this.dgv_detalles_ventas);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1918, 981);
+            this.MinimumSize = new System.Drawing.Size(1444, 816);
             this.Name = "FrmAgregarVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVenta";
@@ -760,6 +800,7 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles_ventas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -811,5 +852,9 @@
         private System.Windows.Forms.ComboBox cbo_metodoPago;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_eliminar;
+        private System.Windows.Forms.CheckBox chk_EditarNombre;
+        private System.Windows.Forms.TextBox txt_cliente;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

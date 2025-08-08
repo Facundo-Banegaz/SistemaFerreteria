@@ -2,6 +2,7 @@
 using Ferreteria.CapaPresentacion.VistaCategoria;
 using Ferreteria.CapaPresentacion.VistaEspecificacion;
 using Ferreteria.CapaPresentacion.VistaIngresos;
+using Ferreteria.CapaPresentacion.VistaKardex;
 using Ferreteria.CapaPresentacion.VistaLogin;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaMovimientoStock;
@@ -61,9 +62,9 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
                 this.Menu_gestion_movimientos.Enabled = true;
                 this.Menu_gestion_compras.Enabled = true;
 
-                this.Menu_gestion_ventas.Enabled = false;
-                this.Menu_gestion_presupuestos.Enabled = false;
-                this.Menu_gestion_consultas.Enabled = false;
+                this.Menu_gestion_ventas.Enabled = true;
+                this.Menu_gestion_presupuestos.Enabled = true;
+                this.Menu_gestion_consultas.Enabled = true;
 
             }
 
@@ -253,6 +254,15 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         private void Menu_Item_Ticket_Click(object sender, EventArgs e)
         {
             abrirForm(new FrmVistaTicket());
+        }
+        private void Menu_Item_Inventario_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmKardex());
+        }
+
+        private void Menu_Item_Ajustes_Movimientos_Click(object sender, EventArgs e)
+        {
+            abrirForm(new FrmHistorialMovimientoStock(_Usuario));
         }
     }
     

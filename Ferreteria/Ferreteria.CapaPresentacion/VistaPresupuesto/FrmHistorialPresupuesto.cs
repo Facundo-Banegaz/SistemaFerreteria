@@ -1,6 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
-using Ferreteria.CapaPresentacion.VistaVenta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -188,20 +187,27 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             //FrmReporteFacturaIngreso frmReporte = new FrmReporteFacturaIngreso(presupuesto);
             //frmReporte.ShowDialog();
         }
+
         private void ImprimirTicketPresupuesto(Presupuesto seleccionado)
         {
             CrearTicket ticket = new CrearTicket();
 
-    
+
             // Encabezado
-            ticket.TextoCentro("CORRALON SAN MIGUEL", true);
-            ticket.TextoCentro("TICKET DE PRESUPUESTO", false);
-            ticket.TextoIzquierda("CIUDAD: POZO HONDO");
-            ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
-            ticket.TextoIzquierda("TELEF: 3856654232");
-            ticket.TextoIzquierda("C.U.I.T: 27-27906930-2");
-            ticket.TextoCentro("EMAIL:");
-            ticket.TextoCentro("CorralonSanMiguel@gmail.com");
+            CN_ConfigurarTicket cnConfiguracion = new CN_ConfigurarTicket();
+            ConfigurarTicket config = cnConfiguracion.ObtenerConfiguracion();
+
+
+
+            // Encabezado
+
+            ticket.TextoCentro(config.NombreNegocio, true);
+            ticket.TextoCentro(config.TextoPresupuesto, false);
+            ticket.TextoIzquierda("CIUDAD: " + config.Ciudad);
+            ticket.TextoIzquierda("DIREC: " + config.Direccion);
+            ticket.TextoIzquierda("TELEF: " + config.Telefono);
+            ticket.TextoIzquierda("C.U.I.T: " + config.CUIT);
+            ticket.TextoIzquierda("EMAIL: " + config.Email);
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("Comprobante N°: " + seleccionado.Serie + "-" + seleccionado.Correlativo);
 
@@ -212,7 +218,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             ticket.TextoIzquierda("VENDEDOR: " + seleccionado.Usuario);
             ticket.TextoIzquierda("CLIENTE: " + seleccionado.Cliente);
             ticket.TextoIzquierda("");
-            ticket.TextoExtremos("FECHA: " + seleccionado.Fecha.ToString("dd/MM/yyyy"), "HORA: " + seleccionado.Fecha.ToString("HH:mm"));
+            ticket.TextoExtremos("FECHA: " + seleccionado.Fecha.ToString("dd/MM/yyyy"), "HORA: " + seleccionado.Fecha.ToString("HH:mm:ss"));
             ticket.lineasGuion();
           
 
@@ -238,13 +244,14 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             ticket.TextoCentro("Total de Items: " + detalles.Sum(d => d.Cantidad),false);
             ticket.lineasGuion();
 
-            ticket.TextoCentro("¡No valido como factura!");
+
+            ticket.TextoCentro(config.TextoNoFactura);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro("¡Gracias por su consulta!");
+            ticket.TextoCentro(config.FraseDespedidaPresupuesto);
 
             ticket.CortaTicket();
             // Imprimir en la impresora POS
-            ticket.ImprimirTicket("POS-58");
+            ticket.ImprimirTicket(config.NombreImpresoraTermica);
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)

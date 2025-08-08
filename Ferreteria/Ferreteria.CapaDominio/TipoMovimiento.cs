@@ -12,5 +12,11 @@ namespace Ferreteria.CapaDominio
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public char Movimiento { get; set; } // 'E' para Entrada, 'S' para Salida
+
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

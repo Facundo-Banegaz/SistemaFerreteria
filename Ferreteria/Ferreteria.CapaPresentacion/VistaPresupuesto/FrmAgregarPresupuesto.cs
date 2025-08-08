@@ -88,7 +88,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
         }
         private void FrmAgregarPresupuesto_Load(object sender, EventArgs e)
         {
-            txt_cliente.Text = "Consumidor final";
+            txt_cliente.Text = "CONSUMIDOR FINAL";
             txt_cliente.Enabled = false;
             MostrarUsuario();
             MostrarTabla();
@@ -273,8 +273,7 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             ticket.TextoIzquierda("DIREC: " + config.Direccion);
             ticket.TextoIzquierda("TELEF: " + config.Telefono);
             ticket.TextoIzquierda("C.U.I.T: " + config.CUIT);
-            ticket.TextoCentro("EMAIL:");
-            ticket.TextoCentro(config.Email);
+            ticket.TextoIzquierda("EMAIL: "+ config.Email);
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda(lbl_serie_correlativo.Text);
             ticket.lineasGuion();

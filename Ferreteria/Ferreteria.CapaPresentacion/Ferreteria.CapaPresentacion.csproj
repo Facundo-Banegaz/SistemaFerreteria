@@ -162,6 +162,12 @@
     <Compile Include="VistaIngresos\FrmIngreso.Designer.cs">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaKardex\FrmKardex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaKardex\FrmKardex.Designer.cs">
+      <DependentUpon>FrmKardex.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaLogin\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,6 +402,9 @@
     <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaKardex\FrmKardex.resx">
+      <DependentUpon>FrmKardex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaLogin\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -410,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaMovimientoStock\FrmHistorialMovimientoStock.resx">
       <DependentUpon>FrmHistorialMovimientoStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaMovimientoStock\FrmMovimientoStockDetalle.resx">
+      <DependentUpon>FrmMovimientoStockDetalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaMovimientoStock\FrmMovimientoStockManual.resx">
       <DependentUpon>FrmMovimientoStockManual.cs</DependentUpon>

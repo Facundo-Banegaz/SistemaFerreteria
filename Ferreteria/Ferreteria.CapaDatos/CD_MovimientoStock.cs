@@ -1,6 +1,8 @@
 ﻿using Ferreteria.CapaDominio;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +31,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsultaProcedure("SpMostrar_MovimientoStock");
+                Conexion.SetConsultaProcedure("Sp_MostrarMovimientosStock");
 
                 Conexion.EjecutarLectura();
 
@@ -39,39 +41,28 @@ namespace Ferreteria.CapaDatos
 
 
                     MovimientoStock.Id_MovimientoStock = (int)Conexion.Lector["Id_MovimientoStock"];
+
+                    
                     MovimientoStock.Fecha = (DateTime)Conexion.Lector["Fecha"];
-                    MovimientoStock.Cantidad = (decimal)Conexion.Lector["Cantidad"];
-                    MovimientoStock.StockAnterior = (decimal)Conexion.Lector["StockAnterior"];
-                    MovimientoStock.StockNuevo = (decimal)Conexion.Lector["StockNuevo"];
-                    MovimientoStock.Estado = (bool)Conexion.Lector["Estado"];
+                   
 
                     MovimientoStock.Observacion = (string)Conexion.Lector["Observacion"];
 
 
 
-
-                    MovimientoStock.Producto = new Producto();
-
-                    MovimientoStock.Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
-
-                    MovimientoStock.Producto.Nombre = (string)Conexion.Lector["Producto"];
-                    MovimientoStock.Producto.Codigo = (string)Conexion.Lector["Codigo"];
-                    MovimientoStock.Producto.Descripcion = (string)Conexion.Lector["Descripcion"];
-
               
 
                     MovimientoStock.TipoMovimiento = new TipoMovimiento();
 
-                    MovimientoStock.TipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimientoStock"];
-                    MovimientoStock.TipoMovimiento.Nombre = (string)Conexion.Lector["Nombre"];
+                    MovimientoStock.TipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimiento"];
+                    MovimientoStock.TipoMovimiento.Nombre = (string)Conexion.Lector["TipoMovimiento"];
 
 
                     MovimientoStock.Usuario = new Usuario();
 
                     MovimientoStock.Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
-                    MovimientoStock.Usuario.Nombre = (string)Conexion.Lector["Nombre"];
-                    MovimientoStock.Usuario.Apellido = (string)Conexion.Lector["Apellido"];
-
+                    MovimientoStock.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
+                    
 
 
 
@@ -91,25 +82,62 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-        //metodo insertar
-        public void InsertarMovimientoStock(MovimientoStock nuevo)
+        //Metodo Mostrar Ajustes Manual
+
+        public List<MovimientoStock> ListaMovimientoStockManual()
         {
+            //instancia
+
             Conexion = new CD_Conexion();
+
+            listaMovimientoStock = new List<MovimientoStock>();
 
             try
             {
-                Conexion.SetConsultaProcedure("SpInsertar_MovimientoStock");
 
-                Conexion.SetearParametro("@Id_Producto", nuevo.Producto.Id_Producto);
-                Conexion.SetearParametro("@Cantidad", nuevo.Cantidad);
-                Conexion.SetearParametro("@Id_TipoMovimiento", nuevo.TipoMovimiento.Id_TipoMovimiento);
-                Conexion.SetearParametro("@Observacion", nuevo.Observacion);
-                Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
+                Conexion.SetConsultaProcedure("Sp_MostrarAjustesManual");
 
-                Conexion.EjecutarAccion();
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    MovimientoStock = new MovimientoStock();
+
+
+                    MovimientoStock.Id_MovimientoStock = (int)Conexion.Lector["Id_MovimientoStock"];
+
+
+                    MovimientoStock.Fecha = (DateTime)Conexion.Lector["Fecha"];
+
+
+                    MovimientoStock.Observacion = (string)Conexion.Lector["Observacion"];
+
+
+
+
+
+                    MovimientoStock.TipoMovimiento = new TipoMovimiento();
+
+                    MovimientoStock.TipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimiento"];
+                    MovimientoStock.TipoMovimiento.Nombre = (string)Conexion.Lector["TipoMovimiento"];
+
+
+                    MovimientoStock.Usuario = new Usuario();
+
+                    MovimientoStock.Usuario.Id_Usuario = (int)Conexion.Lector["Id_Usuario"];
+                    MovimientoStock.Usuario.Nombre = (string)Conexion.Lector["Usuario"];
+
+
+
+
+                    listaMovimientoStock.Add(MovimientoStock);
+                }
+
+                return listaMovimientoStock;
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
             finally
@@ -117,41 +145,50 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+        //metodo insertar
+        public void InsertarMovimientoStock(MovimientoStock nuevo, List<DetalleMovimientoStock> detalles)
+        {
+            Conexion = new CD_Conexion();
 
-        //public void InsertarMovimientoStock(MovimientoStock Nuevo)
-        //{
-        //    Conexion = new CD_Conexion();
+            try
+            {
+                Conexion.IniciarTransaccion(); // Abre conexión y crea transacción
 
-        //    try
-        //    {
+                Conexion.SetConsultaProcedure("SpInsertar_MovimientoStock");
 
+                Conexion.SetearParametro("@Fecha", nuevo.Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
+                Conexion.SetearParametro("@Id_TipoMovimiento", nuevo.TipoMovimiento.Id_TipoMovimiento);
+                Conexion.SetearParametro("@Observacion", nuevo.Observacion ?? "SIN OBSERVACIÓN");
+                Conexion.SetearParametro("@Id_Usuario", nuevo.Usuario.Id_Usuario);
+                Conexion.SetearParametroSalida("@Id_MovimientoStock", SqlDbType.Int);
 
+                Conexion.EjecutarAccion(); // Ejecuta SP de inserción de MovimientoStock
 
-        //        Conexion.SetConsultaProcedure("SpInsertar_MovimientoStock");
+                int idMovimientoStock = Conexion.ObtenerValorParametroSalida("@Id_MovimientoStock");
 
-        //        Conexion.SetearParametro("@Fecha", Nuevo.Fecha.ToString("yyyy-MM-dd hh:mm:ss"));
-        //        Conexion.SetearParametro("@Cantidad", Nuevo.Cantidad);
-        //        Conexion.SetearParametro("@StockAnterior", Nuevo.StockAnterior);
-        //        Conexion.SetearParametro("@StockNuevo", Nuevo.StockNuevo);
-        //        Conexion.SetearParametro("@Observacion", Nuevo.Observacion);
-        //        Conexion.SetearParametro("@Estado", Nuevo.Estado);
-        //        Conexion.SetearParametro("@Id_Producto", Nuevo.Producto.Id_Producto);
-        //        Conexion.SetearParametro("@Id_TipoMovimiento", Nuevo.TipoMovimiento.Id_TipoMovimiento);
-        //        Conexion.SetearParametro("@Id_Usuario", Nuevo.Usuario.Id_Usuario);
+                SqlConnection conn = Conexion.ObtenerConexion();
+                SqlTransaction trans = Conexion.ObtenerTransaccion();
 
-        //        Conexion.EjecutarAccion();
+                CD_DetalleMovimientoStock detalleDatos = new CD_DetalleMovimientoStock();
 
+                foreach (var detalle in detalles)
+                {
+                    detalle.MovimientoStock = new MovimientoStock { Id_MovimientoStock = idMovimientoStock };
+                    detalleDatos.InsertarDetalleMovimientoStock(detalle, conn, trans);
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+                Conexion.ConfirmarTransaccion(); // Commit final
+            }
+            catch
+            {
+                Conexion.AnularTransaccion(); // Rollback si hay error
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion(); // Cierre conexion
+            }
+        }
 
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        Conexion.CerrarConexion();
-        //    }
-        //}
     }
 }

@@ -121,13 +121,13 @@
             // 
             // btn_buscar_TipoMovimiento
             // 
-            this.btn_buscar_TipoMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_buscar_TipoMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_buscar_TipoMovimiento.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btn_buscar_TipoMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_buscar_TipoMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buscar_TipoMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar_TipoMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar_TipoMovimiento.Image")));
-            this.btn_buscar_TipoMovimiento.Location = new System.Drawing.Point(934, 98);
+            this.btn_buscar_TipoMovimiento.Location = new System.Drawing.Point(934, 207);
             this.btn_buscar_TipoMovimiento.Name = "btn_buscar_TipoMovimiento";
             this.btn_buscar_TipoMovimiento.Size = new System.Drawing.Size(62, 56);
             this.btn_buscar_TipoMovimiento.TabIndex = 162;
@@ -149,13 +149,13 @@
             // 
             // btn_buscar_producto
             // 
-            this.btn_buscar_producto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_buscar_producto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_buscar_producto.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btn_buscar_producto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_buscar_producto.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buscar_producto.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar_producto.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar_producto.Image")));
-            this.btn_buscar_producto.Location = new System.Drawing.Point(934, 3);
+            this.btn_buscar_producto.Location = new System.Drawing.Point(934, 112);
             this.btn_buscar_producto.Name = "btn_buscar_producto";
             this.btn_buscar_producto.Size = new System.Drawing.Size(62, 56);
             this.btn_buscar_producto.TabIndex = 160;

@@ -47,6 +47,7 @@
     <Compile Include="ConfigurarTicket.cs" />
     <Compile Include="CrearTicket.cs" />
     <Compile Include="DetalleIngreso.cs" />
+    <Compile Include="DetalleMovimientoStock.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="DetalleVenta.cs" />
     <Compile Include="Especificacion.cs" />

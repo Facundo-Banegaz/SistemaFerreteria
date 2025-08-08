@@ -27,7 +27,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("select Id_TipoMovimiento, Nombre, Descripcion, Movimiento from TiposMovimiento where Id_TipoMovimiento>2;");
+                Conexion.SetConsulta("select Id_TipoMovimiento, Nombre");
 
                 Conexion.EjecutarLectura();
 
@@ -38,8 +38,7 @@ namespace Ferreteria.CapaDatos
 
                     tipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimiento"];
                     tipoMovimiento.Nombre = (string)Conexion.Lector["Nombre"];
-                    tipoMovimiento.Descripcion = (string)Conexion.Lector["Descripcion"];
-                    tipoMovimiento.Movimiento = (char)Conexion.Lector["Movimiento"];
+   
 
                     listaTipoMovimiento.Add(tipoMovimiento);
                 }

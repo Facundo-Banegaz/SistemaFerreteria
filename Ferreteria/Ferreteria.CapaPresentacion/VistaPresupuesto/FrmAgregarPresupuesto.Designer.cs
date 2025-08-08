@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarPresupuesto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -70,14 +70,14 @@
             this.txt_id_usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cbo_comprobante = new System.Windows.Forms.ComboBox();
+            this.lbl_comprobante = new System.Windows.Forms.Label();
             this.chk_EditarNombre = new System.Windows.Forms.CheckBox();
             this.txt_cliente = new System.Windows.Forms.TextBox();
             this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_fecha = new System.Windows.Forms.Label();
             this.dgv_detalles_ventas = new System.Windows.Forms.DataGridView();
-            this.cbo_comprobante = new System.Windows.Forms.ComboBox();
-            this.lbl_comprobante = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -620,8 +620,34 @@
             this.groupBox8.Text = "Información Presupuesto";
             this.groupBox8.Enter += new System.EventHandler(this.groupBox8_Enter);
             // 
+            // cbo_comprobante
+            // 
+            this.cbo_comprobante.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbo_comprobante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_comprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_comprobante.FormattingEnabled = true;
+            this.cbo_comprobante.Location = new System.Drawing.Point(6, 122);
+            this.cbo_comprobante.Name = "cbo_comprobante";
+            this.cbo_comprobante.Size = new System.Drawing.Size(358, 34);
+            this.cbo_comprobante.TabIndex = 183;
+            this.cbo_comprobante.SelectedIndexChanged += new System.EventHandler(this.cbo_comprobante_SelectedIndexChanged);
+            // 
+            // lbl_comprobante
+            // 
+            this.lbl_comprobante.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_comprobante.AutoSize = true;
+            this.lbl_comprobante.BackColor = System.Drawing.Color.Black;
+            this.lbl_comprobante.Font = new System.Drawing.Font("Impact", 14F);
+            this.lbl_comprobante.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_comprobante.Location = new System.Drawing.Point(99, 65);
+            this.lbl_comprobante.Name = "lbl_comprobante";
+            this.lbl_comprobante.Size = new System.Drawing.Size(179, 35);
+            this.lbl_comprobante.TabIndex = 182;
+            this.lbl_comprobante.Text = "Comprobante:";
+            // 
             // chk_EditarNombre
             // 
+            this.chk_EditarNombre.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chk_EditarNombre.AutoSize = true;
             this.chk_EditarNombre.Font = new System.Drawing.Font("Impact", 12F);
             this.chk_EditarNombre.Location = new System.Drawing.Point(792, 123);
@@ -690,23 +716,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_detalles_ventas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_detalles_ventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detalles_ventas.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_detalles_ventas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_detalles_ventas.EnableHeadersVisualStyles = false;
             this.dgv_detalles_ventas.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgv_detalles_ventas.Location = new System.Drawing.Point(12, 586);
@@ -720,31 +746,6 @@
             this.dgv_detalles_ventas.TabIndex = 184;
             this.dgv_detalles_ventas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_detalles_ventas_CellValueChanged);
             this.dgv_detalles_ventas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_detalles_ventas_RowsRemoved);
-            // 
-            // cbo_comprobante
-            // 
-            this.cbo_comprobante.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbo_comprobante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_comprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbo_comprobante.FormattingEnabled = true;
-            this.cbo_comprobante.Location = new System.Drawing.Point(6, 122);
-            this.cbo_comprobante.Name = "cbo_comprobante";
-            this.cbo_comprobante.Size = new System.Drawing.Size(358, 34);
-            this.cbo_comprobante.TabIndex = 183;
-            this.cbo_comprobante.SelectedIndexChanged += new System.EventHandler(this.cbo_comprobante_SelectedIndexChanged);
-            // 
-            // lbl_comprobante
-            // 
-            this.lbl_comprobante.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_comprobante.AutoSize = true;
-            this.lbl_comprobante.BackColor = System.Drawing.Color.Black;
-            this.lbl_comprobante.Font = new System.Drawing.Font("Impact", 14F);
-            this.lbl_comprobante.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_comprobante.Location = new System.Drawing.Point(99, 65);
-            this.lbl_comprobante.Name = "lbl_comprobante";
-            this.lbl_comprobante.Size = new System.Drawing.Size(179, 35);
-            this.lbl_comprobante.TabIndex = 182;
-            this.lbl_comprobante.Text = "Comprobante:";
             // 
             // errorIcono
             // 

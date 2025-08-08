@@ -111,6 +111,8 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         {
             MostrarUsuario();
             MostrarTabla();
+            txt_cliente.Text = "CONSUMIDOR FINAL";
+            txt_cliente.Enabled = false;
         }
         private void FrmAgregarVenta_Shown(object sender, EventArgs e)
         {
@@ -184,6 +186,16 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
             try
             {
+
+
+
+                if (string.IsNullOrWhiteSpace(txt_cliente.Text))
+                {
+                    errorIcono.SetError(txt_cliente, "Debe completar el cliente.");
+                    txt_cliente.Focus();
+                    return;
+                }
+
                 if (dgv_detalles_ventas.Rows.Count == 0)
                 {
                     MessageBox.Show("Debe agregar al menos un producto a la venta.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -197,6 +209,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                 Venta _Venta = new Venta
                 {
                     Fecha = dtp_fecha.Value,
+                    Cliente = txt_cliente.Text.Trim(),
                     Tipo_Comprobante = cbo_comprobante.SelectedItem?.ToString(),
                     Serie = lbl_serie.Text,
                     Correlativo = lbl_correlativo.Text,
@@ -239,7 +252,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                     DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultado == DialogResult.Yes)
                     {
-                        ImprimirTicket(); // Llamás a tu método para imprimir
+                        ImprimirTicketVenta(); //  método para imprimir
                     }
                 }
                 this.Close();
@@ -250,21 +263,23 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             }
         }
 
-
-        private void ImprimirTicket()
+        private void ImprimirTicketVenta()
         {
             CrearTicket ticket = new CrearTicket();
+            CN_ConfigurarTicket cnConfiguracion = new CN_ConfigurarTicket();
+            ConfigurarTicket config = cnConfiguracion.ObtenerConfiguracion();
+
+
 
             // Encabezado
-            ticket.TextoCentro("CORRALON SAN MIGUEL", true);
-            ticket.TextoCentro("TICKET DE VENTA", false);
-            ticket.TextoIzquierda("");
-            ticket.TextoIzquierda("CIUDAD: POZO HONDO");
-            ticket.TextoIzquierda("DIREC: AV. 24 DE SEPTIEMBRE");
-            ticket.TextoIzquierda("TELEF: 3856654232");
-            ticket.TextoIzquierda("C.U.I.T: 27-27906930-2");
-            ticket.TextoCentro("EMAIL:");
-            ticket.TextoCentro("CorralonSanMiguel@gmail.com");
+
+            ticket.TextoCentro(config.NombreNegocio, true);
+            ticket.TextoCentro(config.TextoPresupuesto, false);
+            ticket.TextoIzquierda("CIUDAD: " + config.Ciudad);
+            ticket.TextoIzquierda("DIREC: " + config.Direccion);
+            ticket.TextoIzquierda("TELEF: " + config.Telefono);
+            ticket.TextoIzquierda("C.U.I.T: " + config.CUIT);
+            ticket.TextoIzquierda("EMAIL: " + config.Email);
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda(lbl_serie_correlativo.Text);
             ticket.lineasGuion();
@@ -272,7 +287,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             // Datos cliente
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("VENDEDOR: " + txt_nombre_usuario.Text);
-            ticket.TextoIzquierda("CLIENTE: Consumidor Final");
+            ticket.TextoIzquierda("CLIENTE: " + txt_cliente.Text);
             ticket.TextoIzquierda("");
             ticket.TextoExtremos("FECHA: " + DateTime.Now.ToString("dd/MM/yyyy"), "HORA: " + DateTime.Now.ToString("HH:mm:ss"));
             ticket.lineasGuion();
@@ -291,7 +306,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
                 // Intentar parsear los valores
                 decimal.TryParse(fila.Cells["Cantidad"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out cantidad);
-                decimal.TryParse(fila.Cells["PrecioVenta"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
+                decimal.TryParse(fila.Cells["PrecioUnitario"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
 
                 // Agregar al ticket
                 ticket.AgregaArticulo(nombreProducto, cantidad, precioUnitario);
@@ -305,18 +320,17 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
             ticket.lineasGuion();
 
-            ticket.TextoDerecha("Total de Items: "+ lbl_totalUnidades.Text);
+            ticket.TextoCentro("Total de Items: " + lbl_totalUnidades.Text, false);
             ticket.lineasGuion();
 
-            //ticket.TextoCentro("¡No valido como factura!");
+            ticket.TextoCentro(config.TextoNoFactura);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro("¡Gracias por su Compra!");
+            ticket.TextoCentro(config.FraseDespedidaPresupuesto);
 
             ticket.CortaTicket();
             // Imprimir en la impresora POS
-            ticket.ImprimirTicket("POS-58");
+            ticket.ImprimirTicket(config.NombreImpresoraTermica);
         }
-
 
         private void btn_agregar_Click(object sender, EventArgs e)
         {
@@ -670,6 +684,20 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         {
             MostrarResumenVenta(dgv_detalles_ventas);
 
+        }
+
+        private void chk_EditarNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_EditarNombre.Checked)
+            {
+                txt_cliente.Enabled = true;
+                txt_cliente.Select(); // Pone el foco para que empiece a escribir
+            }
+            else
+            {
+                txt_cliente.Text = "CONSUMIDOR FINAL";
+                txt_cliente.Enabled = false;
+            }
         }
     }
 }

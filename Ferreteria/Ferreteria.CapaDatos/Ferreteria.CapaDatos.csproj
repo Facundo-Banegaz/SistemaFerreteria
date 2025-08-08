@@ -49,6 +49,7 @@
     <Compile Include="CD_Conexion.cs" />
     <Compile Include="CD_ConfigurarTicket.cs" />
     <Compile Include="CD_DetalleIngreso.cs" />
+    <Compile Include="CD_DetalleMovimientoStock.cs" />
     <Compile Include="CD_DetallePresupuesto.cs" />
     <Compile Include="CD_DetalleVenta.cs" />
     <Compile Include="CD_Especificacion.cs" />

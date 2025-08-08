@@ -19,6 +19,8 @@ namespace Ferreteria.CapaDominio
         public string Correlativo { get; set; }
         public Usuario Usuario { get; set; }
 
+        public string Cliente { get; set; } = "CONSUMIDOR FINAL";
+
 
         
         public Presupuesto Presupuesto { get; set; }
