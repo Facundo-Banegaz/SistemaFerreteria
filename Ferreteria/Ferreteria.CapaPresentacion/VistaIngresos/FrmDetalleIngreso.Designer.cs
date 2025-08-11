@@ -117,6 +117,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1874, 887);
             this.Name = "FrmDetalleIngreso";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDetalleIngreso";
             this.Load += new System.EventHandler(this.FrmDetalleIngreso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles)).EndInit();

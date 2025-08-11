@@ -50,6 +50,8 @@
     <Compile Include="DetalleMovimientoStock.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="DetalleVenta.cs" />
+    <Compile Include="DTOs\ProductoInventarioBajoDto.cs" />
+    <Compile Include="DTOs\ProductoConVencimientoDto.cs" />
     <Compile Include="Especificacion.cs" />
     <Compile Include="Ingreso.cs" />
     <Compile Include="Marca.cs" />

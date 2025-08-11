@@ -67,13 +67,12 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
                 }
             }
         }
-
         private void CargarGrilla()
         {
             //logica del dataGridView
-           CN_MovimientoStock _MovimientoStock = new CN_MovimientoStock();
+            CN_MovimientoStock _MovimientoStock = new CN_MovimientoStock();
 
-            listaMovimientoStock = _MovimientoStock.ListaMovimientoStockManual();
+            listaMovimientoStock = _MovimientoStock.ListaMovimientoStock();
 
             dgv_movimientoStock.DataSource = listaMovimientoStock;
             lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_movimientoStock.Rows.Count);
@@ -100,48 +99,5 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 
             _Metodos.AlternarColor(dgv_movimientoStock);
         }
-
-    //    private void ArregloDataGridView(DataGridView dgv_movimientoStock)
-    //    {
-
-    //        //logica del dataGridView
-    //        CN_Metodos _Metodos = new CN_Metodos();
-
-
-    //        dgv_movimientoStock.Columns["Id_MovimientoStock"].Width = 200;
-    //        dgv_movimientoStock.Columns["Fecha"].Width = 200;
-
-    //        dgv_movimientoStock.Columns["TipoMovimiento"].Width = 200;
-     
-    //        dgv_movimientoStock.Columns["Usuario"].Width = 300;
-    //        dgv_movimientoStock.Columns["Observacion"].Width = 100;
-          
-    //        //Lo usare en detalle
-    //        //// Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
-    //        //CultureInfo culturaAR = new CultureInfo("es-AR");
-
-    //        //dgv_movimientoStock.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
-    //        //dgv_movimientoStock.Columns["Cantidad"].DefaultCellStyle.FormatProvider = culturaAR;
-
-    //        //dgv_movimientoStock.Columns["StockAnterior"].DefaultCellStyle.Format = "N2";
-    //        //dgv_movimientoStock.Columns["StockAnterior"].DefaultCellStyle.FormatProvider = culturaAR;
-
-    //        //// Si Stock también es decimal:
-    //        //dgv_movimientoStock.Columns["StockNuevo"].DefaultCellStyle.Format = "N2";
-    //        //dgv_movimientoStock.Columns["StockNuevo"].DefaultCellStyle.FormatProvider = culturaAR;
-
-
-    //        dgv_movimientoStock.Columns["Id_MovimientoStock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-    //        dgv_movimientoStock.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-    //        dgv_movimientoStock.Columns["TipoMovimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-    //        dgv_movimientoStock.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-    //        dgv_movimientoStock.Columns["Observacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-          
-
-
-
-    //        _Metodos.AlternarColor(dgv_movimientoStock);
-    //    }
     }
 }

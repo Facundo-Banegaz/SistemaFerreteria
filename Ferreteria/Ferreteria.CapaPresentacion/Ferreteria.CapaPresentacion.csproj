@@ -162,6 +162,18 @@
     <Compile Include="VistaIngresos\FrmIngreso.Designer.cs">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaInventario\FrmInventarioBajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInventario\FrmInventarioBajo.Designer.cs">
+      <DependentUpon>FrmInventarioBajo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaInventario\FrmVencimientosProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInventario\FrmVencimientosProductos.Designer.cs">
+      <DependentUpon>FrmVencimientosProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaKardex\FrmKardex.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaIngresos\FrmIngreso.resx">
       <DependentUpon>FrmIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInventario\FrmInventarioBajo.resx">
+      <DependentUpon>FrmInventarioBajo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInventario\FrmVencimientosProductos.resx">
+      <DependentUpon>FrmVencimientosProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaKardex\FrmKardex.resx">
       <DependentUpon>FrmKardex.cs</DependentUpon>

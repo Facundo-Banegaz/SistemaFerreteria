@@ -18,11 +18,16 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 
         private MovimientoStock _Movimiento;
 
-        private List<Especificacion> listaEspecificacion;
+
+        public FrmMovimientoStockDetalle()
+        {
+
+            InitializeComponent();
+            Text = "Detalle del Movimiento de Stock:";
+        }
         public FrmMovimientoStockDetalle(MovimientoStock movimientoStock)
         {
             InitializeComponent();
-            Text = "Detalle del Movimiento de Stock:";
             this._Movimiento = movimientoStock;
         }
 
@@ -30,24 +35,16 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 
         private void FrmMovimientoStockDetalle_Load(object sender, EventArgs e)
         {
-            if (_Movimiento != null)
-            {
-                MostrarDatos();
-            }
-            CargarGrilla();
-
-            //ArregloDataGridView(dgv_caracteristicas);
+            MostrarDetalles();
+            ArregloDataGridView(dgv_detalles);
+            lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_detalles.Rows.Count);
         }
-        private void CargarGrilla()
+        private void MostrarDetalles()
         {
-            //logica del dataGridView
-            CN_Especificacion n_Especificacion = new CN_Especificacion();
 
-            //int Id_Producto = _Producto.Id_Producto;
-            ////listaEspecificacion = n_Especificacion.MostrarDetalleEspecificacionesPorProducto(_Producto.Id_Producto);
+            CN_MovimientoDetalleStock _MovimientoDetalleStock = new CN_MovimientoDetalleStock();
 
-            ////dgv_caracteristicas.DataSource = listaEspecificacion;
-
+            dgv_detalles.DataSource = _MovimientoDetalleStock.ListaDetalleMovimientoStock(_Movimiento.Id_MovimientoStock);
 
         }
         private void ArregloDataGridView(DataGridView dgv_productos)
@@ -55,42 +52,56 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
+            dgv_productos.Columns["Id_DetalleMovimientoStock"].Visible = false;
 
-
-            dgv_productos.Columns["Id_Especificacion"].Visible = false;
-            dgv_productos.Columns["Producto"].Visible = false;
-
-
-            dgv_productos.Columns["TipoEspecificacion"].Width = 520;
-            dgv_productos.Columns["ValorEspecificacion"].Width = 520;
-
-
-
-            dgv_productos.Columns["TipoEspecificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_productos.Columns["ValorEspecificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["MovimientoStock"].Visible = false;
 
 
 
 
+
+            dgv_productos.Columns["Producto"].Width = 450;// nombre_producto
+            dgv_productos.Columns["Cantidad"].Width = 300;// Categoria
+            dgv_productos.Columns["StockAnterior"].Width = 300;// Presentacion
+            dgv_productos.Columns["StockNuevo"].Width = 300;// nombre_producto
+            dgv_productos.Columns["ObservacionDetalle"].Width = 300;// Categoria
+         
+
+            dgv_productos.Columns["Producto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+       
+            dgv_productos.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["StockAnterior"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgv_productos.Columns["StockNuevo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv_productos.Columns["ObservacionDetalle"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+         
+
+        
+
+            // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+
+            dgv_productos.Columns["StockAnterior"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["StockAnterior"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            dgv_productos.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["Cantidad"].DefaultCellStyle.FormatProvider = culturaAR;
+
+            // Si Stock también es decimal:
+            dgv_productos.Columns["StockNuevo"].DefaultCellStyle.Format = "N2";
+            dgv_productos.Columns["StockNuevo"].DefaultCellStyle.FormatProvider = culturaAR;
 
             _Metodos.AlternarColor(dgv_productos);
         }
-        private void MostrarDatos()
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            //lbl_codigo.Text = "Codigo:   " + _Movimiento.Codigo;
-            //lbl_nombre.Text = "Nombre:   " + _Movimiento.Nombre;
-            //txt_descripcion_Movimiento.Text = _Movimiento.Descripcion;
-            //lbl_fecha.Text = "Fecha de la Ultima Actualización:  " + _Movimiento.FechaUltimaActualizacionPrecio;
-            //lbl_precio.Text = "Precio Actual:  " + _Movimiento.Precio.ToString("N2", new CultureInfo("es-AR")); ;
-            //lbl_stock.Text = "Stock Actual: " + _Movimiento.Stock.ToString("N2", new CultureInfo("es-AR"));
-            //lbl_subcategoria.Text = "Subcategoria:  " + _Movimiento.Subcategoria.Nombre;
-            //lbl_stock_minimo.Text = "Stock Minimo:  " + _Movimiento.StockMinimo.ToString("N2", new CultureInfo("es-AR"));
-            //Chk_estado.Checked = _Movimiento.Estado;
-            //Chk_actualizarPrecioAutomaticamente.Checked = _Movimiento.ActualizarPrecioAutomaticamente;
-            //Chk_requiereVencimiento.Checked = _Movimiento.RequiereVencimiento;
-            //lbl_marca.Text = "Marca:    " + _Movimiento.Marca.Nombre;
-            //lbl_Id.Text = _Movimiento.Id_Movimiento.ToString();
-            //lbl_unidad.Text = "Unidad de Medida:    " + _Movimiento.UnidadMedida.Nombre;
+            this.Close();
+        }
+
+        private void dgv_detalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

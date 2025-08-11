@@ -117,6 +117,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1874, 887);
             this.Name = "FrmDetalleVenta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmDetalleVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detalles)).EndInit();

@@ -24,6 +24,6 @@ namespace Ferreteria.CapaDominio
         public decimal StockNuevo { get; set; } = 0;
 
 
-        public string ObserbacionDetalle { get; set; }
+        public string ObservacionDetalle { get; set; }
     }
 }

@@ -13,11 +13,11 @@ namespace Ferreteria.CapaNegocio
         private CD_DetalleMovimientoStock _DetalleMovimientoStock;
 
 
-        public List<DetalleMovimientoStock> ListaDetalleMovimientoStock(int Id_Presupuesto)
+        public List<DetalleMovimientoStock> ListaDetalleMovimientoStock(int Id_MovimientoStock)
         {
             _DetalleMovimientoStock = new CD_DetalleMovimientoStock();
 
-            return _DetalleMovimientoStock.ListaDetalleMovimientoStock(Id_Presupuesto);
+            return _DetalleMovimientoStock.ListaDetalleMovimientoStock(Id_MovimientoStock);
         }
 
         

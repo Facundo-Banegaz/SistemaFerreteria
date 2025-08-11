@@ -43,14 +43,11 @@ namespace Ferreteria.CapaDatos
 
                     DetalleMovimientoStock.Id_DetalleMovimientoStock = (int)Conexion.Lector["Id_DetalleMovimientoStock"];
 
-                    DetalleMovimientoStock.MovimientoStock = new MovimientoStock();
-
-                    DetalleMovimientoStock.MovimientoStock.Id_MovimientoStock = (int)Conexion.Lector["Id_MovimientoStock"];
-
-
+                  
                     DetalleMovimientoStock.Producto = new Producto();
 
                     DetalleMovimientoStock.Producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    DetalleMovimientoStock.Producto.Nombre = (string)Conexion.Lector["Producto"];
 
                     DetalleMovimientoStock.Cantidad = (decimal)Conexion.Lector["Cantidad"];
 
@@ -59,7 +56,7 @@ namespace Ferreteria.CapaDatos
                     DetalleMovimientoStock.StockNuevo = (decimal)Conexion.Lector["StockNuevo"];
 
 
-                    DetalleMovimientoStock.ObserbacionDetalle = (string)Conexion.Lector["ObserbacionDetalle"];
+                    DetalleMovimientoStock.ObservacionDetalle = (string)Conexion.Lector["ObservacionDetalle"]; 
 
 
 
@@ -92,7 +89,7 @@ namespace Ferreteria.CapaDatos
                 cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
                 cmd.Parameters.AddWithValue("@StockAnterior", detalle.StockAnterior);
                 cmd.Parameters.AddWithValue("@StockNuevo", detalle.StockNuevo);
-                cmd.Parameters.AddWithValue("@Observacion", detalle.ObserbacionDetalle ?? "Sin Observación");
+                cmd.Parameters.AddWithValue("@Observacion", detalle.ObservacionDetalle ?? "Sin Observación");
 
                 cmd.ExecuteNonQuery();
             }

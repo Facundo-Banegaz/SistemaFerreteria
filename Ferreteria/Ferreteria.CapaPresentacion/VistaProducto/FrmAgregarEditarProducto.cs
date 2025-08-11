@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Ferreteria.CapaPresentacion.VistaProducto
 {
     public partial class FrmAgregarEditarProducto : Form
@@ -135,10 +136,17 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             GuardarProducto();
         }
 
-      
+
 
         private void txt_codigo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Si el CheckBox está marcado, permitir cualquier entrada
+            if (Chk_CambiarEstado.Checked)
+            {
+                return; // No hacemos validaciones
+            }
+
+            // ---- Validación original ----
 
             // Permitir teclas de control (backspace, delete, flechas...)
             if (char.IsControl(e.KeyChar))
@@ -150,28 +158,25 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             // Permitir solo números
             if (char.IsDigit(e.KeyChar))
             {
-        
                 // Solo permitir si no supera los 13 caracteres
                 if (txt_codigo.Text.Length >= 13)
                 {
                     e.Handled = true; // Bloquear más escritura
-                  
 
                     if (!mensajeMostrado)
                     {
                         MessageBox.Show("El código de barras no puede tener más de 13 números.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         mensajeMostrado = true;
                     }
-                
                 }
                 else
                 {
                     mensajeMostrado = false; // Resetea mensaje si no excede
                 }
-                
-                return;
 
+                return;
             }
+
             // Bloquear cualquier otro carácter
             e.Handled = true;
             if (!mensajeMostrado)
@@ -180,6 +185,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 mensajeMostrado = true;
             }
         }
+
 
         private void cbo_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -342,21 +348,21 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
         private void txt_codigo_TextChanged(object sender, EventArgs e)
         {
+            if (Chk_CambiarEstado.Checked)
+                return; // No validar en modo libre
+
             string codigo = txt_codigo.Text;
 
-            // Solo actuar si hay 13 dígitos exactos
             if (codigo.Length == 13)
             {
-                // Validar que no todos los números sean iguales
                 if (codigo.Distinct().Count() == 1)
                 {
                     MessageBox.Show("El código de barras no puede tener todos los números iguales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_codigo.Focus();
-                    txt_codigo.SelectAll();// Selecciona todo para que el usuario reescriba
+                    txt_codigo.SelectAll();
                     return;
                 }
 
-                // Si está todo bien, enfocar el siguiente campo
                 txt_nombre.Focus();
             }
         }
@@ -502,6 +508,21 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                     txt_stock_minimo.Focus();
                     txt_stock_minimo.SelectAll();
                 }
+            }
+        }
+
+        private void Chk_CambiarEstado_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_codigo.Clear(); // Vaciar el TextBox
+
+            if (Chk_CambiarEstado.Checked)
+            {
+                toolTip.SetToolTip(txt_codigo, "Puede ingresar letras, números o símbolos");
+            }
+            else
+            {
+                
+                toolTip.SetToolTip(txt_codigo, "Solo números y hasta 13 dígitos");
             }
         }
     }

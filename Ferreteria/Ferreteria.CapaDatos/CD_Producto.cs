@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ferreteria.CapaDominio.DTOs;
 
 namespace Ferreteria.CapaDatos
 {
@@ -16,8 +17,11 @@ namespace Ferreteria.CapaDatos
         private CD_Conexion Conexion;
         private Producto Producto;
         private List<Producto> listaProducto;
+        private ProductoInventarioBajoDto ProductoInventarioBajoDto;
+        private List<ProductoInventarioBajoDto> listaProductoInventarioBajoDto;
 
-
+        private ProductoConVencimientoDto ProductoConVencimientoDto;
+        private List<ProductoConVencimientoDto> listaProductosConVencimientoDto;
         public List<Producto> ListaProductos()
         {
 
@@ -81,10 +85,132 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.CerrarConexion();
             }
-
         }
 
 
+        public List<ProductoInventarioBajoDto> ListaProductosInventarioBajo()
+        {
+
+            Conexion = new CD_Conexion();
+            listaProductoInventarioBajoDto = new List<ProductoInventarioBajoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_ProductosInventarioBajo");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+
+                    ProductoInventarioBajoDto = new ProductoInventarioBajoDto();
+
+                    //atributos propios
+
+
+                    ProductoInventarioBajoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    ProductoInventarioBajoDto.Codigo = (string)Conexion.Lector["Codigo"];
+                    ProductoInventarioBajoDto.Producto = (string)Conexion.Lector["Producto"];
+
+                    ProductoInventarioBajoDto.Precio = (decimal)Conexion.Lector["Precio"];
+
+                    ProductoInventarioBajoDto.Stock = (decimal)Conexion.Lector["Stock"];
+                    ProductoInventarioBajoDto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
+
+           
+
+                    ProductoInventarioBajoDto.Categoria = (string)Conexion.Lector["Categoria"];
+
+                    ProductoInventarioBajoDto.Subcategoria = (string)Conexion.Lector["Subcategoria"];
+
+
+             
+                    ProductoInventarioBajoDto.Marca = (string)Conexion.Lector["Marca"];
+
+
+
+                    ProductoInventarioBajoDto.UnidadMedida = (string)Conexion.Lector["UnidadMedida"];
+             
+                    listaProductoInventarioBajoDto.Add(ProductoInventarioBajoDto);
+                }
+
+                return listaProductoInventarioBajoDto;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
+
+        public List<ProductoConVencimientoDto> ListaProductosConVencimientoDto(string @FiltroEstado)
+        {
+
+            Conexion = new CD_Conexion();
+            listaProductosConVencimientoDto = new List<ProductoConVencimientoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_ProductosVencimiento");
+                Conexion.SetearParametro("@FiltroEstado", FiltroEstado);
+               
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+
+                    ProductoConVencimientoDto = new ProductoConVencimientoDto();
+
+                    //atributos propios
+
+
+                    ProductoConVencimientoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    ProductoConVencimientoDto.Codigo = (string)Conexion.Lector["Codigo"];
+                    ProductoConVencimientoDto.Producto = (string)Conexion.Lector["Producto"];
+
+
+                    ProductoConVencimientoDto.Stock = (decimal)Conexion.Lector["Stock"];
+                    
+
+
+                    ProductoConVencimientoDto.Marca = (string)Conexion.Lector["Marca"];
+
+
+                    ProductoConVencimientoDto.FechaIngreso = (DateTime)Conexion.Lector["FechaIngreso"];
+
+                    ProductoConVencimientoDto.FechaFabricacion = (DateTime)Conexion.Lector["FechaFabricacion"];
+
+
+                    ProductoConVencimientoDto.FechaVencimiento = (DateTime)Conexion.Lector["FechaVencimiento"];
+
+                    ProductoConVencimientoDto.CantidadLote = (decimal)Conexion.Lector["CantidadLote"];
+                    ProductoConVencimientoDto.DiasRestantes = (int)Conexion.Lector["DiasRestantes"];
+
+                    ProductoConVencimientoDto.Estado = (string)Conexion.Lector["Estado"];
+
+
+                    listaProductosConVencimientoDto.Add(ProductoConVencimientoDto);
+                }
+
+                return listaProductosConVencimientoDto;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
 
         public bool ValidarProducto(string Codigo)
         {
@@ -334,6 +460,72 @@ namespace Ferreteria.CapaDatos
                 Conexion.CerrarConexion();
             }
         }
+
+
+        public List<ProductoInventarioBajoDto> BuscarProductosInventarioBajo(string buscar)
+        {
+            Conexion = new CD_Conexion();
+            listaProductoInventarioBajoDto = new List<ProductoInventarioBajoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_BuscarProductosInventarioBajo");
+
+
+                Conexion.SetearParametro("@Busqueda", buscar);
+
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    
+                    ProductoInventarioBajoDto = new ProductoInventarioBajoDto();
+
+                    //atributos propios
+
+
+                    ProductoInventarioBajoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    ProductoInventarioBajoDto.Codigo = (string)Conexion.Lector["Codigo"];
+                    ProductoInventarioBajoDto.Producto = (string)Conexion.Lector["Producto"];
+
+                    ProductoInventarioBajoDto.Precio = (decimal)Conexion.Lector["Precio"];
+
+                    ProductoInventarioBajoDto.Stock = (decimal)Conexion.Lector["Stock"];
+                    ProductoInventarioBajoDto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
+
+
+
+                    ProductoInventarioBajoDto.Categoria = (string)Conexion.Lector["Categoria"];
+
+                    ProductoInventarioBajoDto.Subcategoria = (string)Conexion.Lector["Subcategoria"];
+
+
+
+                    ProductoInventarioBajoDto.Marca = (string)Conexion.Lector["Marca"];
+
+
+
+                    ProductoInventarioBajoDto.UnidadMedida = (string)Conexion.Lector["UnidadMedida"];
+
+                    listaProductoInventarioBajoDto.Add(ProductoInventarioBajoDto);
+                }
+
+
+                return listaProductoInventarioBajoDto;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
         //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
         public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)
         {

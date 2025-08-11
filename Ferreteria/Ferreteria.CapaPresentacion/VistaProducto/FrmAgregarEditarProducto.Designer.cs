@@ -60,6 +60,8 @@
             this.txt_id_unidadMedida = new System.Windows.Forms.TextBox();
             this.txt_stock_minimo = new System.Windows.Forms.TextBox();
             this.txt_precio = new System.Windows.Forms.TextBox();
+            this.Chk_CambiarEstado = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -103,9 +105,9 @@
             // 
             this.txt_nombre.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nombre.Location = new System.Drawing.Point(710, 73);
+            this.txt_nombre.Location = new System.Drawing.Point(624, 73);
             this.txt_nombre.Name = "txt_nombre";
-            this.txt_nombre.Size = new System.Drawing.Size(395, 35);
+            this.txt_nombre.Size = new System.Drawing.Size(540, 35);
             this.txt_nombre.TabIndex = 91;
             // 
             // label1
@@ -171,9 +173,9 @@
             // 
             this.txt_codigo.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_codigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_codigo.Location = new System.Drawing.Point(145, 71);
+            this.txt_codigo.Location = new System.Drawing.Point(52, 71);
             this.txt_codigo.Name = "txt_codigo";
-            this.txt_codigo.Size = new System.Drawing.Size(333, 35);
+            this.txt_codigo.Size = new System.Drawing.Size(539, 35);
             this.txt_codigo.TabIndex = 82;
             this.txt_codigo.TextChanged += new System.EventHandler(this.txt_codigo_TextChanged);
             this.txt_codigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_codigo_KeyPress);
@@ -424,11 +426,25 @@
             this.txt_precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precio_KeyPress);
             this.txt_precio.Leave += new System.EventHandler(this.txt_precio_Leave);
             // 
+            // Chk_CambiarEstado
+            // 
+            this.Chk_CambiarEstado.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Chk_CambiarEstado.AutoSize = true;
+            this.Chk_CambiarEstado.Font = new System.Drawing.Font("Impact", 12F);
+            this.Chk_CambiarEstado.Location = new System.Drawing.Point(392, 12);
+            this.Chk_CambiarEstado.Name = "Chk_CambiarEstado";
+            this.Chk_CambiarEstado.Size = new System.Drawing.Size(183, 33);
+            this.Chk_CambiarEstado.TabIndex = 182;
+            this.Chk_CambiarEstado.Text = "Permitir Letras";
+            this.Chk_CambiarEstado.UseVisualStyleBackColor = true;
+            this.Chk_CambiarEstado.CheckedChanged += new System.EventHandler(this.Chk_CambiarEstado_CheckedChanged);
+            // 
             // FrmAgregarEditarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1217, 862);
+            this.Controls.Add(this.Chk_CambiarEstado);
             this.Controls.Add(this.txt_precio);
             this.Controls.Add(this.txt_stock_minimo);
             this.Controls.Add(this.btn_unidadMedida);
@@ -504,5 +520,7 @@
         private System.Windows.Forms.TextBox txt_id_unidadMedida;
         private System.Windows.Forms.TextBox txt_precio;
         private System.Windows.Forms.TextBox txt_stock_minimo;
+        private System.Windows.Forms.CheckBox Chk_CambiarEstado;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

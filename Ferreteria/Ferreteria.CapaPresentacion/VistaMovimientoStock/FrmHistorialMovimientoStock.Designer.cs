@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHistorialMovimientoStock));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.dgv_movimientoStock = new System.Windows.Forms.DataGridView();
             this.btn_nuevo = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(1379, 749);
+            this.btn_cancelar.Location = new System.Drawing.Point(1392, 605);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 92;
@@ -77,33 +77,33 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_movimientoStock.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_movimientoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_movimientoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_movimientoStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_movimientoStock.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_movimientoStock.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_movimientoStock.EnableHeadersVisualStyles = false;
             this.dgv_movimientoStock.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgv_movimientoStock.Location = new System.Drawing.Point(22, 356);
+            this.dgv_movimientoStock.Location = new System.Drawing.Point(35, 235);
             this.dgv_movimientoStock.Name = "dgv_movimientoStock";
             this.dgv_movimientoStock.ReadOnly = true;
             this.dgv_movimientoStock.RowHeadersVisible = false;
             this.dgv_movimientoStock.RowHeadersWidth = 62;
             this.dgv_movimientoStock.RowTemplate.Height = 28;
             this.dgv_movimientoStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_movimientoStock.Size = new System.Drawing.Size(1554, 366);
+            this.dgv_movimientoStock.Size = new System.Drawing.Size(1554, 362);
             this.dgv_movimientoStock.TabIndex = 91;
             // 
             // btn_nuevo
@@ -114,7 +114,7 @@
             this.btn_nuevo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_nuevo.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_nuevo.Image = ((System.Drawing.Image)(resources.GetObject("btn_nuevo.Image")));
-            this.btn_nuevo.Location = new System.Drawing.Point(26, 751);
+            this.btn_nuevo.Location = new System.Drawing.Point(26, 605);
             this.btn_nuevo.Name = "btn_nuevo";
             this.btn_nuevo.Size = new System.Drawing.Size(197, 66);
             this.btn_nuevo.TabIndex = 89;
@@ -130,7 +130,7 @@
             this.lbl_resultado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbl_resultado.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_resultado.ForeColor = System.Drawing.Color.Red;
-            this.lbl_resultado.Location = new System.Drawing.Point(681, 309);
+            this.lbl_resultado.Location = new System.Drawing.Point(522, 203);
             this.lbl_resultado.Name = "lbl_resultado";
             this.lbl_resultado.Size = new System.Drawing.Size(0, 29);
             this.lbl_resultado.TabIndex = 87;
@@ -141,7 +141,7 @@
             this.lbl_total.BackColor = System.Drawing.SystemColors.ControlText;
             this.lbl_total.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_total.ForeColor = System.Drawing.Color.LawnGreen;
-            this.lbl_total.Location = new System.Drawing.Point(230, 309);
+            this.lbl_total.Location = new System.Drawing.Point(71, 203);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(0, 29);
             this.lbl_total.TabIndex = 86;
@@ -154,7 +154,7 @@
             this.btn_ver_detalle.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ver_detalle.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_ver_detalle.Image = ((System.Drawing.Image)(resources.GetObject("btn_ver_detalle.Image")));
-            this.btn_ver_detalle.Location = new System.Drawing.Point(395, 749);
+            this.btn_ver_detalle.Location = new System.Drawing.Point(395, 603);
             this.btn_ver_detalle.Name = "btn_ver_detalle";
             this.btn_ver_detalle.Size = new System.Drawing.Size(197, 66);
             this.btn_ver_detalle.TabIndex = 106;
@@ -174,7 +174,7 @@
             this.cbo_subcategoria.FormattingEnabled = true;
             this.cbo_subcategoria.Location = new System.Drawing.Point(252, 57);
             this.cbo_subcategoria.Name = "cbo_subcategoria";
-            this.cbo_subcategoria.Size = new System.Drawing.Size(829, 40);
+            this.cbo_subcategoria.Size = new System.Drawing.Size(481, 40);
             this.cbo_subcategoria.TabIndex = 138;
             this.cbo_subcategoria.UseWaitCursor = true;
             // 
@@ -210,7 +210,7 @@
             this.lbl_fin.BackColor = System.Drawing.Color.LightGray;
             this.lbl_fin.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_fin.ForeColor = System.Drawing.Color.Crimson;
-            this.lbl_fin.Location = new System.Drawing.Point(102, 183);
+            this.lbl_fin.Location = new System.Drawing.Point(887, 125);
             this.lbl_fin.Name = "lbl_fin";
             this.lbl_fin.Size = new System.Drawing.Size(127, 35);
             this.lbl_fin.TabIndex = 136;
@@ -256,7 +256,7 @@
             // dtp_fecha_fin
             // 
             this.dtp_fecha_fin.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_fin.Location = new System.Drawing.Point(252, 192);
+            this.dtp_fecha_fin.Location = new System.Drawing.Point(1037, 125);
             this.dtp_fecha_fin.Name = "dtp_fecha_fin";
             this.dtp_fecha_fin.Size = new System.Drawing.Size(481, 37);
             this.dtp_fecha_fin.TabIndex = 134;
@@ -278,7 +278,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(941, 135);
+            this.label1.Location = new System.Drawing.Point(739, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 139;
@@ -289,7 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1601, 827);
+            this.ClientSize = new System.Drawing.Size(1601, 681);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbo_subcategoria);
             this.Controls.Add(this.lbl_subcategoria);

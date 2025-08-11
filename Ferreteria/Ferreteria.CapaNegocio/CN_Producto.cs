@@ -1,5 +1,6 @@
 ﻿using Ferreteria.CapaDatos;
 using Ferreteria.CapaDominio;
+using Ferreteria.CapaDominio.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,18 @@ namespace Ferreteria.CapaNegocio
             return _CD_Producto.ListaProductos();
         }
 
-  
+        public List<ProductoInventarioBajoDto> ListaProductosInventarioBajo()
+        {
+            _CD_Producto = new CD_Producto();
 
+            return _CD_Producto.ListaProductosInventarioBajo();
+        }
+        public List<ProductoConVencimientoDto> ListaProductosConVencimientoDto(string FiltroEstado)
+        {
+            _CD_Producto = new CD_Producto();
+
+            return _CD_Producto.ListaProductosConVencimientoDto(FiltroEstado);
+        }
         //Metodo para cargar un producto en la Base de Datos
         public void InsertarProducto(Producto Nuevo)
         {
@@ -60,6 +71,14 @@ namespace Ferreteria.CapaNegocio
             _CD_Producto = new CD_Producto();
 
             return _CD_Producto.BuscarProducto(buscar);
+        }
+
+
+             public List<ProductoInventarioBajoDto> BuscarProductosInventarioBajo(string buscar)
+        {
+            _CD_Producto = new CD_Producto();
+
+            return _CD_Producto.BuscarProductosInventarioBajo(buscar);
         }
         //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
         public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)
