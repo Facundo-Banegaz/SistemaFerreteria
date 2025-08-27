@@ -50,6 +50,9 @@
     <Compile Include="DetalleMovimientoStock.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="DetalleVenta.cs" />
+    <Compile Include="DTOs\MoviminetoStockDto.cs" />
+    <Compile Include="DTOs\MovimientoStockInsertDto.cs" />
+    <Compile Include="DTOs\ProductoAvanzadoDto.cs" />
     <Compile Include="DTOs\ProductoInventarioBajoDto.cs" />
     <Compile Include="DTOs\ProductoConVencimientoDto.cs" />
     <Compile Include="Especificacion.cs" />
@@ -58,6 +61,11 @@
     <Compile Include="MovimientoStock.cs" />
     <Compile Include="Presupuesto.cs" />
     <Compile Include="Proveedor.cs" />
+    <Compile Include="Reportes\IngresosNetosPorPeriodo.cs" />
+    <Compile Include="Reportes\ReporteIngresoListado.cs" />
+    <Compile Include="Reportes\SalesListing.cs" />
+    <Compile Include="Reportes\NetSalesByPeriod.cs" />
+    <Compile Include="Reportes\SalesReport.cs" />
     <Compile Include="Subcategoria.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="TipoEspecificacion.cs" />
@@ -67,6 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValorEspecificacion.cs" />
     <Compile Include="Venta.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\Ferreteria.CapaDominio.Reportes.ReporteVentaListado.datasource" />
+    <None Include="Properties\DataSources\Ferreteria.CapaDominio.Reportes.VentasNetasPorPeriodo.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

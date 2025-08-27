@@ -165,7 +165,7 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre_producto.Text == string.Empty)

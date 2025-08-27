@@ -1,6 +1,8 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaDominio.DTOs;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaProducto;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +26,13 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
             Text = "Gestion Inventario";
         }
 
+
         private void FrmInventarioBajo_Load(object sender, EventArgs e)
         {
             CargarGrilla();
 
             ArregloDataGridView(dgv_productos);
-            ActualizarConteoStock();        
+            ActualizarConteoStock();
         }
         private void CargarGrilla()
         {
@@ -110,7 +113,7 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
         }
 
 
-        private void dgv_productos_CellFormatting(object sender,DataGridViewCellFormattingEventArgs e)
+        private void dgv_productos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var dgv = sender as DataGridView;
 
@@ -135,8 +138,8 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
                         }
                         else
                         {
-                            e.CellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;
-                            e.CellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
+                            e.CellStyle.ForeColor = Color.Black;
+                            e.CellStyle.BackColor = Color.LightGreen;
                         }
                     }
                 }
@@ -181,6 +184,8 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
 
+            FrmReporteInventario frmReporte = new FrmReporteInventario();
+            frmReporte.ShowDialog();
         }
 
         private void dgv_productos_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)

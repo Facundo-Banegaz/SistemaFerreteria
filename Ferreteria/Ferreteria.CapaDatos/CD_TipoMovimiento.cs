@@ -27,7 +27,7 @@ namespace Ferreteria.CapaDatos
             try
             {
 
-                Conexion.SetConsulta("select Id_TipoMovimiento, Nombre");
+                Conexion.SetConsulta("SELECT Id_TipoMovimiento, Nombre FROM TiposMovimiento");
 
                 Conexion.EjecutarLectura();
 
@@ -57,5 +57,46 @@ namespace Ferreteria.CapaDatos
 
         }
 
+        public List<TipoMovimiento> ListarTipoMovimientoStockManual()
+        {
+
+            //instancia
+
+            Conexion = new CD_Conexion();
+
+            listaTipoMovimiento = new List<TipoMovimiento>();
+
+            try
+            {
+
+                Conexion.SetConsulta("SELECT Id_TipoMovimiento, Nombre FROM TiposMovimiento WHERE Id_TipoMovimiento IN (3,4,5,6,7,8,9);");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    tipoMovimiento = new TipoMovimiento();
+
+
+                    tipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimiento"];
+                    tipoMovimiento.Nombre = (string)Conexion.Lector["Nombre"];
+
+
+                    listaTipoMovimiento.Add(tipoMovimiento);
+                }
+
+                return listaTipoMovimiento;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
     }
 }

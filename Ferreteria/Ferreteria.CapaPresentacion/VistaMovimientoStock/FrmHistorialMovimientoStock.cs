@@ -16,40 +16,40 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
 {
     public partial class FrmHistorialMovimientoStock : Form
     {
-        public Usuario _Usuario;
+        
         private List<MovimientoStock> listaMovimientoStock;
+
         public FrmHistorialMovimientoStock()
         {
             InitializeComponent();
             Text = "Gestion Movimientos de Stock";
         }
-        public FrmHistorialMovimientoStock(Usuario usuario)
-        {
-            InitializeComponent();
-            this._Usuario = usuario;
-        }
+
         private void FrmMovimientoStock_Load(object sender, EventArgs e)
         {
+
+            CargarCbo();
+
             CargarGrilla();
+   
 
             ArregloDataGridView(dgv_movimientoStock);
         }
 
+
+        private void CargarCbo()
+        { 
+            CN_TipoMovimiento _TipoMovimiento = new CN_TipoMovimiento();
+
+            cbo_TipoMovimiento.DataSource = _TipoMovimiento.ListaTipoMovimiento();
+            cbo_TipoMovimiento.ValueMember = "Id_TipoMovimiento";
+            cbo_TipoMovimiento.DisplayMember = "Nombre";
+
+
+        }
+  
     
 
-        private void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-    
-
-        private void btn_nuevo_Click(object sender, EventArgs e)
-        {
-            FrmMovimientoStockManual stockManual = new FrmMovimientoStockManual(_Usuario);
-            stockManual.ShowDialog();
-            CargarGrilla();
-        }
 
         private void btn_ver_detalle_Click(object sender, EventArgs e)
         {
@@ -72,13 +72,18 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
             //logica del dataGridView
             CN_MovimientoStock _MovimientoStock = new CN_MovimientoStock();
 
-            listaMovimientoStock = _MovimientoStock.ListaMovimientoStock();
+            // Capturar el ID seleccionado del ComboBox
+            int Id = Convert.ToInt32(cbo_TipoMovimiento.SelectedValue);
+
+            listaMovimientoStock = _MovimientoStock.ListaMovimientoStock(Id);
 
             dgv_movimientoStock.DataSource = listaMovimientoStock;
             lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_movimientoStock.Rows.Count);
             lbl_resultado.Text = "";
 
         }
+
+
         private void ArregloDataGridView(DataGridView dgv_movimientoStock)
         {
             CN_Metodos _Metodos = new CN_Metodos();
@@ -98,6 +103,59 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
             dgv_movimientoStock.Columns["Observacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             _Metodos.AlternarColor(dgv_movimientoStock);
+        }
+
+
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            BuscarFechas();
+        }
+
+    
+        private void BuscarFechas()
+        {
+
+            CN_MovimientoStock _MovimientoStock = new CN_MovimientoStock();
+
+
+            if (dtp_fecha_inicio.Value.Date > dtp_fecha_fin.Value.Date)
+            {
+                MessageBox.Show("La fecha de 'Inicio' no puede ser mayor que la fecha de 'Fin'.", "ADVERTENCIA");
+                lbl_resultado.Text = "La fecha de 'Inicio' no puede ser mayor que la fecha de 'Fin'.";
+                return;
+            }
+
+
+            try
+            {
+
+                // Capturar el ID seleccionado del ComboBox
+                int Id = Convert.ToInt32(cbo_TipoMovimiento.SelectedValue);
+                dgv_movimientoStock.DataSource = _MovimientoStock.BuscarMovimientoStock(dtp_fecha_inicio.Value, dtp_fecha_fin.Value,Id);
+
+
+                lbl_total.Text = $"Total de Movimientos: {dgv_movimientoStock.Rows.Count}";
+                lbl_resultado.Text = "Para volver a ver el listado completo, 'Limpiar' el campo.";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar Presupuestos: " + ex.Message, "ERROR");
+                lbl_resultado.Text = "Error al buscar Presupuestos.";
+            }
+        }
+
+        private void cbo_TipoMovimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbo_TipoMovimiento.SelectedValue != null && cbo_TipoMovimiento.SelectedValue is int)
+            {
+                CargarGrilla();
+            }
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
         }
     }
 }

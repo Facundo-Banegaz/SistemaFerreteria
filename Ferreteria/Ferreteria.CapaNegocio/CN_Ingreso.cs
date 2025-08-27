@@ -27,11 +27,11 @@ namespace Ferreteria.CapaNegocio
         }
 
         //Metodo para Anular un  ingreso en la Base de Datos
-        public void CambiarEstadoIngreso(int Id_ingreso)
+        public void AnularIngreso(int Id_ingreso)
         {
             _Ingreso = new CD_Ingreso();
 
-            _Ingreso.CambiarEstadoIngreso(Id_ingreso);
+            _Ingreso.AnularIngreso(Id_ingreso);
         }
 
         public List<Ingreso> IngresoBuscarFecha(DateTime FechaInicio, DateTime FechaFin)

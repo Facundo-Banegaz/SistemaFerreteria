@@ -22,6 +22,6 @@ namespace Ferreteria.CapaDominio
 
         public string Observacion { get; set; }
 
-  
+        public List<DetalleMovimientoStock> Detalles { get; set; }
     }
 }

@@ -156,7 +156,7 @@ namespace Ferreteria.CapaPresentacion.VistaUsuario
 
         private bool ValidarVacio(bool validarClave = true)
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_apellido.Text == string.Empty)

@@ -90,7 +90,7 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaTipoEspecificacio
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre_TiposEspecificacion.Text == string.Empty)

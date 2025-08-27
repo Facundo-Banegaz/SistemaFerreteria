@@ -1,5 +1,7 @@
-﻿using Ferreteria.CapaDominio.DTOs;
+﻿using Ferreteria.CapaDominio;
+using Ferreteria.CapaDominio.DTOs;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +18,18 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
     public partial class FrmVencimientosProductos : Form
     {
         private List<ProductoConVencimientoDto> listaProductos;
+        private Usuario Usuario;
         public FrmVencimientosProductos()
         {
             InitializeComponent();
             Text = "Gestion Inventario Vencimientos";
+        }
+        public FrmVencimientosProductos(Usuario usuario)
+        {
+            InitializeComponent();
+            Text = "Gestion Inventario Vencimientos";
+
+            this.Usuario = usuario;
         }
 
         private void FrmVencimientosProductos_Load(object sender, EventArgs e)
@@ -44,7 +54,7 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
                 filtroEstado = "VENCIDO";
 
             // Ejecutar la consulta con el filtro y sin filtro de producto
-            listaProductos = _Producto.ListaProductosConVencimientoDto(filtroEstado);
+            listaProductos = _Producto.ListaProductosConVencimiento(filtroEstado);
 
             dgv_productos.DataSource = listaProductos;
             lbl_total.Text = "Total de Productos:  " + dgv_productos.Rows.Count.ToString();
@@ -145,6 +155,106 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
                     e.CellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
                     e.CellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;
                 }
+            }
+        }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            BuscarProducto();
+            txt_buscar.Clear();     // limpia el campo
+            txt_buscar.Focus();
+        }
+
+        private void btn_limpiar(object sender, EventArgs e)
+        {
+            txt_buscar.Clear();
+            CargarGrilla();
+        }
+
+        private void BuscarProducto()
+        {
+            CN_Producto producto = new CN_Producto();
+
+            if (txt_buscar.Text == string.Empty)
+            {
+                MessageBox.Show("El CAMPO NO PUEDE QUEDAR VACIO!!", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                lbl_resultado.Text = "No escribio nada en el campo  'Buscador'.";
+                CargarGrilla();
+                
+            }
+            else
+            {
+                string filtroEstado = "";
+                if (Rb_Todos.Checked)
+                    filtroEstado = "TODOS";
+                else if (Rb_Por_Vencer.Checked)
+                    filtroEstado = "PORVENCER";
+                else if (Rb_Vencido.Checked)
+                    filtroEstado = "VENCIDO";
+
+
+                dgv_productos.DataSource = producto.BuscarProductoConVencimiento(filtroEstado,txt_buscar.Text);
+
+                lbl_total.Text = "Total de Registros Encontrados:" + " " + Convert.ToString(dgv_productos.Rows.Count);
+                lbl_resultado.Text = "Para volver a ver el listado completo 'Limpiar' el campo!!.";
+            
+
+            }
+        }
+
+        private void Btn_imprimir_Click(object sender, EventArgs e)
+        {
+            string filtroEstado = "";
+            if (Rb_Todos.Checked)
+                filtroEstado = "TODOS";
+            else if (Rb_Por_Vencer.Checked)
+                filtroEstado = "PORVENCER";
+            else if (Rb_Vencido.Checked)
+                filtroEstado = "VENCIDO";
+
+            DialogResult respuesta = MessageBox.Show(
+       "¿Desea imprimir el reporte de vencimiento de productos?",
+       "Confirmar impresión",
+       MessageBoxButtons.YesNo,
+       MessageBoxIcon.Question);
+
+
+            if (respuesta == DialogResult.Yes)
+            {
+                
+                FrmReporteProductoVencimiento frmReporteProductoVencimiento = new FrmReporteProductoVencimiento(filtroEstado);
+
+                frmReporteProductoVencimiento.ShowDialog();   
+            }
+          
+        }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            CN_Producto _Producto = new CN_Producto();
+            ProductoConVencimientoDto seleccionado = null;
+
+
+            try
+            {
+                if (dgv_productos.CurrentRow != null)
+                {
+                    DialogResult respuesta = MessageBox.Show("¿Quieres Descontar estos Productos vencidos?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        seleccionado = (ProductoConVencimientoDto)dgv_productos.CurrentRow.DataBoundItem;
+                        _Producto.DescontarProductoVencido( Usuario.Id_Usuario, seleccionado.Id_DetalleIngreso);
+
+                        CargarGrilla();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

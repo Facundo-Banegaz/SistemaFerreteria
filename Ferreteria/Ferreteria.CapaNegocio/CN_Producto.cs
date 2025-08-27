@@ -20,18 +20,23 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Producto.ListaProductos();
         }
+        public List<ProductoAvanzadoDto> ConsultaMostrarProductosAvanzado()
+        {
+            _CD_Producto = new CD_Producto();
 
+            return _CD_Producto.ConsultaMostrarProductosAvanzado();
+        }
         public List<ProductoInventarioBajoDto> ListaProductosInventarioBajo()
         {
             _CD_Producto = new CD_Producto();
 
             return _CD_Producto.ListaProductosInventarioBajo();
         }
-        public List<ProductoConVencimientoDto> ListaProductosConVencimientoDto(string FiltroEstado)
+        public List<ProductoConVencimientoDto> ListaProductosConVencimiento(string FiltroEstado)
         {
             _CD_Producto = new CD_Producto();
 
-            return _CD_Producto.ListaProductosConVencimientoDto(FiltroEstado);
+            return _CD_Producto.ListaProductosConVencimiento(FiltroEstado);
         }
         //Metodo para cargar un producto en la Base de Datos
         public void InsertarProducto(Producto Nuevo)
@@ -65,6 +70,14 @@ namespace Ferreteria.CapaNegocio
         }
 
 
+        public void DescontarProductoVencido(int Id_Usuario, int Id_DetalleIngreso)
+        { 
+            _CD_Producto = new CD_Producto();
+
+        _CD_Producto.DescontarProductoVencido(Id_Usuario,  Id_DetalleIngreso);
+        }
+
+
         //Metodo para Buscar un producto en la Base de Datos
         public List<Producto> BuscarProducto(string buscar)
         {
@@ -72,14 +85,28 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_Producto.BuscarProducto(buscar);
         }
-
-
-             public List<ProductoInventarioBajoDto> BuscarProductosInventarioBajo(string buscar)
+        public List<ProductoAvanzadoDto> ConsultaBuscarProductoAvanzado(string buscar)
         {
             _CD_Producto = new CD_Producto();
 
-            return _CD_Producto.BuscarProductosInventarioBajo(buscar);
+            return _CD_Producto.ConsultaBuscarProductoAvanzado(buscar);
         }
+
+        public List<ProductoInventarioBajoDto> BuscarProductosInventarioBajo(string buscar)
+            {
+                _CD_Producto = new CD_Producto();
+
+                return _CD_Producto.BuscarProductosInventarioBajo(buscar);
+            }
+
+        public List<ProductoConVencimientoDto> BuscarProductoConVencimiento(string filtroEstado,string buscar)
+        {
+            _CD_Producto = new CD_Producto();
+
+            return _CD_Producto.BuscarProductosConVencimiento(filtroEstado,buscar);
+        }
+
+
         //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
         public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)
         {

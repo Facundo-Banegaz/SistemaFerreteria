@@ -2,6 +2,7 @@
 using Ferreteria.CapaNegocio;
 using Ferreteria.CapaPresentacion.VistaCompartida;
 using Ferreteria.CapaPresentacion.VistaIngresos;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -241,15 +242,30 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
                 CN_Presupuesto.InsertarPresupuesto(_Presupuesto, _Detalle_Presupuesto);
 
                 MessageBox.Show("¡El Presupuesto se generó exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (cbo_comprobante.SelectedItem != null && cbo_comprobante.SelectedItem.ToString() == "TICKET")
+                if (cbo_comprobante.SelectedItem != null)
                 {
-                    DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resultado == DialogResult.Yes)
+
+
+                    string comprobante = cbo_comprobante.SelectedItem.ToString();
+
+                    if (comprobante == "TICKET")
                     {
-                        ImprimirTicketPresupuesto(); // Llamás a tu método para imprimir
+                        DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            ImprimirTicketPresupuesto(); // Llamás a tu método para imprimir
+                        }
+                    }
+                    else if (comprobante == "BOLETA")
+                    {
+                        DialogResult resultado = MessageBox.Show("¿Desea imprimir la boleta?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            FrmReporteFacturaPresupuesto frmReporte = new FrmReporteFacturaPresupuesto(_Presupuesto);
+                            frmReporte.ShowDialog();
+                        }
                     }
                 }
-
                 this.Close();
             }
             catch (Exception ex)

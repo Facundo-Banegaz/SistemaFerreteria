@@ -98,7 +98,7 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre_marca.Text == string.Empty)

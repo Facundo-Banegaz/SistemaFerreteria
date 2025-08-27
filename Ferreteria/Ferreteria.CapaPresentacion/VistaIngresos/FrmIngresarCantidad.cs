@@ -70,38 +70,44 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             TextBox txt = sender as TextBox;
 
-            // Permitir teclas de control (Backspace, Delete, etc)
+            // Permitir teclas de control (Backspace, Delete, etc.)
             if (char.IsControl(e.KeyChar))
                 return;
 
-            // Permitir solo dígitos siempre
-            if (!char.IsDigit(e.KeyChar))
+            // Permitir dígitos siempre
+            if (char.IsDigit(e.KeyChar))
+                return;
+
+            // Permitir coma decimal (solo una)
+            if (e.KeyChar == ',' || e.KeyChar == '.')
             {
-                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
-                if (!PermiteDecimales)
+                // Convertir punto en coma (para decimales)
+                //if (e.KeyChar == '.')
+                //    e.KeyChar = ',';
+
+                // Si ya hay coma en el texto → bloquear
+                if (txt.Text.Contains(","))
                 {
                     e.Handled = true;
                     return;
                 }
 
-                // Si permite decimales, solo permitimos coma (o punto) una sola vez
-                if (e.KeyChar == ',' || e.KeyChar == '.')
-                {
-                    // Reemplazamos punto por coma para estandarizar
-                    e.KeyChar = ',';
+                return;
+            }
 
-                    // Si ya existe una coma en el texto, bloqueamos
-                    if (txt.Text.Contains(","))
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else
+            // Permitir separador de miles (punto), pero solo si no es al final ni seguido de coma
+            if (e.KeyChar == '.')
+            {
+                // No permitir más de un punto seguido
+                if (txt.SelectionStart == 0 || txt.Text.EndsWith("."))
                 {
-                    // Cualquier otro caracter no permitido
                     e.Handled = true;
+                    return;
                 }
             }
+
+            // Si no es dígito, coma o punto → bloquear
+            e.Handled = true;
         }
 
         private void txt_Cantidad_Leave(object sender, EventArgs e)

@@ -100,7 +100,7 @@ namespace Ferreteria.CapaPresentacion.VistaProveedor
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre_proveedor.Text == string.Empty)

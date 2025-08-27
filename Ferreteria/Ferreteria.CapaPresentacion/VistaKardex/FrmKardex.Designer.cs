@@ -31,6 +31,7 @@
             this.Tp_VencimientosProductos = new System.Windows.Forms.TabPage();
             this.Tp_InventarioBajo = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.Tp_Movimientos = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.Tp_InventarioBajo);
             this.tabControl1.Controls.Add(this.Tp_VencimientosProductos);
+            this.tabControl1.Controls.Add(this.Tp_Movimientos);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabControl1.Location = new System.Drawing.Point(0, 1);
             this.tabControl1.Name = "tabControl1";
@@ -71,6 +73,15 @@
             this.tabControl1.Size = new System.Drawing.Size(1853, 803);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // Tp_Movimientos
+            // 
+            this.Tp_Movimientos.Location = new System.Drawing.Point(4, 38);
+            this.Tp_Movimientos.Name = "Tp_Movimientos";
+            this.Tp_Movimientos.Size = new System.Drawing.Size(1845, 761);
+            this.Tp_Movimientos.TabIndex = 4;
+            this.Tp_Movimientos.Text = "Movimientos";
+            this.Tp_Movimientos.UseVisualStyleBackColor = true;
             // 
             // FrmKardex
             // 
@@ -92,5 +103,6 @@
         private System.Windows.Forms.TabPage Tp_VencimientosProductos;
         private System.Windows.Forms.TabPage Tp_InventarioBajo;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage Tp_Movimientos;
     }
 }

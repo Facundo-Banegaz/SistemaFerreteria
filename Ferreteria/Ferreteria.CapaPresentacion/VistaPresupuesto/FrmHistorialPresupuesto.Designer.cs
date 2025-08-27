@@ -197,16 +197,16 @@
             // btn_estado
             // 
             this.btn_estado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_estado.BackColor = System.Drawing.Color.Crimson;
+            this.btn_estado.BackColor = System.Drawing.Color.DarkOrange;
             this.btn_estado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_estado.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_estado.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_estado.Image = ((System.Drawing.Image)(resources.GetObject("btn_estado.Image")));
             this.btn_estado.Location = new System.Drawing.Point(812, 757);
             this.btn_estado.Name = "btn_estado";
-            this.btn_estado.Size = new System.Drawing.Size(236, 65);
+            this.btn_estado.Size = new System.Drawing.Size(394, 65);
             this.btn_estado.TabIndex = 130;
-            this.btn_estado.Text = "Cambiar Estado";
+            this.btn_estado.Text = "Activar / Anular Presupuesto";
             this.btn_estado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_estado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_estado.UseVisualStyleBackColor = false;

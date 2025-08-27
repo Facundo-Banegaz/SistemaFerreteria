@@ -190,6 +190,7 @@ namespace Ferreteria.CapaDominio
         //Creamos el encabezado para los articulos
         public void EncabezadoVenta()
         {
+
             linea.AppendLine("ITEM           CANT     PRECIO.U"); // Total: 32 caracteres
         }
 
@@ -225,7 +226,9 @@ namespace Ferreteria.CapaDominio
         //Metodo para agreagar articulos 
 public void AgregaArticulo(string articulo, decimal cant, decimal precio)
     {
-        if (cant.ToString().Length <= 5 && precio.ToString("#,##0.00", new CultureInfo("es-AR")).Length <= 11)
+
+          
+            if (cant.ToString().Length <= 5 && precio.ToString("#,##0.00", new CultureInfo("es-AR")).Length <= 11)
         {
             string espacios = "";
             bool primeraLinea = true;
@@ -279,7 +282,8 @@ public void AgregaArticulo(string articulo, decimal cant, decimal precio)
             linea.AppendLine("Valores fuera de rango.");
             throw new Exception("Cantidad o precio exceden el límite de columnas.");
         }
-    }
+    
+        }
 
 
     //Metodos para enviar secuencias de escape a la impresora

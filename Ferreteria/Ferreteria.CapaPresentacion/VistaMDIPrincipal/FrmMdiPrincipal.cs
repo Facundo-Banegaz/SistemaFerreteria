@@ -1,11 +1,13 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaPresentacion.VistaCategoria;
+using Ferreteria.CapaPresentacion.VistaCompartida;
 using Ferreteria.CapaPresentacion.VistaEspecificacion;
 using Ferreteria.CapaPresentacion.VistaIngresos;
 using Ferreteria.CapaPresentacion.VistaKardex;
 using Ferreteria.CapaPresentacion.VistaLogin;
 using Ferreteria.CapaPresentacion.VistaMarca;
 using Ferreteria.CapaPresentacion.VistaMovimientoStock;
+using Ferreteria.CapaPresentacion.VistaMovimientoStockManual;
 using Ferreteria.CapaPresentacion.VistaPresupuesto;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
@@ -57,7 +59,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             {
                 this.Menu_gestion_mantenimientos.Enabled = true;
                 this.Menu_gestion_movimientos.Enabled = true;
-                this.Menu_gestion_analisis.Enabled = true;
+              
                 this.Menu_gestion_reportes.Enabled = true;
                 this.Menu_gestion_movimientos.Enabled = true;
                 this.Menu_gestion_compras.Enabled = true;
@@ -72,7 +74,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             {
                 this.Menu_gestion_mantenimientos.Enabled = false;
                 this.Menu_gestion_movimientos.Enabled = false;
-                this.Menu_gestion_analisis.Enabled = false;
+             
                 this.Menu_gestion_reportes.Enabled = false;
                 this.Menu_gestion_movimientos.Enabled = false;
                 this.Menu_gestion_compras.Enabled = false;
@@ -88,8 +90,7 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
             {
                 this.Menu_gestion_mantenimientos.Enabled = false;
                 this.Menu_gestion_movimientos.Enabled = false;
-                this.Menu_gestion_analisis.Enabled = false;
-                this.Menu_gestion_analisis.Enabled = false;
+              
                 this.Menu_gestion_ventas.Enabled = false;
                 this.Menu_gestion_presupuestos.Enabled = false;
                 this.Menu_gestion_consultas.Enabled = false;
@@ -218,11 +219,6 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         }
 
-        private void Menu_gestion_consultas_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Menu_item_proveedores_Click_1(object sender, EventArgs e)
         {
             abrirForm(new FrmProveedor());
@@ -257,12 +253,40 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         }
         private void Menu_Item_Inventario_Click(object sender, EventArgs e)
         {
-            abrirForm(new FrmKardex());
+            abrirForm(new FrmKardex(_Usuario));
+        }
+
+
+
+        private void Menu_Item_Reporte_Ventas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Item_Reporte_Compras_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Item_Reporte_Productos_Mas_Vendidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Item_Reporte_Productos_Mas_Comprados_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Menu_Item_Consultar_Productos_Click(object sender, EventArgs e)
+        {
+    
+                 abrirForm(new FrmConsultarProductosAvanzados());
         }
 
         private void Menu_Item_Ajustes_Movimientos_Click(object sender, EventArgs e)
         {
-            abrirForm(new FrmHistorialMovimientoStock(_Usuario));
+            abrirForm(new FrmHistorialMovimientoStockManual(_Usuario));
         }
     }
     

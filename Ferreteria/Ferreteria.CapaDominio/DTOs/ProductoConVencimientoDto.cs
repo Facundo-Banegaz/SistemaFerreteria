@@ -8,6 +8,7 @@ namespace Ferreteria.CapaDominio.DTOs
 {
     public class ProductoConVencimientoDto
     {
+        public int Id_DetalleIngreso { get; set; }
         public int Id_Producto { get; set; }
         public string Codigo { get; set; }
         public string Producto { get; set; } 
@@ -20,6 +21,7 @@ namespace Ferreteria.CapaDominio.DTOs
         public DateTime FechaVencimiento { get; set; }
 
         public decimal CantidadLote { get; set; }
+        public decimal CantidadLoteVencida { get; set; }
         public int DiasRestantes { get; set; }
         public string Estado { get; set; }
     }

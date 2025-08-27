@@ -33,6 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DsPrincipal.cs">
+      <DependentUpon>DsPrincipal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsPrincipal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsPrincipal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VistaCategoria\FrmAgregarEditarCategoria.cs">
@@ -59,6 +85,18 @@
     </Compile>
     <Compile Include="VistaCategoria\FrmCategoria.Designer.cs">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmConsultarProductosAvanzados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmConsultarProductosAvanzados.Designer.cs">
+      <DependentUpon>FrmConsultarProductosAvanzados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmDetalleConsultarPoductosAvanzados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCompartida\FrmDetalleConsultarPoductosAvanzados.Designer.cs">
+      <DependentUpon>FrmDetalleConsultarPoductosAvanzados.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaCompartida\FrmSeleccionarProveedor.cs">
       <SubType>Form</SubType>
@@ -204,6 +242,12 @@
     <Compile Include="VistaMDIPrincipal\FrmMdiPrincipal.Designer.cs">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaMovimientoStockManual\FrmHistorialMovimientoStockManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaMovimientoStockManual\FrmHistorialMovimientoStockManual.Designer.cs">
+      <DependentUpon>FrmHistorialMovimientoStockManual.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaMovimientoStock\FrmHistorialMovimientoStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,10 +260,10 @@
     <Compile Include="VistaMovimientoStock\FrmMovimientoStockDetalle.Designer.cs">
       <DependentUpon>FrmMovimientoStockDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaMovimientoStock\FrmMovimientoStockManual.cs">
+    <Compile Include="VistaMovimientoStockManual\FrmMovimientoStockManual.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaMovimientoStock\FrmMovimientoStockManual.Designer.cs">
+    <Compile Include="VistaMovimientoStockManual\FrmMovimientoStockManual.Designer.cs">
       <DependentUpon>FrmMovimientoStockManual.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaPresupuesto\FrmAgregarPresupuesto.cs">
@@ -276,6 +320,42 @@
     <Compile Include="VistaProveedor\FrmProveedor.Designer.cs">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaIngreso.Designer.cs">
+      <DependentUpon>FrmReporteFacturaIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaPresupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaPresupuesto.Designer.cs">
+      <DependentUpon>FrmReporteFacturaPresupuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteFacturaVenta.Designer.cs">
+      <DependentUpon>FrmReporteFacturaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteInventario.Designer.cs">
+      <DependentUpon>FrmReporteInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteProductoVencimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteProductoVencimiento.Designer.cs">
+      <DependentUpon>FrmReporteProductoVencimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteVenta.Designer.cs">
+      <DependentUpon>FrmReporteVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +410,12 @@
     <Compile Include="VistaUsuario\FrmUsuario.Designer.cs">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaVenta\FrmCobro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaVenta\FrmCobro.Designer.cs">
+      <DependentUpon>FrmCobro.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaVenta\FrmDetalleVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,11 +443,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reportes\RptFacturaIngreso.rdlc" />
+    <EmbeddedResource Include="Reportes\RptFacturaPresupuesto.rdlc" />
+    <EmbeddedResource Include="Reportes\RptFacturaVenta.rdlc" />
+    <EmbeddedResource Include="Reportes\RptInventario.rdlc" />
+    <EmbeddedResource Include="Reportes\RptProductosConVencimiento.rdlc" />
     <EmbeddedResource Include="VistaCategoria\FrmAgregarEditarCategoria.resx">
       <DependentUpon>FrmAgregarEditarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCategoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmConsultarProductosAvanzados.resx">
+      <DependentUpon>FrmConsultarProductosAvanzados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCompartida\FrmDetalleConsultarPoductosAvanzados.resx">
+      <DependentUpon>FrmDetalleConsultarPoductosAvanzados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaCompartida\FrmSeleccionarMarca.resx">
       <DependentUpon>FrmSeleccionarMarca.cs</DependentUpon>
@@ -435,13 +532,16 @@
     <EmbeddedResource Include="VistaMDIPrincipal\FrmMdiPrincipal.resx">
       <DependentUpon>FrmMdiPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaMovimientoStockManual\FrmHistorialMovimientoStockManual.resx">
+      <DependentUpon>FrmHistorialMovimientoStockManual.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaMovimientoStock\FrmHistorialMovimientoStock.resx">
       <DependentUpon>FrmHistorialMovimientoStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaMovimientoStock\FrmMovimientoStockDetalle.resx">
       <DependentUpon>FrmMovimientoStockDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaMovimientoStock\FrmMovimientoStockManual.resx">
+    <EmbeddedResource Include="VistaMovimientoStockManual\FrmMovimientoStockManual.resx">
       <DependentUpon>FrmMovimientoStockManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaPresupuesto\FrmAgregarPresupuesto.resx">
@@ -471,6 +571,25 @@
     <EmbeddedResource Include="VistaProveedor\FrmProveedor.resx">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SalesReport.rdlc" />
+    <EmbeddedResource Include="VistaReporte\FrmReporteFacturaIngreso.resx">
+      <DependentUpon>FrmReporteFacturaIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteFacturaPresupuesto.resx">
+      <DependentUpon>FrmReporteFacturaPresupuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteFacturaVenta.resx">
+      <DependentUpon>FrmReporteFacturaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteInventario.resx">
+      <DependentUpon>FrmReporteInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteProductoVencimiento.resx">
+      <DependentUpon>FrmReporteProductoVencimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteVenta.resx">
+      <DependentUpon>FrmReporteVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.resx">
       <DependentUpon>FrmAgregarEditarSubcategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -498,6 +617,9 @@
     <EmbeddedResource Include="VistaUsuario\FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaVenta\FrmCobro.resx">
+      <DependentUpon>FrmCobro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaVenta\FrmDetalleVenta.resx">
       <DependentUpon>FrmDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
@@ -507,6 +629,21 @@
     <EmbeddedResource Include="VistaVenta\FrmAgregarVenta.resx">
       <DependentUpon>FrmAgregarVenta.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DsPrincipal.xsc">
+      <DependentUpon>DsPrincipal.xsd</DependentUpon>
+    </None>
+    <None Include="DsPrincipal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsPrincipal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsPrincipal.xss">
+      <DependentUpon>DsPrincipal.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Ferreteria.CapaDominio.Reportes.NetSalesByPeriod.datasource" />
+    <None Include="Properties\DataSources\Ferreteria.CapaDominio.Reportes.SalesListing.datasource" />
+    <None Include="Properties\DataSources\Ferreteria.CapaDominio.Reportes.SalesReport.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -530,6 +667,5 @@
       <Name>Ferreteria.CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

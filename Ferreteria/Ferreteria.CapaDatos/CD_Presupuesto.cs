@@ -93,7 +93,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion();
 
                 int idPresupuesto = Conexion.ObtenerValorParametroSalida("@Id_Presupuesto");
-
+                nuevo.Id_Presupuesto = idPresupuesto;
                 SqlConnection conn = Conexion.ObtenerConexion();
                 SqlTransaction trans = Conexion.ObtenerTransaccion();
 
@@ -118,6 +118,7 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        //Metodo Estado
 
         //Metodo Estado
         public void CambiarEstadoPresupuesto(int Id_Presupuesto)

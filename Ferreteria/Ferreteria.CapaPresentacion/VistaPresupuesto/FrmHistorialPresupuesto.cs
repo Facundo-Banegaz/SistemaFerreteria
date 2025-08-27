@@ -1,5 +1,6 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,25 +154,36 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
             {
                 var seleccionado = (Presupuesto)dgv_presupuestos.CurrentRow.DataBoundItem;
 
-                DialogResult respuesta = MessageBox.Show("¿Deseas imprimir este presupuesto?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // Primera confirmación
+                DialogResult confirmar = MessageBox.Show(
+                     "¿Desea imprimir el comprobante de Presupuesto con sus datos y el detalle completo?",
+                     "Confirmar impresión",
+                     MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question);
 
-                if (respuesta == DialogResult.Yes)
+                if (confirmar == DialogResult.Yes)
                 {
-                    // Preguntar tipo de comprobante
-                    DialogResult tipo = MessageBox.Show("¿Desea imprimir como Ticket?", "Tipo de Comprobante",
-                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                    // Segunda confirmación: elegir tipo de comprobante
+                    DialogResult tipo = MessageBox.Show(
+                       "Selecciona el tipo de impresión:\nSí: Ticket\nNo: Boleta normal\nCancelar",
+                       "Tipo de Comprobante",
+                       MessageBoxButtons.YesNoCancel,
+                       MessageBoxIcon.Question,
+                       MessageBoxDefaultButton.Button1);
 
                     if (tipo == DialogResult.Yes)
                     {
                         // Imprimir como Ticket
                         ImprimirTicketPresupuesto(seleccionado);
+                      
                     }
                     else if (tipo == DialogResult.No)
                     {
-                        // Imprimir como Boleta (reporte)
+                        // Imprimir como Boleta
                         ImprimirComoBoleta(seleccionado);
+                      
                     }
-                    // Si elige Cancelar, no se imprime nada
+                    
                 }
             }
             else
@@ -181,11 +193,11 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
 
 
         }
-    
+
         private void ImprimirComoBoleta(Presupuesto presupuesto)
         {
-            //FrmReporteFacturaIngreso frmReporte = new FrmReporteFacturaIngreso(presupuesto);
-            //frmReporte.ShowDialog();
+            FrmReporteFacturaPresupuesto frmReporte = new FrmReporteFacturaPresupuesto(presupuesto);
+            frmReporte.ShowDialog();
         }
 
         private void ImprimirTicketPresupuesto(Presupuesto seleccionado)
@@ -297,9 +309,9 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
                     {
                         string estado = fila.Cells["Estado"].Value.ToString();
 
-                        if (estado.Equals("Anulado", StringComparison.OrdinalIgnoreCase))
+                        if (estado.Equals("Cancelado", StringComparison.OrdinalIgnoreCase))
                             anulados++;
-                        else if (estado.Equals("Emitido", StringComparison.OrdinalIgnoreCase))
+                        else if (estado.Equals("Activo", StringComparison.OrdinalIgnoreCase))
                             emitidos++;
                     }
                 }

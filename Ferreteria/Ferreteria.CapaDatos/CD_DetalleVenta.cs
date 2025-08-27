@@ -69,6 +69,48 @@ namespace Ferreteria.CapaDatos
             }
 
         }
+       
+        public List<DetalleVenta> ObtenerDetalleVenta(int Id_Venta)
+        {
+
+            Conexion = new CD_Conexion();
+            listaDetalleVenta = new List<DetalleVenta>();
+            try
+            {
+
+                Conexion.SetConsultaProcedure("SpObtener_DetalleVenta");
+                Conexion.SetearParametro("@Id_Venta", Id_Venta);
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    _DetalleVenta = new DetalleVenta();
+
+
+
+                    _DetalleVenta.Producto = new Producto();
+
+                    _DetalleVenta.Producto.Nombre = (string)Conexion.Lector["Producto"];
+
+                    _DetalleVenta.Cantidad = (decimal)Conexion.Lector["Cantidad"];
+                    _DetalleVenta.PrecioVenta = (decimal)Conexion.Lector["PrecioVenta"];
+
+
+
+
+                    listaDetalleVenta.Add(_DetalleVenta);
+                }
+                return listaDetalleVenta;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
         //metodo insertar
 

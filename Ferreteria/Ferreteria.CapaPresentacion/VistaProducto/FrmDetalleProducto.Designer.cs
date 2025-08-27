@@ -333,7 +333,7 @@
             this.MinimumSize = new System.Drawing.Size(1714, 671);
             this.Name = "FrmDetalleProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmDetalleProducto";
+            this.Text = "Detalle del Producto";
             this.Load += new System.EventHandler(this.FrmDetalleProducto_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_caracteristicas)).EndInit();

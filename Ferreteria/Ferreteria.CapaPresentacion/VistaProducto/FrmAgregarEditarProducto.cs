@@ -292,7 +292,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_codigo.Text == string.Empty)
@@ -413,7 +413,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         {
             TextBox txt = sender as TextBox;
 
-            // Permitir control (backspace, delete)
+            // Permitir teclas de control (backspace, delete, flechas, etc.)
             if (char.IsControl(e.KeyChar))
                 return;
 
@@ -424,14 +424,27 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
                 return;
             }
 
-            // Reemplazar punto por coma (opcional, según cultura)
-            if (e.KeyChar == '.')
-                e.KeyChar = ',';
+            //// Reemplazar punto por coma
+            //if (e.KeyChar == '.')
+            //    e.KeyChar = ',';
 
             // Evitar más de una coma
-            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
+            if (e.KeyChar == ',' && txt.Text.Contains(","))
             {
                 e.Handled = true;
+                return;
+            }
+
+            // Opcional: limitar a 2 decimales
+            if (char.IsDigit(e.KeyChar) && txt.Text.Contains(","))
+            {
+                int index = txt.Text.IndexOf(",");
+                string decimales = txt.Text.Substring(index + 1);
+
+                if (decimales.Length >= 2) // máximo 2 decimales
+                {
+                    e.Handled = true;
+                }
             }
         }
 
@@ -444,39 +457,33 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
         {
             TextBox txt = sender as TextBox;
 
-            // Permitir teclas de control (Backspace, Delete, etc)
+            // Permitir teclas de control (Backspace, Delete, flechas)
             if (char.IsControl(e.KeyChar))
                 return;
 
-            // Permitir solo dígitos siempre
-            if (!char.IsDigit(e.KeyChar))
-            {
-                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
-                if (!PermiteDecimales)
-                {
-                    e.Handled = true;
-                    return;
-                }
+            // Permitir dígitos
+            if (char.IsDigit(e.KeyChar))
+                return;
 
-                // Si permite decimales, solo permitimos coma (o punto) una sola vez
-                if (e.KeyChar == ',' || e.KeyChar == '.')
-                {
-                    // Reemplazamos punto por coma para estandarizar
+            // Permitir coma decimal (solo una)
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                // Convertir punto en coma
+                if (e.KeyChar == '.')
                     e.KeyChar = ',';
 
-                    // Si ya existe una coma en el texto, bloqueamos
-                    if (txt.Text.Contains(","))
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else
+                // Bloquear si ya hay coma
+                if (txt.Text.Contains(","))
                 {
-                    // Cualquier otro caracter no permitido
                     e.Handled = true;
                 }
+                return;
             }
+
+            // Bloquear cualquier otro caracter
+            e.Handled = true;
         }
+        
 
 
 

@@ -20,10 +20,12 @@ namespace Ferreteria.CapaPresentacion.VistaKardex
     public partial class FrmKardex : Form
     {
         private readonly Dictionary<TabPage, Form> formulariosPorPestaña = new Dictionary<TabPage, Form>();
-        public FrmKardex()
+      
+        private Usuario Usuario;
+        public FrmKardex(Usuario usuario)
         {
             InitializeComponent();
-
+            this.Usuario = usuario;
         }
 
 
@@ -66,7 +68,10 @@ namespace Ferreteria.CapaPresentacion.VistaKardex
                     break;
             
                 case "Tp_VencimientosProductos":
-                    AbrirFormEnTab(tabSeleccionada, () => new FrmVencimientosProductos());
+                    AbrirFormEnTab(tabSeleccionada, () => new FrmVencimientosProductos(Usuario));
+                    break;
+                case "Tp_Movimientos":
+                    AbrirFormEnTab(tabSeleccionada, () => new FrmHistorialMovimientoStock());
                     break;
                     // Agrega más casos si tenés más pestañas
             }
@@ -79,6 +84,7 @@ namespace Ferreteria.CapaPresentacion.VistaKardex
                 tabControl1.SelectedIndex = 0; // Selecciona la primer pestaña
                 tabControl1_SelectedIndexChanged(tabControl1, EventArgs.Empty); // Forzar cargar formulario
             }
+
         }
     }
 }

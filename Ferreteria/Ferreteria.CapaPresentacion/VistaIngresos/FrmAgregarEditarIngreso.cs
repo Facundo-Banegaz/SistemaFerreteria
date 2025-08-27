@@ -250,12 +250,6 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
                     };
 
-                    // Validar campos críticos
-                    if (detalle.PrecioCompra <= 0 || detalle.Cantidad <= 0)
-                    {
-                        MessageBox.Show($"La fila {fila.Index + 1} contiene datos inválidos (precio o cantidad).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
 
                     _Detalle_Ingreso.Add(detalle);
                 }
@@ -279,6 +273,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private bool ValidarVacio()
         {
+            errorIcono.Clear();
             bool esValido = true;
 
             // Validar campo txt_id_proveedor
@@ -481,7 +476,8 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 {
                     if (Convert.ToInt32(row.Cells["Id_Producto"].Value) == idProducto)
                     {
-                        MessageBox.Show("Este producto ya fue agregado.\nUse el botón de 'Modificar cantidad'.", "Producto duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Este producto ya fue agregado.\nUse el botón de 'Modificar cantidad'.",
+                                        "Producto duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         LimpiarCamposDetalle();
                         return;
                     }
@@ -557,6 +553,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             errorIcono.Clear();
 
+            // Validar selección de producto
             if (string.IsNullOrWhiteSpace(txt_id_producto.Text))
             {
                 errorIcono.SetError(txt_id_producto, "Debe seleccionar un producto.");
@@ -573,10 +570,8 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 return false;
             }
 
-        
-
-
-            if (dtp_fechaFabricacion.Visible || dtp_fechaVencimiento.Visible)
+            // Validar fechas (solo si ambos campos están visibles)
+            if (dtp_fechaFabricacion.Visible && dtp_fechaVencimiento.Visible)
             {
                 if (dtp_fechaVencimiento.Value <= dtp_fechaFabricacion.Value)
                 {
@@ -587,9 +582,10 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 }
             }
 
+            // Validar porcentaje (si es visible)
             if (txt_porcentaje.Visible)
             {
-                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentaje) || porcentaje <= 0)
+                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentaje) || porcentaje < 0)
                 {
                     errorIcono.SetError(txt_porcentaje, "Porcentaje inválido.");
                     MessageBox.Show("Ingrese un porcentaje válido mayor o igual a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -598,9 +594,26 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 }
             }
 
+            // Validar precio de compra > 0
+            if (!decimal.TryParse(txt_precioCompra.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal precioCompra) || precioCompra <= 0)
+            {
+                errorIcono.SetError(txt_precioCompra, "Precio inválido.");
+                MessageBox.Show("El precio de compra debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_precioCompra.Focus();
+                return false;
+            }
+
+            // Validar cantidad > 0
+            if (!decimal.TryParse(txt_productoCantidad.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal cantidad) || cantidad <= 0)
+            {
+                errorIcono.SetError(txt_productoCantidad, "Cantidad inválida.");
+                MessageBox.Show("La cantidad debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_productoCantidad.Focus();
+                return false;
+            }
+
             return true;
         }
-
 
         //validar con eventos
 
@@ -609,38 +622,27 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
         {
             TextBox txt = sender as TextBox;
 
-            // Permitir teclas de control (Backspace, Delete, etc)
+            // Permitir control (backspace, delete)
             if (char.IsControl(e.KeyChar))
                 return;
 
-            // Permitir solo dígitos siempre
-            if (!char.IsDigit(e.KeyChar))
+            // Solo permitir dígitos y coma/punto decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
             {
-                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
-                if (!PermiteDecimales)
-                {
-                    e.Handled = true;
-                    return;
-                }
-
-                // Si permite decimales, solo permitimos coma (o punto) una sola vez
-                if (e.KeyChar == ',' || e.KeyChar == '.')
-                {
-                    // Reemplazamos punto por coma para estandarizar
-                    e.KeyChar = ',';
-
-                    // Si ya existe una coma en el texto, bloqueamos
-                    if (txt.Text.Contains(","))
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else
-                {
-                    // Cualquier otro caracter no permitido
-                    e.Handled = true;
-                }
+                e.Handled = true;
+                return;
             }
+
+            // Reemplazar punto por coma (opcional, según cultura)
+            ////if (e.KeyChar == '.')
+            ////    e.KeyChar = ',';
+
+            // Evitar más de una coma
+            if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
+            {
+                e.Handled = true;
+            
+        }
         }
 
         private void txt_precioCompra_KeyPress(object sender, KeyPressEventArgs e)
@@ -659,8 +661,8 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             }
 
             // Reemplazar punto por coma (opcional, según cultura)
-            if (e.KeyChar == '.')
-                e.KeyChar = ',';
+            ////if (e.KeyChar == '.')
+            ////    e.KeyChar = ',';
 
             // Evitar más de una coma
             if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
@@ -694,7 +696,7 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 e.Handled = true;
             }
         }
-#warning se ve mal la actualizacion de precio mejorar
+
         private void CalcularPrecioVenta()
         {
             lbl_precioVentaCalculado.ForeColor = Color.Black;
@@ -784,10 +786,6 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             }
         }
 
-        private void txt_porcentaje_Leave(object sender, EventArgs e)
-        {
-            CN_Metodos.FormatoMoneda((TextBox)sender);
-        }
 
         private void MostrarResumenIngreso(DataGridView dgv)
         {

@@ -1,5 +1,6 @@
 ﻿using Ferreteria.CapaDatos;
 using Ferreteria.CapaDominio;
+using Ferreteria.CapaDominio.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace Ferreteria.CapaNegocio
         private CD_MovimientoStock _MovimientoStock;
 
         //Metodo para Listar los Pingresos em la DataWirdView
-        public List<MovimientoStock> ListaMovimientoStock()
+        public List<MovimientoStock> ListaMovimientoStock(int Id_TipoMovimiento)
         {
             _MovimientoStock = new CD_MovimientoStock();
-            return _MovimientoStock.ListaMovimientoStock();
+            return _MovimientoStock.ListaMovimientoStock(Id_TipoMovimiento);
         }
-        public List<MovimientoStock> ListaMovimientoStockManual()
+        public List<MoviminetoStockDto> ListaMovimientoStockManual(int Id_TipoMovimiento)
         {
             _MovimientoStock = new CD_MovimientoStock();
-            return _MovimientoStock.ListaMovimientoStockManual();
+            return _MovimientoStock.ListaMovimientoStockManual(Id_TipoMovimiento);
         }
         public void InsertarIngreso(MovimientoStock Nuevo, List<DetalleMovimientoStock> Detalle)
         {
@@ -30,13 +31,28 @@ namespace Ferreteria.CapaNegocio
             _MovimientoStock.InsertarMovimientoStock(Nuevo, Detalle);
         }
 
-  
 
-        //public List<Ingreso> MovimientoStockBuscarFecha(DateTime FechaInicio, DateTime FechaFin)
-        //{
-        //    _MovimientoStock = new CD_MovimientoStock();
 
-        //    return _MovimientoStock.MovimientoStockBuscarFecha(FechaInicio, FechaFin);
-        //}
+        public List<MovimientoStock> BuscarMovimientoStock(DateTime FechaInicio, DateTime FechaFin,int Id_TipoMovimiento)
+        {
+            _MovimientoStock = new CD_MovimientoStock();
+
+            return _MovimientoStock.BuscarMovimientoStock(FechaInicio, FechaFin, Id_TipoMovimiento);
+        }
+
+
+        public List<MoviminetoStockDto> BuscarMovimientosManual(DateTime FechaInicio, DateTime FechaFin, int Id_TipoMovimiento)
+        {
+            _MovimientoStock = new CD_MovimientoStock();
+
+            return _MovimientoStock.BuscarMovimientosManual(FechaInicio, FechaFin, Id_TipoMovimiento);
+        }
+
+        public void AjusteManualStock(MovimientoStockInsertDto movimientoStockInsertDto)
+        {
+            _MovimientoStock = new CD_MovimientoStock();
+
+            _MovimientoStock.AjusteManualStock(movimientoStockInsertDto);
+        }
     }
 }

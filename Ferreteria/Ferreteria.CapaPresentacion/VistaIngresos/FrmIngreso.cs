@@ -217,29 +217,47 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void btn_anular_Click(object sender, EventArgs e)
         {
+            CN_Ingreso _Ingreso = new CN_Ingreso();
+            Ingreso seleccionado = null;
+
             try
             {
-                if (dgv_ingresos.CurrentRow == null)
+                if (dgv_ingresos.CurrentRow != null)
                 {
-                    MessageBox.Show("Seleccione un ingreso de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    DialogResult respuesta = MessageBox.Show(
+                        "¿Quieres anular este ingreso?",
+                        "Confirmación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        DialogResult segundaRespuesta = MessageBox.Show(
+                            "⚠️ Esta acción es irreversible.\n\n¿Estás completamente seguro de anular el ingreso?",
+                            "Advertencia Final",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Stop);
+
+                        if (segundaRespuesta == DialogResult.Yes)
+                        {
+                            seleccionado = (Ingreso)dgv_ingresos.CurrentRow.DataBoundItem;
+                            _Ingreso.AnularIngreso(seleccionado.Id_Ingreso);
+
+                            CargarGrilla();
+                            MessageBox.Show(
+                                "Ingreso anulado correctamente.",
+                                "Éxito",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
                 }
-
-                var seleccionado = (Ingreso)dgv_ingresos.CurrentRow.DataBoundItem;
-
-                if (!ConfirmarCambioEstado(seleccionado)) return;
-
-                var ingresoService = new CN_Ingreso();
-                ingresoService.CambiarEstadoIngreso(seleccionado.Id_Ingreso);
-
-                CargarGrilla();
-
-                MostrarMensajeExito(seleccionado.Estado);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
         private bool ConfirmarCambioEstado(Ingreso ingreso)
         {

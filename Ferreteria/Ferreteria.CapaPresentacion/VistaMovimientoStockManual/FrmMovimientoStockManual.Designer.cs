@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMovimientoStockManual));
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_observacion = new System.Windows.Forms.TextBox();
-            this.txt_IdTipoMovimiento = new System.Windows.Forms.TextBox();
-            this.btn_buscar_TipoMovimiento = new System.Windows.Forms.Button();
-            this.txt_tipoMovimiento = new System.Windows.Forms.TextBox();
             this.btn_buscar_producto = new System.Windows.Forms.Button();
             this.txt_nombre_producto = new System.Windows.Forms.TextBox();
             this.txt_id_producto = new System.Windows.Forms.TextBox();
@@ -44,7 +42,10 @@
             this.txt_cantidad = new System.Windows.Forms.TextBox();
             this.lbl_cantidad = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbo_TipoMovimiento = new System.Windows.Forms.ComboBox();
+            this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_cancelar
@@ -56,7 +57,7 @@
             this.btn_cancelar.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_cancelar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cancelar.Image")));
-            this.btn_cancelar.Location = new System.Drawing.Point(637, 645);
+            this.btn_cancelar.Location = new System.Drawing.Point(969, 766);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(197, 66);
             this.btn_cancelar.TabIndex = 155;
@@ -75,7 +76,7 @@
             this.btn_Agregar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Agregar.Image")));
             this.btn_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Agregar.Location = new System.Drawing.Point(269, 645);
+            this.btn_Agregar.Location = new System.Drawing.Point(730, 766);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(180, 66);
             this.btn_Agregar.TabIndex = 154;
@@ -89,9 +90,9 @@
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.txt_observacion);
             this.groupBox1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(21, 385);
+            this.groupBox1.Location = new System.Drawing.Point(20, 411);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1131, 246);
+            this.groupBox1.Size = new System.Drawing.Size(1146, 336);
             this.groupBox1.TabIndex = 150;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar una observación ( opcional ):";
@@ -99,63 +100,23 @@
             // txt_observacion
             // 
             this.txt_observacion.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_observacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_observacion.Location = new System.Drawing.Point(14, 36);
+            this.txt_observacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_observacion.Location = new System.Drawing.Point(16, 48);
             this.txt_observacion.Multiline = true;
             this.txt_observacion.Name = "txt_observacion";
             this.txt_observacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_observacion.Size = new System.Drawing.Size(1089, 193);
+            this.txt_observacion.Size = new System.Drawing.Size(1113, 271);
             this.txt_observacion.TabIndex = 23;
-            // 
-            // txt_IdTipoMovimiento
-            // 
-            this.txt_IdTipoMovimiento.Enabled = false;
-            this.txt_IdTipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_IdTipoMovimiento.ForeColor = System.Drawing.Color.Black;
-            this.txt_IdTipoMovimiento.Location = new System.Drawing.Point(419, 166);
-            this.txt_IdTipoMovimiento.Name = "txt_IdTipoMovimiento";
-            this.txt_IdTipoMovimiento.ReadOnly = true;
-            this.txt_IdTipoMovimiento.Size = new System.Drawing.Size(115, 44);
-            this.txt_IdTipoMovimiento.TabIndex = 163;
-            this.txt_IdTipoMovimiento.Visible = false;
-            // 
-            // btn_buscar_TipoMovimiento
-            // 
-            this.btn_buscar_TipoMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_buscar_TipoMovimiento.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btn_buscar_TipoMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_buscar_TipoMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_buscar_TipoMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btn_buscar_TipoMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar_TipoMovimiento.Image")));
-            this.btn_buscar_TipoMovimiento.Location = new System.Drawing.Point(934, 207);
-            this.btn_buscar_TipoMovimiento.Name = "btn_buscar_TipoMovimiento";
-            this.btn_buscar_TipoMovimiento.Size = new System.Drawing.Size(62, 56);
-            this.btn_buscar_TipoMovimiento.TabIndex = 162;
-            this.btn_buscar_TipoMovimiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_buscar_TipoMovimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_buscar_TipoMovimiento.UseVisualStyleBackColor = false;
-            this.btn_buscar_TipoMovimiento.Click += new System.EventHandler(this.btn_buscar_TipoMovimiento_Click);
-            // 
-            // txt_tipoMovimiento
-            // 
-            this.txt_tipoMovimiento.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_tipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_tipoMovimiento.ForeColor = System.Drawing.Color.Black;
-            this.txt_tipoMovimiento.Location = new System.Drawing.Point(418, 213);
-            this.txt_tipoMovimiento.Name = "txt_tipoMovimiento";
-            this.txt_tipoMovimiento.ReadOnly = true;
-            this.txt_tipoMovimiento.Size = new System.Drawing.Size(510, 44);
-            this.txt_tipoMovimiento.TabIndex = 161;
             // 
             // btn_buscar_producto
             // 
-            this.btn_buscar_producto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_buscar_producto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_buscar_producto.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btn_buscar_producto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_buscar_producto.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_buscar_producto.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar_producto.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar_producto.Image")));
-            this.btn_buscar_producto.Location = new System.Drawing.Point(934, 112);
+            this.btn_buscar_producto.Location = new System.Drawing.Point(1004, 142);
             this.btn_buscar_producto.Name = "btn_buscar_producto";
             this.btn_buscar_producto.Size = new System.Drawing.Size(62, 56);
             this.btn_buscar_producto.TabIndex = 160;
@@ -167,20 +128,21 @@
             // txt_nombre_producto
             // 
             this.txt_nombre_producto.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_nombre_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nombre_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nombre_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_nombre_producto.Location = new System.Drawing.Point(425, 118);
+            this.txt_nombre_producto.Location = new System.Drawing.Point(362, 148);
             this.txt_nombre_producto.Name = "txt_nombre_producto";
             this.txt_nombre_producto.ReadOnly = true;
-            this.txt_nombre_producto.Size = new System.Drawing.Size(503, 44);
+            this.txt_nombre_producto.Size = new System.Drawing.Size(622, 35);
             this.txt_nombre_producto.TabIndex = 159;
+            this.txt_nombre_producto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_id_producto
             // 
             this.txt_id_producto.Enabled = false;
             this.txt_id_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_id_producto.Location = new System.Drawing.Point(426, 71);
+            this.txt_id_producto.Location = new System.Drawing.Point(362, 98);
             this.txt_id_producto.Name = "txt_id_producto";
             this.txt_id_producto.ReadOnly = true;
             this.txt_id_producto.Size = new System.Drawing.Size(115, 44);
@@ -193,7 +155,7 @@
             this.lbl_categoria.BackColor = System.Drawing.Color.Black;
             this.lbl_categoria.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_categoria.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_categoria.Location = new System.Drawing.Point(134, 216);
+            this.lbl_categoria.Location = new System.Drawing.Point(77, 248);
             this.lbl_categoria.Name = "lbl_categoria";
             this.lbl_categoria.Size = new System.Drawing.Size(244, 35);
             this.lbl_categoria.TabIndex = 157;
@@ -205,7 +167,7 @@
             this.lbl_producto.BackColor = System.Drawing.Color.Black;
             this.lbl_producto.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_producto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_producto.Location = new System.Drawing.Point(204, 115);
+            this.lbl_producto.Location = new System.Drawing.Point(195, 151);
             this.lbl_producto.Name = "lbl_producto";
             this.lbl_producto.Size = new System.Drawing.Size(126, 35);
             this.lbl_producto.TabIndex = 156;
@@ -216,12 +178,14 @@
             this.txt_cantidad.BackColor = System.Drawing.SystemColors.Window;
             this.txt_cantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cantidad.ForeColor = System.Drawing.Color.Black;
-            this.txt_cantidad.Location = new System.Drawing.Point(419, 291);
+            this.txt_cantidad.Location = new System.Drawing.Point(362, 323);
             this.txt_cantidad.Name = "txt_cantidad";
-            this.txt_cantidad.ReadOnly = true;
-            this.txt_cantidad.Size = new System.Drawing.Size(571, 44);
+            this.txt_cantidad.Size = new System.Drawing.Size(622, 44);
             this.txt_cantidad.TabIndex = 164;
+            this.txt_cantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_cantidad.TextChanged += new System.EventHandler(this.txt_cantidad_TextChanged);
             this.txt_cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cantidad_KeyPress);
+            this.txt_cantidad.Leave += new System.EventHandler(this.txt_cantidad_Leave);
             // 
             // lbl_cantidad
             // 
@@ -229,7 +193,7 @@
             this.lbl_cantidad.BackColor = System.Drawing.Color.Black;
             this.lbl_cantidad.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_cantidad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_cantidad.Location = new System.Drawing.Point(224, 294);
+            this.lbl_cantidad.Location = new System.Drawing.Point(195, 326);
             this.lbl_cantidad.Name = "lbl_cantidad";
             this.lbl_cantidad.Size = new System.Drawing.Size(126, 35);
             this.lbl_cantidad.TabIndex = 165;
@@ -247,17 +211,31 @@
             this.label1.TabIndex = 166;
             this.label1.Text = "Agrega un Movimiento de Stock";
             // 
+            // cbo_TipoMovimiento
+            // 
+            this.cbo_TipoMovimiento.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.cbo_TipoMovimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_TipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.cbo_TipoMovimiento.FormattingEnabled = true;
+            this.cbo_TipoMovimiento.Location = new System.Drawing.Point(362, 243);
+            this.cbo_TipoMovimiento.Name = "cbo_TipoMovimiento";
+            this.cbo_TipoMovimiento.Size = new System.Drawing.Size(622, 40);
+            this.cbo_TipoMovimiento.TabIndex = 167;
+            this.cbo_TipoMovimiento.UseWaitCursor = true;
+            // 
+            // errorIcono
+            // 
+            this.errorIcono.ContainerControl = this;
+            // 
             // FrmMovimientoStockManual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1175, 719);
+            this.ClientSize = new System.Drawing.Size(1178, 844);
+            this.Controls.Add(this.cbo_TipoMovimiento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_cantidad);
             this.Controls.Add(this.txt_cantidad);
-            this.Controls.Add(this.txt_IdTipoMovimiento);
-            this.Controls.Add(this.btn_buscar_TipoMovimiento);
-            this.Controls.Add(this.txt_tipoMovimiento);
             this.Controls.Add(this.btn_buscar_producto);
             this.Controls.Add(this.txt_nombre_producto);
             this.Controls.Add(this.txt_id_producto);
@@ -267,15 +245,16 @@
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1197, 775);
+            this.MaximumSize = new System.Drawing.Size(1200, 900);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1197, 775);
+            this.MinimumSize = new System.Drawing.Size(1200, 900);
             this.Name = "FrmMovimientoStockManual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMovimientoStockManual";
+            this.Text = "Insertar  Movimiento Stock Manual";
             this.Load += new System.EventHandler(this.FrmMovimientoStockManual_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,9 +265,6 @@
         private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_observacion;
-        private System.Windows.Forms.TextBox txt_IdTipoMovimiento;
-        private System.Windows.Forms.Button btn_buscar_TipoMovimiento;
-        private System.Windows.Forms.TextBox txt_tipoMovimiento;
         private System.Windows.Forms.Button btn_buscar_producto;
         private System.Windows.Forms.TextBox txt_nombre_producto;
         private System.Windows.Forms.TextBox txt_id_producto;
@@ -297,5 +273,7 @@
         private System.Windows.Forms.TextBox txt_cantidad;
         private System.Windows.Forms.Label lbl_cantidad;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbo_TipoMovimiento;
+        private System.Windows.Forms.ErrorProvider errorIcono;
     }
 }

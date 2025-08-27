@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarEditarIngreso));
             this.dgv_detalles_ingresos = new System.Windows.Forms.DataGridView();
             this.btn_cancelar = new System.Windows.Forms.Button();
@@ -107,23 +107,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_detalles_ingresos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detalles_ingresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detalles_ingresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_detalles_ingresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detalles_ingresos.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_detalles_ingresos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_detalles_ingresos.EnableHeadersVisualStyles = false;
             this.dgv_detalles_ingresos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgv_detalles_ingresos.Location = new System.Drawing.Point(12, 570);
@@ -428,9 +428,9 @@
             this.txt_porcentaje.Name = "txt_porcentaje";
             this.txt_porcentaje.Size = new System.Drawing.Size(172, 37);
             this.txt_porcentaje.TabIndex = 206;
+            this.txt_porcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_porcentaje.TextChanged += new System.EventHandler(this.txt_porcentaje_TextChanged);
             this.txt_porcentaje.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_porcentaje_KeyPress);
-            this.txt_porcentaje.Leave += new System.EventHandler(this.txt_porcentaje_Leave);
             // 
             // lbl_porcentaje
             // 
@@ -485,12 +485,12 @@
             // 
             this.txt_producto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_producto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txt_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.txt_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.txt_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_producto.Location = new System.Drawing.Point(220, 97);
+            this.txt_producto.Location = new System.Drawing.Point(220, 105);
             this.txt_producto.Name = "txt_producto";
             this.txt_producto.ReadOnly = true;
-            this.txt_producto.Size = new System.Drawing.Size(423, 30);
+            this.txt_producto.Size = new System.Drawing.Size(535, 26);
             this.txt_producto.TabIndex = 200;
             this.txt_producto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -500,10 +500,11 @@
             this.txt_productoCantidad.BackColor = System.Drawing.Color.Orange;
             this.txt_productoCantidad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_productoCantidad.Font = new System.Drawing.Font("Impact", 12F);
-            this.txt_productoCantidad.Location = new System.Drawing.Point(968, 97);
+            this.txt_productoCantidad.Location = new System.Drawing.Point(1058, 102);
             this.txt_productoCantidad.Name = "txt_productoCantidad";
             this.txt_productoCantidad.Size = new System.Drawing.Size(172, 37);
             this.txt_productoCantidad.TabIndex = 199;
+            this.txt_productoCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_productoCantidad.TextChanged += new System.EventHandler(this.txt_productoCantidad_TextChanged);
             this.txt_productoCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_producto_cantidad_KeyPress);
             this.txt_productoCantidad.Leave += new System.EventHandler(this.txt_productoCantidad_Leave);
@@ -514,10 +515,11 @@
             this.txt_precioCompra.BackColor = System.Drawing.Color.Orange;
             this.txt_precioCompra.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_precioCompra.Font = new System.Drawing.Font("Impact", 12F);
-            this.txt_precioCompra.Location = new System.Drawing.Point(726, 95);
+            this.txt_precioCompra.Location = new System.Drawing.Point(860, 100);
             this.txt_precioCompra.Name = "txt_precioCompra";
             this.txt_precioCompra.Size = new System.Drawing.Size(172, 37);
             this.txt_precioCompra.TabIndex = 198;
+            this.txt_precioCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_precioCompra.TextChanged += new System.EventHandler(this.txt_precioCompra_TextChanged);
             this.txt_precioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precioCompra_KeyPress);
             this.txt_precioCompra.Leave += new System.EventHandler(this.txt_precioCompra_Leave);
@@ -527,7 +529,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Impact", 10F);
-            this.label9.Location = new System.Drawing.Point(734, 25);
+            this.label9.Location = new System.Drawing.Point(881, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(135, 25);
             this.label9.TabIndex = 197;
@@ -538,7 +540,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Impact", 10F);
-            this.label8.Location = new System.Drawing.Point(1010, 25);
+            this.label8.Location = new System.Drawing.Point(1100, 30);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(88, 25);
             this.label8.TabIndex = 196;
@@ -595,7 +597,7 @@
             this.txt_id_producto.Enabled = false;
             this.txt_id_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txt_id_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_id_producto.Location = new System.Drawing.Point(219, 56);
+            this.txt_id_producto.Location = new System.Drawing.Point(220, 58);
             this.txt_id_producto.Name = "txt_id_producto";
             this.txt_id_producto.ReadOnly = true;
             this.txt_id_producto.Size = new System.Drawing.Size(115, 35);
@@ -636,7 +638,7 @@
             this.Btn_producto.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_producto.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_producto.Image = ((System.Drawing.Image)(resources.GetObject("Btn_producto.Image")));
-            this.Btn_producto.Location = new System.Drawing.Point(649, 87);
+            this.Btn_producto.Location = new System.Drawing.Point(766, 87);
             this.Btn_producto.Name = "Btn_producto";
             this.Btn_producto.Size = new System.Drawing.Size(57, 55);
             this.Btn_producto.TabIndex = 124;

@@ -1,6 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
 using Ferreteria.CapaPresentacion.VistaIngresos;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,8 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         private List<Venta> ListaVentas;
         public Usuario _Usuario;
+        private CN_DetalleVenta _CNDetalleVenta = new CN_DetalleVenta();
+
         public FrmHistorialVenta()
         {
             InitializeComponent();
@@ -171,6 +174,120 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
 
+            Venta seleccionado = null;
+
+            if (dgv_ventas.CurrentRow != null)
+            {
+                // Primera confirmación general
+                DialogResult confirmar = MessageBox.Show(
+                    "¿Desea imprimir el comprobante de venta con sus datos y el detalle completo?",
+                    "Confirmar impresión",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmar == DialogResult.Yes)
+                {
+                    seleccionado = (Venta)dgv_ventas.CurrentRow.DataBoundItem;
+
+                    // Segunda confirmación: tipo de comprobante
+                    DialogResult tipo = MessageBox.Show(
+                        "Selecciona el tipo de impresión:\nSí: Ticket\nNo: Boleta normal\nCancelar",
+                        "Tipo de Comprobante",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+
+                    if (tipo == DialogResult.Yes)
+                    {
+                        // Imprimir Ticket
+                        ImprimirTicketVenta(seleccionado);
+                    }
+                    else if (tipo == DialogResult.No)
+                    {
+                        // Imprimir Boleta normal
+                        ImprimirBoletaVenta(seleccionado);
+             
+                    }
+           
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+        private void ImprimirBoletaVenta(Venta venta)
+        {
+            FrmReporteFacturaVenta frmReporte = new FrmReporteFacturaVenta(venta);
+            frmReporte.ShowDialog();
+        }
+
+        private void ImprimirTicketVenta(Venta seleccionado)
+        {
+            CrearTicket ticket = new CrearTicket();
+
+
+            // Encabezado
+            CN_ConfigurarTicket cnConfiguracion = new CN_ConfigurarTicket();
+            ConfigurarTicket config = cnConfiguracion.ObtenerConfiguracion();
+
+
+
+            // Encabezado
+
+            ticket.TextoCentro(config.NombreNegocio, true);
+            ticket.TextoCentro(config.TextoVenta, false);
+            ticket.TextoIzquierda("CIUDAD: " + config.Ciudad);
+            ticket.TextoIzquierda("DIREC: " + config.Direccion);
+            ticket.TextoIzquierda("TELEF: " + config.Telefono);
+            ticket.TextoIzquierda("C.U.I.T: " + config.CUIT);
+            ticket.TextoIzquierda("EMAIL: " + config.Email);
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("Comprobante N°: " + seleccionado.Serie + "-" + seleccionado.Correlativo);
+
+            ticket.lineasGuion();
+
+            // Datos cliente
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("VENDEDOR: " + seleccionado.Usuario);
+            ticket.TextoIzquierda("CLIENTE: " + seleccionado.Cliente);
+            ticket.TextoIzquierda("");
+            ticket.TextoExtremos("FECHA: " + seleccionado.Fecha.ToString("dd/MM/yyyy"), "HORA: " + seleccionado.Fecha.ToString("HH:mm:ss"));
+            ticket.lineasGuion();
+
+
+            // Encabezado de ítems
+            ticket.EncabezadoVenta();
+            ticket.lineasGuion();
+
+            var detalles = _CNDetalleVenta.ObtenerDetalleVenta(seleccionado.Id_Venta);
+
+
+            foreach (var item in detalles)
+            {
+                ticket.AgregaArticulo(item.Producto.Nombre, item.Cantidad, item.PrecioVenta);
+            }
+
+
+
+            ticket.lineasGuion();
+            ticket.TextoCentro("Total:" + seleccionado.Total.ToString("C2", new CultureInfo("es-AR")), true);
+
+            ticket.lineasGuion();
+
+            ticket.TextoCentro("Total de Items: " + detalles.Sum(d => d.Cantidad), false);
+            ticket.lineasGuion();
+
+
+            ticket.TextoCentro(config.TextoNoFactura);
+            ticket.TextoIzquierda("");
+            ticket.TextoCentro(config.FraseDespedidaVenta);
+
+            ticket.CortaTicket();
+            // Imprimir en la impresora POS
+            ticket.ImprimirTicket(config.NombreImpresoraTermica);
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)
@@ -217,31 +334,48 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
         private void btn_anular_Click(object sender, EventArgs e)
         {
-           
+
+            CN_Venta _Venta= new CN_Venta();
+            Venta seleccionado = null;
 
             try
             {
-                if (dgv_ventas.CurrentRow == null)
+                if (dgv_ventas.CurrentRow != null)
                 {
-                    MessageBox.Show("Seleccione una venta de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    DialogResult respuesta = MessageBox.Show(
+                        "¿Quieres anular esta Venta?",
+                        "Confirmación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        DialogResult segundaRespuesta = MessageBox.Show(
+                            "⚠️ Esta acción es irreversible.\n\n¿Estás completamente seguro de anular la Venta?",
+                            "Advertencia Final",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Stop);
+
+                        if (segundaRespuesta == DialogResult.Yes)
+                        {
+                            seleccionado = (Venta)dgv_ventas.CurrentRow.DataBoundItem;
+                            _Venta.AnularVenta(seleccionado.Id_Venta);
+
+                            CargarGrilla();
+                            MessageBox.Show(
+                                "Venta anulada correctamente.",
+                                "Éxito",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
                 }
-
-                var seleccionado = (Venta)dgv_ventas.CurrentRow.DataBoundItem;
-
-                if (!ConfirmarCambioEstadoVenta(seleccionado)) return;
-
-                var ventaService = new CN_Venta();
-                ventaService.CambiarEstadoVenta(seleccionado.Id_Venta); // También se usa para reactivar si está implementado así
-
-                CargarGrilla();
-
-                MostrarMensajeExitoVenta(seleccionado.Estado);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
 
 
         }

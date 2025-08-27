@@ -28,6 +28,9 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
         public delegate void ProductoVentaSeleccionadoHandler(string Id_Producto, string Nombre, decimal Precio, decimal Stock, string Codigo, bool PermiteDecimales);
         public event ProductoVentaSeleccionadoHandler ProductoVentaSeleccionado;
+
+
+
         public FrmSeleccionarProducto()
         {
             InitializeComponent();

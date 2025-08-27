@@ -102,7 +102,7 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre.Text == string.Empty)

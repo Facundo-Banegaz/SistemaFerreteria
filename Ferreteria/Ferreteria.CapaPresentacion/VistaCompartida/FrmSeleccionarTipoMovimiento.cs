@@ -27,7 +27,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
         private void dgv_marcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string Id_TipoMovimiento = Convert.ToString(this.dgv_TipoMovimiento.CurrentRow.Cells["Id_Producto"].Value);
+            string Id_TipoMovimiento = Convert.ToString(this.dgv_TipoMovimiento.CurrentRow.Cells["Id_TipoMovimiento"].Value);
             string Nombre = Convert.ToString(this.dgv_TipoMovimiento.CurrentRow.Cells["Nombre"].Value);
 
             // Invocás el evento si hay algún método suscripto
@@ -74,7 +74,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
             CN_TipoMovimiento  _TipoMovimiento = new CN_TipoMovimiento();
 
-           ListarTipoMovimiento  = _TipoMovimiento.ListaTipoMovimiento();
+           ListarTipoMovimiento  = _TipoMovimiento.ListarTipoMovimientoStockManual();
 
             dgv_TipoMovimiento.DataSource = ListarTipoMovimiento;
             lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_TipoMovimiento.Rows.Count);

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarVenta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -375,12 +375,12 @@
             // 
             this.txt_producto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_producto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txt_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.txt_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.txt_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_producto.Location = new System.Drawing.Point(301, 91);
+            this.txt_producto.Location = new System.Drawing.Point(239, 102);
             this.txt_producto.Name = "txt_producto";
             this.txt_producto.ReadOnly = true;
-            this.txt_producto.Size = new System.Drawing.Size(423, 30);
+            this.txt_producto.Size = new System.Drawing.Size(535, 26);
             this.txt_producto.TabIndex = 200;
             this.txt_producto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -404,7 +404,7 @@
             this.txt_precioVenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_precioVenta.Font = new System.Drawing.Font("Impact", 12F);
             this.txt_precioVenta.ForeColor = System.Drawing.Color.Black;
-            this.txt_precioVenta.Location = new System.Drawing.Point(848, 91);
+            this.txt_precioVenta.Location = new System.Drawing.Point(896, 91);
             this.txt_precioVenta.Name = "txt_precioVenta";
             this.txt_precioVenta.ReadOnly = true;
             this.txt_precioVenta.Size = new System.Drawing.Size(200, 37);
@@ -415,7 +415,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Impact", 10F);
-            this.label9.Location = new System.Drawing.Point(882, 39);
+            this.label9.Location = new System.Drawing.Point(930, 39);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 25);
             this.label9.TabIndex = 197;
@@ -484,10 +484,10 @@
             this.txt_id_producto.Enabled = false;
             this.txt_id_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txt_id_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_id_producto.Location = new System.Drawing.Point(300, 50);
+            this.txt_id_producto.Location = new System.Drawing.Point(239, 50);
             this.txt_id_producto.Name = "txt_id_producto";
             this.txt_id_producto.ReadOnly = true;
-            this.txt_id_producto.Size = new System.Drawing.Size(115, 35);
+            this.txt_id_producto.Size = new System.Drawing.Size(176, 35);
             this.txt_id_producto.TabIndex = 188;
             this.txt_id_producto.Visible = false;
             // 
@@ -512,7 +512,7 @@
             this.Btn_producto.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_producto.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_producto.Image = ((System.Drawing.Image)(resources.GetObject("Btn_producto.Image")));
-            this.Btn_producto.Location = new System.Drawing.Point(730, 81);
+            this.Btn_producto.Location = new System.Drawing.Point(780, 91);
             this.Btn_producto.Name = "Btn_producto";
             this.Btn_producto.Size = new System.Drawing.Size(57, 55);
             this.Btn_producto.TabIndex = 124;
@@ -742,14 +742,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_detalles_ventas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detalles_ventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_detalles_ventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_detalles_ventas.EnableHeadersVisualStyles = false;
             this.dgv_detalles_ventas.ImeMode = System.Windows.Forms.ImeMode.NoControl;

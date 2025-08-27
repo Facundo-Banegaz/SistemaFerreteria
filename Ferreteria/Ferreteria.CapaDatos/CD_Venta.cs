@@ -14,6 +14,7 @@ namespace Ferreteria.CapaDatos
         private CD_Conexion Conexion;
         private Venta _Venta;
         private List<Venta> listaVenta;
+   
 
         public List<Venta> ListaVenta()
         {
@@ -85,7 +86,7 @@ namespace Ferreteria.CapaDatos
                 Conexion.EjecutarAccion(); // Ejecuta sin cerrar la conexión
 
                 int idVenta = Conexion.ObtenerValorParametroSalida("@Id_Venta");
-
+                nuevo.Id_Venta = idVenta; 
                 SqlConnection conn = Conexion.ObtenerConexion();
                 SqlTransaction trans = Conexion.ObtenerTransaccion();
 
@@ -122,38 +123,74 @@ namespace Ferreteria.CapaDatos
             }
         }
 
-    public void CambiarEstadoVenta(int idVenta)
-{
-    Conexion = new CD_Conexion();
-
-    try
-    {
-        Conexion.SetConsultaProcedure("Sp_CambiarEstadoVenta");
-        Conexion.SetearParametro("@Id_Venta", idVenta);
-        Conexion.EjecutarAccion();
-    }
-    catch (SqlException ex)
-    {
-        switch (ex.Number)
+        //Metodo Estado
+        public void AnularVenta(int Id_Venta)
         {
+            Conexion = new CD_Conexion();
 
-            case 50003:
-                throw new Exception("Solo se puede reactivar una venta dentro de las 48 horas.");
-            case 50004:
-                throw new Exception("No hay suficiente stock para reactivar esta venta.");
-            case 50005:
-                throw new Exception("Solo se puede anular una venta dentro de las 48 horas.");
-            case 50000:
-                throw new Exception($"Error al cambiar el estado de la venta: {ex.Message}");
-            default:
-                throw;
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_AnularVenta");
+
+                Conexion.SetearParametro("@Id_Venta", Id_Venta);
+
+
+                Conexion.EjecutarAccion();
+            }
+            catch (SqlException ex)
+            {
+                // Manejo específico (opcional)
+                switch (ex.Number)
+                {
+                    case 50001:
+                        throw new Exception("Esta venta ya fue anulada anteriormente.");
+                    case 50002:
+                        throw new Exception("No hay stock suficiente para anular la venta.");
+                    default:
+                        throw;
+                }
+            }
+
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
         }
-    }
-    finally
-    {
-        Conexion.CerrarConexion();
-    }
-}
+        
+        
+
+        //    public void CambiarEstadoVenta(int idVenta)
+        //{
+        //    Conexion = new CD_Conexion();
+
+        //    try
+        //    {
+        //        Conexion.SetConsultaProcedure("Sp_CambiarEstadoVenta");
+        //        Conexion.SetearParametro("@Id_Venta", idVenta);
+        //        Conexion.EjecutarAccion();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        switch (ex.Number)
+        //        {
+
+        //            case 50003:
+        //                throw new Exception("Solo se puede reactivar una venta dentro de las 48 horas.");
+        //            case 50004:
+        //                throw new Exception("No hay suficiente stock para reactivar esta venta.");
+        //            case 50005:
+        //                throw new Exception("Solo se puede anular una venta dentro de las 48 horas.");
+        //            case 50000:
+        //                throw new Exception($"Error al cambiar el estado de la venta: {ex.Message}");
+        //            default:
+        //                throw;
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        Conexion.CerrarConexion();
+        //    }
+        //}
 
 
 

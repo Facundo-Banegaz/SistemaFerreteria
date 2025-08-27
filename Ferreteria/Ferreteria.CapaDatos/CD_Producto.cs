@@ -18,10 +18,13 @@ namespace Ferreteria.CapaDatos
         private Producto Producto;
         private List<Producto> listaProducto;
         private ProductoInventarioBajoDto ProductoInventarioBajoDto;
+        private ProductoAvanzadoDto ProductoAvanzado;
+
         private List<ProductoInventarioBajoDto> listaProductoInventarioBajoDto;
 
         private ProductoConVencimientoDto ProductoConVencimientoDto;
         private List<ProductoConVencimientoDto> listaProductosConVencimientoDto;
+        private List<ProductoAvanzadoDto> listaProductoAvanzadoDto;
         public List<Producto> ListaProductos()
         {
 
@@ -75,6 +78,66 @@ namespace Ferreteria.CapaDatos
                 }
 
                 return listaProducto;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+        public List<ProductoAvanzadoDto> ConsultaMostrarProductosAvanzado ()
+        {
+
+            Conexion = new CD_Conexion();
+            listaProductoAvanzadoDto = new List<ProductoAvanzadoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_ConsultaMostrarProductosAvanzado");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    ProductoAvanzado  = new ProductoAvanzadoDto();
+
+                    // Atributos propios
+                    ProductoAvanzado.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    ProductoAvanzado.Codigo = (string)Conexion.Lector["Codigo"];
+                    ProductoAvanzado.Nombre = (string)Conexion.Lector["Nombre"];
+                 
+                    ProductoAvanzado.Precio = (decimal)Conexion.Lector["Precio"];
+                
+                    ProductoAvanzado.Stock = (decimal)Conexion.Lector["Stock"];
+                    ProductoAvanzado.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
+                    ProductoAvanzado.Estado = (bool)Conexion.Lector["Estado"];
+
+                    // Subcategoría y categoría
+          
+                    ProductoAvanzado.Subcategoria = (string)Conexion.Lector["Subcategoria"];
+
+                    ProductoAvanzado.Categoria = (string)Conexion.Lector["Categoria"]; // si tu SP lo devuelve
+
+                   
+
+                    ProductoAvanzado.Marca = (string)Conexion.Lector["Marca"];
+
+                   
+
+                    ProductoAvanzado.UnidadMedida = (string)Conexion.Lector["UnidadMedida"];
+
+
+                    listaProductoAvanzadoDto.Add(ProductoAvanzado);
+                }
+
+
+
+                return listaProductoAvanzadoDto;
             }
             catch (Exception ex)
             {
@@ -148,7 +211,7 @@ namespace Ferreteria.CapaDatos
 
         }
 
-        public List<ProductoConVencimientoDto> ListaProductosConVencimientoDto(string @FiltroEstado)
+        public List<ProductoConVencimientoDto> ListaProductosConVencimiento(string FiltroEstado)
         {
 
             Conexion = new CD_Conexion();
@@ -170,6 +233,7 @@ namespace Ferreteria.CapaDatos
                     //atributos propios
 
 
+                    ProductoConVencimientoDto.Id_DetalleIngreso = (int)Conexion.Lector["Id_DetalleIngreso"];
                     ProductoConVencimientoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
                     ProductoConVencimientoDto.Codigo = (string)Conexion.Lector["Codigo"];
                     ProductoConVencimientoDto.Producto = (string)Conexion.Lector["Producto"];
@@ -190,7 +254,9 @@ namespace Ferreteria.CapaDatos
                     ProductoConVencimientoDto.FechaVencimiento = (DateTime)Conexion.Lector["FechaVencimiento"];
 
                     ProductoConVencimientoDto.CantidadLote = (decimal)Conexion.Lector["CantidadLote"];
+                    ProductoConVencimientoDto.CantidadLoteVencida = (decimal)Conexion.Lector["CantidadLoteVencida"];
                     ProductoConVencimientoDto.DiasRestantes = (int)Conexion.Lector["DiasRestantes"];
+
 
                     ProductoConVencimientoDto.Estado = (string)Conexion.Lector["Estado"];
 
@@ -396,6 +462,34 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+
+        //Metodo descontar producto vencidos Masivo
+
+        //Metodo descontar producto vencidos por lote
+        public void DescontarProductoVencido(int Id_Usuario, int Id_DetalleIngreso)
+        {
+            Conexion = new CD_Conexion();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_DescontarProductoVencido");
+                Conexion.SetearParametro("@Id_Usuario", Id_Usuario);
+                Conexion.SetearParametro("@Id_DetalleIngreso", Id_DetalleIngreso);
+                Conexion.EjecutarAccion();
+            }
+            catch (SqlException sqlEx)
+            {
+                
+                throw new Exception(sqlEx.Message);
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
+
+
+
         //Metodo Buscar
 
         public List<Producto> BuscarProducto(string buscar)
@@ -461,6 +555,58 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        public List<ProductoAvanzadoDto> ConsultaBuscarProductoAvanzado(string textoBuscar)
+        {
+            Conexion = new CD_Conexion();
+            listaProductoAvanzadoDto = new List<ProductoAvanzadoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_ConsultaBuscar_ProductosAvanzado");
+                Conexion.SetearParametro("@TextoBuscar", textoBuscar);
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    ProductoAvanzadoDto producto = new ProductoAvanzadoDto();
+
+                    // Atributos propios
+                    producto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    producto.Codigo = (string)Conexion.Lector["Codigo"];
+                    producto.Nombre = (string)Conexion.Lector["Nombre"];
+
+                    producto.Precio = (decimal)Conexion.Lector["Precio"];
+          
+                    producto.Stock = (decimal)Conexion.Lector["Stock"];
+                    producto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
+                    producto.Estado = (bool)Conexion.Lector["Estado"];
+
+                    // Subcategoría y categoría
+           
+                    producto.Subcategoria = (string)Conexion.Lector["Subcategoria"];
+                
+                    producto.Categoria = (string)Conexion.Lector["Categoria"];
+
+                    producto.Marca = (string)Conexion.Lector["Marca"];
+
+                    
+                    producto.UnidadMedida = (string)Conexion.Lector["UnidadMedida"];
+
+                    listaProductoAvanzadoDto.Add(producto);
+                }
+
+                return listaProductoAvanzadoDto;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
         public List<ProductoInventarioBajoDto> BuscarProductosInventarioBajo(string buscar)
         {
@@ -525,6 +671,71 @@ namespace Ferreteria.CapaDatos
             }
         }
 
+        public List<ProductoConVencimientoDto> BuscarProductosConVencimiento(string filtroEstado,string buscar)
+        {
+            Conexion = new CD_Conexion();
+            listaProductosConVencimientoDto = new List<ProductoConVencimientoDto>();
+
+            try
+            {
+                Conexion.SetConsultaProcedure("Sp_BuscarProductosVencimiento");
+
+
+                Conexion.SetearParametro("@FiltroProducto", buscar);
+
+                Conexion.SetearParametro("@FiltroEstado", filtroEstado);
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+
+                    ProductoConVencimientoDto = new ProductoConVencimientoDto();
+
+                    //atributos propios
+
+                    ProductoConVencimientoDto.Id_DetalleIngreso = (int)Conexion.Lector["Id_DetalleIngreso"];
+                    ProductoConVencimientoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
+                    ProductoConVencimientoDto.Codigo = (string)Conexion.Lector["Codigo"];
+                    ProductoConVencimientoDto.Producto = (string)Conexion.Lector["Producto"];
+
+
+                    ProductoConVencimientoDto.Stock = (decimal)Conexion.Lector["Stock"];
+
+
+
+                    ProductoConVencimientoDto.Marca = (string)Conexion.Lector["Marca"];
+
+
+                    ProductoConVencimientoDto.FechaIngreso = (DateTime)Conexion.Lector["FechaIngreso"];
+
+                    ProductoConVencimientoDto.FechaFabricacion = (DateTime)Conexion.Lector["FechaFabricacion"];
+
+
+                    ProductoConVencimientoDto.FechaVencimiento = (DateTime)Conexion.Lector["FechaVencimiento"];
+
+                    ProductoConVencimientoDto.CantidadLote = (decimal)Conexion.Lector["CantidadLote"];
+                    ProductoConVencimientoDto.DiasRestantes = (int)Conexion.Lector["DiasRestantes"];
+
+                    ProductoConVencimientoDto.Estado = (string)Conexion.Lector["Estado"];
+
+
+                    listaProductosConVencimientoDto.Add(ProductoConVencimientoDto);
+                }
+
+                return listaProductosConVencimientoDto;
+            }
+            
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+        }
 
         //Metodo para Buscar Producto Por Codigo De Barras En Ingresos
         public Producto BuscarProductoPorCodigoEnIngresos(string Codigo)

@@ -74,14 +74,15 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             }
 
             // Reemplazar punto por coma (opcional, según cultura)
-            if (e.KeyChar == '.')
-                e.KeyChar = ',';
+            //if (e.KeyChar == '.')
+            //    e.KeyChar = ',';
 
             // Evitar más de una coma
             if ((e.KeyChar == ',' || e.KeyChar == '.') && txt.Text.Contains(','))
             {
                 e.Handled = true;
             }
+
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)

@@ -177,7 +177,7 @@
             this.MinimumSize = new System.Drawing.Size(1623, 806);
             this.Name = "FrmSeleccionarProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmSeleccionarProducto";
+            this.Text = "Seleccionar Producto";
             this.Load += new System.EventHandler(this.FrmSeleccionarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_productos)).EndInit();
             this.ResumeLayout(false);

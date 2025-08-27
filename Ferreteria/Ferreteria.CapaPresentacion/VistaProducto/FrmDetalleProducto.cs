@@ -1,4 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
+using Ferreteria.CapaDominio.DTOs;
 using Ferreteria.CapaNegocio;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
     public partial class FrmDetalleProducto : Form
     {
         private Producto _Producto;
-
         private List<Especificacion> listaEspecificacion;
         public FrmDetalleProducto(Producto producto)
         {
@@ -25,7 +25,7 @@ namespace Ferreteria.CapaPresentacion.VistaProducto
             Text = "Detalle del Producto:";
             this._Producto = producto;
         }
-
+ 
         private void FrmDetalleProducto_Load(object sender, EventArgs e)
         {
             if (_Producto != null)

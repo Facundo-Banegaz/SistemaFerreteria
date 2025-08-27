@@ -2,6 +2,7 @@
 using Ferreteria.CapaNegocio;
 using Ferreteria.CapaPresentacion.VistaCompartida;
 using Ferreteria.CapaPresentacion.VistaIngresos;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -202,7 +203,23 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                     return;
                 }
 
+                decimal totalVenta = 0;
+                foreach (DataGridViewRow fila in dgv_detalles_ventas.Rows)
+                {
+                    if (fila.IsNewRow) continue;
+                    totalVenta += Convert.ToDecimal(fila.Cells["Cantidad"].Value) *
+                                  Convert.ToDecimal(fila.Cells["PrecioVenta"].Value);
+                }
 
+                // Mostrar formulario de cobro
+                FrmCobro frm = new FrmCobro(totalVenta);
+                
+                    if (frm.ShowDialog() != DialogResult.OK || !frm.Cobrado)
+                    {
+                        MessageBox.Show("La venta fue cancelada en el proceso de cobro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return; // No se guarda la venta
+                    }
+                
 
 
                 // Crear objeto Venta
@@ -246,13 +263,26 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                 _CN_Venta.InsertarVenta(_Venta, _Detalle_Venta);
 
                 MessageBox.Show("¡La venta se registró exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-         
-                if (cbo_comprobante.SelectedItem != null && cbo_comprobante.SelectedItem.ToString() == "TICKET")
+                if (cbo_comprobante.SelectedItem != null)
                 {
-                    DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resultado == DialogResult.Yes)
+                    string comprobante = cbo_comprobante.SelectedItem.ToString();
+
+                    if (comprobante == "TICKET")
                     {
-                        ImprimirTicketVenta(); //  método para imprimir
+                        DialogResult resultado = MessageBox.Show("¿Desea imprimir el ticket?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            ImprimirTicketVenta(); // método para imprimir ticket
+                        }
+                    }
+                    else if (comprobante == "BOLETA")
+                    {
+                        DialogResult resultado = MessageBox.Show("¿Desea imprimir la boleta?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            FrmReporteFacturaVenta frmReporte = new FrmReporteFacturaVenta(_Venta);
+                           frmReporte.ShowDialog();
+                        }
                     }
                 }
                 this.Close();
@@ -262,6 +292,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+  
 
         private void ImprimirTicketVenta()
         {
@@ -274,7 +305,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             // Encabezado
 
             ticket.TextoCentro(config.NombreNegocio, true);
-            ticket.TextoCentro(config.TextoPresupuesto, false);
+            ticket.TextoCentro(config.TextoVenta, false);
             ticket.TextoIzquierda("CIUDAD: " + config.Ciudad);
             ticket.TextoIzquierda("DIREC: " + config.Direccion);
             ticket.TextoIzquierda("TELEF: " + config.Telefono);
@@ -306,7 +337,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
                 // Intentar parsear los valores
                 decimal.TryParse(fila.Cells["Cantidad"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out cantidad);
-                decimal.TryParse(fila.Cells["PrecioUnitario"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
+                decimal.TryParse(fila.Cells["PrecioVenta"].Value?.ToString(), NumberStyles.Any, new CultureInfo("es-AR"), out precioUnitario);
 
                 // Agregar al ticket
                 ticket.AgregaArticulo(nombreProducto, cantidad, precioUnitario);
@@ -320,12 +351,12 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
             ticket.lineasGuion();
 
-            ticket.TextoCentro("Total de Items: " + lbl_totalUnidades.Text, false);
+            ticket.TextoCentro("Total de " + lbl_totalUnidades.Text, false);
             ticket.lineasGuion();
 
             ticket.TextoCentro(config.TextoNoFactura);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro(config.FraseDespedidaPresupuesto);
+            ticket.TextoCentro(config.FraseDespedidaVenta);
 
             ticket.CortaTicket();
             // Imprimir en la impresora POS
@@ -608,43 +639,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
         }
 
 
-        private void txt_cantidad_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-
-            // Permitir teclas de control (Backspace, Delete, etc)
-            if (char.IsControl(e.KeyChar))
-                return;
-
-            // Permitir solo dígitos siempre
-            if (!char.IsDigit(e.KeyChar))
-            {
-                // Si NO permite decimales, bloqueamos cualquier otro caracter no numérico
-                if (!PermiteDecimales)
-                {
-                    e.Handled = true;
-                    return;
-                }
-
-                // Si permite decimales, solo permitimos coma (o punto) una sola vez
-                if (e.KeyChar == ',' || e.KeyChar == '.')
-                {
-                    // Reemplazamos punto por coma para estandarizar
-                    e.KeyChar = ',';
-
-                    // Si ya existe una coma en el texto, bloqueamos
-                    if (txt.Text.Contains(","))
-                    {
-                        e.Handled = true;
-                    }
-                }
-                else
-                {
-                    // Cualquier otro caracter no permitido
-                    e.Handled = true;
-                }
-            }
-        }
+     
         private void MostrarResumenVenta(DataGridView dgv)
         {
             int cantidadProductos = dgv.Rows.Count;
@@ -664,7 +659,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             }
 
             lbl_cantidadProductos.Text = $"Productos: {cantidadProductos.ToString("N2", new CultureInfo("es-AR"))}";
-            lbl_totalUnidades.Text = $"Unidades: {totalUnidades.ToString("N2", new CultureInfo("es-AR"))}";
+            lbl_totalUnidades.Text = $"Items: {totalUnidades.ToString("N2", new CultureInfo("es-AR"))}";
             lbl_totalFinal.Text = $"Total: ${totalFinal.ToString("N2", new CultureInfo("es-AR"))}";
         }
 

@@ -221,6 +221,7 @@
             this.txt_nuevo_precio.Name = "txt_nuevo_precio";
             this.txt_nuevo_precio.Size = new System.Drawing.Size(397, 44);
             this.txt_nuevo_precio.TabIndex = 98;
+            this.txt_nuevo_precio.TextChanged += new System.EventHandler(this.txt_nuevo_precio_TextChanged);
             this.txt_nuevo_precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nuevo_precio_KeyPress);
             this.txt_nuevo_precio.Leave += new System.EventHandler(this.txt_nuevo_precio_Leave);
             // 

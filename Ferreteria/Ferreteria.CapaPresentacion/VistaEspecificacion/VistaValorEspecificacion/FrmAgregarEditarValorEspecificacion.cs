@@ -93,7 +93,7 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaValorEspecificaci
 
         private bool ValidarVacio()
         {
-
+            errorIcono.Clear();
             bool error = true;
 
             if (txt_nombre_ValorEspecificacion.Text == string.Empty)

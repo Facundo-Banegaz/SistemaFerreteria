@@ -376,10 +376,10 @@
             this.txt_producto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.txt_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_producto.Location = new System.Drawing.Point(301, 91);
+            this.txt_producto.Location = new System.Drawing.Point(253, 97);
             this.txt_producto.Name = "txt_producto";
             this.txt_producto.ReadOnly = true;
-            this.txt_producto.Size = new System.Drawing.Size(423, 30);
+            this.txt_producto.Size = new System.Drawing.Size(533, 30);
             this.txt_producto.TabIndex = 200;
             this.txt_producto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -403,7 +403,7 @@
             this.txt_precioVenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txt_precioVenta.Font = new System.Drawing.Font("Impact", 12F);
             this.txt_precioVenta.ForeColor = System.Drawing.Color.Black;
-            this.txt_precioVenta.Location = new System.Drawing.Point(848, 91);
+            this.txt_precioVenta.Location = new System.Drawing.Point(896, 90);
             this.txt_precioVenta.Name = "txt_precioVenta";
             this.txt_precioVenta.ReadOnly = true;
             this.txt_precioVenta.Size = new System.Drawing.Size(200, 37);
@@ -414,7 +414,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Impact", 10F);
-            this.label9.Location = new System.Drawing.Point(882, 39);
+            this.label9.Location = new System.Drawing.Point(930, 38);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 25);
             this.label9.TabIndex = 197;
@@ -483,7 +483,7 @@
             this.txt_id_producto.Enabled = false;
             this.txt_id_producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txt_id_producto.ForeColor = System.Drawing.Color.Black;
-            this.txt_id_producto.Location = new System.Drawing.Point(300, 50);
+            this.txt_id_producto.Location = new System.Drawing.Point(253, 47);
             this.txt_id_producto.Name = "txt_id_producto";
             this.txt_id_producto.ReadOnly = true;
             this.txt_id_producto.Size = new System.Drawing.Size(115, 35);
@@ -511,7 +511,7 @@
             this.Btn_producto.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_producto.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_producto.Image = ((System.Drawing.Image)(resources.GetObject("Btn_producto.Image")));
-            this.Btn_producto.Location = new System.Drawing.Point(730, 81);
+            this.Btn_producto.Location = new System.Drawing.Point(792, 83);
             this.Btn_producto.Name = "Btn_producto";
             this.Btn_producto.Size = new System.Drawing.Size(57, 55);
             this.Btn_producto.TabIndex = 124;
