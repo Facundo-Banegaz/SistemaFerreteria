@@ -104,7 +104,7 @@ namespace Ferreteria.CapaPresentacion.VistaEspecificacion.VistaValorEspecificaci
 
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
-
+            dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_productos.Columns["Id_ValorEspecificacion"].Visible = false;
 
             dgv_productos.Columns["Id_ValorEspecificacion"].Width = 400;

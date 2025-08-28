@@ -87,25 +87,16 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
             dgv_ingresos.Columns["Fecha"].Width = 350;
             dgv_ingresos.Columns["Tipo_comprobante"].Width = 400; // nombre_producto
             dgv_ingresos.Columns["Serie"].Width = 400; // descripcion_producto 
-            dgv_ingresos.Columns["Correlativo"].Width = 400;
-       
+           
             dgv_ingresos.Columns["Estado"].Width = 400; // nombre_producto
             dgv_ingresos.Columns["Total"].Width = 500; // descripcion_producto 
 
 
-         
-
-            dgv_ingresos.Columns["Id_ingreso"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Proveedor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Tipo_comprobante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgv_ingresos.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Format = "N0";
+            foreach (DataGridViewColumn col in dgv_ingresos.Columns)
+            {
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_ingresos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
 
             // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
             CultureInfo culturaAR = new CultureInfo("es-AR");

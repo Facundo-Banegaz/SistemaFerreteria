@@ -18,9 +18,12 @@ namespace Ferreteria.CapaDatos
 
         public SqlDataReader Lector => lector;
 
-        public CD_Conexion()
+        // 🔹 Constructor por defecto usa la BD principal
+        public CD_Conexion() : this("Conexion_DB") { }
+
+        public CD_Conexion(string nombreConexion)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["Conexion_DB"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings[nombreConexion].ConnectionString;
             conexion = new SqlConnection(connectionString);
             comando = new SqlCommand();
         }

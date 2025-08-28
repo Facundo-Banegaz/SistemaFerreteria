@@ -104,12 +104,12 @@ namespace Ferreteria.CapaPresentacion.VistaUnidadMedida
 
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
-
+            dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgv_productos.Columns["Id_UnidadMedida"].Width = 400;
-            dgv_productos.Columns["Nombre"].Width = 800;// nombre_producto
-            dgv_productos.Columns["Abreviacion"].Width = 800;// nombre_producto
-            dgv_productos.Columns["PermiteDecimales"].Width = 800;// nombre_producto
+            dgv_productos.Columns["Nombre"].Width = 400;// nombre_producto
+            dgv_productos.Columns["Abreviacion"].Width = 400;// nombre_producto
+            dgv_productos.Columns["PermiteDecimales"].Width = 400;// nombre_producto
 
             dgv_productos.Columns["Id_UnidadMedida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_productos.Columns["Nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

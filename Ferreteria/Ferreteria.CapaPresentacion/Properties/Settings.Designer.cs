@@ -33,5 +33,29 @@ namespace Ferreteria.CapaPresentacion.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UltimaFechaHora {
+            get {
+                return ((string)(this["UltimaFechaHora"]));
+            }
+            set {
+                this["UltimaFechaHora"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CarpetaBackup {
+            get {
+                return ((string)(this["CarpetaBackup"]));
+            }
+            set {
+                this["CarpetaBackup"] = value;
+            }
+        }
     }
 }

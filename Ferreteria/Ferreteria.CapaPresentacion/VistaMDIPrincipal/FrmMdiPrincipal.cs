@@ -1,4 +1,5 @@
 ﻿using Ferreteria.CapaDominio;
+using Ferreteria.CapaPresentacion.VistaBackup;
 using Ferreteria.CapaPresentacion.VistaCategoria;
 using Ferreteria.CapaPresentacion.VistaCompartida;
 using Ferreteria.CapaPresentacion.VistaEspecificacion;
@@ -287,6 +288,12 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
         private void Menu_Item_Ajustes_Movimientos_Click(object sender, EventArgs e)
         {
             abrirForm(new FrmHistorialMovimientoStockManual(_Usuario));
+        }
+
+        private void Menu_Item_Backup_Click(object sender, EventArgs e)
+        {
+            FrmBackup backup = new  FrmBackup();
+            backup.ShowDialog();
         }
     }
     

@@ -109,7 +109,7 @@ namespace Ferreteria.CapaPresentacion.VistaMarca
 
             //logica del dataGridView
             CN_Metodos _Metodos = new CN_Metodos();
-
+            dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgv_productos.Columns["Id_Marca"].Width = 400;
             dgv_productos.Columns["Nombre"].Width = 800;// nombre_producto

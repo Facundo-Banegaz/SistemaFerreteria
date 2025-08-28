@@ -92,7 +92,7 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
             dgv_ventas.Columns["Tipo_Comprobante"].Width = 400; // nombre_producto
             dgv_ventas.Columns["Serie"].Width = 400; // descripcion_producto 
             dgv_ventas.Columns["Correlativo"].Width = 400;
-
+            dgv_ventas.Columns["Cliente"].Width = 400;
             dgv_ventas.Columns["Estado"].Width = 400; // nombre_producto
             dgv_ventas.Columns["MetodoPago"].Width = 500; // descripcion_producto 
             dgv_ventas.Columns["Total"].Width = 500; // descripcion_producto 
@@ -100,16 +100,12 @@ namespace Ferreteria.CapaPresentacion.VistaVenta
 
 
 
-            dgv_ventas.Columns["Id_Venta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Tipo_comprobante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgv_ventas.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["MetodoPago"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ventas.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            foreach (DataGridViewColumn col in dgv_ventas.Columns)
+            {
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_ventas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+   
             dgv_ventas.Columns["Total"].DefaultCellStyle.Format = "N0";
 
             // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)

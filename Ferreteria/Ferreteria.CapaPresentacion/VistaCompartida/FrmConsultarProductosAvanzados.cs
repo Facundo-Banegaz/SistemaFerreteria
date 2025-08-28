@@ -97,8 +97,16 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
             CN_Metodos _Metodos = new CN_Metodos();
 
             dgv_productos.Columns["Id_Producto"].Visible = false;
-            dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            dgv_productos.Columns["Codigo"].Width = 150;
+            dgv_productos.Columns["Marca"].Width = 400;
+            dgv_productos.Columns["Categoria"].Width = 400;
+            dgv_productos.Columns["Subcategoria"].Width = 400;
+            dgv_productos.Columns["Nombre"].Width = 500;
+            dgv_productos.Columns["UnidadMedida"].Width = 200;
+            dgv_productos.Columns["Stock"].Width = 150;
+            dgv_productos.Columns["StockMinimo"].Width = 200;
+            dgv_productos.Columns["Estado"].Width = 200;
+            dgv_productos.Columns["Precio"].Width = 150;
             // Fuente para celdas
             dgv_productos.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
 

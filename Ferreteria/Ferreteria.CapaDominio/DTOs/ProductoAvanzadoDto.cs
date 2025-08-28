@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Ferreteria.CapaDominio.DTOs
         public decimal Precio { get; set; }
 
         public decimal Stock { get; set; }
-
+        [DisplayName("Stock Minimo")]
         public decimal StockMinimo { get; set; }
 
 
@@ -25,6 +26,7 @@ namespace Ferreteria.CapaDominio.DTOs
         public string Categoria { get; set; }
         public string Subcategoria { get; set; }
         
+        [DisplayName("Unidad Medida")]
         public string UnidadMedida { get; set; }
         public bool Estado { get; set; }
 

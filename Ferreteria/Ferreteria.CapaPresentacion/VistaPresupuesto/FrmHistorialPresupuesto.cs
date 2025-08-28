@@ -92,18 +92,11 @@ namespace Ferreteria.CapaPresentacion.VistaPresupuesto
 
 
 
-
-            dgv_ingresos.Columns["Id_Presupuesto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Cliente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-         
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv_ingresos.Columns["Total"].DefaultCellStyle.Format = "N0";
+            foreach (DataGridViewColumn col in dgv_ingresos.Columns)
+            {
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_ingresos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
 
             // Formatear columnas decimales con cultura argentina (coma como decimal, punto como miles)
             CultureInfo culturaAR = new CultureInfo("es-AR");

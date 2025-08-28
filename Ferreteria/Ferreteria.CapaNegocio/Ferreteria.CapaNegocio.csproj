@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CN_BackupRestore.cs" />
     <Compile Include="CN_ConfigurarTicket.cs" />
     <Compile Include="CN_DetallePresupuesto.cs" />
     <Compile Include="CN_Categoria.cs" />

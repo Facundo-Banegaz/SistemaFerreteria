@@ -10,5 +10,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=SQLNCLI11;Data Source=LAPTOP-RIOU11IV\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Ferreteria_DB</Value>
     </Setting>
+    <Setting Name="UltimaFechaHora" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CarpetaBackup" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
