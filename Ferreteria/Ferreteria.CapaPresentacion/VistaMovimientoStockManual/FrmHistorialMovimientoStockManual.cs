@@ -1,6 +1,7 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaDominio.DTOs;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaCompartida;
 using Ferreteria.CapaPresentacion.VistaMovimientoStock;
 using System;
 using System.Collections.Generic;
@@ -173,6 +174,12 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStockManual
 
             frmHistorialMovimientoStockManual.ShowDialog();
             CargarGrilla();
+        }
+
+        private void Btn_tiposMovimiento_Click(object sender, EventArgs e)
+        {
+            FrmSeleccionarTipoMovimiento seleccionarTipoMovimiento = new FrmSeleccionarTipoMovimiento();
+            seleccionarTipoMovimiento.ShowDialog();
         }
     }
 }

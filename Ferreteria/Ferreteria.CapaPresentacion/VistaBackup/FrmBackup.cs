@@ -25,17 +25,25 @@ namespace Ferreteria.CapaPresentacion.VistaBackup
 
         private void FrmBackup_Load(object sender, EventArgs e)
         {
+            // Cargar hora persistente
             if (!string.IsNullOrEmpty(Properties.Settings.Default.UltimaFechaHora))
-            {
                 dtpHoraBackup.Value = DateTime.Parse(Properties.Settings.Default.UltimaFechaHora);
-            }
             else
-            {
                 dtpHoraBackup.Value = DateTime.Now;
-            }
+
+            // Cargar carpeta persistente
             if (!string.IsNullOrEmpty(Properties.Settings.Default.CarpetaBackup))
             {
-                Txt_carpeta.Text = Properties.Settings.Default.CarpetaBackup;
+                carpetaBackupAuto = Properties.Settings.Default.CarpetaBackup;
+                Txt_carpeta.Text = carpetaBackupAuto;
+            }
+
+            // Iniciar timer si ya había configuración
+            if (!string.IsNullOrEmpty(carpetaBackupAuto))
+            {
+                horaBackupAuto = dtpHoraBackup.Value.TimeOfDay;
+                timer1.Interval = 60000; // 1 minuto
+                timer1.Start();
             }
         }
 
@@ -43,18 +51,19 @@ namespace Ferreteria.CapaPresentacion.VistaBackup
         {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
-                if (fbd.ShowDialog() == DialogResult.OK)
+                if (!Directory.Exists(carpetaBackupAuto))
                 {
-
-                    string carpeta = fbd.SelectedPath;
-                    string archivoBackup = System.IO.Path.Combine(carpeta,
-                        "Ferreteria_DB_" + DateTime.Now.ToString("d-MM-yyyy_HH-mm-ss") + "_RESPALDO_MANUAL.bak");
-
-                    CN_BackupRestore backup = new CN_BackupRestore();
-                    backup.HacerBackup("Ferreteria_DB", archivoBackup);
-
-                    MessageBox.Show("Backup realizado en: " + archivoBackup);
+                    MessageBox.Show("La carpeta seleccionada no existe o no tiene permisos. Se recomienda usar C:\\BackupFerreteria.");
+                    return;
                 }
+
+
+                string archivoBackup = Path.Combine(carpetaBackupAuto,"Ferreteria_DB_" + DateTime.Now.ToString("d-MM-yyyy_HH-mm-ss") + "_RESPALDO_MANUAL.bak");
+
+                CN_BackupRestore backup = new CN_BackupRestore();
+                backup.HacerBackup("Ferreteria_DB", archivoBackup);
+
+                MessageBox.Show("Backup manual realizado en: " + archivoBackup);
             }
 
         }
@@ -118,24 +127,28 @@ namespace Ferreteria.CapaPresentacion.VistaBackup
 
             if (now.Hours == horaBackupAuto.Hours &&
                 now.Minutes == horaBackupAuto.Minutes &&
-                !backupHechoHoy)  // evita repetir backup en el mismo minuto
+                !backupHechoHoy)
             {
+                if (!Directory.Exists(carpetaBackupAuto))
+                {
+                    MessageBox.Show("La carpeta seleccionada no existe o no tiene permisos. Se recomienda usar C:\\BackupFerreteria.");
+                    return;
+                }
+
                 string archivoBackup = Path.Combine(
                     carpetaBackupAuto,
                     "Ferreteria_DB_" + DateTime.Now.ToString("d-MM-yyyy_HH-mm-ss") + "_RESPALDO_AUTOMATICO.bak"
-                );
-
-  
+                ); 
 
                 CN_BackupRestore backup = new CN_BackupRestore();
                 backup.HacerBackup("Ferreteria_DB", archivoBackup);
 
                 MessageBox.Show("Backup automático realizado en: " + archivoBackup);
 
-                backupHechoHoy = true; // marcamos que ya se hizo el backup
+                backupHechoHoy = true; // evita duplicados en el mismo minuto
             }
 
-            // Reiniciar flag al cambiar de minuto/hora
+            // Reiniciar flag si cambia la hora o minuto
             if (now.Hours != horaBackupAuto.Hours || now.Minutes != horaBackupAuto.Minutes)
                 backupHechoHoy = false;
         }

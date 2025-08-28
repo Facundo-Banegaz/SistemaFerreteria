@@ -118,17 +118,17 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(734, 128);
             this.textBox1.TabIndex = 114;
-            this.textBox1.Text = "*El backup automático se ejecuta cada día  a la hora indicada y se guarda en la c" +
-    "arpeta seleccionada.*  ";
+            this.textBox1.Text = "Cada día, a la hora que elijas, se ejecutará automáticamente un backup y se guard" +
+    "ará en la carpeta que seleccionaste.";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(203, 127);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(183, 125);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 20);
+            this.label3.Size = new System.Drawing.Size(162, 25);
             this.label3.TabIndex = 113;
             this.label3.Text = "Hora del Backup:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -139,6 +139,7 @@
             this.dtpHoraBackup.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraBackup.Location = new System.Drawing.Point(15, 153);
             this.dtpHoraBackup.Name = "dtpHoraBackup";
+            this.dtpHoraBackup.ShowUpDown = true;
             this.dtpHoraBackup.Size = new System.Drawing.Size(495, 44);
             this.dtpHoraBackup.TabIndex = 3;
             this.dtpHoraBackup.Value = new System.DateTime(2025, 8, 27, 17, 44, 0, 0);

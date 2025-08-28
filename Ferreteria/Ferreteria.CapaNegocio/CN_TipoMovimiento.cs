@@ -25,6 +25,11 @@ namespace Ferreteria.CapaNegocio
 
             return _CD_TipoMovimiento.ListarTipoMovimientoStockManual();
         }
+        public List<TipoMovimiento> ListarTodosLosTipoMovimiento()
+        {
+            _CD_TipoMovimiento = new CD_TipoMovimiento();
 
+            return _CD_TipoMovimiento.ListarTodosLosTipoMovimiento();
+        }
     }
 }

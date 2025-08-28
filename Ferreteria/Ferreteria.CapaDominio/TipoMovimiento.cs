@@ -11,7 +11,7 @@ namespace Ferreteria.CapaDominio
         public int Id_TipoMovimiento { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public char Movimiento { get; set; } // 'E' para Entrada, 'S' para Salida
+        public string Movimiento { get; set; } // 'E' para Entrada, 'S' para Salida
 
 
         public override string ToString()

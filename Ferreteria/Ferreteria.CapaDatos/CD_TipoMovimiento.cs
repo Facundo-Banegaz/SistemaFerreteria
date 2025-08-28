@@ -15,6 +15,49 @@ namespace Ferreteria.CapaDatos
         private List<TipoMovimiento> listaTipoMovimiento;
 
 
+        public List<TipoMovimiento> ListarTodosLosTipoMovimiento()
+        {
+
+            //instancia
+
+            Conexion = new CD_Conexion();
+
+            listaTipoMovimiento = new List<TipoMovimiento>();
+
+            try
+            {
+
+                Conexion.SetConsulta("SELECT Id_TipoMovimiento, Nombre, Descripcion, Movimiento FROM TiposMovimiento");
+
+                Conexion.EjecutarLectura();
+
+                while (Conexion.Lector.Read())
+                {
+                    tipoMovimiento = new TipoMovimiento();
+
+
+                    tipoMovimiento.Id_TipoMovimiento = (int)Conexion.Lector["Id_TipoMovimiento"];
+                    tipoMovimiento.Nombre = (string)Conexion.Lector["Nombre"];
+                    tipoMovimiento.Descripcion = (string)Conexion.Lector["Descripcion"];
+                    tipoMovimiento.Movimiento = (string)Conexion.Lector["Movimiento"];
+
+
+                    listaTipoMovimiento.Add(tipoMovimiento);
+                }
+
+                return listaTipoMovimiento;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+        }
         public List<TipoMovimiento> ListarTipoMovimiento()
         {
 

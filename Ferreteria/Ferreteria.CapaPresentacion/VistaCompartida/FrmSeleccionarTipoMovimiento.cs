@@ -15,9 +15,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
     public partial class FrmSeleccionarTipoMovimiento : Form
     {
         private List<TipoMovimiento> ListarTipoMovimiento;
-        // Definís un delegado y un evento para pasar datos
-        public delegate void TipoMovimientoSeleccionadoHandler(string Id_Producto, string Nombre);
-        public event TipoMovimientoSeleccionadoHandler TipoMovimientoSeleccionado;
+
         public FrmSeleccionarTipoMovimiento()
         {
             InitializeComponent();
@@ -27,13 +25,7 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
         private void dgv_marcas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string Id_TipoMovimiento = Convert.ToString(this.dgv_TipoMovimiento.CurrentRow.Cells["Id_TipoMovimiento"].Value);
-            string Nombre = Convert.ToString(this.dgv_TipoMovimiento.CurrentRow.Cells["Nombre"].Value);
 
-            // Invocás el evento si hay algún método suscripto
-            TipoMovimientoSeleccionado?.Invoke(Id_TipoMovimiento, Nombre);
-
-            this.Close();
         }
 
         private void FrmSeleccionarTipoMovimiento_Load(object sender, EventArgs e)
@@ -74,11 +66,11 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
 
             CN_TipoMovimiento  _TipoMovimiento = new CN_TipoMovimiento();
 
-           ListarTipoMovimiento  = _TipoMovimiento.ListarTipoMovimientoStockManual();
+           ListarTipoMovimiento  = _TipoMovimiento.ListarTodosLosTipoMovimiento();
 
             dgv_TipoMovimiento.DataSource = ListarTipoMovimiento;
             lbl_total.Text = "Total de Registros:  " + Convert.ToString(dgv_TipoMovimiento.Rows.Count);
-            lbl_resultado.Text = "";
+      
 
         }
 

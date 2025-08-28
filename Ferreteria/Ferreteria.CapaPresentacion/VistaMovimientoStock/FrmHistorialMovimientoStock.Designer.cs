@@ -41,9 +41,9 @@
             this.lbl_fin = new System.Windows.Forms.Label();
             this.dtp_fecha_fin = new System.Windows.Forms.DateTimePicker();
             this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.btn_buscar = new System.Windows.Forms.Button();
             this.btn_limpiar = new System.Windows.Forms.Button();
+            this.Btn_tiposMovimiento = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_movimientoStock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,7 +116,7 @@
             this.btn_ver_detalle.Font = new System.Drawing.Font("Impact", 10F);
             this.btn_ver_detalle.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_ver_detalle.Image = ((System.Drawing.Image)(resources.GetObject("btn_ver_detalle.Image")));
-            this.btn_ver_detalle.Location = new System.Drawing.Point(1623, 31);
+            this.btn_ver_detalle.Location = new System.Drawing.Point(1623, 28);
             this.btn_ver_detalle.Name = "btn_ver_detalle";
             this.btn_ver_detalle.Size = new System.Drawing.Size(152, 50);
             this.btn_ver_detalle.TabIndex = 106;
@@ -196,20 +196,6 @@
             this.dtp_fecha_inicio.TabIndex = 133;
             this.dtp_fecha_inicio.UseWaitCursor = true;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(910, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 25);
-            this.label1.TabIndex = 139;
-            this.label1.Tag = "";
-            this.label1.UseWaitCursor = true;
-            // 
             // btn_buscar
             // 
             this.btn_buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -218,7 +204,7 @@
             this.btn_buscar.Font = new System.Drawing.Font("Impact", 10F);
             this.btn_buscar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
-            this.btn_buscar.Location = new System.Drawing.Point(1217, 31);
+            this.btn_buscar.Location = new System.Drawing.Point(1200, 27);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(152, 50);
             this.btn_buscar.TabIndex = 140;
@@ -236,7 +222,7 @@
             this.btn_limpiar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_limpiar.Image = ((System.Drawing.Image)(resources.GetObject("btn_limpiar.Image")));
-            this.btn_limpiar.Location = new System.Drawing.Point(1391, 31);
+            this.btn_limpiar.Location = new System.Drawing.Point(1374, 27);
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(152, 50);
             this.btn_limpiar.TabIndex = 141;
@@ -247,14 +233,32 @@
             this.btn_limpiar.UseWaitCursor = true;
             this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);
             // 
+            // Btn_tiposMovimiento
+            // 
+            this.Btn_tiposMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_tiposMovimiento.BackColor = System.Drawing.Color.SkyBlue;
+            this.Btn_tiposMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btn_tiposMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_tiposMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
+            this.Btn_tiposMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_tiposMovimiento.Image")));
+            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(1469, 151);
+            this.Btn_tiposMovimiento.Name = "Btn_tiposMovimiento";
+            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(306, 55);
+            this.Btn_tiposMovimiento.TabIndex = 142;
+            this.Btn_tiposMovimiento.Text = "Ver Tipos De Movimientos";
+            this.Btn_tiposMovimiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btn_tiposMovimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Btn_tiposMovimiento.UseVisualStyleBackColor = false;
+            this.Btn_tiposMovimiento.Click += new System.EventHandler(this.Btn_tiposMovimiento_Click);
+            // 
             // FrmHistorialMovimientoStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1787, 771);
+            this.Controls.Add(this.Btn_tiposMovimiento);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btn_buscar);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbo_TipoMovimiento);
             this.Controls.Add(this.lbl_subcategoria);
             this.Controls.Add(this.lbl_inicio);
@@ -286,8 +290,8 @@
         private System.Windows.Forms.Label lbl_fin;
         private System.Windows.Forms.DateTimePicker dtp_fecha_fin;
         private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_buscar;
         private System.Windows.Forms.Button btn_limpiar;
+        private System.Windows.Forms.Button Btn_tiposMovimiento;
     }
 }
