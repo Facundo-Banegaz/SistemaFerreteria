@@ -215,5 +215,11 @@ namespace Ferreteria.CapaPresentacion.VistaMovimientoStock
             //    txt_cantidad.Focus();
             //}
         }
+
+        private void Btn_tiposMovimiento_Click(object sender, EventArgs e)
+        {
+            FrmSeleccionarTipoMovimiento seleccionarTipoMovimiento = new FrmSeleccionarTipoMovimiento();
+            seleccionarTipoMovimiento.ShowDialog();
+        }
     }
 }

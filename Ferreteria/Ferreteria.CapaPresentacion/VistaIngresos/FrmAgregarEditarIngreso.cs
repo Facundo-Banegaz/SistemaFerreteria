@@ -582,20 +582,31 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 }
             }
 
-            // Validar porcentaje (si es visible)
             if (txt_porcentaje.Visible)
             {
-                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal porcentaje) || porcentaje < 0)
+                if (!decimal.TryParse(txt_porcentaje.Text.Trim(), NumberStyles.Any, CultureInfo.CurrentCulture, out decimal porcentaje)
+                    || porcentaje < 0
+                    || porcentaje > 100
+                    || txt_porcentaje.Text.Trim().Length > 6) // Máximo 3 dígitos enteros y 2 decimales + punto o coma
                 {
                     errorIcono.SetError(txt_porcentaje, "Porcentaje inválido.");
-                    MessageBox.Show("Ingrese un porcentaje válido mayor o igual a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ingrese un porcentaje válido entre 0 y 100.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txt_porcentaje.Focus();
+                    return false;
+                }
+
+                string[] partes = txt_porcentaje.Text.Trim().Replace('.', ',').Split(',');
+                if (partes.Length > 1 && partes[1].Length > 2)
+                {
+                    errorIcono.SetError(txt_porcentaje, "Porcentaje inválido.");
+                    MessageBox.Show("Ingrese un porcentaje válido con un máximo de 2 decimales.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txt_porcentaje.Focus();
                     return false;
                 }
             }
 
             // Validar precio de compra > 0
-            if (!decimal.TryParse(txt_precioCompra.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal precioCompra) || precioCompra <= 0)
+            if (!decimal.TryParse(txt_precioCompra.Text.Trim(), NumberStyles.Any, CultureInfo.CurrentCulture, out decimal precioCompra) || precioCompra <= 0)
             {
                 errorIcono.SetError(txt_precioCompra, "Precio inválido.");
                 MessageBox.Show("El precio de compra debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -603,8 +614,9 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
                 return false;
             }
 
+    
             // Validar cantidad > 0
-            if (!decimal.TryParse(txt_productoCantidad.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out decimal cantidad) || cantidad <= 0)
+            if (!decimal.TryParse(txt_productoCantidad.Text.Trim(), NumberStyles.Any, CultureInfo.CurrentCulture, out decimal cantidad) || cantidad <= 0)
             {
                 errorIcono.SetError(txt_productoCantidad, "Cantidad inválida.");
                 MessageBox.Show("La cantidad debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -747,6 +759,21 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void txt_porcentaje_TextChanged(object sender, EventArgs e)
         {
+            if (txt_porcentaje.Visible)
+            {
+                string patron = @"^(\d{1,3}(\.\d{1,2})?|\d{1,3}(,\d{1,2})?)$";
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txt_porcentaje.Text.Trim(), patron)
+                    || !decimal.TryParse(txt_porcentaje.Text.Trim().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal porcentaje)
+                    || porcentaje < 0
+                    || porcentaje > 100)
+                {
+                    errorIcono.SetError(txt_porcentaje, "Porcentaje inválido.");
+                }
+                else
+                {
+                    errorIcono.SetError(txt_porcentaje, string.Empty);
+                }
+            }
             CalcularPrecioVenta();
         }
 

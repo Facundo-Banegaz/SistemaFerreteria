@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInventarioBajo));
             this.dgv_productos = new System.Windows.Forms.DataGridView();
             this.lbl_resultado = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@
             this.lbl_Stock_Ok = new System.Windows.Forms.Label();
             this.lbl_Stock_Critico = new System.Windows.Forms.Label();
             this.lbl_Stock_Igual = new System.Windows.Forms.Label();
+            this.lbl_ValorMercaderia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_productos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,14 +55,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_productos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_productos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_productos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_productos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_productos.EnableHeadersVisualStyles = false;
             this.dgv_productos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -218,11 +219,24 @@
             this.lbl_Stock_Igual.TabIndex = 139;
             this.lbl_Stock_Igual.UseWaitCursor = true;
             // 
+            // lbl_ValorMercaderia
+            // 
+            this.lbl_ValorMercaderia.AutoSize = true;
+            this.lbl_ValorMercaderia.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_ValorMercaderia.Font = new System.Drawing.Font("Impact", 16F);
+            this.lbl_ValorMercaderia.ForeColor = System.Drawing.Color.LightGreen;
+            this.lbl_ValorMercaderia.Location = new System.Drawing.Point(774, 200);
+            this.lbl_ValorMercaderia.Name = "lbl_ValorMercaderia";
+            this.lbl_ValorMercaderia.Size = new System.Drawing.Size(0, 39);
+            this.lbl_ValorMercaderia.TabIndex = 140;
+            this.lbl_ValorMercaderia.UseWaitCursor = true;
+            // 
             // FrmInventarioBajo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1787, 771);
+            this.Controls.Add(this.lbl_ValorMercaderia);
             this.Controls.Add(this.lbl_Stock_Igual);
             this.Controls.Add(this.lbl_Stock_Critico);
             this.Controls.Add(this.lbl_Stock_Ok);
@@ -256,5 +270,6 @@
         private System.Windows.Forms.Label lbl_Stock_Ok;
         private System.Windows.Forms.Label lbl_Stock_Critico;
         private System.Windows.Forms.Label lbl_Stock_Igual;
+        private System.Windows.Forms.Label lbl_ValorMercaderia;
     }
 }

@@ -185,9 +185,10 @@ namespace Ferreteria.CapaDatos
                     ProductoInventarioBajoDto.Categoria = (string)Conexion.Lector["Categoria"];
 
                     ProductoInventarioBajoDto.Subcategoria = (string)Conexion.Lector["Subcategoria"];
+     
 
 
-             
+
                     ProductoInventarioBajoDto.Marca = (string)Conexion.Lector["Marca"];
 
 
@@ -221,7 +222,7 @@ namespace Ferreteria.CapaDatos
             {
                 Conexion.SetConsultaProcedure("Sp_ProductosVencimiento");
                 Conexion.SetearParametro("@FiltroEstado", FiltroEstado);
-               
+
 
                 Conexion.EjecutarLectura();
 
@@ -231,7 +232,7 @@ namespace Ferreteria.CapaDatos
                     ProductoConVencimientoDto = new ProductoConVencimientoDto();
 
                     //atributos propios
-
+             
 
                     ProductoConVencimientoDto.Id_DetalleIngreso = (int)Conexion.Lector["Id_DetalleIngreso"];
                     ProductoConVencimientoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
@@ -240,7 +241,7 @@ namespace Ferreteria.CapaDatos
 
 
                     ProductoConVencimientoDto.Stock = (decimal)Conexion.Lector["Stock"];
-                    
+
 
 
                     ProductoConVencimientoDto.Marca = (string)Conexion.Lector["Marca"];
@@ -641,7 +642,6 @@ namespace Ferreteria.CapaDatos
                     ProductoInventarioBajoDto.StockMinimo = (decimal)Conexion.Lector["StockMinimo"];
 
 
-
                     ProductoInventarioBajoDto.Categoria = (string)Conexion.Lector["Categoria"];
 
                     ProductoInventarioBajoDto.Subcategoria = (string)Conexion.Lector["Subcategoria"];
@@ -693,7 +693,7 @@ namespace Ferreteria.CapaDatos
                     ProductoConVencimientoDto = new ProductoConVencimientoDto();
 
                     //atributos propios
-
+            
                     ProductoConVencimientoDto.Id_DetalleIngreso = (int)Conexion.Lector["Id_DetalleIngreso"];
                     ProductoConVencimientoDto.Id_Producto = (int)Conexion.Lector["Id_Producto"];
                     ProductoConVencimientoDto.Codigo = (string)Conexion.Lector["Codigo"];
@@ -715,8 +715,8 @@ namespace Ferreteria.CapaDatos
                     ProductoConVencimientoDto.FechaVencimiento = (DateTime)Conexion.Lector["FechaVencimiento"];
 
                     ProductoConVencimientoDto.CantidadLote = (decimal)Conexion.Lector["CantidadLote"];
+                    ProductoConVencimientoDto.CantidadLoteVencida = (decimal)Conexion.Lector["CantidadLoteVencida"];
                     ProductoConVencimientoDto.DiasRestantes = (int)Conexion.Lector["DiasRestantes"];
-
                     ProductoConVencimientoDto.Estado = (string)Conexion.Lector["Estado"];
 
 

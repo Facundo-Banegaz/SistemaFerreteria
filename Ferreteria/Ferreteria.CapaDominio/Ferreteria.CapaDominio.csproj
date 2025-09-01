@@ -61,11 +61,9 @@
     <Compile Include="MovimientoStock.cs" />
     <Compile Include="Presupuesto.cs" />
     <Compile Include="Proveedor.cs" />
-    <Compile Include="Reportes\IngresosNetosPorPeriodo.cs" />
-    <Compile Include="Reportes\ReporteIngresoListado.cs" />
-    <Compile Include="Reportes\SalesListing.cs" />
-    <Compile Include="Reportes\NetSalesByPeriod.cs" />
-    <Compile Include="Reportes\SalesReport.cs" />
+    <Compile Include="DominioReportes\SalesListing.cs" />
+    <Compile Include="DominioReportes\NetSalesByPeriod.cs" />
+    <Compile Include="DominioReportes\SalesReport.cs" />
     <Compile Include="Subcategoria.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="TipoEspecificacion.cs" />

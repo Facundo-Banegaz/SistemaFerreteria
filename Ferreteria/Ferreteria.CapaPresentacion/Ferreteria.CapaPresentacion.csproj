@@ -326,6 +326,12 @@
     <Compile Include="VistaProveedor\FrmProveedor.Designer.cs">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaReporte\FrmReporteDeVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteDeVenta.Designer.cs">
+      <DependentUpon>FrmReporteDeVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaReporte\FrmReporteFacturaIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,17 +356,29 @@
     <Compile Include="VistaReporte\FrmReporteInventario.Designer.cs">
       <DependentUpon>FrmReporteInventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaReporte\FrmReporteProductoMasVendido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmReporteProductoMasVendido.Designer.cs">
+      <DependentUpon>FrmReporteProductoMasVendido.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaReporte\FrmReporteProductoVencimiento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VistaReporte\FrmReporteProductoVencimiento.Designer.cs">
       <DependentUpon>FrmReporteProductoVencimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaReporte\FrmReporteVenta.cs">
+    <Compile Include="VistaReporte\FrmSeleccionarFechaProductosMasVendidos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaReporte\FrmReporteVenta.Designer.cs">
-      <DependentUpon>FrmReporteVenta.cs</DependentUpon>
+    <Compile Include="VistaReporte\FrmSeleccionarFechaProductosMasVendidos.Designer.cs">
+      <DependentUpon>FrmSeleccionarFechaProductosMasVendidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaReporte\FrmSeleccionarFechaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaReporte\FrmSeleccionarFechaVentas.Designer.cs">
+      <DependentUpon>FrmSeleccionarFechaVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.cs">
       <SubType>Form</SubType>
@@ -454,6 +472,8 @@
     <EmbeddedResource Include="Reportes\RptFacturaVenta.rdlc" />
     <EmbeddedResource Include="Reportes\RptInventario.rdlc" />
     <EmbeddedResource Include="Reportes\RptProductosConVencimiento.rdlc" />
+    <EmbeddedResource Include="Reportes\RptProductosMasVendidos.rdlc" />
+    <EmbeddedResource Include="Reportes\RptReporteDeVenta.rdlc" />
     <EmbeddedResource Include="VistaBackup\FrmBackup.resx">
       <DependentUpon>FrmBackup.cs</DependentUpon>
     </EmbeddedResource>
@@ -580,7 +600,9 @@
     <EmbeddedResource Include="VistaProveedor\FrmProveedor.resx">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\SalesReport.rdlc" />
+    <EmbeddedResource Include="VistaReporte\FrmReporteDeVenta.resx">
+      <DependentUpon>FrmReporteDeVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaReporte\FrmReporteFacturaIngreso.resx">
       <DependentUpon>FrmReporteFacturaIngreso.cs</DependentUpon>
     </EmbeddedResource>
@@ -593,11 +615,17 @@
     <EmbeddedResource Include="VistaReporte\FrmReporteInventario.resx">
       <DependentUpon>FrmReporteInventario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmReporteProductoMasVendido.resx">
+      <DependentUpon>FrmReporteProductoMasVendido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaReporte\FrmReporteProductoVencimiento.resx">
       <DependentUpon>FrmReporteProductoVencimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaReporte\FrmReporteVenta.resx">
-      <DependentUpon>FrmReporteVenta.cs</DependentUpon>
+    <EmbeddedResource Include="VistaReporte\FrmSeleccionarFechaProductosMasVendidos.resx">
+      <DependentUpon>FrmSeleccionarFechaProductosMasVendidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaReporte\FrmSeleccionarFechaVentas.resx">
+      <DependentUpon>FrmSeleccionarFechaVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaSubcategoria\FrmAgregarEditarSubcategoria.resx">
       <DependentUpon>FrmAgregarEditarSubcategoria.cs</DependentUpon>
@@ -672,7 +700,7 @@
       <Name>Ferreteria.CapaDominio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ferreteria.CapaNegocio\Ferreteria.CapaNegocio.csproj">
-      <Project>{38bb6293-2a50-40e4-acd5-1f4db740a2d0}</Project>
+      <Project>{38BB6293-2A50-40E4-ACD5-1F4DB740A2D0}</Project>
       <Name>Ferreteria.CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>

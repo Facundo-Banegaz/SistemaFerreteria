@@ -51,9 +51,10 @@
             this.Btn_restaurar_respaldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Btn_restaurar_respaldo.BackColor = System.Drawing.Color.SteelBlue;
             this.Btn_restaurar_respaldo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_restaurar_respaldo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_restaurar_respaldo.Font = new System.Drawing.Font("Impact", 12F);
             this.Btn_restaurar_respaldo.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_restaurar_respaldo.Image = ((System.Drawing.Image)(resources.GetObject("Btn_restaurar_respaldo.Image")));
+            this.Btn_restaurar_respaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Btn_restaurar_respaldo.Location = new System.Drawing.Point(456, 95);
             this.Btn_restaurar_respaldo.Name = "Btn_restaurar_respaldo";
             this.Btn_restaurar_respaldo.Size = new System.Drawing.Size(284, 65);
@@ -69,9 +70,10 @@
             this.Btn_crear_respaldo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Btn_crear_respaldo.BackColor = System.Drawing.Color.LimeGreen;
             this.Btn_crear_respaldo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_crear_respaldo.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_crear_respaldo.Font = new System.Drawing.Font("Impact", 12F);
             this.Btn_crear_respaldo.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_crear_respaldo.Image = ((System.Drawing.Image)(resources.GetObject("Btn_crear_respaldo.Image")));
+            this.Btn_crear_respaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Btn_crear_respaldo.Location = new System.Drawing.Point(15, 95);
             this.Btn_crear_respaldo.Name = "Btn_crear_respaldo";
             this.Btn_crear_respaldo.Size = new System.Drawing.Size(284, 65);
@@ -85,7 +87,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Impact", 18F);
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label1.Location = new System.Drawing.Point(96, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(574, 44);
@@ -100,7 +103,7 @@
             this.groupBox1.Controls.Add(this.dtpHoraBackup);
             this.groupBox1.Controls.Add(this.Txt_carpeta);
             this.groupBox1.Controls.Add(this.Btn_seleccionarCarpeta);
-            this.groupBox1.Location = new System.Drawing.Point(12, 337);
+            this.groupBox1.Location = new System.Drawing.Point(12, 324);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(754, 383);
             this.groupBox1.TabIndex = 110;
@@ -111,7 +114,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.textBox1.ForeColor = System.Drawing.Color.DodgerBlue;
             this.textBox1.Location = new System.Drawing.Point(6, 235);
             this.textBox1.Multiline = true;
@@ -125,7 +128,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label3.Location = new System.Drawing.Point(183, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(162, 25);
@@ -135,7 +139,7 @@
             // 
             // dtpHoraBackup
             // 
-            this.dtpHoraBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpHoraBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.dtpHoraBackup.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraBackup.Location = new System.Drawing.Point(15, 153);
             this.dtpHoraBackup.Name = "dtpHoraBackup";
@@ -146,10 +150,10 @@
             // 
             // Txt_carpeta
             // 
+            this.Txt_carpeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Txt_carpeta.Location = new System.Drawing.Point(15, 47);
-            this.Txt_carpeta.Multiline = true;
             this.Txt_carpeta.Name = "Txt_carpeta";
-            this.Txt_carpeta.Size = new System.Drawing.Size(725, 46);
+            this.Txt_carpeta.Size = new System.Drawing.Size(725, 39);
             this.Txt_carpeta.TabIndex = 2;
             // 
             // Btn_seleccionarCarpeta
@@ -157,7 +161,8 @@
             this.Btn_seleccionarCarpeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_seleccionarCarpeta.BackColor = System.Drawing.Color.Gold;
             this.Btn_seleccionarCarpeta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_seleccionarCarpeta.Font = new System.Drawing.Font("Impact", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_seleccionarCarpeta.Font = new System.Drawing.Font("Impact", 10F);
+            this.Btn_seleccionarCarpeta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Btn_seleccionarCarpeta.Location = new System.Drawing.Point(527, 148);
             this.Btn_seleccionarCarpeta.Name = "Btn_seleccionarCarpeta";
             this.Btn_seleccionarCarpeta.Size = new System.Drawing.Size(213, 55);
@@ -182,7 +187,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Impact", 12F);
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label2.Location = new System.Drawing.Point(218, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(292, 29);
@@ -198,11 +204,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(778, 794);
+            this.ClientSize = new System.Drawing.Size(778, 744);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 800);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 800);
             this.Name = "FrmBackup";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Backup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBackup_FormClosing);

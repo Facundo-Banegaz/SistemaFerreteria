@@ -167,6 +167,8 @@ namespace Ferreteria.CapaPresentacion.VistaCompartida
                             e.CellStyle.BackColor = Color.LightGreen;
                         }
                     }
+
+                 
                 }
             }
         }

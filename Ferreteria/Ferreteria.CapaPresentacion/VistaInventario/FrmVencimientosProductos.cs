@@ -68,6 +68,10 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
             CN_Metodos _Metodos = new CN_Metodos();
 
             dgv_productos.Columns["Id_Producto"].Visible = false;
+
+   
+
+            dgv_productos.Columns["Id_DetalleIngreso"].Visible = false;
             dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 
@@ -134,10 +138,10 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
                         e.CellStyle.BackColor = Color.Orange;
                         e.CellStyle.ForeColor = Color.Black;
                     }
-                    else
+                    else if (estado == "VIGENTE")
                     {
-                        e.CellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
-                        e.CellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;
+                        e.CellStyle.BackColor = Color.GreenYellow;
+                        e.CellStyle.ForeColor = Color.Black;
                     }
                 }
             }

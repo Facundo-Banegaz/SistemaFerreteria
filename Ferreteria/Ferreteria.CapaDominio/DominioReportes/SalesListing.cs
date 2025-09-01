@@ -15,6 +15,5 @@ namespace Ferreteria.CapaDominio.Reportes
         public string Usuario { get; set; }
         public string Productos { get; set; } 
         public decimal TotalVenta { get; set; }
-        public string TotalVentaFormatoArg => TotalVenta.ToString("C2", new CultureInfo("es-AR"));
     }
 }

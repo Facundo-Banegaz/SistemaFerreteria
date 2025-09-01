@@ -27,7 +27,7 @@ namespace Ferreteria.CapaPresentacion.VistaReporte
 
             try
             {
-                // TODO: esta línea de código carga datos en la tabla 'dsPrincipal.SpReporte_factura' Puede moverla o quitarla según sea necesario.
+           
                 this.sp_ProductosVencimientoTableAdapter.Fill(this.dsPrincipal.Sp_ProductosVencimiento,filtrarEstado);
                 this.reportViewer1.RefreshReport();
             }

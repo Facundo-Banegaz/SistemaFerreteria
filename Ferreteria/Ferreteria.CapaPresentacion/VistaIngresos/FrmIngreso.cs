@@ -1,5 +1,6 @@
 ﻿using Ferreteria.CapaDominio;
 using Ferreteria.CapaNegocio;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -172,6 +173,21 @@ namespace Ferreteria.CapaPresentacion.VistaIngresos
 
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
+            Ingreso seleccionado = null;
+
+            if (dgv_ingresos.CurrentRow != null)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Quieres Ver el Reporte de este Ingreso?", "Detalle", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Ingreso)dgv_ingresos.CurrentRow.DataBoundItem;
+                    FrmReporteFacturaIngreso facturaIngreso = new FrmReporteFacturaIngreso(seleccionado);
+                    facturaIngreso.ShowDialog();
+                    CargarGrilla();
+                }
+            }
+       
 
         }
 

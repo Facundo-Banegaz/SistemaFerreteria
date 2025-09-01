@@ -12,6 +12,7 @@ using Ferreteria.CapaPresentacion.VistaMovimientoStockManual;
 using Ferreteria.CapaPresentacion.VistaPresupuesto;
 using Ferreteria.CapaPresentacion.VistaProducto;
 using Ferreteria.CapaPresentacion.VistaProveedor;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using Ferreteria.CapaPresentacion.VistaSubcategoria;
 using Ferreteria.CapaPresentacion.VistaTicket;
 using Ferreteria.CapaPresentacion.VistaUnidadMedida;
@@ -261,23 +262,20 @@ namespace Ferreteria.CapaPresentacion.VistaMDIPrincipal
 
         private void Menu_Item_Reporte_Ventas_Click(object sender, EventArgs e)
         {
-
+            FrmSeleccionarFechaVentas  Fecha=  new FrmSeleccionarFechaVentas();
+            Fecha.ShowDialog();
         }
 
-        private void Menu_Item_Reporte_Compras_Click(object sender, EventArgs e)
-        {
-
-        }
+  
+        
 
         private void Menu_Item_Reporte_Productos_Mas_Vendidos_Click(object sender, EventArgs e)
         {
-
+            FrmSeleccionarFechaProductosMasVendidos Fecha = new FrmSeleccionarFechaProductosMasVendidos();
+            Fecha.ShowDialog();
         }
 
-        private void Menu_Item_Reporte_Productos_Mas_Comprados_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void Menu_Item_Consultar_Productos_Click(object sender, EventArgs e)
         {

@@ -645,7 +645,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Sp_Inventario</DataSetName>
-        <Top>7.5944cm</Top>
+        <Top>8.90023cm</Top>
         <Left>1.20023cm</Left>
         <Height>1.2cm</Height>
         <Width>15.42607cm</Width>
@@ -757,6 +757,43 @@
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox13">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Valor total del Inventario: " &amp; Sum(Fields!Stock.Value * Fields!Precio.Value, "Sp_Inventario")</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>'$'#,0.00;('$'#,0.00)</Format>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>7.89454cm</Top>
+        <Left>1.20023cm</Left>
+        <Height>0.6cm</Height>
+        <Width>15.42607cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
         </Style>
       </Textbox>
     </ReportItems>

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHistorialMovimientoStockManual));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,7 +75,7 @@
             this.btn_buscar.Font = new System.Drawing.Font("Impact", 10F);
             this.btn_buscar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
-            this.btn_buscar.Location = new System.Drawing.Point(1085, 27);
+            this.btn_buscar.Location = new System.Drawing.Point(1129, 27);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(170, 61);
             this.btn_buscar.TabIndex = 153;
@@ -128,7 +128,7 @@
             // dtp_fecha_fin
             // 
             this.dtp_fecha_fin.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_fin.Location = new System.Drawing.Point(291, 165);
+            this.dtp_fecha_fin.Location = new System.Drawing.Point(358, 167);
             this.dtp_fecha_fin.Name = "dtp_fecha_fin";
             this.dtp_fecha_fin.Size = new System.Drawing.Size(731, 37);
             this.dtp_fecha_fin.TabIndex = 147;
@@ -137,7 +137,7 @@
             // dtp_fecha_inicio
             // 
             this.dtp_fecha_inicio.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(290, 108);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(357, 110);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(731, 37);
             this.dtp_fecha_inicio.TabIndex = 146;
@@ -153,23 +153,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_movimientoStock.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_movimientoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_movimientoStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_movimientoStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_movimientoStock.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_movimientoStock.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_movimientoStock.EnableHeadersVisualStyles = false;
             this.dgv_movimientoStock.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgv_movimientoStock.Location = new System.Drawing.Point(2, 268);
@@ -210,7 +210,7 @@
             this.cbo_TipoMovimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_TipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.cbo_TipoMovimiento.FormattingEnabled = true;
-            this.cbo_TipoMovimiento.Location = new System.Drawing.Point(289, 48);
+            this.cbo_TipoMovimiento.Location = new System.Drawing.Point(357, 48);
             this.cbo_TipoMovimiento.Name = "cbo_TipoMovimiento";
             this.cbo_TipoMovimiento.Size = new System.Drawing.Size(733, 40);
             this.cbo_TipoMovimiento.TabIndex = 151;
@@ -223,7 +223,7 @@
             this.lbl_subcategoria.BackColor = System.Drawing.Color.Black;
             this.lbl_subcategoria.Font = new System.Drawing.Font("Impact", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_subcategoria.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_subcategoria.Location = new System.Drawing.Point(58, 53);
+            this.lbl_subcategoria.Location = new System.Drawing.Point(58, 52);
             this.lbl_subcategoria.Name = "lbl_subcategoria";
             this.lbl_subcategoria.Size = new System.Drawing.Size(210, 35);
             this.lbl_subcategoria.TabIndex = 150;
@@ -250,17 +250,15 @@
             // 
             // Btn_tiposMovimiento
             // 
-            this.Btn_tiposMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_tiposMovimiento.BackColor = System.Drawing.Color.SkyBlue;
             this.Btn_tiposMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Btn_tiposMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_tiposMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_tiposMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_tiposMovimiento.Image")));
-            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(1355, 196);
+            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(274, 40);
             this.Btn_tiposMovimiento.Name = "Btn_tiposMovimiento";
-            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(420, 66);
+            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(75, 55);
             this.Btn_tiposMovimiento.TabIndex = 156;
-            this.Btn_tiposMovimiento.Text = "Ver Tipos De Movimientos";
             this.Btn_tiposMovimiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Btn_tiposMovimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Btn_tiposMovimiento.UseVisualStyleBackColor = false;

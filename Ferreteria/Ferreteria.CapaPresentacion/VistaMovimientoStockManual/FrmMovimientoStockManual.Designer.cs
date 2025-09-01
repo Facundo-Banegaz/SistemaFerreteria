@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbo_TipoMovimiento = new System.Windows.Forms.ComboBox();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Btn_tiposMovimiento = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.SuspendLayout();
@@ -227,11 +228,29 @@
             // 
             this.errorIcono.ContainerControl = this;
             // 
+            // Btn_tiposMovimiento
+            // 
+            this.Btn_tiposMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_tiposMovimiento.BackColor = System.Drawing.Color.SkyBlue;
+            this.Btn_tiposMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btn_tiposMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_tiposMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
+            this.Btn_tiposMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_tiposMovimiento.Image")));
+            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(1004, 235);
+            this.Btn_tiposMovimiento.Name = "Btn_tiposMovimiento";
+            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(75, 55);
+            this.Btn_tiposMovimiento.TabIndex = 168;
+            this.Btn_tiposMovimiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btn_tiposMovimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Btn_tiposMovimiento.UseVisualStyleBackColor = false;
+            this.Btn_tiposMovimiento.Click += new System.EventHandler(this.Btn_tiposMovimiento_Click);
+            // 
             // FrmMovimientoStockManual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 844);
+            this.Controls.Add(this.Btn_tiposMovimiento);
             this.Controls.Add(this.cbo_TipoMovimiento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_cantidad);
@@ -275,5 +294,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbo_TipoMovimiento;
         private System.Windows.Forms.ErrorProvider errorIcono;
+        private System.Windows.Forms.Button Btn_tiposMovimiento;
     }
 }

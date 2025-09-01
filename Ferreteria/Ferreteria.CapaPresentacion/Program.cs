@@ -1,8 +1,7 @@
 ﻿
 
 using Ferreteria.CapaPresentacion.VistaLogin;
-using Ferreteria.CapaPresentacion.VistaMovimientoStock;
-using Ferreteria.CapaPresentacion.VistaTicket;
+using Ferreteria.CapaPresentacion.VistaReporte;
 using System;
 using System.Collections.Generic;
 using System.Linq;

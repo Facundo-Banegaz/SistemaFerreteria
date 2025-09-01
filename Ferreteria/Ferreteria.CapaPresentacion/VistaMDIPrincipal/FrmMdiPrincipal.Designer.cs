@@ -42,8 +42,6 @@
             this.Menu_gestion_reportes = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Item_Reporte_Ventas = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Item_Reporte_Productos_Mas_Vendidos = new System.Windows.Forms.ToolStripMenuItem();
-            this.Menu_Item_Reporte_Compras = new System.Windows.Forms.ToolStripMenuItem();
-            this.Menu_Item_Reporte_Productos_Mas_Comprados = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_item_salir = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_gestion_mantenimientos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_productos = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +57,7 @@
             this.Menu_Item_Ajustes_Movimientos = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_gestion_Configuracion = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Item_Ticket = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Item_Backup = new System.Windows.Forms.ToolStripMenuItem();
             this.tn_tiempo = new System.Windows.Forms.Timer(this.components);
             this.Menu_secundario = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -67,7 +66,6 @@
             this.lbl_fecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_usuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Menu_Item_Backup = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_principal.SuspendLayout();
             this.Menu_secundario.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +112,7 @@
             this.Menu_item_venta.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_venta.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_venta.Image")));
             this.Menu_item_venta.Name = "Menu_item_venta";
-            this.Menu_item_venta.Size = new System.Drawing.Size(181, 36);
+            this.Menu_item_venta.Size = new System.Drawing.Size(278, 42);
             this.Menu_item_venta.Text = "Ventas";
             this.Menu_item_venta.Click += new System.EventHandler(this.Menu_item_venta_Click);
             // 
@@ -193,9 +191,7 @@
             this.Menu_gestion_reportes.BackColor = System.Drawing.Color.Black;
             this.Menu_gestion_reportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_Item_Reporte_Ventas,
-            this.Menu_Item_Reporte_Productos_Mas_Vendidos,
-            this.Menu_Item_Reporte_Compras,
-            this.Menu_Item_Reporte_Productos_Mas_Comprados});
+            this.Menu_Item_Reporte_Productos_Mas_Vendidos});
             this.Menu_gestion_reportes.Font = new System.Drawing.Font("Segoe UI Black", 10F, System.Drawing.FontStyle.Bold);
             this.Menu_gestion_reportes.ForeColor = System.Drawing.Color.Orange;
             this.Menu_gestion_reportes.Image = ((System.Drawing.Image)(resources.GetObject("Menu_gestion_reportes.Image")));
@@ -210,7 +206,7 @@
             this.Menu_Item_Reporte_Ventas.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_Item_Reporte_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Reporte_Ventas.Image")));
             this.Menu_Item_Reporte_Ventas.Name = "Menu_Item_Reporte_Ventas";
-            this.Menu_Item_Reporte_Ventas.Size = new System.Drawing.Size(500, 36);
+            this.Menu_Item_Reporte_Ventas.Size = new System.Drawing.Size(487, 42);
             this.Menu_Item_Reporte_Ventas.Text = "Reporte De Ventas";
             this.Menu_Item_Reporte_Ventas.Click += new System.EventHandler(this.Menu_Item_Reporte_Ventas_Click);
             // 
@@ -220,29 +216,9 @@
             this.Menu_Item_Reporte_Productos_Mas_Vendidos.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_Item_Reporte_Productos_Mas_Vendidos.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Reporte_Productos_Mas_Vendidos.Image")));
             this.Menu_Item_Reporte_Productos_Mas_Vendidos.Name = "Menu_Item_Reporte_Productos_Mas_Vendidos";
-            this.Menu_Item_Reporte_Productos_Mas_Vendidos.Size = new System.Drawing.Size(500, 36);
+            this.Menu_Item_Reporte_Productos_Mas_Vendidos.Size = new System.Drawing.Size(487, 42);
             this.Menu_Item_Reporte_Productos_Mas_Vendidos.Text = "Reporte De Productos Mas Vendidos";
             this.Menu_Item_Reporte_Productos_Mas_Vendidos.Click += new System.EventHandler(this.Menu_Item_Reporte_Productos_Mas_Vendidos_Click);
-            // 
-            // Menu_Item_Reporte_Compras
-            // 
-            this.Menu_Item_Reporte_Compras.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Menu_Item_Reporte_Compras.ForeColor = System.Drawing.Color.SeaShell;
-            this.Menu_Item_Reporte_Compras.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Reporte_Compras.Image")));
-            this.Menu_Item_Reporte_Compras.Name = "Menu_Item_Reporte_Compras";
-            this.Menu_Item_Reporte_Compras.Size = new System.Drawing.Size(500, 36);
-            this.Menu_Item_Reporte_Compras.Text = "Reporte De Compras";
-            this.Menu_Item_Reporte_Compras.Click += new System.EventHandler(this.Menu_Item_Reporte_Compras_Click);
-            // 
-            // Menu_Item_Reporte_Productos_Mas_Comprados
-            // 
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.ForeColor = System.Drawing.Color.SeaShell;
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Reporte_Productos_Mas_Comprados.Image")));
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.Name = "Menu_Item_Reporte_Productos_Mas_Comprados";
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.Size = new System.Drawing.Size(500, 36);
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.Text = "Reporte De Productos Mas Comprados";
-            this.Menu_Item_Reporte_Productos_Mas_Comprados.Click += new System.EventHandler(this.Menu_Item_Reporte_Productos_Mas_Comprados_Click);
             // 
             // Menu_item_salir
             // 
@@ -283,7 +259,7 @@
             this.menu_item_productos.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_productos.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_productos.Image")));
             this.menu_item_productos.Name = "menu_item_productos";
-            this.menu_item_productos.Size = new System.Drawing.Size(303, 42);
+            this.menu_item_productos.Size = new System.Drawing.Size(295, 36);
             this.menu_item_productos.Text = "Productos";
             this.menu_item_productos.Click += new System.EventHandler(this.menu_item_productos_Click);
             // 
@@ -293,7 +269,7 @@
             this.menu_items_categorias.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_items_categorias.Image = ((System.Drawing.Image)(resources.GetObject("menu_items_categorias.Image")));
             this.menu_items_categorias.Name = "menu_items_categorias";
-            this.menu_items_categorias.Size = new System.Drawing.Size(303, 42);
+            this.menu_items_categorias.Size = new System.Drawing.Size(295, 36);
             this.menu_items_categorias.Text = "Categorias";
             this.menu_items_categorias.Click += new System.EventHandler(this.menu_items_categorias_Click);
             // 
@@ -303,7 +279,7 @@
             this.menu_item_subcategorias.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_subcategorias.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_subcategorias.Image")));
             this.menu_item_subcategorias.Name = "menu_item_subcategorias";
-            this.menu_item_subcategorias.Size = new System.Drawing.Size(303, 42);
+            this.menu_item_subcategorias.Size = new System.Drawing.Size(295, 36);
             this.menu_item_subcategorias.Text = "Subcategorias";
             this.menu_item_subcategorias.Click += new System.EventHandler(this.menu_item_subcategorias_Click);
             // 
@@ -313,7 +289,7 @@
             this.toolStripMenuItem12.ForeColor = System.Drawing.Color.SeaShell;
             this.toolStripMenuItem12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem12.Image")));
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(303, 42);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(295, 36);
             this.toolStripMenuItem12.Text = "Marcas";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.menu_item_marcas_Click);
             // 
@@ -323,7 +299,7 @@
             this.Menu_item_UnidadMedida.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_UnidadMedida.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_UnidadMedida.Image")));
             this.Menu_item_UnidadMedida.Name = "Menu_item_UnidadMedida";
-            this.Menu_item_UnidadMedida.Size = new System.Drawing.Size(303, 42);
+            this.Menu_item_UnidadMedida.Size = new System.Drawing.Size(295, 36);
             this.Menu_item_UnidadMedida.Text = "Unidad de Medida";
             this.Menu_item_UnidadMedida.Click += new System.EventHandler(this.Menu_item_UnidadMedida_Click);
             // 
@@ -333,7 +309,7 @@
             this.Menu_item_proveedores.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_proveedores.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_proveedores.Image")));
             this.Menu_item_proveedores.Name = "Menu_item_proveedores";
-            this.Menu_item_proveedores.Size = new System.Drawing.Size(303, 42);
+            this.Menu_item_proveedores.Size = new System.Drawing.Size(295, 36);
             this.Menu_item_proveedores.Text = "Proveedores";
             this.Menu_item_proveedores.Click += new System.EventHandler(this.Menu_item_proveedores_Click_1);
             // 
@@ -343,7 +319,7 @@
             this.menu_item_especificación.ForeColor = System.Drawing.Color.SeaShell;
             this.menu_item_especificación.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_especificación.Image")));
             this.menu_item_especificación.Name = "menu_item_especificación";
-            this.menu_item_especificación.Size = new System.Drawing.Size(303, 42);
+            this.menu_item_especificación.Size = new System.Drawing.Size(295, 36);
             this.menu_item_especificación.Text = "Especificación";
             this.menu_item_especificación.Click += new System.EventHandler(this.menu_item_especificación_Click);
             // 
@@ -353,7 +329,7 @@
             this.Menu_item_usuarios.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_item_usuarios.Image = ((System.Drawing.Image)(resources.GetObject("Menu_item_usuarios.Image")));
             this.Menu_item_usuarios.Name = "Menu_item_usuarios";
-            this.Menu_item_usuarios.Size = new System.Drawing.Size(303, 42);
+            this.Menu_item_usuarios.Size = new System.Drawing.Size(295, 36);
             this.Menu_item_usuarios.Text = "Usuarios";
             this.Menu_item_usuarios.Click += new System.EventHandler(this.Menu_item_usuarios_Click);
             // 
@@ -377,7 +353,7 @@
             this.Menu_Item_Inventario.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_Item_Inventario.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Inventario.Image")));
             this.Menu_Item_Inventario.Name = "Menu_Item_Inventario";
-            this.Menu_Item_Inventario.Size = new System.Drawing.Size(362, 42);
+            this.Menu_Item_Inventario.Size = new System.Drawing.Size(354, 36);
             this.Menu_Item_Inventario.Text = "Movimientos";
             this.Menu_Item_Inventario.Click += new System.EventHandler(this.Menu_Item_Inventario_Click);
             // 
@@ -387,7 +363,7 @@
             this.Menu_Item_Ajustes_Movimientos.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_Item_Ajustes_Movimientos.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Ajustes_Movimientos.Image")));
             this.Menu_Item_Ajustes_Movimientos.Name = "Menu_Item_Ajustes_Movimientos";
-            this.Menu_Item_Ajustes_Movimientos.Size = new System.Drawing.Size(362, 42);
+            this.Menu_Item_Ajustes_Movimientos.Size = new System.Drawing.Size(354, 36);
             this.Menu_Item_Ajustes_Movimientos.Text = "Ajustes de Movimientos";
             this.Menu_Item_Ajustes_Movimientos.Click += new System.EventHandler(this.Menu_Item_Ajustes_Movimientos_Click);
             // 
@@ -411,9 +387,19 @@
             this.Menu_Item_Ticket.ForeColor = System.Drawing.Color.SeaShell;
             this.Menu_Item_Ticket.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Ticket.Image")));
             this.Menu_Item_Ticket.Name = "Menu_Item_Ticket";
-            this.Menu_Item_Ticket.Size = new System.Drawing.Size(381, 42);
+            this.Menu_Item_Ticket.Size = new System.Drawing.Size(373, 36);
             this.Menu_Item_Ticket.Text = "Configuración Ticket";
             this.Menu_Item_Ticket.Click += new System.EventHandler(this.Menu_Item_Ticket_Click);
+            // 
+            // Menu_Item_Backup
+            // 
+            this.Menu_Item_Backup.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Menu_Item_Backup.ForeColor = System.Drawing.Color.SeaShell;
+            this.Menu_Item_Backup.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Backup.Image")));
+            this.Menu_Item_Backup.Name = "Menu_Item_Backup";
+            this.Menu_Item_Backup.Size = new System.Drawing.Size(373, 36);
+            this.Menu_Item_Backup.Text = "Base de datos de respaldo";
+            this.Menu_Item_Backup.Click += new System.EventHandler(this.Menu_Item_Backup_Click);
             // 
             // tn_tiempo
             // 
@@ -470,16 +456,6 @@
             this.lbl_usuario.Name = "lbl_usuario";
             this.lbl_usuario.Size = new System.Drawing.Size(0, 29);
             // 
-            // Menu_Item_Backup
-            // 
-            this.Menu_Item_Backup.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Menu_Item_Backup.ForeColor = System.Drawing.Color.SeaShell;
-            this.Menu_Item_Backup.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Item_Backup.Image")));
-            this.Menu_Item_Backup.Name = "Menu_Item_Backup";
-            this.Menu_Item_Backup.Size = new System.Drawing.Size(381, 42);
-            this.Menu_Item_Backup.Text = "Base de datos de respaldo";
-            this.Menu_Item_Backup.Click += new System.EventHandler(this.Menu_Item_Backup_Click);
-            // 
             // FrmMdiPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -521,7 +497,6 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_item_UnidadMedida;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Reporte_Ventas;
-        private System.Windows.Forms.ToolStripMenuItem Menu_Item_Reporte_Compras;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lbl_usuario;
         private System.Windows.Forms.ToolStripMenuItem Menu_item_venta;
@@ -539,7 +514,6 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Inventario;
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Ajustes_Movimientos;
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Reporte_Productos_Mas_Vendidos;
-        private System.Windows.Forms.ToolStripMenuItem Menu_Item_Reporte_Productos_Mas_Comprados;
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Consultar_Productos;
         private System.Windows.Forms.ToolStripMenuItem Menu_Item_Backup;
     }

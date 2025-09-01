@@ -92,7 +92,7 @@
             this.lbl_resultado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbl_resultado.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_resultado.ForeColor = System.Drawing.Color.Red;
-            this.lbl_resultado.Location = new System.Drawing.Point(650, 188);
+            this.lbl_resultado.Location = new System.Drawing.Point(682, 188);
             this.lbl_resultado.Name = "lbl_resultado";
             this.lbl_resultado.Size = new System.Drawing.Size(0, 29);
             this.lbl_resultado.TabIndex = 87;
@@ -103,7 +103,7 @@
             this.lbl_total.BackColor = System.Drawing.SystemColors.ControlText;
             this.lbl_total.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_total.ForeColor = System.Drawing.Color.LawnGreen;
-            this.lbl_total.Location = new System.Drawing.Point(650, 134);
+            this.lbl_total.Location = new System.Drawing.Point(90, 188);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(0, 29);
             this.lbl_total.TabIndex = 86;
@@ -132,7 +132,7 @@
             this.cbo_TipoMovimiento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_TipoMovimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.cbo_TipoMovimiento.FormattingEnabled = true;
-            this.cbo_TipoMovimiento.Location = new System.Drawing.Point(237, 22);
+            this.cbo_TipoMovimiento.Location = new System.Drawing.Point(288, 27);
             this.cbo_TipoMovimiento.Name = "cbo_TipoMovimiento";
             this.cbo_TipoMovimiento.Size = new System.Drawing.Size(397, 40);
             this.cbo_TipoMovimiento.TabIndex = 138;
@@ -181,7 +181,7 @@
             // dtp_fecha_fin
             // 
             this.dtp_fecha_fin.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_fin.Location = new System.Drawing.Point(239, 132);
+            this.dtp_fecha_fin.Location = new System.Drawing.Point(288, 137);
             this.dtp_fecha_fin.Name = "dtp_fecha_fin";
             this.dtp_fecha_fin.Size = new System.Drawing.Size(395, 37);
             this.dtp_fecha_fin.TabIndex = 134;
@@ -190,7 +190,7 @@
             // dtp_fecha_inicio
             // 
             this.dtp_fecha_inicio.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(238, 75);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(287, 80);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(395, 37);
             this.dtp_fecha_inicio.TabIndex = 133;
@@ -204,7 +204,7 @@
             this.btn_buscar.Font = new System.Drawing.Font("Impact", 10F);
             this.btn_buscar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
-            this.btn_buscar.Location = new System.Drawing.Point(1200, 27);
+            this.btn_buscar.Location = new System.Drawing.Point(1236, 28);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(152, 50);
             this.btn_buscar.TabIndex = 140;
@@ -222,7 +222,7 @@
             this.btn_limpiar.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_limpiar.ForeColor = System.Drawing.Color.AliceBlue;
             this.btn_limpiar.Image = ((System.Drawing.Image)(resources.GetObject("btn_limpiar.Image")));
-            this.btn_limpiar.Location = new System.Drawing.Point(1374, 27);
+            this.btn_limpiar.Location = new System.Drawing.Point(1410, 28);
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(152, 50);
             this.btn_limpiar.TabIndex = 141;
@@ -235,17 +235,15 @@
             // 
             // Btn_tiposMovimiento
             // 
-            this.Btn_tiposMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_tiposMovimiento.BackColor = System.Drawing.Color.SkyBlue;
             this.Btn_tiposMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Btn_tiposMovimiento.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_tiposMovimiento.ForeColor = System.Drawing.Color.AliceBlue;
             this.Btn_tiposMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_tiposMovimiento.Image")));
-            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(1469, 151);
+            this.Btn_tiposMovimiento.Location = new System.Drawing.Point(222, 19);
             this.Btn_tiposMovimiento.Name = "Btn_tiposMovimiento";
-            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(306, 55);
+            this.Btn_tiposMovimiento.Size = new System.Drawing.Size(60, 50);
             this.Btn_tiposMovimiento.TabIndex = 142;
-            this.Btn_tiposMovimiento.Text = "Ver Tipos De Movimientos";
             this.Btn_tiposMovimiento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Btn_tiposMovimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Btn_tiposMovimiento.UseVisualStyleBackColor = false;

@@ -64,7 +64,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
         <Top>11.79282cm</Top>
-        <Left>6.00769cm</Left>
+        <Left>5.63727cm</Left>
         <Height>0.69284cm</Height>
         <Width>10.92104cm</Width>
         <ZIndex>1</ZIndex>
@@ -100,8 +100,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.58155cm</Top>
-        <Left>10.13057cm</Left>
+        <Top>1.54627cm</Top>
+        <Left>9.2275cm</Left>
         <Height>0.6cm</Height>
         <Width>6.27943cm</Width>
         <ZIndex>2</ZIndex>
@@ -133,8 +133,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Serie</rd:DefaultName>
-        <Top>2.6578cm</Top>
-        <Left>10.18571cm</Left>
+        <Top>2.62252cm</Top>
+        <Left>9.28264cm</Left>
         <Height>0.6cm</Height>
         <Width>2.97054cm</Width>
         <ZIndex>3</ZIndex>
@@ -168,8 +168,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.6578cm</Top>
-        <Left>13.29736cm</Left>
+        <Top>2.62252cm</Top>
+        <Left>12.39429cm</Left>
         <Height>0.6cm</Height>
         <Width>0.54209cm</Width>
         <ZIndex>4</ZIndex>
@@ -201,8 +201,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Correlativo</rd:DefaultName>
-        <Top>2.6578cm</Top>
-        <Left>13.99597cm</Left>
+        <Top>2.62252cm</Top>
+        <Left>13.0929cm</Left>
         <Height>0.6cm</Height>
         <Width>2.41403cm</Width>
         <ZIndex>5</ZIndex>
@@ -236,8 +236,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Fecha</rd:DefaultName>
-        <Top>3.87544cm</Top>
-        <Left>10.18572cm</Left>
+        <Top>3.84016cm</Top>
+        <Left>9.28265cm</Left>
         <Height>0.6cm</Height>
         <Width>6.27943cm</Width>
         <ZIndex>6</ZIndex>
@@ -271,8 +271,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Cliente</rd:DefaultName>
-        <Top>6.32974cm</Top>
-        <Left>5.48335cm</Left>
+        <Top>6.29446cm</Top>
+        <Left>4.58028cm</Left>
         <Height>0.6cm</Height>
         <Width>10.98678cm</Width>
         <ZIndex>7</ZIndex>
@@ -306,8 +306,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox34</rd:DefaultName>
-        <Top>6.32974cm</Top>
-        <Left>2.63049cm</Left>
+        <Top>6.29446cm</Top>
+        <Left>1.72742cm</Left>
         <Height>0.6cm</Height>
         <Width>1.74625cm</Width>
         <ZIndex>8</ZIndex>
@@ -340,8 +340,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Usuario</rd:DefaultName>
-        <Top>5.2714cm</Top>
-        <Left>5.48584cm</Left>
+        <Top>5.23612cm</Top>
+        <Left>4.58277cm</Left>
         <Height>0.6cm</Height>
         <Width>10.98429cm</Width>
         <ZIndex>9</ZIndex>
@@ -375,8 +375,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox34</rd:DefaultName>
-        <Top>5.2714cm</Top>
-        <Left>2.69062cm</Left>
+        <Top>5.23612cm</Top>
+        <Left>1.78755cm</Left>
         <Height>0.6cm</Height>
         <Width>1.68861cm</Width>
         <ZIndex>10</ZIndex>
@@ -410,8 +410,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DatosEmpresa</rd:DefaultName>
-        <Top>1.54627cm</Top>
-        <Left>2.628cm</Left>
+        <Top>1.51099cm</Top>
+        <Left>1.72493cm</Left>
         <Height>2.92917cm</Height>
         <Width>6.21832cm</Width>
         <ZIndex>11</ZIndex>
@@ -454,7 +454,7 @@ Uso exclusivo para control de stock</Value>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
         <Top>13.84684cm</Top>
-        <Left>0.91379cm</Left>
+        <Left>0.54337cm</Left>
         <Height>3.5327cm</Height>
         <Width>16.01494cm</Width>
         <ZIndex>12</ZIndex>
@@ -476,16 +476,16 @@ Uso exclusivo para control de stock</Value>
               <Width>2.28833cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.72127cm</Width>
+              <Width>8.35086cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.2846cm</Width>
+              <Width>1.93182cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.58819cm</Width>
+              <Width>2.20013cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.60583cm</Width>
+              <Width>1.63569cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -718,6 +718,7 @@ Uso exclusivo para control de stock</Value>
                               <Value>=Fields!Producto.Value</Value>
                               <Style>
                                 <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -752,6 +753,7 @@ Uso exclusivo para control de stock</Value>
                               <Value>=Fields!Cantidad.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -786,6 +788,7 @@ Uso exclusivo para control de stock</Value>
                               <Value>=Fields!PrecioCompra.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$'#,0.00;('$'#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -804,6 +807,7 @@ Uso exclusivo para control de stock</Value>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -820,6 +824,8 @@ Uso exclusivo para control de stock</Value>
                               <Value>=Fields!Subtotal.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -867,9 +873,9 @@ Uso exclusivo para control de stock</Value>
         </TablixRowHierarchy>
         <DataSetName>SpReporteIngreso</DataSetName>
         <Top>8.08426cm</Top>
-        <Left>0.48189cm</Left>
+        <Left>0.36537cm</Left>
         <Height>1.2cm</Height>
-        <Width>18.48823cm</Width>
+        <Width>16.40683cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -881,14 +887,14 @@ Uso exclusivo para control de stock</Value>
     <Height>27.7cm</Height>
     <Style />
   </Body>
-  <Width>19.53456cm</Width>
+  <Width>17cm</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>

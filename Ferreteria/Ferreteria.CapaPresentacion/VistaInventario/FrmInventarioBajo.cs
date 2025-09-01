@@ -44,6 +44,26 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
             dgv_productos.DataSource = listaProductos;
             lbl_total.Text = "Total de Productos:  " + Convert.ToString(dgv_productos.Rows.Count);
             lbl_resultado.Text = "";
+            CalcularTotalMercaderia();
+        }
+        private void CalcularTotalMercaderia()
+        {
+            decimal total = 0;
+
+            foreach (DataGridViewRow row in dgv_productos.Rows)
+            {
+                if (row.Cells["Stock"].Value != null && row.Cells["Precio"].Value != null)
+                {
+                    decimal stock = Convert.ToDecimal(row.Cells["Stock"].Value);
+                    decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
+
+                    total += stock * precio;
+                }
+            }
+
+            // Formato argentino (ej: $ 12.345,67)
+            CultureInfo culturaAR = new CultureInfo("es-AR");
+            lbl_ValorMercaderia.Text = $"Valor total del Inventario: {total.ToString("C2", culturaAR)}";
         }
         private void ArregloDataGridView(DataGridView dgv_productos)
         {
@@ -52,6 +72,8 @@ namespace Ferreteria.CapaPresentacion.VistaInventario
             CN_Metodos _Metodos = new CN_Metodos();
 
             dgv_productos.Columns["Id_Producto"].Visible = false;
+
+     
             dgv_productos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 
