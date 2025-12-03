@@ -1,3 +1,5 @@
+## Sistema de Gestión Comercial “Ferre Gestión” 
+
 ## 🎯 Objetivo del Proyecto
 
 El objetivo principal del sistema fue **digitalizar completamente la operatoria de una ferretería**, reemplazando los procesos manuales por un sistema robusto, auditable y escalable, mejorando:
