@@ -121,7 +121,7 @@ El sistema cuenta con una base de datos relacional compuesta por **20 tablas**, 
 - Sistema de **backups manual y automático** con configuración de horarios.
 
   
-## 🖼️ Capturas del Sistema
+## Demo  del Sistema
 
-### Login
+
 
