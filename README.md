@@ -22,7 +22,7 @@ Proyecto desarrollado de forma **individual**, abarcando:
 - Integración con hardware (lector de código de barras, impresora térmica e impresora convencional).
 - Puesta en producción y soporte.
 
-📅 **Duración del proyecto:** Mayo 2024 – Septiembre 2024  
+📅 **Duración del proyecto:** Mayo 2025 – Septiembre 2025  
 
 
 ## 🏢 Descripción del Proyecto
