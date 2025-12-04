@@ -36,7 +36,7 @@ El sistema cuenta con **integración con lector de códigos de barras**, **impre
 - **Boletas de ventas a consumidor final**
 - **Reportes de auditoría**
 - Reportes administrativos y de control interno
-- 
+
 El sistema se encuentra **actualmente en uso en producción**, optimizando los procesos diarios de la ferretería, reduciendo errores de stock, mejorando el control administrativo y agilizando la facturación.
 
 ## 🔧 Módulos del Sistema
